@@ -1,0 +1,55 @@
+//import fonts
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
+
+@import '@/assets/css/variables.scss';
+@import '@/assets/css/mixins.scss';
+
+body{
+    margin: 0;
+    min-height: 100vh;
+}
+
+.svg-inline--fa.fa-sort-down {
+    vertical-align: 0;
+}
+.svg-inline--fa.fa-sort-up {
+    vertical-align: 0;
+}
+
+.application{
+    background-color: $color-white-background;
+    position: relative;
+    width: 100%;
+    .btn-default{
+        @include btn-default;
+    }
+
+    .btn-default-ghost{
+        @include btn-default-ghost;
+    }
+
+    h1{
+        @include h1;
+    }
+    h3{
+        @include h3;
+    }
+
+    .content{
+        margin-top: 100px
+    }
+
+    .blue-link{
+        @include blue-link;
+    }
+}
+
+
+//components
+@import '@/assets/css/components/header.scss';
+
+//pages
+@import '@/assets/css/pages/landing-page.scss';
+
+//librairies
+@import '@/assets/css/librairies/flickity.scss';

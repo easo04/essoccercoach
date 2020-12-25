@@ -1,0 +1,112 @@
+
+@mixin h1 {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 43px;
+}
+
+@mixin h2 {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 43px;
+}
+
+@mixin h3 {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 43px;
+}
+
+@mixin font-m {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+@mixin font-l {
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+@mixin font-m-bold {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+@mixin font-m-sbold {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+@mixin font-m-mbold {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+@mixin btn-default{
+    padding: 10px 24px;
+    background: $color-soccer-coach;
+    border-radius: 5px;
+    font-family: Open Sans;
+    color: $color-white-fonts;
+    border: none;
+    @include font-m-bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    &:hover{
+        background-color: #208994;
+    }
+    &:focus{
+        outline:none;
+        box-shadow: 1px 1px 4px rgba(32, 137, 148, 0.5);
+    }
+    &.inactive{
+        background-color: $color-gris-1;
+        color:$color-gris-2;
+    }
+}
+
+@mixin btn-default-ghost{
+    padding: 10px 24px;
+    background: transparent;
+    border-radius: 5px;
+    border:2px solid $color-soccer-coach;
+    font-family: Open Sans;
+    color: $color-soccer-coach;
+    @include font-m-bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    &:hover{
+        background-color: $color-soccer-coach;
+        color:$color-white-fonts;
+    }
+    &:focus{
+        outline:none;
+        box-shadow: 1px 1px 4px rgba(32, 137, 148, 0.5);
+    }
+    &.inactive{
+        background-color: $color-gris-1;
+        color:$color-gris-2;
+    }
+}
+
+@mixin blue-link {
+    color: $color-blue-obscur-1;
+    @include font-m-sbold;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: Open Sans;
+}

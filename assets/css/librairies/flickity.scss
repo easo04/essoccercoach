@@ -1,0 +1,24 @@
+  /* big buttons, no circle */
+.flickity-prev-next-button {
+    width: 100px;
+    height: 100px;
+    background: #FCFCFC;
+    border-radius: 5px;
+}
+/* arrow color */
+.flickity-prev-next-button .arrow {
+    fill: $color-blue-obscur-1;
+}
+.flickity-prev-next-button.no-svg {
+    color: $color-blue-obscur-1;
+}
+/* hide disabled button */
+.flickity-prev-next-button:disabled {
+    display: none;
+}
+.flickity-slider{
+    transform: none !important;
+}
+.flickity-page-dots{
+    display: none;
+}

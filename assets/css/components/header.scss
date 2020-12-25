@@ -1,0 +1,47 @@
+.header{
+    height: 100px;
+    padding: 0px 100px;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    background-color: $color-white-background;
+    position: fixed;
+    top: 0;
+    z-index: 900;
+    width: auto;
+    right: 0px;
+    left: 0px;
+    border-bottom: 1px solid $color-border;
+
+    .menu-desktop{
+        @include font-m-mbold;
+        color:$color-black-fonts-second;
+        font-family: Open Sans;
+        ul{
+            margin: 0;
+            padding: 0px 30px;
+            li{
+                display: inline;
+                margin-right: 16px;
+                cursor: pointer;
+            }
+        }
+    }
+    > div{
+        display: flex;
+        align-items: center;
+    }
+    .logo{
+        height: 100px;
+        h3{
+            @include h3;
+            color: $color-black-fonts;
+            margin-left: 10px;
+        }
+        .image-logo{
+            height: 80px;
+        }
+    }
+    .btn-new{
+        justify-content: flex-end;
+    }
+}
