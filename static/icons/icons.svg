@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="0" height="0">
+    <defs>
+    <style>
+        .stroke{
+            fill:none;
+            stroke:black;
+        }
+        .stroke-g{
+            fill:none;
+            stroke:black;
+        }
+        .cls-1{
+            fill:#5d5d5d;
+        }
+        .cls-1,.cls-3{
+            stroke:#5d5d5d;
+            stroke-miterlimit:10;
+        }
+        .cls-2{
+            fill:#5e5e5e;
+        }
+    </style>
+    </defs>
+    <title>Icônes ESsoccercoach</title>
+    <symbol id="square-solid" viewBox="0 0 100 100">
+        <rect x="0" y="0" width="100" height="100"/>
+    </symbol>
+    <symbol id="square-stroke" viewBox="0 0 100 100">
+        <rect class="stroke" x="0" y="0" width="100" height="100"/>
+    </symbol>
+    <symbol id="circle-solid" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45"/>
+    </symbol>
+    <symbol id="circle-stroke" viewBox="0 0 100 100">
+        <circle class="stroke" cx="50" cy="50" r="42" stroke-width="5"/>
+    </symbol>
+    <symbol id="triangle-solid" viewBox="0 0 100 100">
+        <polygon points="2 98, 50 2, 98 98"/>
+    </symbol>
+    <symbol id="triangle-stroke" viewBox="0 0 100 100">
+        <polygon class="stroke" points="5 98, 50 6, 95 98" stroke-width="5"/>
+    </symbol>
+    <symbol id="line-h-solid" viewBox="0 0 100 100">
+        <line x1="0" y1="50" x2="100" y2="50" stroke="black"/>
+    </symbol>
+    <symbol id="line-v-solid" viewBox="0 0 100 100">
+        <line x1="50" y1="0" x2="50" y2="100" stroke="black"/>
+    </symbol>
+    <symbol id="line-d-solid" viewBox="0 0 100 100">
+        <line x1="2" y1="98" x2="98" y2="2" stroke="black"/>
+    </symbol>
+    <symbol id="diamond-solid" viewBox="0 0 100 100">
+        <path d="m 50,2 48,50 -50,47 -47,-50 z"/>
+    </symbol>
+    <symbol id="diamond-stroke" viewBox="0 0 100 100">
+        <path class="stroke" d="m 50,2 48,50 -50,47 -47,-50 z"/>
+    </symbol>
+    <symbol  id="terrain" viewBox="0 0 200 100">
+        <g class="stroke-g" stroke-width="5">
+            <rect class="terrain" x="10" y="10" width="180" height="80"/>
+            <line x1="100" y1="10" x2="100" y2="90"/>
+            <circle cx="100" cy="50" r="15"/>
+            <rect class="zone1" x="10" y="30" width="30" height="40"/>
+            <rect class="zone1" x="160" y="30" width="30" height="40"/>
+        </g>
+    </symbol>
+    <symbol id="outil" viewBox="0 0 397 317">
+        <line class="cls-1" x1="211.08" y1="181.24" x2="176.76" y2="181.24"  stroke-width="4"/>
+        <rect class="cls-2" y="263.76" width="396.61" height="52.36"/>
+        <polygon class="cls-3" points="176.68 2 221.31 2 316.59 219.35 347.87 290.7 42.78 290.7 75.14 220.94 176.68 2" stroke-width="4" stroke-miterlimit="10" fill="none"/>
+        <polygon class="cls-1" points="67.77 236.83 324.25 236.83 347.87 290.7 42.78 290.7 67.77 236.83" stroke-width="4" stroke-miterlimit="10"/>
+        <polygon class="cls-1" points="300.08 181.69 93.34 181.69 121.81 120.31 273.17 120.31 300.08 181.69" stroke-width="4" stroke-miterlimit="10"/>
+        <polygon class="cls-1" points="151.48 56.34 245.13 56.34 221.31 2 176.68 2 151.48 56.34" stroke-width="4" stroke-miterlimit="10"/>
+    </symbol>
+    <symbol id="player" viewBox="0 0 261.58 334.18">
+        <polygon class="cls-1" points="2.26 72.6 184.18 72.6 261.58 106.5 202.82 195.2 169.49 176.55 207.34 120.62 185.88 113.28 134.46 198.59 58.76 165.25 93.22 107.63 2.26 107.63 2.26 72.6"/>
+        <polygon class="cls-1" points="97.74 188.42 131.92 202.54 49.15 334.18 16.95 316.67 97.74 188.42"/>
+        <polygon class="cls-1" points="55.37 169.77 90.39 185.59 32.77 273.16 0 254.52 55.37 169.77"/>
+        <circle class="cls-1" cx="113.56" cy="301.98" r="28.81"/>
+        <ellipse class="cls-1" cx="162.85" cy="33.62" rx="37.71" ry="33.62"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 245.23 310.17">
+        <rect class="cls-1" x="271.01" y="103.21" width="23.73" height="319.21" transform="matrix(0.8, 0.6, -0.6, 0.8, 33.53, -204.71)"/>
+        <rect class="cls-2" x="338.61" y="93.25" width="75.14" height="20.9" transform="translate(-189.11 -34.89) rotate(-7.96)"/>
+        <rect class="cls-2" x="370.4" y="116.25" width="75.27" height="20.9" transform="translate(298.64 -382.93) rotate(82.04)"/>
+    </symbol>
+    <symbol id="player-text" viewBox="0 0 360 360">
+        <circle class="cls-1" cx="180" cy="180" r="180"/>
+        <path class="text" d="M314.25,351l-22.5-63.3h-78.9L189.75,351H158l80.1-209.7h30.3L346.05,351h-31.8Zm-91.8-89.1h60l-29.7-82.8Z" transform="translate(-72 -72)" fill="#FBFBFB"/></svg>
+    </symbol>
+    <symbol id="player-color" viewBox="0 0 360 360">
+        <circle class="cls-1" cx="180" cy="180" r="180"/>
+    </symbol>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="0" height="0">
+    <defs>
+        <style>
+            .cls-1{fill:#5e5e5e;}
+        </style>
+    </defs>
+    <title>player</title>
+    <symbol id="player-text">
+        <circle class="cls-1" cx="180" cy="180" r="180"/>
+        <path d="M314.25,351l-22.5-63.3h-78.9L189.75,351H158l80.1-209.7h30.3L346.05,351h-31.8Zm-91.8-89.1h60l-29.7-82.8Z" transform="translate(-72 -72)" fill="#FBFBFB"/></svg>
+    </symbol>
+    <symbol id="player-color">
+        <circle class="cls-1" cx="180" cy="180" r="180"/>
+    </symbol>
+</svg>

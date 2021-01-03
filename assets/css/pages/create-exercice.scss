@@ -1,0 +1,473 @@
+.creation-exercice{
+    background-color: #FDFDFD;
+
+    .menu-top{
+        border-bottom: 1px solid $color-border-designer;
+        height: 20px;
+        padding: 10px 20px;
+        display: grid;
+        grid-template-columns: 280px 2fr 1fr;
+
+        .icon-action{
+            cursor: pointer;
+            color: $color-icons-designer;
+            font-size: 18px;
+            &.inactive{
+                color:#ADADAD;
+                cursor:auto;
+            }
+        }
+
+        .principal-items{
+            display: flex;
+            align-items: center;
+            border-right: 1px solid $color-border-designer;
+
+            .actions-s{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                svg{
+                    margin-right: 10px;
+                }
+            }
+        }
+        .secondary-items{
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            
+            svg, .objects{
+                margin-right: 10px;
+            }
+            .second-items{
+                margin-left:50px;
+                border-right: 1px solid $color-border-designer;
+                padding-right: 10px;
+                position: relative;
+
+                .add-number{
+                    display: inline;
+                    position: relative;
+                    width: 18px;
+                    height: 18px;
+                    cursor: pointer;
+                    color: $color-icons-designer;
+                    font-size: 18px;
+                    .number{
+                        @include font-s-sbold;
+                        color:$color-white-fonts;
+                        position: absolute;
+                        left: 6px;
+                        font-family: $font-family-text;
+                        line-height: 22px;
+                    }
+                }
+
+                .select-couleurs{
+                    position: absolute;
+                    bottom: -51px;
+                    left: 20px;
+                    background-color: #FBFBFB;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+                    border:1px solid rgba(201, 201, 201, 0.25);
+                    padding: 10px;
+                    z-index: 10;
+                    .liste-couleurs{
+                        display: flex;
+                        >div{
+                            width: 21px;
+                            height: 21px;
+                            border:1px solid $color-border-designer;
+                            &:not(:last-child){
+                                margin-right: 10px;
+                            }
+                            cursor: pointer;
+                        }
+                    }
+                    .arrow-up{
+                        width: 0; 
+                        height: 0; 
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        border-bottom: 10px solid rgba(201, 201, 201, 0.50);
+                        position: absolute;
+                        top:-10px;
+                        left:45%;
+                    }
+                }
+                .select-formes{
+                    position: absolute;
+                    top: 29px;
+                    left: -11px;
+                    background-color: #FBFBFB;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+                    border:1px solid rgba(201, 201, 201, 0.25);
+                    z-index: 10;
+                    .liste-formes{
+                        .item-forme{
+                            @include font-xm-mbold;
+                            padding: 8px 20px;
+                            cursor: pointer;
+                            font-family: $font-family-text;
+                            color:$color-black-fonts-second;
+                            &:hover{
+                                background-color: #D4EEF1;
+                            }
+                        }
+                    }
+                    .arrow-up{
+                        width: 0; 
+                        height: 0; 
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        border-bottom: 10px solid rgba(201, 201, 201, 0.50);
+                        position: absolute;
+                        top:-10px;
+                        left:45%;
+                    }
+                }
+                .select-transparence{
+                    position: absolute;
+                    top: 29px;
+                    right: -70px;
+                    background-color: #FBFBFB;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+                    border:1px solid rgba(201, 201, 201, 0.25);
+                    z-index: 10;
+                    .arrow-up{
+                        width: 0; 
+                        height: 0; 
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        border-bottom: 10px solid rgba(201, 201, 201, 0.50);
+                        position: absolute;
+                        top:-10px;
+                        left:45%;
+                    }
+                    .liste-formes{
+                        font-family: $font-family-text;
+                        color:$color-black-fonts-second;
+                        @include font-xm-mbold;
+                        padding: 10px;
+                    }
+                }
+            }
+
+            .objects{ 
+                cursor: pointer;
+                svg{
+                    margin-right: 2px;
+                }
+                .transparence-select{
+                    color:$color-icons-designer;
+                    @include font-m;
+                    font-family: $font-family-text;
+                    cursor: pointer;
+                }
+            }
+        }
+        .third-items{
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            svg, .objects{
+                margin-right: 10px;
+            }
+        }
+        .actions{
+            display: flex;
+            justify-content: flex-end;
+            .fa-download{
+                color:$color-soccer-coach;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+    .content{
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        height: 80vh;
+
+        .menu-left{
+            display: flex;
+            .items-menu{
+                width: 60px;
+                border-right: 1px solid $color-border-designer;
+                padding-top: 30px;
+                >div{
+                    cursor: pointer;
+                    height: 32px;
+                    font-size: 28px;
+                    padding: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $color-icons-designer;
+                    &.active{
+                        background-color: #A9DDE3;
+                        color:#18676F;
+                    }
+                }
+            }
+            .content-item{
+                width: 260px;
+                border-right: 1px solid $color-border-designer;
+                padding-top: 30px;
+                >div{
+                    h3{
+                        @include h3;
+                        color:$color-black-fonts;
+                        margin: 0;
+                        margin-left: 10px;
+                        line-height: 50px;
+                    }
+                }
+                h4{
+                    @include h4;
+                    color:$color-text-onglets;
+                    margin: 0;
+                    margin-left: 10px;
+                    line-height: 50px;
+                }
+                .content-item-terrains{
+                    .onglets{
+                        display: flex;
+                        width: 100%;
+                        .item-onglet{
+                            width: 50%;
+                            background-color:$color-background-onglets;
+                            padding: 7px;
+                            text-align: center;
+                            @include font-xm-sbold;
+                            color:$color-text-onglets;
+                            font-family: $font-family-text;
+                            cursor: pointer;
+
+                            &.active{
+                                border-bottom: 3px solid $color-border-bottom-onglet;
+                                font-weight: 900;
+                            }
+                        }
+                    }
+                    .content-onglet{
+                        padding: 10px;
+                        height: 350px;
+                        overflow: scroll;
+                        overflow-x: hidden;
+                        @media screen and (min-width: $screen-lg-x) {
+                            height: 600px;
+                        }
+                        .item-terrain-sl{
+                            height: 122px;
+                            width: 100%;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            margin-bottom: 20px;
+                            img{
+                                width: 100%;
+                                object-fit: cover;
+                                border-radius: 5px;
+                            }
+                        }
+                        .item-terrain-al{
+                            height: 122px;
+                            width: 100%;
+                            background-color: red;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+                .content-item-joueurs{
+                    .item-joueur-simple{
+                        display: flex;
+                        padding: 0px 10px;
+                        .joueur-add{
+                            margin-right: 10px;
+                            cursor: pointer;
+                            font-size: 28px;
+                            .icon{
+                                height: 1em;
+                                width: 1em;
+                                &.red{
+                                    fill:$color-red;
+                                }
+                                &.blue-claro{
+                                    fill:$color-soccer-coach;
+                                }
+                                &.yellow{
+                                    fill:$color-yellow;
+                                }
+                                &.black{
+                                    fill:$color-black;
+                                }
+                                
+                                background: transparent !important;
+                            }
+                        }
+                    }
+                    .item-joueur-text{
+                        display: flex;
+                        padding: 0px 10px;
+                        .with-text{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-right: 10px;
+                            cursor: pointer;
+                            font-size: 28px;
+                            .txt{
+                                position: absolute;
+                                color:$color-white-fonts;
+                                cursor: pointer;
+                            }
+                            .icon{
+                                height: 1em;
+                                width: 1em;
+                                &.red{
+                                    fill:$color-red;
+                                }
+                                &.blue-claro{
+                                    fill:$color-soccer-coach;
+                                }
+                                &.yellow{
+                                    fill:$color-yellow;
+                                }
+                                &.black{
+                                    fill:$color-black;
+                                }
+                                
+                                background: transparent !important;
+                            }
+                        }
+                    }
+                    .item-joueur-mouvement{
+                        display: flex;
+                        padding: 0px 10px;
+                        flex-wrap: wrap;
+                        //height: 200px;
+                        //overflow: scroll;
+                        //overflow-x: hidden;
+
+                        .joueur-add-img{
+                            width: 50px;
+                            height: 30px;
+                            &:not(:last-child){
+                                margin-right: 2px;
+                            }
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                transition: all 0.5s;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                .content-item-outils{
+                    .items-outils{
+                        display: flex;
+                        padding: 0px 10px;
+                        flex-wrap: wrap;
+                        height: 400px;
+                        overflow: scroll;
+                        overflow-x: hidden;
+                        .outil-li-div{
+                            img{
+                                height: 50px;
+                                height: 50px;
+                                transition: all 0.5s;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                .content-item-lignes{
+                    .items-lignes{
+                        display: flex;
+                        padding: 0px 10px;
+                        flex-wrap: wrap;
+                        height: 400px;
+                        overflow: scroll;
+                        overflow-x: hidden;
+                        .ligne-li-div{
+                            img{
+                                height: 50px;
+                                height: 50px;
+                                transition: all 0.5s;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .content-terrain{
+            padding: 20px;
+            .terrain-space{
+                position: relative;
+                height: 100%;
+                width: 80%;
+                box-shadow: 2px 2px 10px 1px rgba(201, 201, 201, 0.4);
+                background-image: url('../../assets/images/terrain/terrain11.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                border-radius: 3px;
+
+                .drag-joueur{
+                    position: absolute;
+                    -webkit-transform: translate(0px, 0px);
+                            transform: translate(0px, 0px);
+                    z-index: 30;
+            
+                    height: 30px;
+                    width: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+            
+                    .text-player{
+                        position: absolute;
+                        color:$color-white-fonts;
+                    }
+            
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+            
+                    p{
+                        text-align: center;
+                        font-weight: bold;
+                        color:$color-black-fonts;
+                    }
+                }
+
+                .drag-joueur-img{
+                    position: absolute;
+                    -webkit-transform: translate(0px, 0px);
+                            transform: translate(0px, 0px);
+                    z-index: 30;
+
+                    height: 30px;
+                    width: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

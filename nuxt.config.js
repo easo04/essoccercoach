@@ -10,11 +10,13 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: '/flickity/flickity.css', media:'screen'},
+      { rel: 'stylesheet', href: '/icons/icons.css', media:'screen'},
     ],
     script:[
       {src:'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'},
       {src:'/fontawesome/js/all.js'},
       {src:'/flickity/flickity.pkgd.min.js'},
+      {src:'/icons/icons.js'},
     ]
   },
 
@@ -25,6 +27,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '@/plugins/vue-js-modal.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -38,7 +41,7 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

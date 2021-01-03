@@ -1,0 +1,20 @@
+.icon{
+    width: 1.5em;
+    height: 1.3em;
+    fill: currentColor;
+    margin-top: 5px;
+    /*margin-right: 10px;*/
+}
+
+.icon-stroke{
+    width: 1.5em;
+    height: 1.5em;
+    fill:none;
+    stroke:currentColor;
+    margin-top: 7px;
+}
+
+.icon-arrow .icon, .icon-outil .icon{
+    width: 1em;
+    height: 1em;
+}

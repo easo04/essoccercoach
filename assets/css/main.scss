@@ -16,24 +16,32 @@ body{
     vertical-align: 0;
 }
 
+.btn-default{
+    @include btn-default;
+}
+
+.btn-default-ghost{
+    @include btn-default-ghost;
+}
+
+h1{
+    @include h1;
+}
+h3{
+    @include h3;
+}
+h4{
+    @include h4;
+}
+
+.form-group{
+    @include form-group;
+}
+
 .application{
     background-color: $color-white-background;
     position: relative;
     width: 100%;
-    .btn-default{
-        @include btn-default;
-    }
-
-    .btn-default-ghost{
-        @include btn-default-ghost;
-    }
-
-    h1{
-        @include h1;
-    }
-    h3{
-        @include h3;
-    }
 
     .content{
         margin-top: 100px
@@ -44,12 +52,56 @@ body{
     }
 }
 
+//librairies
+@import '@/assets/css/librairies/flickity.scss';
+@import '@/assets/css/librairies/drag.scss';
 
 //components
 @import '@/assets/css/components/header.scss';
+@import '@/assets/css/components/footer.scss';
+@import '@/assets/css/components/exercices/populaires.scss';
+@import '@/assets/css/components/select.scss';
+@import '@/assets/css/components/modals/modal.scss';
 
 //pages
 @import '@/assets/css/pages/landing-page.scss';
+@import '@/assets/css/pages/design.scss';
+@import '@/assets/css/pages/create-exercice.scss';
 
-//librairies
-@import '@/assets/css/librairies/flickity.scss';
+.red{
+    background-color: #ED381C !important;
+}
+.yellow{
+    background-color: #EDD634 !important;
+}
+.blue{
+    background-color: #3411ED !important;
+}
+.black{
+    background-color: #333333 !important;
+}
+.green{
+    background-color: #09BA04 !important;
+}
+.white{
+    background-color: #FBFBFB !important;
+}
+
+.red-color{
+    color: #ED381C !important;
+}
+.yellow-color{
+    color: #EDD634 !important;
+}
+.blue-color{
+    color: #3411ED !important;
+}
+.black-color{
+    color: #333333 !important;
+}
+.green-color{
+    color: #09BA04 !important;
+}
+.white-color{
+    color: #C9C9C9 !important;
+}

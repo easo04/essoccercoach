@@ -16,6 +16,7 @@
         @include font-m-mbold;
         color:$color-black-fonts-second;
         font-family: Open Sans;
+        position: relative;
         ul{
             margin: 0;
             padding: 0px 30px;
@@ -23,6 +24,23 @@
                 display: inline;
                 margin-right: 16px;
                 cursor: pointer;
+            }
+        }
+        .select-list{
+            position: absolute;
+            bottom: -249px;
+            right: 75px;
+            background-color: #FBFBFB;
+            border-radius: 5px;
+            color:#858585;
+            border:1px solid rgba(201, 201, 201, 0.5);
+            @include font-m-mbold;;
+            .item{
+                padding: 8px 20px;
+                cursor: pointer;
+                &:hover{
+                    background-color: #D4EEF1;
+                }
             }
         }
     }
@@ -43,5 +61,56 @@
     }
     .btn-new{
         justify-content: flex-end;
+        position: relative;
+        .new-actions-list{
+            position: absolute;
+            bottom: -175px;
+            width: 400px;
+            background-color: #FBFBFB;
+            border-radius: 5px;
+            color:$color-black-fonts;
+            border:1px solid rgba(201, 201, 201, 0.5);
+            padding: 20px;
+            h4{
+                margin: 0;
+                margin-bottom: 20px;
+            }
+            .items-actions{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 20px;
+                border-top: 1px solid $color-gris-1;
+                padding-top: 20px;
+                .item-action-list{
+                    border:1px solid $color-soccer-coach;
+                    background-color: $color-soccer-coach;
+                    border-radius: 5px;
+                    color:$color-white-fonts;
+                    @include font-s-mbold;
+                    font-family: Open Sans;
+                    text-align: center;
+                    cursor: pointer;
+                    padding: 10px;
+                    .img-item-action{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .img{
+                            height: 60px;
+                            width: 60px;
+                            display: flex;
+                            align-items: center;
+                            img{
+                                width: 100%;
+                            }
+                        }
+                    }
+                    &:hover{
+                        background-color: #208994;
+                        border:1px solid #18676F;
+                    }
+                }
+            }
+        }
     }
 }

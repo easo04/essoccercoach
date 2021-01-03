@@ -5,7 +5,7 @@
         <div class="description-content">
           <h1>Bienvenue à ESSoccerCoach, le créateur d'exercices gratuit pour les entraîneurs de soccer.</h1>
           <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos outils.</p>
-          <button class="btn btn-default-ghost">Choisir un de nos outils</button>
+          <div class="action-btn"><a class="btn btn-default-ghost" href="#nosOutils">Choisir un de nos outils</a></div>
         </div>
       </div>
       <div class="carrousel">
@@ -41,7 +41,7 @@
             <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
           </div>
           <div class="outil-actions">
-            <button class="btn btn-default-ghost">Créez votre exercice</button>
+            <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre exercice</button>
           </div>
         </div>
         <div class="outil">
@@ -76,7 +76,7 @@
             <div class="description-item-content">
               <h2>Créateur d'exercices</h2>
               <p>La préparation des exercices est très importante dans la <strong>planification</strong> d'une séance d'entraînement. <br><br>Avec notre <strong>créateur d'exercices</strong>, vous pouvez créer vos exercices de façon très simple et les télécharger en image.</p>
-              <div class="actions-item"><button class="btn btn-default">Créez votre exercice</button></div>
+              <div class="actions-item"><button class="btn btn-default" @click="goToCreateExercices()">Créez votre exercice</button></div>
             </div>
         </div>
         <div class="carrousel-item">
@@ -139,18 +139,30 @@
     <div class="exercices-populaires">
       <h3>Exercices populaires <i class="fas fa-star"></i></h3>
       <p>Consultez notre banque d'exercices pour créer vos séances d'entraînement:</p>
-      <div class="carousel exercices-carrousel" data-flickity>
-        <div class="carousel-cell exercice-item"></div>
-        <div class="carousel-cell exercice-item"></div>
-        <div class="carousel-cell exercice-item"></div>
-        <div class="carousel-cell exercice-item"></div>
-        <div class="carousel-cell exercice-item"></div>
-        <div class="carousel-cell exercice-item"></div>
-        <div class="carousel-cell exercice-item"></div>
-      </div>
+      <ExercicesPopulaires/>
       <div class="exercices-actions">
         <a class="blue-link">Tous les exerices <i class="fas fa-caret-right"></i></a>
       </div>
+    </div>
+    <div class="copyrigth2">
+        <div class="message">
+          <h2>Un outil offert à des <br><span>entraîneur de soccer</span> passionés!</h2>
+          <p>
+            Nous vous offrons un outil conçu par un entrâineur de soccer pour aider tous 
+            les entraîneurs qui ont besoin de créer leurs exercices de façon simple et rapide.<br><br>
+            Profitez de notre outil <strong>100% gratuit</strong> pour commencer à créer les exercices de votre prochaine 
+            séance d'entraînement.
+          </p>
+          <div class="compteur">
+            <div class="exercices-compteur">      
+              <span class="number">+ 400</span><br>
+              <span>Exercices créés avec notre outil</span>
+            </div> 
+          </div> 
+          <div class="message-btn">    
+            <button class="btn btn-default-ghost">Créez votre premier exercice</button>
+          </div> 
+        </div>
     </div>
   </div>
 </template>
@@ -162,6 +174,13 @@ export default {
         exercice(){
           return this.$store.state.esdesigner.exercice
         }
+    },
+    methods:{
+      goToCreateExercices(){
+        this.$router.push({path: '/create-exercice'});
+      }
+    },
+    mounted(){
     }
 }
 </script>

@@ -41,8 +41,8 @@
                     line-height: normal;
                     margin-top: 20px;
                 }
-                .btn{
-                    margin-top: 20px;
+                .action-btn{
+                    margin-top: 40px;
                 }
             }
         }
@@ -63,7 +63,8 @@
     }
     .copyrigth1{
         margin-top: 100px;
-        padding: 0px 100px;
+        padding: 0px 200px;
+        text-align: center;
         p{
             &.profitez{
                 text-align: center;
@@ -213,17 +214,6 @@
         p{
             @include font-m-sbold;
         }
-        .exercices-carrousel{
-            margin-top: 32px;
-            .exercice-item{
-                width: 273px;
-                height: 244px;
-                margin-right: 20px;
-                background: $color-white-background;
-                box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
-                border-radius: 5px;
-            }
-        }
         .exercices-actions{
             margin-top: 30px;
             display: flex;
@@ -231,6 +221,58 @@
             .fa-caret-right{
                 margin-left: 10px;
             }
+        }
+    }
+    .copyrigth2{
+        height: auto;
+        padding: 200px 200px;
+        text-align: center;
+        background-color: $color-blue-blackground;
+        position: relative;
+
+        .message{
+            position: relative;
+            z-index: 2;
+            h2, p{
+                color:$color-white-fonts;
+            }
+            .compteur{
+                margin-top: 50px;
+                color:$color-white-fonts;
+                font-family: Open Sans;
+                .exercices-compteur{
+                    span{
+                        @include h2;
+                        font-weight: 500;
+                        &.number{
+                            @include h1;
+                            font-weight: 600;
+                        }
+                    }
+                    
+                    text-align: center;
+                }
+            }
+            .message-btn{
+                margin-top: 20px;
+            }
+        }
+
+        &::before{
+            content: ' ';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+            background-image: url('../../assets/images/soccer3.jpg'); 
+            background-repeat: no-repeat;
+            background-position: 50% 0;
+            //background-size: cover;
+            background-size: 100% 100%;
         }
     }
 }

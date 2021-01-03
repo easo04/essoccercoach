@@ -9,17 +9,73 @@
                 <li>Accueil</li>
                 <li>Nos outils</li>
                 <li>À propos</li>
-                <li>Exercices <i class="fas fa-sort-down"></i></li>
+                <li @click="showExercicesOptions()" v-if="!showSelectExercices">
+                    Exercices <i class="fas fa-sort-down"></i>
+                </li>
+                <li @click="showExercicesOptions()" v-if="showSelectExercices">
+                    Exercices <i class="fas fa-smile"></i>
+                </li>
             </ul>
+            <div class="select-list" v-if="showSelectExercices">
+                <div class="item" v-for="(item, i) in lstCategoriesExercices" :key="i">
+                    {{item}}
+                </div>
+            </div>
         </div>
         <div class="btn-new">
-            <button class="btn btn-default">Nouveau <i class="fas fa-plus"></i></button>
+            <button class="btn btn-default" :class="{'active' : showNewActions}" @click="showActions()">Nouveau <i class="fas fa-plus"></i></button>
+            <div class="new-actions-list" v-if="showNewActions">
+                <h4>Commencez à créer avec l'un de nos outils</h4>
+                <div class="items-actions">
+                    <div class="item-action-list">
+                        <div class="img-item-action" @click="goToCreateExercices()">
+                            <div class="img">
+                                <img src="@/assets/images/exercices-logo.png" alt="créer exercice"/>
+                            </div>
+                        </div>
+                        <span>Exercice</span>
+                    </div>
+                    <div class="item-action-list">
+                        <div class="img-item-action">
+                            <div class="img">
+                                <img src="@/assets/images/seance-logo.png" alt="créer séance"/>
+                            </div>
+                        </div>
+                        <span>Séance</span>
+                    </div>
+                    <div class="item-action-list">
+                        <div class="img-item-action">
+                            <div class="img">
+                                <img src="@/assets/images/alignement-logo.png" alt="créer alignement"/>
+                            </div>
+                        </div>
+                        <span>Alignement</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    data(){
+        return{
+            showNewActions:false,
+            showSelectExercices:false,
+            lstCategoriesExercices:['Tous', 'Rondos', 'Offensifs', 'Défensifs', 'Physiques', 'Tactiques', 'Gardiens']
+        }
+    },
+    methods:{
+        showActions(){
+            this.showNewActions = this.showNewActions ? false : true;
+        },
+        showExercicesOptions(){
+            this.showSelectExercices = this.showSelectExercices ? false : true;
+        },
+        goToCreateExercices(){
+            this.$router.push({path: '/create-exercice'});
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

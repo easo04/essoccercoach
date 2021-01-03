@@ -23,6 +23,75 @@
     line-height: 43px;
 }
 
+@mixin h4 {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+@mixin font-s {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+@mixin font-s-sbold {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+@mixin font-s-bold {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+@mixin font-s-sbold {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+@mixin font-s-mbold {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+@mixin font-xm {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+@mixin font-xm-bold {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+@mixin font-xm-sbold {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+@mixin font-xm-mbold {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+}
+
 @mixin font-m {
     font-style: normal;
     font-size: 16px;
@@ -66,6 +135,7 @@
     @include font-m-bold;
     cursor: pointer;
     letter-spacing: 1px;
+    text-decoration: none;
     &:hover{
         background-color: #208994;
     }
@@ -76,6 +146,9 @@
     &.inactive{
         background-color: $color-gris-1;
         color:$color-gris-2;
+    }
+    &.active{
+        border: 1px solid #18676F;
     }
 }
 
@@ -89,6 +162,7 @@
     @include font-m-bold;
     cursor: pointer;
     letter-spacing: 1px;
+    text-decoration: none;
     &:hover{
         background-color: $color-soccer-coach;
         color:$color-white-fonts;
@@ -109,4 +183,29 @@
     text-decoration: underline;
     cursor: pointer;
     font-family: Open Sans;
+}
+
+@mixin form-group {
+    display: block;
+    .label-control{
+        @include font-m-bold;
+        color:#5C5C5C;
+        font-family: $font-family-text;
+    }
+    .form-control{
+        margin-top: 16px;
+        height: 50px;
+        width: 100%;
+        background: #FDFDFD;
+        border: 1px solid #979797;
+        box-sizing: border-box;
+        border-radius: 5px;
+        @include font-m;
+        font-family: $font-family-text;
+        color:$color-black-fonts;
+        &:focus{
+            outline: none;
+            border:2px solid #646464;
+        }
+    }
 }

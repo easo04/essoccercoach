@@ -1,0 +1,82 @@
+.esdesigner{
+    .header-designer{
+        height: 60px;
+        padding: 0px 20px;
+        background-color: $color-white-background;
+        border-bottom: 1px solid $color-border-designer;
+        .logo{
+            display: flex;
+            align-items: center;
+            height: 60px;
+            h4{
+                @include h4;
+                color: $color-black-fonts;
+                margin-left: 10px;
+            }
+            .image-logo{
+                height: 50px;
+            }
+        }
+    }
+    .footer-designer{
+        border-top: 1px solid $color-border-designer;
+        color:#858585;
+        @include font-s;
+        font-family: $font-family-text;
+        display: flex;
+        justify-content: flex-end;;
+        align-items: center;
+        padding: 0px 20px;
+        height: 20px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    
+    }
+        /* Track */
+    ::-webkit-scrollbar-track {
+        background:#E9E9E9;
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: $color-gris-4;
+        border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ADADAD; 
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        height: 7px;
+        border-radius: 5px;  
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%; 
+        background: $color-soccer-coach;
+        cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: $color-soccer-coach;
+        cursor: pointer;
+    }
+}
