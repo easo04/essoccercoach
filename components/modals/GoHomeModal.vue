@@ -1,30 +1,33 @@
 <template>
-    <div class="modal-first-design modal-custom">
+    <div class="modal-go-home modal-custom">
         <div class="modal-header">
-            <div class="titre-modal"><h3>Un nouveau design pour vous</h3></div>
+            <div class="titre-modal"><h3>Vous quittez déjà?</h3></div>
             <div class="close-modal"><span @click="hide()"><i class="fas fa-times"></i></span></div>
         </div>
         <div class="modal-content">
-
+            <p>Si vous quittez, vous allez perdre toutes vos modifications.</p> 
+            <p class="question">Voulez-vous quitter?</p>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-default" @click="hide()">Close</button>
+            <div class="actions">
+                <button class="btn btn-default" @click="goHome()">Oui</button>
+                <button class="btn btn-default-ghost" @click="hide()">Non</button>
+            </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    props:['text'],
     methods: {
-        show () {
-            this.$modal.show('my-first-modal');
+        goHome () {
+            this.hide();
+            location.href = "/";
         },
         hide () {
-            this.$modal.hide('my-first-modal');
+            this.$modal.hide('go-home-modal');
         }
     },
     mount () {
-        //this.show()
     }
 }
 </script>

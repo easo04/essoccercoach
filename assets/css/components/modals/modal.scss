@@ -41,6 +41,12 @@
             }
             .modal-content{
                 padding: 30px 100px;
+                @include font-m;
+                color:$color-black-fonts-second;
+                font-family: $font-family-text;
+                .question{
+                    @include font-m-bold;
+                }
             }
             .modal-footer{
                 position: absolute;

@@ -17,6 +17,11 @@ export const state = () => ({
         {'name': 'player-mouvement-red', 'image': 'player-mouvement-yellow.png'},
         {'name': 'player-mouvement-red', 'image': 'player-mouvement-black.png'},
     ],
+    listeGardiens : [
+        {'name': 'player-gardien-green', 'image': 'player-gardien-green.png'},
+        {'name': 'player-gardien-orange', 'image': 'player-gardien-orange.png'},
+        {'name': 'player-gardien-mauve', 'image': 'player-gardien-mauve.png'},
+    ],
     listeOutils : [
         {'name': 'ballon', 'image': 'ballon.png'}, 
         {'name': 'source_ballon', 'image': 'source_ballon.png'},
