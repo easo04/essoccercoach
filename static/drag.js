@@ -165,13 +165,13 @@ interact('.resize-drag')
         // minimum size
         restrictSize: {
             min: { width: 100, height: 100 },
-            max: { width:  250, height:  250 },
+            max: { width:  350, height:  350 },
         },
 
         inertia: true,
     })
     .on('resizemove', function (event) {
-        var target = event.target,
+        let target = event.target,
             x = (parseFloat(target.getAttribute('data-x')) || 0),
             y = (parseFloat(target.getAttribute('data-y')) || 0);
 
@@ -191,14 +191,234 @@ interact('.resize-drag')
         //target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
     });
 
+interact('.resize-drag-line-v')
+    .draggable({
+        onmove: window.dragMoveListener,
+        restrict: {
+            restriction: 'parent',
+            elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+        },
+    })
+    .resizable({
+        // resize from all edges and corners
+        edges: { left: false, right: false, bottom: true, top: true },
+
+        listeners: {
+            move (event) {
+                var target = event.target
+                var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                var y = (parseFloat(target.getAttribute('data-y')) || 0)
+
+                // update the element's style
+                target.style.width = event.rect.width + 'px'
+                target.style.height = event.rect.height + 'px'
+                
+              // translate when resizing from top or left edges
+                x += event.deltaRect.left
+                y += event.deltaRect.top
+                
+                target.style.webkitTransform = target.style.transform =
+                'translate(' + x + 'px,' + y + 'px)'
+                
+                target.setAttribute('data-x', x)
+                target.setAttribute('data-y', y)
+                target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+            }
+        },
+
+        // keep the edges inside the parent
+        restrictEdges: {
+            outer: 'parent',
+        },
+
+        // minimum size
+        restrictSize: {
+            min: { width: 100, height: 100 },
+            max: { width:  400, height:  400 },
+        },
+
+        inertia: true,
+    })
+    .on('resizemove', function (event) {
+        let target = event.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+        // update the element's style
+        target.style.width  = event.rect.width + 'px';
+        target.style.height = event.rect.height + 'px';
+
+        // translate when resizing from top or left edges
+        x += event.deltaRect.left;
+        y += event.deltaRect.top;
+
+        target.style.webkitTransform = target.style.transform =
+            'translate(' + x + 'px,' + y + 'px)';
+
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+        //target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
+    });
+
+interact('.resize-drag-line-h')
+    .draggable({
+        onmove: window.dragMoveListener,
+        restrict: {
+            restriction: 'parent',
+            elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+        },
+    })
+    .resizable({
+        // resize from all edges and corners
+        edges: { left: true, right: true, bottom: false, top: false },
+
+        listeners: {
+            move (event) {
+                var target = event.target
+                var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                var y = (parseFloat(target.getAttribute('data-y')) || 0)
+
+                // update the element's style
+                target.style.width = event.rect.width + 'px'
+                target.style.height = event.rect.height + 'px'
+                
+              // translate when resizing from top or left edges
+                x += event.deltaRect.left
+                y += event.deltaRect.top
+                
+                target.style.webkitTransform = target.style.transform =
+                'translate(' + x + 'px,' + y + 'px)'
+                
+                target.setAttribute('data-x', x)
+                target.setAttribute('data-y', y)
+                target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+            }
+        },
+
+        // keep the edges inside the parent
+        restrictEdges: {
+            outer: 'parent',
+        },
+
+        // minimum size
+        restrictSize: {
+            min: { width: 100, height: 100 },
+            max: { width:  400, height:  400 },
+        },
+
+        inertia: true,
+    })
+    .on('resizemove', function (event) {
+        let target = event.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+        // update the element's style
+        target.style.width  = event.rect.width + 'px';
+        target.style.height = event.rect.height + 'px';
+
+        // translate when resizing from top or left edges
+        x += event.deltaRect.left;
+        y += event.deltaRect.top;
+
+        target.style.webkitTransform = target.style.transform =
+            'translate(' + x + 'px,' + y + 'px)';
+
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+        //target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
+    });
+
+interact('.resize-drag-arrow')
+    .draggable({
+        onmove: window.dragMoveListener,
+        restrict: {
+            restriction: 'parent',
+            elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+        },
+    })
+    .resizable({
+        // resize from all edges and corners
+        edges: { left: false, right: false, bottom: true, top: true },
+
+        listeners: {
+            move (event) {
+                var target = event.target
+                var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                var y = (parseFloat(target.getAttribute('data-y')) || 0)
+
+                // update the element's style
+                target.style.width = event.rect.width + 'px'
+                target.style.height = event.rect.height + 'px'
+                
+              // translate when resizing from top or left edges
+                x += event.deltaRect.left
+                y += event.deltaRect.top
+                
+                target.style.webkitTransform = target.style.transform =
+                'translate(' + x + 'px,' + y + 'px)'
+                
+                target.setAttribute('data-x', x)
+                target.setAttribute('data-y', y)
+                target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+            }
+        },
+
+        // keep the edges inside the parent
+        restrictEdges: {
+            outer: 'parent',
+        },
+
+        // minimum size
+        restrictSize: {
+            min: { width: 100, height: 120 },
+            max: { width:  300, height:  300 },
+        },
+
+        inertia: true,
+    })
+    .on('resizemove', function (event) {
+        let target = event.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+        // update the element's style
+        //target.style.width  = event.rect.width + 'px';
+        target.style.height = event.rect.height + 'px';
+
+        // translate when resizing from top or left edges
+        x += event.deltaRect.left;
+        y += event.deltaRect.top;
+
+        let rotateDeg = target.classList.contains('drag-arrow') ? target?.getAttribute('data-rotate') : target.children[0]?.getAttribute('data-rotate');
+
+        target.style.webkitTransform = target.style.transform =
+            'translate(' + x + 'px,' + y + 'px)';
+
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+        
+        if(rotateDeg){    
+            let rotate = rotateDeg ? ' rotate(' + rotateDeg + 'deg)' : '';
+            
+            let object = target.classList.contains('drag-arrow') ? target : target.children[0];
+    
+            let transitionTransform = object.style.webkitTransform || object.style.transform;
+    
+            object.style.webkitTransform = object.style.transform = transitionTransform + ' ' + rotate;
+    
+            object.setAttribute('data-rotate', rotateDeg);
+        }
+    });
+
 
 function dragMoveListener (event) {
-    var target = event.target,
+    let target = event.target,
         // keep the dragged position in the data-x/data-y attributes
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
         y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
         
-    let rotateDeg = target.children[0]?.getAttribute('data-rotate');
+    let rotateDeg = target.classList.contains('drag-arrow') ? target?.getAttribute('data-rotate') : target.children[0]?.getAttribute('data-rotate');
 
     // translate the element
     target.style.webkitTransform =
@@ -211,11 +431,14 @@ function dragMoveListener (event) {
 
     if(rotateDeg){    
         let rotate = rotateDeg ? ' rotate(' + rotateDeg + 'deg)' : '';
+        
+        let object = target.classList.contains('drag-arrow') ? target : target.children[0];
 
-        target.children[0].style.webkitTransform =
-            target.children[0].style.transform = rotate;
+        let transitionTransform = object.style.webkitTransform || object.style.transform;
 
-        target.children[0].setAttribute('data-rotate', rotateDeg);
+        object.style.webkitTransform = object.style.transform = transitionTransform + ' ' + rotate;
+
+        object.setAttribute('data-rotate', rotateDeg);
     }
 }
 

@@ -18,7 +18,7 @@
                     <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><i class="fas fa-circle" title="Ajouter compteur"></i><span class="number">1</span></div>
                     <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><i class="far fa-circle"></i><i class="fas fa-sort-down"></i></span>
                     <span class="objects icon-action" title="Changer la couleur" @click="setShowSelectColors()"><i class="fas fa-fill couleur-select"></i><i class="fas fa-sort-down"></i></span>
-                    <span class="objects icon-action" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><i class="fas fa-sort-down"></i></span>
+                    <span class="objects icon-action inactive" id="changeTransparence" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><i class="fas fa-sort-down"></i></span>
                     <div class="select-couleurs selects" v-if="showSelectColors">
                         <div class="arrow-up"></div>
                         <div class="liste-couleurs">
@@ -33,27 +33,27 @@
                     <div class="select-formes selects" v-if="showSelectFormes">
                         <div class="arrow-up"></div>
                         <div class="liste-formes">
-                            <div class="item-forme"> 
+                            <div class="item-forme" @click="addForm('circle')"> 
                                 <svg class="icon">
                                     <use href="@/assets/images/icons/icons.svg#circle-stroke"/>
                                 </svg> Cercle
                             </div>
-                            <div class="item-forme">
+                            <div class="item-forme" @click="addForm('square')">
                                 <svg class="icon">
                                     <use href="@/assets/images/icons/icons.svg#square-stroke"/>
                                 </svg> Rectangle
                             </div>
-                            <div class="item-forme">
+                            <div class="item-forme" @click="addForm('triangle')">
                                 <svg class="icon">
                                     <use href="@/assets/images/icons/icons.svg#triangle-stroke"/>
                                 </svg> Triangle
                             </div>
-                            <div class="item-forme">
+                            <div class="item-forme" @click="addForm('line-v')">
                                 <svg class="icon">
                                     <use href="@/assets/images/icons/icons.svg#line-v-solid"/>
                                 </svg> Ligne verticale
                             </div>
-                            <div class="item-forme">
+                            <div class="item-forme" @click="addForm('line-h')">
                                 <svg class="icon">
                                     <use href="@/assets/images/icons/icons.svg#line-h-solid"/>
                                 </svg> Ligne horizontale
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="third-items">
-                    <span class="icon-action inactive" id="copy"><i class="fas fa-copy" title="Faire une copie"></i></span>
+                    <span class="icon-action inactive" id="copy" @click="makeCopy()"><i class="fas fa-copy" title="Faire une copie"></i></span>
                     <span class="icon-action inactive" id="minus"><i class="fas fa-search-minus" title="Zoom moins"></i></span>
                     <span class="icon-action inactive" id="plus"><i class="fas fa-search-plus" title="Zoom plus"></i></span>
                 </div>
@@ -199,29 +199,68 @@
                     </div>
                     <div class="content-item-outils" v-if="contentItem === 'outil'">
                         <h3>Outils</h3>
-                        <div class="items-outils">
-                            <div class="outil-li-div" v-for="(outil, indexO) in outils" :key="indexO" @click="ajouterOutil(outil.name, outil.image)">
-                                <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                        <div class="content-outils">
+                            <h4>Ballons</h4>
+                            <div class="items-outils">
+                                <div class="outil-li-div cones" v-for="(outil, indexO) in ballonsOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                </div>
+                            </div>
+                            <h4>Buts</h4>
+                            <div class="items-outils">
+                                <div class="outil-li-div" v-for="(outil, indexO) in butOuils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                </div>
+                            </div>
+                            <h4>Cônes</h4>
+                            <div class="items-outils">
+                                <div class="outil-li-div cones" v-for="(outil, indexO) in conesOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                </div>
+                            </div>
+                            <h4>Outils exercices</h4>
+                            <div class="items-outils">
+                                <div class="outil-li-div cones" v-for="(outil, indexO) in othersOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="content-item-lignes" v-if="contentItem === 'ligne'">
                         <h3>Lignes</h3>
-                        <div class="items-lignes">
-                            <div class="ligne-li-div" v-for="(ligne, indexL) in lignes" :key="indexL">
-                                <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
+                        <div class="content-lines">
+                            <h4>Lignes de passes</h4>
+                            <div class="items-lignes">
+                                <div class="ligne-li-div" v-for="(ligne, indexL) in passLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
+                                    <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
+                                </div>
+                            </div>
+                            <h4>Lignes de mouvement</h4>
+                            <div class="items-lignes">
+                                <div class="ligne-li-div" v-for="(ligne, indexL) in runLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
+                                    <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
+                                </div>
+                            </div>
+                            <h4>Lignes de dribble</h4>
+                            <div class="items-lignes">
+                                <div class="ligne-li-div" v-for="(ligne, indexL) in dribleLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
+                                    <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="content-terrain">
-                <div class="terrain-space" id="terrainSoccer">
-                    <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" class="draggable" :class="object.class" @click="selectObject(object.id, indexObj)">
-                        <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="object.type !== 'drag-text' && object.type !== 'drag-number'"/>
+                <div class="terrain-space" id="terrainSoccer" @click="clickTerrain($event)">
+                    <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" :class="object.class" @click="selectObject(object.id, indexObj)">
+                        <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && object.type !== 'drag-forme'"/>
                         <div class="number-object" v-if="object.type === 'drag-number'">
-                            <img :id="object.image.id" src="~/assets/images/joueurs/player-color-black.png"/>
+                            <!--<img :id="object.image.id" src="~/assets/images/joueurs/player-color-black.png"/>-->
+                            <div class="circle"></div>
                             <div class="number">{{object.number}}</div>
+                        </div>
+                        <div :class="object.forme + ' forme-' + object.classColor" v-if="object.type === 'drag-forme'">        
                         </div>
                         <div class="text-input" v-if="object.type === 'drag-text'">
                             <input type="text" :class="object.classColor" :id="'input-text' + indexObj" v-model="object.text" name="name" autocomplete="off" @blur="verifyText(indexObj)">
@@ -239,17 +278,21 @@
     </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import GoHomeModal from '@/components/modals/GoHomeModal.vue'
 import AddPlayerWithTextModal from '@/components/modals/AddPlayerWithTextModal.vue'
-
 //enum pour le type d'actions
 const ACTIONS = {
     ADD_OBJECT:'ADD_OBJECT', 
     DELETE_OBJECT:'DELETE_OBJECT', 
     DELETE_ALL:'DELETE_ALL', 
     CHANGE_COLOR:'CHANGE_COLOR'
-}
+};
+
+const ID_TERRAIN = 'terrainSoccer';
+
+//liste de formes permisses
+const lstFormes = ['square', 'rectangle', 'triangle', 'circle'];
 
 export default {
     props: ['from'],
@@ -258,6 +301,7 @@ export default {
         return{
             title:'Créez votre exercice de soccer | ESsoccercoach',
             script:[
+                {src:'/resize.js'},
                 {src:'/imports/interact.js'},
                 {src:'/imports/jspdf.min.js'},
                 {src:'/imports/canvas2image.js'},
@@ -280,6 +324,27 @@ export default {
         },
         gardiens(){
             return this.$store.state.esdesigner.listeGardiens;
+        },
+        passLignes(){
+            return this.$store.getters['esdesigner/passLignes'];
+        },
+        runLignes(){
+            return this.$store.getters['esdesigner/runLignes'];
+        },
+        dribleLignes(){
+            return this.$store.getters['esdesigner/dribleLignes'];
+        },
+        butOuils(){
+            return this.$store.getters['esdesigner/outilButs'];
+        },
+        conesOutils(){
+            return this.$store.getters['esdesigner/outilCones'];
+        },
+        ballonsOutils(){
+            return this.$store.getters['esdesigner/outilBallons'];
+        },
+        othersOutils(){
+            return this.$store.getters['esdesigner/outilAutres'];
         },
     },
     watch:{
@@ -328,7 +393,9 @@ export default {
             numberSuite:0,
             lstObjectsActions:[],
             lstRedoObjects:[],
-            lastObjectAddedUndo:undefined
+            lastObjectAddedUndo:undefined,
+            typeFormeSelected:undefined,
+            arrowPoints:{start:{x:0, y:0}, end:{x:0, y:0}, toAdd:false, idArrow:undefined}
         }
     },
     methods:{
@@ -372,18 +439,26 @@ export default {
             this.showSelectFormes = this.showSelectFormes ? false : true;
         },
         setShowSelectTransparence(){
-            //init autres selects
-            this.showSelectColors = false;
-            this.showSelectFormes = false;
+            if(this.objectSelected){
 
-            this.showSelectTransparence = this.showSelectTransparence ? false : true;
+                //init autres selects
+                this.showSelectColors = false;
+                this.showSelectFormes = false;
+
+                this.showSelectTransparence = this.showSelectTransparence ? false : true;
+            }
         },
         editOpacityForme(){
-
+            let image = this.objectSelected[0].children[0];
+            image.style.opacity = this.rangeOpacity / 100;
         },
         addPlayerWithText(text){
-            this.addObjectToList('drag-joueur', this.colorPlayer, 'joueurs/player1-' + this.colorPlayer + '.png', false, text);
+            this.addObjectToList('drag-joueur', this.colorPlayer, 'joueurs/player-color-' + this.colorPlayer + '.png', false, text);
             this.textPlayer = '';
+        },
+        addOutil(outilName, outilImage) {
+            let canRotate = outilName.includes('but');
+            this.addObjectToList('drag-outil', outilName, 'outils/' + outilImage.replace('svg', 'png'), canRotate);
         },
         addPlayerWithTextByColor(color){
             this.colorPlayer = color;
@@ -441,6 +516,23 @@ export default {
                 }
             };
 
+            let draggableClass = 'draggable';
+            if(object.type === 'drag-forme'){
+                let classForme = object.forme.includes('line') ? 'forme-' + object.forme: '';
+                object.class += ' ' + classForme;
+                
+                if(object.forme === 'line-v'){
+                    draggableClass = 'resize-drag-line-v';
+                }else if(object.forme === 'line-h'){
+                    draggableClass = 'resize-drag-line-h';
+                }else{
+                    draggableClass = 'resize-drag';
+                }
+            }else if(object.type === 'drag-arrow'){
+                draggableClass = 'resize-drag-arrow';
+            }
+            object.class += ' ' + draggableClass;
+
             //vérifier si on objet existe avec le même id
             let isObjectExist = this.lstObjectsDraggable.find(o=>o.id === object.id);
             if(isObjectExist){
@@ -483,10 +575,6 @@ export default {
                 });
             }, 2 * 1000);
         },
-        ajouterOutil(outilName, outilImage) {
-            let canRotate = outilName.includes('but');
-            this.addObjectToList('drag-outil', outilName, 'images/outils/' + outilImage, true);
-        },
         selectObject(dragId, indexObj){
             this.objectSelected = $('#' + dragId);
             this.lastIndexObjectSelected = indexObj;
@@ -514,24 +602,36 @@ export default {
                 document.getElementById('input-text' + indexObj).focus();
             }
 
-            //vérifier si c'est une forme pour afficher les couleurs
-            //this.typeFormeSelected = this.lstFormes.find(f => this.objectSelected[0].children[0].id.includes(f));
-            //this.showBtnRemplir = this.typeFormeSelected ? true : false;
-            
-            //vérifier si la forme a une opacité
-            //this.rangeOpacity = this.typeFormeSelected && this.objectSelected[0].children[0].style.opacity !== '' ? (parseFloat(this.objectSelected[0].children[0].style.opacity) * 100) : 100;
+            //vérifier si c'est une forme pour activer la sélection de la transparence
+            let formeFinded = lstFormes.find(f => this.objectSelected[0].children[0].classList.value.includes(f));
+            if(formeFinded){      
+                document.getElementById('changeTransparence').classList.remove('inactive');
+
+                //vérifier si la forme a une opacité
+                this.rangeOpacity = this.objectSelected[0].children[0].style.opacity !== '' ? (parseFloat(this.objectSelected[0].children[0].style.opacity) * 100) : 100;
+            }else{
+                document.getElementById('changeTransparence').classList.add('inactive');
+            }
         },
         rotate(){
             if(this.objectSelected){
-                let rotate = this.objectSelected[0].children[0]?.getAttribute('data-rotate');
+                let object = this.objectSelected[0].classList.contains('drag-arrow') ?
+                    this.objectSelected[0] : this.objectSelected[0].children[0];
+
+                let rotate = object?.getAttribute('data-rotate');
+
+                let x = object?.getAttribute('data-x');
+                let y = object?.getAttribute('data-y');
 
                 let deg = rotate ? parseInt(rotate, 10) : 0;
                 deg = deg < 360 ? deg + 10 : 10;
 
-                this.objectSelected[0].children[0].style.webkitTransform = 
-                    this.objectSelected[0].children[0].style.transform = 'rotate(' + deg + 'deg)';
+                let translate =  x && y ? 'translate(' + x + 'px, ' + y + 'px)' : '';
 
-                this.objectSelected[0].children[0].setAttribute('data-rotate', deg); 
+                object.style.webkitTransform = 
+                    object.style.transform = translate + ' rotate(' + deg + 'deg)';
+
+                object.setAttribute('data-rotate', deg); 
             }
         },
         deselectionner(){
@@ -544,20 +644,22 @@ export default {
             document.getElementById('copy').classList.add('inactive');
         },
         deleteObject() {
-            let object = this.lstObjectsDraggable[this.lastIndexObjectSelected];
-                
-            //vérifier si l'objet est de type number
-            if(object.type === 'drag-number'){
-                this.numberSuite--;
+            if(this.objectSelected){
+                let object = this.lstObjectsDraggable[this.lastIndexObjectSelected];
+                    
+                //vérifier si l'objet est de type number
+                if(object.type === 'drag-number'){
+                    this.numberSuite--;
+                }
+
+                this.addObjectToListeObjectActions(object, ACTIONS.DELETE_OBJECT,
+                    this.lastIndexObjectSelected, this.objectSelected[0].getAttribute('data-x'), this.objectSelected[0].getAttribute('data-y'));
+
+                this.objectSelected.remove();
+                this.objectSelected = undefined;
+                this.lastIndexObjectSelected =undefined;
+                this.initActionsButtons();
             }
-
-            this.addObjectToListeObjectActions(object, ACTIONS.DELETE_OBJECT,
-                this.lastIndexObjectSelected, this.objectSelected[0].getAttribute('data-x'), this.objectSelected[0].getAttribute('data-y'));
-
-            this.objectSelected.remove();
-            this.objectSelected = undefined;
-            this.lastIndexObjectSelected =undefined;
-            this.initActionsButtons();
         },
         initActionsButtons(){
             document.getElementById('undo').classList.add('inactive');
@@ -565,17 +667,20 @@ export default {
             document.getElementById('delete').classList.add('inactive');
             document.getElementById('deleteAll').classList.add('inactive');
             document.getElementById('copy').classList.add('inactive');
+            document.getElementById('changeTransparence').classList.add('inactive');
         },
         deleteAll(){
-            this.closeAllSelectes();
-            $('.terrain-space').empty();
-            this.initActionsButtons();
-            this.objectSelected = null;
-            this.lstObjectsDraggable = [];
-            this.lastIndexObjectSelected = undefined;
-            this.numberSuite = 0;
+            if(this.lstObjectsDraggable.length > 0){
+                this.closeAllSelectes();
+                $('.terrain-space').empty();
+                this.initActionsButtons();
+                this.objectSelected = null;
+                this.lstObjectsDraggable = [];
+                this.lastIndexObjectSelected = undefined;
+                this.numberSuite = 0;
 
-            this.lastAction = ACTIONS.DELETE_ALL;
+                this.lastAction = ACTIONS.DELETE_ALL;
+            }
         },
         addNumber(){
             this.numberSuite++;
@@ -651,6 +756,41 @@ export default {
                 }
             }
         },
+        addForm(form){
+            this.addObjectToList('drag-forme', form, undefined, false, undefined, form);
+        },
+        makeCopy(){
+            let objectCopy = this.objectSelected;
+        },
+        makeArrow(){
+            const noObject = this.lstObjectsDraggable.length + 1;
+            let object = {
+                id:'drag-arrow-' + noObject,
+                type: 'drag-arrow',
+                dataX:0,
+                dataY:0,
+                rotate:0,
+                canRotate:false,
+                class: 'drag-arrow draggable',
+                classColor:this.colorSelected + '-color',
+                image:{
+                    id:undefined,
+                    src:undefined,
+                    size:undefined,
+                }
+            };
+            this.arrowPoints.idArrow = object.id;
+            this.lstObjectsDraggable.push(object);
+        },
+        clickTerrain(event){
+            if(event.target.id === ID_TERRAIN){
+                this.deselectionner();  
+                this.closeAllSelectes();
+            }
+        },
+        addArrow(name, image){
+            this.addObjectToList('drag-arrow', name, 'lignes/' + image.replace('svg', 'png'), true);
+        }
     },
     created(){
         this.$root.$on('addText', (text) => {
@@ -665,16 +805,8 @@ export default {
         
         //detecter tous les clicks qui se font dans terrainSoccer
         $('.logo').click(event =>{
-            globalThis.deselectionner();
-            globalThis.closeAllSelectes();  
-        });
-
-        //detecter tous les clicks qui se font dans terrainSoccer
-        $('#terrainSoccer').click(event =>{
-            if(event.target.id === 'terrainSoccer'){
-                globalThis.deselectionner();  
-                globalThis.closeAllSelectes();
-            }
+            this.deselectionner();
+            this.closeAllSelectes();  
         });
 
         $('.fa-fill').addClass('black-color');
@@ -703,6 +835,22 @@ export default {
             //init le dernier objet ajouté par undo
             this.lastObjectAddedUndo = undefined;
         }
+
+        /*if(this.arrowPoints.toAdd){
+            let currentArrow = document.getElementById(this.arrowPoints.idArrow);
+
+            let arrow = document.createElement('canvas');
+            arrow.width = this.arrowPoints.end.y;
+            arrow.height = this.arrowPoints.end.y;
+            arrow.classList.add('arrow-style-stroke');
+            //var c = document.getElementById("myCanvas");
+            let ctx = arrow.getContext("2d");
+            ctx.moveTo(this.arrowPoints.start.x, this.arrowPoints.start.y);
+            ctx.lineTo(this.arrowPoints.end.x, this.arrowPoints.end.y);
+            ctx.stroke();
+            currentArrow.appendChild(arrow);
+            this.arrowPoints = {start:{x:0, y:0}, end:{x:0, y:0}, toAdd:false, idArrow:undefined};
+        }*/
     },
     beforeDestroy(){
     },

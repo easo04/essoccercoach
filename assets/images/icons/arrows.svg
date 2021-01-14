@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.55 80.83" width="0" height="0">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:none;stroke:#1d1d1b;stroke-miterlimit:10;stroke-width:3px;}
+            .cls-2{stroke-dasharray:10.17 10.17;}
+            .cls-3{fill:#1d1d1b;}
+        </style>
+    </defs>
+    <title>arrow9</title>
+    <symbol id="arrow6">
+        <line class="cls-1" x1="1.21" y1="79.95" x2="4.75" y2="75.1" fill="none" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="3px"/>
+        <line class="cls-2" x1="10.75" y1="66.89" x2="43.74" y2="21.69" fill="none" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="3px" stroke-dasharray="10.17 10.17"/>
+        <line class="cls-1" x1="46.74" y1="17.58" x2="50.28" y2="12.74" fill="none" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="3px"/>
+        <polygon class="cls-3" points="34.12 3.97 63.55 25.46 59.58 0 34.12 3.97"/>
+    </symbol>
+    <symbol if="arrow9">
+        <line class="cls-1" x1="1.21" y1="79.95" x2="50.28" y2="12.74"/>
+        <polygon class="cls-3" points="34.12 3.97 63.55 25.46 59.58 0 34.12 3.97"/>
+    </symbol>
+</svg>
