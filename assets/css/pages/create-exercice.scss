@@ -651,15 +651,19 @@
                         display:flex;
                         align-items: center;
                     }
+                    
                     .square{
                         width: 100%;
                         height: 100%;
                     }
-    
-                    .circle{
-                        border-radius: 50%;
-                        width: 100px;
-                        height: 100px;
+
+                    .forme-img{
+                        height: 100%;
+                        width: 100%;
+                        img{
+                            height: 100%;
+                            width: 100%;
+                        }
                     }
 
                     .forme-red-color{
@@ -685,16 +689,6 @@
                     .forme-white-color{
                         background:rgba($color-white-background, $alpha: 1);
                         border:1px solid $color-white-background;
-                    }
-
-                    .triangle{
-                        width: 0;
-                        height: 0;
-                        border:none;
-                        border-left: 100px solid transparent;
-                        border-right: 100px solid transparent;
-                        border-bottom: 185px solid red;
-                        background:transparent;
                     }
 
                     .line-h{

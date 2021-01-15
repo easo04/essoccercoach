@@ -29,83 +29,26 @@ interact('.draggable')
         }
     });
 
-    /*document.addEventListener('DOMContentLoaded', () => {
-        const sns = 'http://www.w3.org/2000/svg'
-        const xns = 'http://www.w3.org/1999/xlink'
-        const root = document.getElementById('svg-edit-demo')
-        const star = document.getElementById('edit-star')
-        let rootMatrix
-        const originalPoints = []
-        let transformedPoints = []
-        
-        for (let i = 0, len = star.points.numberOfItems; i < len; i++) {
-        const handle = document.createElementNS(sns, 'use')
-        const point = star.points.getItem(i)
-        const newPoint = root.createSVGPoint()
-    
-        handle.setAttributeNS(xns, 'href', '#point-handle')
-        handle.setAttribute('class', 'point-handle')
-    
-        handle.x.baseVal.value = newPoint.x = point.x
-        handle.y.baseVal.value = newPoint.y = point.y
-    
-        handle.setAttribute('data-index', i)
-    
-        originalPoints.push(newPoint)
-    
-        root.appendChild(handle)
-        }
-    
-        function applyTransforms (event) {
-        rootMatrix = root.getScreenCTM()
-    
-        transformedPoints = originalPoints.map((point) => {
-            return point.matrixTransform(rootMatrix)
-        })
-    
-        interact('.point-handle').draggable({
-            snap: {
-            targets: transformedPoints,
-            range: 20 * Math.max(rootMatrix.a, rootMatrix.d),
-            },
-        })
-        }
-        
-    interact(root)
-        .on('mousedown', applyTransforms)
-        .on('touchstart', applyTransforms)
-    
-    interact('.point-handle')
+    interact('.resize-drag-arrow')
     .draggable({
-    onstart: function (event) {
-        root.setAttribute('class', 'dragging')
-    },
-    onmove: function (event) {
-        const i = event.target.getAttribute('data-index') | 0
-        const point = star.points.getItem(i)
+        
+        // enable inertial throwing
+        inertia: true,
 
-        point.x += event.dx / rootMatrix.a
-        point.y += event.dy / rootMatrix.d
+        // keep the element within the area of it's parent
+        restrict: {
+            restriction: "parent",
+            endOnly: true,
+            elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+        },
 
-        event.target.x.baseVal.value = point.x
-        event.target.y.baseVal.value = point.y
-    },
-    onend: function (event) {
-        root.setAttribute('class', '')
-    },
-    snap: {
-        targets: originalPoints,
-        range: 10,
-        relativePoints: [{ x: 0.5, y: 0.5 }],
-    },
-    restrict: { restriction: document.rootElement },
-    })
-    .styleCursor(false)
-    
-    document.addEventListener('dragstart', (event) => {
-        event.preventDefault()
-    })
-}) */
+        // enable autoScroll
+        autoScroll: true,
+
+        // call this function on every dragmove event
+        onmove: dragMoveListener,
+        // call this function on every dragend event
+    });
 
 interact('.resize-drag')
     .draggable({
@@ -329,7 +272,7 @@ interact('.resize-drag-line-h')
         //target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
     });
 
-interact('.resize-drag-arrow')
+/*interact('.resize-drag-arrow')
     .draggable({
         onmove: window.dragMoveListener,
         restrict: {
@@ -337,7 +280,7 @@ interact('.resize-drag-arrow')
             elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
         },
     })
-    .resizable({
+    /*.resizable({
         // resize from all edges and corners
         edges: { left: false, right: false, bottom: true, top: true },
 
@@ -409,7 +352,7 @@ interact('.resize-drag-arrow')
     
             object.setAttribute('data-rotate', rotateDeg);
         }
-    });
+    });*/
 
 
 function dragMoveListener (event) {
@@ -432,7 +375,8 @@ function dragMoveListener (event) {
     if(rotateDeg){    
         let rotate = rotateDeg ? ' rotate(' + rotateDeg + 'deg)' : '';
         
-        let object = target.classList.contains('drag-arrow') ? target : target.children[0];
+        //let object = target.classList.contains('drag-arrow') ? target : target.children[0];
+        let object = target.children[0];
 
         let transitionTransform = object.style.webkitTransform || object.style.transform;
 

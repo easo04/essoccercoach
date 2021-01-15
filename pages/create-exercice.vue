@@ -260,7 +260,10 @@
                             <div class="circle"></div>
                             <div class="number">{{object.number}}</div>
                         </div>
-                        <div :class="object.forme + ' forme-' + object.classColor" v-if="object.type === 'drag-forme'">        
+                        <div :class="object.forme + ' forme-' + object.classColor" v-if="object.type === 'drag-forme' && !isFormeImg(object.forme)">        
+                        </div>
+                        <div :class="'forme-img ' + object.forme" v-if="object.type === 'drag-forme' && isFormeImg(object.forme)">
+                            <img :src="require('~/assets/images/formes/' + object.forme + '-' + object.formeImgColor + '.png')"/>
                         </div>
                         <div class="text-input" v-if="object.type === 'drag-text'">
                             <input type="text" :class="object.classColor" :id="'input-text' + indexObj" v-model="object.text" name="name" autocomplete="off" @blur="verifyText(indexObj)">
@@ -395,10 +398,15 @@ export default {
             lstRedoObjects:[],
             lastObjectAddedUndo:undefined,
             typeFormeSelected:undefined,
-            arrowPoints:{start:{x:0, y:0}, end:{x:0, y:0}, toAdd:false, idArrow:undefined}
+            arrowPoints:{start:{x:0, y:0}, end:{x:0, y:0}, toAdd:false, idArrow:undefined},
+            objectDragSelected:undefined,
+            objectDOMCopied:undefined,
         }
     },
     methods:{
+        isFormeImg(forme){
+            return ['triangle', 'circle'].includes(forme);
+        },
         goHome(){
             this.$modal.show(
                 GoHomeModal,
@@ -449,7 +457,9 @@ export default {
             }
         },
         editOpacityForme(){
-            let image = this.objectSelected[0].children[0];
+            let object = this.objectSelected[0].children[0];
+            let image = object.classList.contains('circle') || object.classList.contains('triangle') ?
+                object.children[0] : object;
             image.style.opacity = this.rangeOpacity / 100;
         },
         addPlayerWithText(text){
@@ -509,6 +519,8 @@ export default {
                 forme:formeObject,
                 number:numberObject,
                 classColor:this.colorSelected + '-color',
+                formeImgColor:this.colorSelected,
+                idImage: idImage,
                 image:{
                     id:idImage + '-' + noObject,
                     src:srcImage,
@@ -536,7 +548,7 @@ export default {
             //vérifier si on objet existe avec le même id
             let isObjectExist = this.lstObjectsDraggable.find(o=>o.id === object.id);
             if(isObjectExist){
-                console.log('onject exist');
+                console.log('object exist');
                 noObject++;
                 object = type + '-' + noObject; 
             }
@@ -579,6 +591,8 @@ export default {
             this.objectSelected = $('#' + dragId);
             this.lastIndexObjectSelected = indexObj;
 
+            this.objectDragSelected = this.lstObjectsDraggable[indexObj];
+
             //TOUT DESELECTIONNER
             let lastObjectSelected = $('.object-selected-outil');
 
@@ -615,8 +629,10 @@ export default {
         },
         rotate(){
             if(this.objectSelected){
-                let object = this.objectSelected[0].classList.contains('drag-arrow') ?
-                    this.objectSelected[0] : this.objectSelected[0].children[0];
+                //let object = this.objectSelected[0].classList.contains('drag-arrow') ?
+                    //this.objectSelected[0] : this.objectSelected[0].children[0];
+
+                let object = this.objectSelected[0].children[0];
 
                 let rotate = object?.getAttribute('data-rotate');
 
@@ -760,7 +776,19 @@ export default {
             this.addObjectToList('drag-forme', form, undefined, false, undefined, form);
         },
         makeCopy(){
-            let objectCopy = this.objectSelected;
+            const objectCopy = this.objectDragSelected;
+            const noObject = this.lstObjectsDraggable.length + 1;
+            const imageObect = objectCopy.image;
+
+            //ajouter l'objet dans la liste
+            this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
+                objectCopy.canRotate, objectCopy.textObject, objectCopy.formeObject, objectCopy.numberObject);
+
+            //sauvegarder l'element du DOM qui a été copié
+            this.objectDOMCopied = {
+                objectCopied : this.objectSelected,
+                idCopied: objectCopy.id,
+            }
         },
         makeArrow(){
             const noObject = this.lstObjectsDraggable.length + 1;
@@ -836,21 +864,14 @@ export default {
             this.lastObjectAddedUndo = undefined;
         }
 
-        /*if(this.arrowPoints.toAdd){
-            let currentArrow = document.getElementById(this.arrowPoints.idArrow);
+        if(this.objectDOMCopied){
+            
+            let objectCopied = document.getElementById(this.objectDOMCopied.idCopied);
+            objectCopied.style.height = this.objectDOMCopied.objectCopied[0].style.height;
+            objectCopied.style.width = this.objectDOMCopied.objectCopied[0].style.width;
 
-            let arrow = document.createElement('canvas');
-            arrow.width = this.arrowPoints.end.y;
-            arrow.height = this.arrowPoints.end.y;
-            arrow.classList.add('arrow-style-stroke');
-            //var c = document.getElementById("myCanvas");
-            let ctx = arrow.getContext("2d");
-            ctx.moveTo(this.arrowPoints.start.x, this.arrowPoints.start.y);
-            ctx.lineTo(this.arrowPoints.end.x, this.arrowPoints.end.y);
-            ctx.stroke();
-            currentArrow.appendChild(arrow);
-            this.arrowPoints = {start:{x:0, y:0}, end:{x:0, y:0}, toAdd:false, idArrow:undefined};
-        }*/
+            this.objectDOMCopied = undefined;
+        }
     },
     beforeDestroy(){
     },
