@@ -281,9 +281,10 @@
     </div>
 </template>
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import GoHomeModal from '@/components/modals/GoHomeModal.vue'
 import AddPlayerWithTextModal from '@/components/modals/AddPlayerWithTextModal.vue'
+import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
 //enum pour le type d'actions
 const ACTIONS = {
     ADD_OBJECT:'ADD_OBJECT', 
@@ -304,7 +305,6 @@ export default {
         return{
             title:'Créez votre exercice de soccer | ESsoccercoach',
             script:[
-                {src:'/resize.js'},
                 {src:'/imports/interact.js'},
                 {src:'/imports/jspdf.min.js'},
                 {src:'/imports/canvas2image.js'},
@@ -411,7 +411,7 @@ export default {
             this.$modal.show(
                 GoHomeModal,
                 {},
-                {name : 'go-home-modal', classes:[]}
+                {name : 'go-home-modal', classes:['modal-s']}
             );
         },
         closeAllSelectes(){ 
@@ -558,6 +558,8 @@ export default {
             this.deselectionner();
             this.closeAllSelectes();
             this.addObjectToListeObjectActions(object, ACTIONS.ADD_OBJECT, noObject-1);
+
+            return object.id;
         },
         deselectionner(){
             let lastObjectSelected = $('.object-selected-outil');
@@ -572,17 +574,20 @@ export default {
         downloadExercice(){
             this.deselectionner();
             this.closeAllSelectes();
-            //this.setTextSpinner('Téléchargement de l\'image en cours ...');
-            //this.setShowSpinner(true);
-
-            let globalThis = this;
+            this.setTextLoader('Téléchargement de l\'image en cours ...');
+            this.setShowLoader(true);
 
             setTimeout(() => {
-                let domElement = document.getElementById("terrainSoccer");
+                let domElement = document.getElementById("terrainSoccer");    
                 html2canvas(domElement, {
-                    onrendered: function(canvas) {
-                        Canvas2Image.saveAsPNG(canvas,undefined,undefined,'exercice'); 
-                        //globalThis.setShowSpinner(false);
+                    onrendered: (canvas) => {
+                        Canvas2Image.saveAsPNG(canvas,undefined,undefined,'exercice_essoccercoach'); 
+                        this.setShowLoader(false);
+                        this.$modal.show(
+                            DownloadSuccesModal,
+                            {},
+                            {name : 'download-succes-modal', classes:['modal-top']}
+                        );
                     }
                 });
             }, 2 * 1000);
@@ -777,18 +782,18 @@ export default {
         },
         makeCopy(){
             const objectCopy = this.objectDragSelected;
-            const noObject = this.lstObjectsDraggable.length + 1;
             const imageObect = objectCopy.image;
-
-            //ajouter l'objet dans la liste
-            this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
-                objectCopy.canRotate, objectCopy.textObject, objectCopy.formeObject, objectCopy.numberObject);
 
             //sauvegarder l'element du DOM qui a été copié
             this.objectDOMCopied = {
-                objectCopied : this.objectSelected,
-                idCopied: objectCopy.id,
-            }
+                objectCopied : this.objectSelected[0]
+            };
+
+            //ajouter l'objet dans la liste
+            const objectCopiedId = this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
+                objectCopy.canRotate, objectCopy.textObject, objectCopy.forme, objectCopy.numberObject);
+
+            this.objectDOMCopied.idCopied = objectCopiedId;
         },
         makeArrow(){
             const noObject = this.lstObjectsDraggable.length + 1;
@@ -818,7 +823,8 @@ export default {
         },
         addArrow(name, image){
             this.addObjectToList('drag-arrow', name, 'lignes/' + image.replace('svg', 'png'), true);
-        }
+        },
+        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader'})
     },
     created(){
         this.$root.$on('addText', (text) => {
@@ -847,8 +853,16 @@ export default {
             {text: 'This text is passed as a property'},
             {name : 'go-home-modal', classes:['modal-lg']}
         );*/
+
+        this.$modal.show(
+            DownloadSuccesModal,
+            {},
+            {name : 'download-succes-modal', classes:['modal-top']}
+        );
     },
     updated(){
+
+        //modifier l'objet undo ou redo
         if(this.lastObjectAddedUndo){
 
             //déplacer l'objet à l'endroit où il était avant la suppression
@@ -864,11 +878,22 @@ export default {
             this.lastObjectAddedUndo = undefined;
         }
 
+        //modifier l'objet copié
         if(this.objectDOMCopied){
             
+            //ajuster taille de la forme
             let objectCopied = document.getElementById(this.objectDOMCopied.idCopied);
-            objectCopied.style.height = this.objectDOMCopied.objectCopied[0].style.height;
-            objectCopied.style.width = this.objectDOMCopied.objectCopied[0].style.width;
+            objectCopied.style.height = this.objectDOMCopied.objectCopied.style.height;
+            objectCopied.style.width = this.objectDOMCopied.objectCopied.style.width;
+
+            //ajuster l'opacité de la forme
+            let object = this.objectDOMCopied.objectCopied.children[0];
+            if(object.classList.contains('circle') || object.classList.contains('triangle')){
+                objectCopied.children[0].children[0].style.opacity = object.children[0].style.opacity;
+            }else{
+                objectCopied.children[0].style.opacity = object.style.opacity;
+            }
+            
 
             this.objectDOMCopied = undefined;
         }

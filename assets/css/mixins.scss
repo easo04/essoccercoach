@@ -67,6 +67,7 @@
 
 @mixin font-xm {
     font-style: normal;
+    font-weight: 400;
     font-size: 14px;
     line-height: 22px;
 }
@@ -187,6 +188,31 @@
 
 @mixin form-group {
     display: block;
+    .label-control{
+        @include font-m-bold;
+        color:#5C5C5C;
+        font-family: $font-family-text;
+    }
+    .form-control{
+        margin-top: 16px;
+        height: 50px;
+        width: 100%;
+        background: #FDFDFD;
+        border: 1px solid #979797;
+        box-sizing: border-box;
+        border-radius: 5px;
+        @include font-m;
+        font-family: $font-family-text;
+        color:$color-black-fonts;
+        &:focus{
+            outline: none;
+            border:2px solid #646464;
+        }
+    }
+}
+
+@mixin form-group-flex {
+    display: flex;
     .label-control{
         @include font-m-bold;
         color:#5C5C5C;

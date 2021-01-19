@@ -7,9 +7,9 @@
             </div>
             <div class="reseaux">
                 <div class="liste-reseaux">
-                    <a class="instagram"><i class="fab fa-instagram"></i></a>
-                    <a class="instagram"><i class="fab fa-facebook-square"></i></a>
-                    <a class="instagram"><i class="fab fa-youtube-square"></i></a>
+                    <a class="lien"><i class="fab fa-instagram"></i></a>
+                    <a class="lien"><i class="fab fa-facebook-square"></i></a>
+                    <a class="lien"><i class="fab fa-youtube-square"></i></a>
                 </div>
             </div>
         </div>

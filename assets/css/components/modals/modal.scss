@@ -1,12 +1,16 @@
 .vm--container{
     .vm--overlay{
-        //background: rgba(0, 0, 0, 0.144);
         background: rgba(16, 68, 74, 0.6);
     }
     .vm--modal{
         background-color: $color-white-background;
         color:$color-black-fonts;
         border-radius: 5px;
+        height: auto !important;
+
+        &.modal-top{
+            top:20%!important;
+        }
 
         &.modal-lg{
             top:50px !important;
@@ -49,17 +53,99 @@
                 }
             }
             .modal-footer{
-                position: absolute;
-                bottom: 0;
                 width: 100%;
                 display: flex;
                 justify-content: flex-end;
                 .actions{
                     display: flex;
                     margin: 20px;
+                    .link{
+                        @include blue-link;
+                        line-height: 50px;
+                        margin-right: 10px;
+                    }
                     .btn{
                         &:not(:first-child){
                             margin-left: 10px;
+                        }
+                    }
+                }
+            }
+
+            &.modal-download-succes{
+                .modal-content{
+                    @include font-m-sbold;
+                    padding: 10px 40px;
+                    .thnks{
+                        text-align: center;
+                    }
+                    .infolettre{
+                        @include font-xm;
+                        p{
+                            margin-bottom: 0;
+                        }
+
+                        .email-send{
+                            .form-control{
+                                border-top-right-radius: 0 !important;
+                                border-bottom-right-radius: 0 !important;
+                                border-right-color: transparent;
+                                @include font-xm;
+                            }
+
+                            .btn-default{
+                                border-top-left-radius: 0 !important;
+                                border-bottom-left-radius: 0 !important;
+                                height: 50px;
+                                margin-top: 16px;
+                            }
+                        }
+                    }
+                    .infolettre-succes {
+                        @include font-xm;
+                        text-align: center;
+                    }
+                    .reseaux-sociaux{
+                        @include font-xm;
+                        text-align: center;
+                        p{
+                            margin-bottom: 0;
+                        }
+                        .liste-reseaux{
+                            @include font-l;
+                            margin-top: 14px;
+                            .lien{
+                                cursor: pointer;
+                                &:not(:last-child){
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.modal-s{
+            left: 35%!important;
+            width: 400px !important;
+            height: 270px!important;
+            .modal-custom{
+                .modal-content{
+                    padding: 10px 30px;
+                }
+                .modal-footer{
+                    position: relative;
+                    height:auto;
+                    .actions{
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        margin: 5px;
+                        .btn{
+                            &:not(:first-child){
+                                margin-left: 32px;
+                            }
                         }
                     }
                 }
