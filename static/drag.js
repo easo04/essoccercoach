@@ -361,7 +361,7 @@ function dragMoveListener (event) {
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
         y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
         
-    let rotateDeg = target.classList.contains('drag-arrow') ? target?.getAttribute('data-rotate') : target.children[0]?.getAttribute('data-rotate');
+    let rotateDeg = target.children[0]?.getAttribute('data-rotate');
 
     // translate the element
     target.style.webkitTransform =
@@ -374,13 +374,11 @@ function dragMoveListener (event) {
 
     if(rotateDeg){    
         let rotate = rotateDeg ? ' rotate(' + rotateDeg + 'deg)' : '';
-        
-        //let object = target.classList.contains('drag-arrow') ? target : target.children[0];
+
         let object = target.children[0];
 
-        let transitionTransform = object.style.webkitTransform || object.style.transform;
-
-        object.style.webkitTransform = object.style.transform = transitionTransform + ' ' + rotate;
+        object.style.webkitTransform = 
+            object.style.transform = rotate;
 
         object.setAttribute('data-rotate', rotateDeg);
     }

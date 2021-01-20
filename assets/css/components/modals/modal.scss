@@ -13,9 +13,9 @@
         }
 
         &.modal-lg{
-            top:50px !important;
+            top:40px !important;
             width: 600px !important;
-            height: 80% !important;
+           // height: 80% !important;
         }
 
         .modal-custom{
@@ -120,6 +120,64 @@
                                     margin-right: 10px;
                                 }
                             }
+                        }
+                    }
+                }
+            }
+
+            &.modal-open-designer{
+                .modal-content{
+                    padding: 10px 30px;
+                    text-align: center;
+                    @include font-xm-sbold;
+                    /*p{
+                        margin-top: 0;
+                    }
+                    .zone-text{
+                        min-height: 60px;
+                    }
+                    .sliders{
+                        height: auto;
+                        width: 100%;
+                        .images{
+                            height:300px;
+                            width: 100%;
+                            background-color: green;
+                            border-radius: 5px;
+                        }
+                        .slides{
+                            display: flex;
+                            justify-content: center;
+                            margin-top: 10px;
+                            .slide{
+                                height: 10px;
+                                width: 10px;
+                                border-radius: 50%;
+                                border:1px solid $color-soccer-coach;
+                                &:not(:last-child){
+                                    margin-right: 10px;
+                                }
+
+                                &.active{
+                                    background-color: $color-soccer-coach;
+                                }
+                            }
+                        }
+                    }*/
+                }
+                .modal-footer{
+                    display: inline;
+                    .actions{
+                        margin: 10px 30px;
+                        height: 100%;
+                        display: block;
+                            
+                        .link{
+                            font-size: 14px!important;
+                            float: left;
+                        }
+                        .btn{
+                            float: right;
                         }
                     }
                 }

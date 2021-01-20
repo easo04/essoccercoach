@@ -1,11 +1,11 @@
 <template>
-        <div class="modal-download-succes modal-custom">
+    <div class="modal-download-succes modal-custom">
         <div class="modal-header">
             <div class="titre-modal"><h3>Votre exercice a été télechargé ✔️</h3></div>
             <div class="close-modal"><span @click="hide()"><i class="fas fa-times"></i></span></div>
         </div>
         <div class="modal-content">
-            <p class="thnks">Merci d'avoir utilisé ESsoccercoach Designer pour créez votre exercice!</p> 
+            <p class="thnks">Merci d'avoir utilisé ESsoccercoach Designer pour créer votre exercice!</p> 
             <div class="infolettre" v-if="showInfolettre">
                 <p>Abonnez-vous à notre infolettre pour recevoir les dernières 
                     nouveautées: </p>

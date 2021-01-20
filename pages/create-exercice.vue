@@ -71,8 +71,8 @@
                 </div>
                 <div class="third-items">
                     <span class="icon-action inactive" id="copy" @click="makeCopy()"><i class="fas fa-copy" title="Faire une copie"></i></span>
-                    <span class="icon-action inactive" id="minus"><i class="fas fa-search-minus" title="Zoom moins"></i></span>
-                    <span class="icon-action inactive" id="plus"><i class="fas fa-search-plus" title="Zoom plus"></i></span>
+                    <span class="icon-action inactive" id="minus" @click="minus()"><i class="fas fa-search-minus" title="Zoom moins"></i></span>
+                    <span class="icon-action inactive" id="plus" @click="plus()"><i class="fas fa-search-plus" title="Zoom plus"></i></span>
                 </div>
             </div>
             <div class="actions">
@@ -256,7 +256,6 @@
                     <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" :class="object.class" @click="selectObject(object.id, indexObj)">
                         <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && object.type !== 'drag-forme'"/>
                         <div class="number-object" v-if="object.type === 'drag-number'">
-                            <!--<img :id="object.image.id" src="~/assets/images/joueurs/player-color-black.png"/>-->
                             <div class="circle"></div>
                             <div class="number">{{object.number}}</div>
                         </div>
@@ -276,6 +275,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="help">
+                    <div class="question" :class="{'clicked' : showOptionsHelp}" @click="setShowOptionsHelp()">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <div class="lst-options-help" v-show="showOptionsHelp">
+                        <div class="options">
+                            <div><div @click="showAstuces();setShowOptionsHelp()">Astuces</div></div>
+                            <div><div @click="setShowOptionsHelp()">Tutoriel</div></div>
+                            <div><div @click="setShowOptionsHelp()">Youtube</div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -285,6 +296,8 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 import GoHomeModal from '@/components/modals/GoHomeModal.vue'
 import AddPlayerWithTextModal from '@/components/modals/AddPlayerWithTextModal.vue'
 import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
+import ModalOpenDesigner from '@/components/modals/ModalOpenDesigner.vue'
+
 //enum pour le type d'actions
 const ACTIONS = {
     ADD_OBJECT:'ADD_OBJECT', 
@@ -401,9 +414,13 @@ export default {
             arrowPoints:{start:{x:0, y:0}, end:{x:0, y:0}, toAdd:false, idArrow:undefined},
             objectDragSelected:undefined,
             objectDOMCopied:undefined,
+            showOptionsHelp:false,
         }
     },
     methods:{
+        setShowOptionsHelp(){
+            this.showOptionsHelp = this.showOptionsHelp ? false : true;
+        },
         isFormeImg(forme){
             return ['triangle', 'circle'].includes(forme);
         },
@@ -418,6 +435,7 @@ export default {
             this.showSelectColors = false;
             this.showSelectFormes = false;
             this.showSelectTransparence = false;
+            this.showOptionsHelp = false;
         },
         selectContentItem(item){
             this.contentItem = item;
@@ -528,6 +546,7 @@ export default {
                 }
             };
 
+            //vérifier si objet draggable
             let draggableClass = 'draggable';
             if(object.type === 'drag-forme'){
                 let classForme = object.forme.includes('line') ? 'forme-' + object.forme: '';
@@ -544,6 +563,11 @@ export default {
                 draggableClass = 'resize-drag-arrow';
             }
             object.class += ' ' + draggableClass;
+
+            //vérifier si objet de type but
+            if(object.image.id.includes('but')){
+                object.class += ' but-object';
+            }
 
             //vérifier si on objet existe avec le même id
             let isObjectExist = this.lstObjectsDraggable.find(o=>o.id === object.id);
@@ -586,7 +610,7 @@ export default {
                         this.$modal.show(
                             DownloadSuccesModal,
                             {},
-                            {name : 'download-succes-modal', classes:['modal-top']}
+                            {name : 'download-succes-modal', classes:['modal-top'], clickToClose:false}
                         );
                     }
                 });
@@ -631,6 +655,20 @@ export default {
             }else{
                 document.getElementById('changeTransparence').classList.add('inactive');
             }
+
+            //vérifier si c'est un arrow pour activer le zoom de l'objet
+            if(this.objectSelected[0].id.includes('arrow')){
+                let height = this.objectSelected[0].style.height.replace('px', '');
+                height = height !== '' ? parseInt(height) : 120;
+
+                if(height < 180){
+                    document.getElementById('plus').classList.remove('inactive');
+                }
+                
+                if(height > 100){
+                    document.getElementById('minus').classList.remove('inactive');
+                }
+            }
         },
         rotate(){
             if(this.objectSelected){
@@ -663,6 +701,8 @@ export default {
             this.lastIndexObjectSelected = undefined;
             document.getElementById('delete').classList.add('inactive');
             document.getElementById('copy').classList.add('inactive');
+            document.getElementById('minus').classList.add('inactive');
+            document.getElementById('plus').classList.add('inactive');
         },
         deleteObject() {
             if(this.objectSelected){
@@ -824,6 +864,39 @@ export default {
         addArrow(name, image){
             this.addObjectToList('drag-arrow', name, 'lignes/' + image.replace('svg', 'png'), true);
         },
+        showAstuces(){
+            this.$modal.show(
+                ModalOpenDesigner,
+                {},
+                {name : 'open-designer-modal', classes:['modal-lg'], clickToClose:false}
+            );
+        },
+        plus(){
+            let height = this.objectSelected[0].style.height.replace('px', '');
+            height = height !== '' ? parseInt(height) : 120;
+
+            if(height < 180){
+                this.objectSelected[0].style.height =  (height + 10) + 'px';
+                if(document.getElementById('minus').classList.contains('inactive')){    
+                    document.getElementById('minus').classList.remove('inactive');
+                }
+            }else{
+                document.getElementById('plus').classList.add('inactive');
+            }
+        },
+        minus(){
+            let height = this.objectSelected[0].style.height.replace('px', '');
+            height = height !== '' ? parseInt(height) : 120;
+
+            if(height > 100){
+                this.objectSelected[0].style.height =  (height - 10) + 'px';
+                if(document.getElementById('plus').classList.contains('inactive')){    
+                    document.getElementById('plus').classList.remove('inactive');
+                }
+            }else{
+                document.getElementById('minus').classList.add('inactive');
+            }
+        },
         ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader'})
     },
     created(){
@@ -848,17 +921,13 @@ export default {
         //afficher tous les icônes à l'écran
         printAllIcons();
 
-        /*this.$modal.show(
-            GoHomeModal,
-            {text: 'This text is passed as a property'},
-            {name : 'go-home-modal', classes:['modal-lg']}
-        );*/
-
-        this.$modal.show(
-            DownloadSuccesModal,
-            {},
-            {name : 'download-succes-modal', classes:['modal-top']}
-        );
+        //afficher la modale des astuces
+        const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
+        if(!showOpenDesignerModal){
+            const infosParsed = JSON.stringify({showOpenDesignerModal:true});
+            sessionStorage.setItem('showOpenDesignerModal', infosParsed);
+            this.showAstuces();
+        }
     },
     updated(){
 
