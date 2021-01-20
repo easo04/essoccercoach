@@ -51,13 +51,8 @@
             align-items: center;
             .carrousel-images{
                 margin-left: 60px;
-                height: 380px;
+                height: auto;
                 width: 100%;
-                background-color: red;
-                .images{
-                    background-color: green;
-                    height: 90%;
-                }
             }
         }
     }
@@ -148,10 +143,13 @@
                 .carrousel-images{
                     height: 380px;
                     width: 100%;
-                    background-color: red;
-                    .images{
-                        background-color: green;
-                        height: 90%;
+                    .slider-component{
+                        .sliders{
+                            .images{
+                                height:350px;
+                                border:1px solid $color-border;
+                            }
+                        }
                     }
                 }
             }

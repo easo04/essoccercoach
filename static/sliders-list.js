@@ -21,47 +21,62 @@ export const lstSlidersModalOpenDesigner = [
     },
 ];
 
+export const lstSlidersHomeHero = [
+    {
+        text:undefined,
+        image:'open-designer1.png',
+    },
+    {
+        text:undefined,
+        image:'open-designer1.png',
+    },
+    {
+        text:undefined,
+        image:'open-designer1.png',
+    }
+];
+
 export const lstSlidersHomeExercices = [
     {
         text:undefined,
-        image:'image1',
+        image:'open-designer1.png',
     },
     {
         text:undefined,
-        image:'image2',
+        image:'open-designer1.png',
     },
     {
         text:undefined,
-        image:'image3',
+        image:'open-designer1.png',
     }
 ];
 
 export const lstSlidersHomeSeances = [
     {
         text:undefined,
-        image:'image1',
+        image:'open-designer1.png',
     },
     {
         text:undefined,
-        image:'image2',
+        image:'open-designer1.png',
     },
     {
         text:undefined,
-        image:'image3',
+        image:'open-designer1.png',
     }
 ];
 
 export const lstSlidersHomeAlignements = [
     {
         text:undefined,
-        image:'image1',
+        image:'open-designer1.png',
     },
     {
         text:undefined,
-        image:'image2',
+        image:'open-designer1.png',
     },
     {
         text:undefined,
-        image:'image3',
+        image:'open-designer1.png',
     }
 ];

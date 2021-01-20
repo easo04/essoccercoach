@@ -10,7 +10,7 @@
       </div>
       <div class="carrousel">
         <div class="carrousel-images">
-          <div class="images"></div>
+          <Slider :lst-slides="lstSlidesHero" :autoplay="true" :interval="15"/>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="carrousel-item">
           <div class="carrousel-images">
-            <div class="images"></div>
+            <Slider :lst-slides="lstSlidesExercices" :autoplay="true" :interval="15"/>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="carrousel-item">
           <div class="carrousel-images">
-            <div class="images"></div>
+            <Slider :lst-slides="lstSlidesSeances" :autoplay="true" :interval="15"/>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="carrousel-item">
           <div class="carrousel-images">
-            <div class="images"></div>
+            <Slider :lst-slides="lstSlidesExercices" :autoplay="true" :interval="15"/>
           </div>
         </div>
       </div>
@@ -168,20 +168,39 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
+import {lstSlidersHomeHero as slidesHero, lstSlidersHomeExercices as slidesExercices,
+lstSlidersHomeSeances as slidesSeances, 
+lstSlidersHomeAlignements as slidesAlignements} from '@/static/sliders-list.js';
+import Slider from '@/components/Slider.vue';
 export default {
-    computed:{
-        exercice(){
-          return this.$store.state.esdesigner.exercice
-        }
-    },
-    methods:{
-      goToCreateExercices(){
-        this.$router.push({path: '/create-exercice'});
-      }
-    },
-    mounted(){
+  components: { Slider },
+  data(){
+    return{
+      lstSlidesHero : [],
+      lstSlidesExercices: [],
+      lstSlidesSeances : [],
+      lstSlidesAlignements : [],
     }
+  },
+  computed:{
+      exercice(){
+        return this.$store.state.esdesigner.exercice
+      }
+  },
+  methods:{
+    goToCreateExercices(){
+      this.$router.push({path: '/create-exercice'});
+    }
+  },
+  created(){
+    this.lstSlidesHero = slidesHero;
+    this.lstSlidesExercices = slidesExercices;
+    this.lstSlidesSeances = slidesSeances;
+    this.lstSlidesAlignements = slidesAlignements;
+  },
+  mounted(){
+  }
 }
 </script>
 
