@@ -6,7 +6,8 @@
                 <div class="lst-steps">
                     <div class="step" :class="{'active' : step.current, 'completed': step.completed}" v-for="(step, i) in lstSteps" :key="i">
                         <div class="step-content">    
-                            <div class="number">{{i+1}}</div>
+                            <div class="number" v-if="step.name !== 'download'">{{i+1}}</div>
+                            <div class="number" v-else><i class="fas fa-file-download"></i></div>
                             <span class="name">{{step.label}}</span>
                         </div>
                     </div>
