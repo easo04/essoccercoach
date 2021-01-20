@@ -36,7 +36,7 @@
                         <span>Exercice</span>
                     </div>
                     <div class="item-action-list">
-                        <div class="img-item-action">
+                        <div class="img-item-action" @click="goToCreateSeances()">
                             <div class="img">
                                 <img src="@/assets/images/seance-logo.png" alt="créer séance"/>
                             </div>
@@ -74,7 +74,10 @@ export default {
         },
         goToCreateExercices(){
             this.$router.push({path: '/create-exercice'});
-        }
+        },
+        goToCreateSeances(){
+            this.$router.push({path: '/create-seance'});  
+        },
     }
 }
 </script>

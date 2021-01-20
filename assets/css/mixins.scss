@@ -103,6 +103,25 @@
     font-style: normal;
     font-size: 18px;
     line-height: 22px;
+    font-weight: 400;
+}
+@mixin font-l-sbold {
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+}
+@mixin font-l-bold {
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+}
+@mixin font-l-mbold {
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
 }
 
 @mixin font-m-bold {

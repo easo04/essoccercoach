@@ -53,7 +53,7 @@
             <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
           </div>
           <div class="outil-actions">
-            <button class="btn btn-default-ghost">Créez votre séance</button>
+            <button class="btn btn-default-ghost" @click="goToCreateSeances()">Créez votre séance</button>
           </div>
         </div>
         <div class="outil">
@@ -90,7 +90,7 @@
             <div class="description-item-content">
               <h2>Créateur de séances</h2>
               <p>Avez-vous un entraînement aujourd'hui?<br><br> Planifiez votre <strong>séance d'entraînement</strong> avec notre créateur de séances.</p>
-              <div class="actions-item"><button class="btn btn-default">Créez votre séance</button></div>
+              <div class="actions-item"><button class="btn btn-default" @click="goToCreateSeances()">Créez votre séance</button></div>
             </div>
         </div>
         <div class="carrousel-item">
@@ -191,6 +191,9 @@ export default {
   methods:{
     goToCreateExercices(){
       this.$router.push({path: '/create-exercice'});
+    },
+    goToCreateSeances(){
+      this.$router.push({path: '/create-seance'});
     }
   },
   created(){
