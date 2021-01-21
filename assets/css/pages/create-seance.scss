@@ -4,146 +4,187 @@ body{
 .create-seance{
     background-color: #FDFDFD;
     min-height: 80vh;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    .steps{
-        border-right: 1px solid $color-border;       
-        display: flex;
-        justify-content: center;
-        padding-top: 60px;
-        //align-items: center;
-        .steps-content{
-            h2{
-                @include h2;
-                color:$color-black-fonts;
-            }
-            .lst-steps{
-                .step{
-                    &:not(:last-child){      
-                        &::after{
-                            content: '';
-                            height: 40px;
-                            width: 5px;
-                            background-color: $color-gris-1;
-                            display: block;
-                            margin-left: 22px;
-                        }
-                    }
-                    .step-content{     
-                        display: flex;
-                        .number{
-                            height: 50px;
-                            width: 50px;
-                            border-radius: 50%;
-                            background-color: $color-gris-1;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            @include font-l-mbold;
-                            color:$color-black-fonts;
-                            font-family: $font-family-text;
-                        }
-                        .name{
-                            @include font-m-bold;
-                            color:$color-gris-1;
-                            font-family: $font-family-text;
-                            line-height: 50px;
-                            margin-left: 16px;
-                        }
-                    }
+    .contenant{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        .steps{
+            border-right: 1px solid $color-border-designer;       
+            padding-top: 60px;
+            display: flex;
+            justify-content: center;
+            //align-items: center;
+            .steps-content{
+                h2{
+                    @include h2;
+                    color:$color-black-fonts;
+                }
+                text-align: center;
 
+                .back-home{
+                    text-align: left;
+                    .link{
+                        @include blue-link;
+                        @include font-s-sbold;
+                    } 
+                } 
+    
+                .lst-steps{
                     
-                    &.active{
-                        .step-content{     
-                            .number{
-                                background-color: $color-soccer-coach;
-                                color:$color-white-fonts;
-                            }
-                            .name{
-                                color:#646464;
-                            }
-                        }
-                    }
-
-                    &.completed{
+                    margin-bottom: 32px;
+                    .step{
                         &:not(:last-child){      
                             &::after{
-                                background-color: $color-soccer-coach;
+                                content: '';
+                                height: 40px;
+                                width: 5px;
+                                background-color: $color-gris-1;
+                                display: block;
+                                margin-left: 22px;
                             }
                         }
-
                         .step-content{     
+                            display: flex;
                             .number{
-                                background-color: $color-soccer-coach;
-                                color:$color-white-fonts;
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 50%;
+                                background-color: $color-gris-1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                @include font-l-mbold;
+                                color:$color-black-fonts;
+                                font-family: $font-family-text;
                             }
                             .name{
-                                color:#646464;
+                                @include font-m-bold;
+                                color:$color-gris-1;
+                                font-family: $font-family-text;
+                                line-height: 50px;
+                                margin-left: 16px;
+                            }
+                        }
+    
+                        
+                        &.active{
+                            .step-content{     
+                                .number{
+                                    background-color: $color-soccer-coach;
+                                    color:$color-white-fonts;
+                                }
+                                .name{
+                                    color:#646464;
+                                }
+                            }
+                        }
+    
+                        &.completed{
+                            &:not(:last-child){      
+                                &::after{
+                                    background-color: $color-soccer-coach;
+                                }
+                            }
+    
+                            .step-content{   
+                                .number{
+                                    background-color: $color-soccer-coach;
+                                    color:$color-white-fonts;
+                                }
+                                .name{
+                                    color:#646464;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
-    .content{
-        padding: 30px 200px;
-        margin-top: 0;
-        h3{
-            @include h3;
-            color:$color-black-fonts;
-        }
-        .form-content{
-            .form-group{
-                margin-bottom: 15px;
+        .content{
+            padding: 30px 200px;
+            margin-top: 0;
+            h3{
+                @include h3;
+                color:$color-black-fonts;
             }
-            
-            .form-group-flex{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-column-gap: 15px;
-            }
-        }
-
-        .actions{
-            margin-top: 32px;
-            display: flex;
-            justify-content: flex-end;
-            .btns{
-                .btn{
-                    &:not(:last-child){
-                        margin-right: 15px;
-                    }
+            .form-content{
+                .form-group{
+                    margin-bottom: 15px;
                 }
-                .btn-default{
-                    border:2px solid $color-soccer-coach;
-                    &:hover{
-                        border:2px solid #208994;
-                    }
+                
+                .form-group-flex{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-column-gap: 15px;
                 }
             }
-        }
-
-        .add-exercice{
-            margin-top: 15px;
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
-            height: auto;
-        }
-
-        .lst-exerices{
-            &.vide{
-                height: 300px;
-                width: 100%;
+    
+            .actions{
+                margin-top: 32px;
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                color:$color-border-designer;
-                @include font-m-sbold;
-                font-family: $font-family-text;
-                svg{
-                    font-size: 1.5em;
+                justify-content: flex-end;
+                .btns{
+                    .btn{
+                        &:not(:last-child){
+                            margin-right: 15px;
+                        }
+                        &.disabled{
+                            background-color: #C9C9C9;
+                            cursor: auto;
+                            &:hover{
+                                background-color: #C9C9C9;
+                            }
+                        }
+                    }
+                    .btn-default{
+                        border:2px solid $color-soccer-coach;
+                        &:hover{
+                            border:2px solid #208994;
+                        }
+                    }
+                }
+            }
+    
+            .add-exercice{
+                margin-top: 15px;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                height: auto;
+            }
+    
+            .lst-exerices{
+                margin-top: 15px;
+                min-height: 45vh; //TODO mis car le footer ne reste pas en bas
+                &.vide{
+                    height: 300px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color:$color-border-designer;
+                    @include font-m-sbold;
+                    font-family: $font-family-text;
+                    svg{
+                        font-size: 1.5em;
+                    }
+                }
+
+                .exercice-item{
+                    height: auto;
+                    padding: 30px;
+                    background: #FDFDFD;
+                    box-shadow: 1px 1px 4px rgba(201, 201, 201, 0.4);
+                    border-radius: 5px;
+                    border:1px solid rgba(201, 201, 201, 0.4);
+
+                    &.exercice-vide{
+                        height: 90px;
+                        display: flex;
+                        align-items: center;
+                        color:$color-black-fonts-second;   
+                        @include font-m-sbold;
+                        font-family: $font-family-text;
+                    }   
                 }
             }
         }

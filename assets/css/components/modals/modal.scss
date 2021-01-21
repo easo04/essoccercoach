@@ -1,6 +1,6 @@
 .vm--container{
     .vm--overlay{
-        background: rgba(16, 68, 74, 0.6);
+        background: rgba(16, 68, 74, 0.7);
     }
     .vm--modal{
         background-color: $color-white-background;
@@ -16,6 +16,11 @@
             top:40px !important;
             width: 600px !important;
            // height: 80% !important;
+        }
+
+        &.modal-lg2{
+            top:10px !important;
+            width: 600px !important;
         }
 
         .modal-custom{
@@ -130,40 +135,6 @@
                     padding: 10px 30px;
                     text-align: center;
                     @include font-xm-sbold;
-                    /*p{
-                        margin-top: 0;
-                    }
-                    .zone-text{
-                        min-height: 60px;
-                    }
-                    .sliders{
-                        height: auto;
-                        width: 100%;
-                        .images{
-                            height:300px;
-                            width: 100%;
-                            background-color: green;
-                            border-radius: 5px;
-                        }
-                        .slides{
-                            display: flex;
-                            justify-content: center;
-                            margin-top: 10px;
-                            .slide{
-                                height: 10px;
-                                width: 10px;
-                                border-radius: 50%;
-                                border:1px solid $color-soccer-coach;
-                                &:not(:last-child){
-                                    margin-right: 10px;
-                                }
-
-                                &.active{
-                                    background-color: $color-soccer-coach;
-                                }
-                            }
-                        }
-                    }*/
                 }
                 .modal-footer{
                     display: inline;
@@ -178,6 +149,46 @@
                         }
                         .btn{
                             float: right;
+                        }
+                    }
+                }
+            }
+
+            &.modal-add-exericice{
+                
+                .modal-content{
+                    padding: 30px 30px;
+                    .form-group{
+                        margin-bottom: 15px;
+                    }
+                    
+                    .form-group-flex{
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        grid-column-gap: 15px;
+
+                        .btn{    
+                            &.with-image{
+                                background-color: #A7E9CA;
+                                border:2px solid #22C77B;
+                                color:#0E5031;
+                            }
+                        }
+                    }
+                }
+
+                .modal-footer{
+                    .btn{
+                        border:2px solid $color-soccer-coach;
+                        &:hover{
+                            border:2px solid #208994;
+                        }
+                        &.disabled{
+                            background-color: #C9C9C9;
+                            cursor: auto;
+                            &:hover{
+                                background-color: #C9C9C9;
+                            }
                         }
                     }
                 }

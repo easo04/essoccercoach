@@ -190,7 +190,7 @@
         .actions{
             display: flex;
             justify-content: flex-end;
-            .fa-download{
+            .fa-download, .fa-save{
                 color:$color-soccer-coach;
                 font-size: 20px;
                 cursor: pointer;
@@ -738,8 +738,8 @@
                 bottom: 20px;
                 right: 20px;
                 .question{
-                    height: 50px;
-                    width: 50px;
+                    height: 40px;
+                    width: 40px;
                     background-color: $color-white-background;
                     border:1px solid $color-border-designer;
                     border-radius: 50%;
@@ -748,17 +748,17 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    font-size: 18px;
+                    font-size: 16px;
                     cursor: pointer;
                     &:hover{
-                        height: 51px;
-                        width: 51px;
-                        font-size: 19px;
+                        height: 41px;
+                        width: 41px;
+                        font-size: 17px;
                     }
                     &.clicked{
-                        height: 51px;
-                        width: 51px;
-                        font-size: 19px;
+                        height: 41px;
+                        width: 41px;
+                        font-size: 17px;
                     }
                 }
                 .lst-options-help{

@@ -228,6 +228,24 @@
             border:2px solid #646464;
         }
     }
+
+    .form-control-textarea{
+        margin-top: 16px;
+        height: 100px;
+        width: 100%;
+        background: #FDFDFD;
+        border: 1px solid #979797;
+        box-sizing: border-box;
+        border-radius: 5px;
+        @include font-m;
+        font-family: $font-family-text;
+        color:$color-black-fonts;
+        resize: none;
+        &:focus{
+            outline: none;
+            border:2px solid #646464;
+        }
+    }
 }
 
 @mixin form-group-flex {

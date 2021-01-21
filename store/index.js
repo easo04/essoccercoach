@@ -1,7 +1,8 @@
 export const state = () => ({
   modePresentation: true,
   showLoader:false,
-  textLoader:''
+  textLoader:'',
+  classLoader:'',
 })
 
 export const mutations = {
@@ -13,5 +14,8 @@ export const mutations = {
   },
   setTextLoader(state, newValue){
     state.textLoader = newValue;
+  },
+  setClassLoader(state, newValue){
+    state.classLoader = newValue;
   }
 }

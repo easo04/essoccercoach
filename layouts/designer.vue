@@ -1,6 +1,6 @@
 <template>
     <div class="esdesigner">
-        <div class="loading" v-if="showLoading">
+        <div class="loading" :class="classLoader" v-if="showLoading">
             <div>
                 <Spinner :spinner="true"/>              
                 <h3>{{textLoader}}</h3>
@@ -30,7 +30,10 @@ export default {
         },
         textLoader(){
             return this.$store.state.textLoader;
-        }
+        },
+        classLoader(){
+            return this.$store.state.classLoader;
+        },
     }
 }
 </script>

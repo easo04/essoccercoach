@@ -1,6 +1,16 @@
 <template>
-    <div class="application">
-        <Header/>
+    <div class="esdesigner">
+        <div class="loading" :class="classLoader" v-if="showLoading">
+            <div>
+                <Spinner :spinner="true"/>  
+            </div>
+        </div>
+        <div class="header-designer">
+            <div class="logo">
+                <img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/>
+                <h4>ESsoccercoach</h4>
+            </div>
+        </div>
         <div class="content">
             <Nuxt />
         </div>
@@ -13,16 +23,3 @@
 export default {
 }
 </script>
-<style lang="scss">
-    .footer-designer-seance{
-        width: 100%;
-        background: #28ABB9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color:#FBFBFB;
-        font-family: Open Sans;
-        font-size: 12px;
-        height: 25px;
-    }
-</style>

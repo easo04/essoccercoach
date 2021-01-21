@@ -2,7 +2,8 @@
     <div class="creation-exercice">
         <div class="menu-top">
             <div class="principal-items">
-                <span @click="goHome()" class="icon-action"><i class="fas fa-home" title="Retourner à l'accueil"></i></span>
+                <span @click="goHome()" class="icon-action" v-if="!fromSeance"><i class="fas fa-home" title="Retourner à l'accueil"></i></span>
+                <span @click="goBack()" class="icon-action" v-else><i class="fas fa-arrow-alt-circle-left" title="Retourner en arrière"></i></span>
                 <div class="actions-s">
                     <span class="icon-action inactive" id="undo" @click="undo()"><i class="fas fa-undo" title="Undo"></i></span>
                     <span class="icon-action inactive" id="redo" @click="redo()"><i class="fas fa-redo" title="Rdo"></i></span>
@@ -76,7 +77,8 @@
                 </div>
             </div>
             <div class="actions">
-                <span @click="downloadExercice()"><i class="fas fa-download download" title="Télécharger"></i></span>
+                <span @click="downloadExercice()" v-if="!fromSeance"><i class="fas fa-download download" title="Télécharger"></i></span>
+                <span @click="saveExercice()" v-else><i class="fas fa-save save" title="Sauvegarder"></i></span>
             </div>
         </div>
         <div class="content">
@@ -415,6 +417,7 @@ export default {
             objectDragSelected:undefined,
             objectDOMCopied:undefined,
             showOptionsHelp:false,
+            fromSeance:false,
         }
     },
     methods:{
@@ -430,6 +433,12 @@ export default {
                 {},
                 {name : 'go-home-modal', classes:['modal-s']}
             );
+        },
+        goBack(){
+
+            //go To DesignSeance
+            localStorage.setItem('fromDesigner', JSON.stringify(true));
+            this.$router.push({name: 'create-seance'});
         },
         closeAllSelectes(){ 
             this.showSelectColors = false;
@@ -615,6 +624,27 @@ export default {
                     }
                 });
             }, 2 * 1000);
+        },
+        saveExercice(){
+            this.deselectionner();
+
+            const dowloadImage = new Promise((resolve) => {    
+                let domElement = document.getElementById("terrainSoccer");
+                html2canvas(domElement, {
+                    onrendered: (canvas) =>{
+                        var img = canvas.toDataURL('image/png');
+                        this.setImageExercice(img);
+                        resolve("Create");
+                    }
+                });
+            });
+
+            dowloadImage.then(val=>{
+
+                //goToDesignSeance
+                localStorage.setItem('fromDesigner', JSON.stringify(true))
+                this.$router.push({name: 'create-seance'});
+            });
         },
         selectObject(dragId, indexObj){
             this.objectSelected = $('#' + dragId);
@@ -897,9 +927,12 @@ export default {
                 document.getElementById('minus').classList.add('inactive');
             }
         },
-        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader'})
+        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setImageExercice:'seance/setImageExercice'})
     },
     created(){
+        this.setShowLoader(true);
+        this.setClassLoader('open-designer');
+
         this.$root.$on('addText', (text) => {
             if(text){
                 this.addPlayerWithText(text);
@@ -921,13 +954,21 @@ export default {
         //afficher tous les icônes à l'écran
         printAllIcons();
 
-        //afficher la modale des astuces
-        const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
-        if(!showOpenDesignerModal){
-            const infosParsed = JSON.stringify({showOpenDesignerModal:true});
-            sessionStorage.setItem('showOpenDesignerModal', infosParsed);
-            this.showAstuces();
-        }
+        setTimeout(() => {
+            this.fromSeance = JSON.parse(localStorage.getItem('isCreateSeance')) || false;
+            if(!this.fromSeance){
+                
+                //afficher la modale des astuces
+                const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
+                if(!showOpenDesignerModal){
+                    const infosParsed = JSON.stringify({showOpenDesignerModal:true});
+                    sessionStorage.setItem('showOpenDesignerModal', infosParsed);
+                    this.showAstuces();
+                }
+            }
+            this.setShowLoader(false);
+            this.setClassLoader('');
+        },  3* 1000);
     },
     updated(){
 
@@ -968,14 +1009,9 @@ export default {
         }
     },
     beforeDestroy(){
+
+        //supprimer les objets sauvegardés en localstorage
+        localStorage.removeItem('isCreateSeance');
     },
-    beforeRouteLeave(){
-        const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
-        if (answer) {
-            next()
-        } else {
-            next(false)
-        }
-    }
 }
 </script>
