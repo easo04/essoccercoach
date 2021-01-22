@@ -627,6 +627,9 @@ export default {
         },
         saveExercice(){
             this.deselectionner();
+            this.closeAllSelectes();
+            this.setTextLoader('Sauvegarde de l\'exercice en cours ...');
+            this.setShowLoader(true);
 
             const dowloadImage = new Promise((resolve) => {    
                 let domElement = document.getElementById("terrainSoccer");
@@ -639,11 +642,14 @@ export default {
                 });
             });
 
-            dowloadImage.then(val=>{
+            dowloadImage.then((val)=>{
 
                 //goToDesignSeance
-                localStorage.setItem('fromDesigner', JSON.stringify(true))
+                localStorage.setItem('fromDesigner', JSON.stringify(true));
+                this.setShowLoader(false);
+                this.setTextLoader('');
                 this.$router.push({name: 'create-seance'});
+
             });
         },
         selectObject(dragId, indexObj){
@@ -954,18 +960,19 @@ export default {
         //afficher tous les icônes à l'écran
         printAllIcons();
 
-        setTimeout(() => {
-            this.fromSeance = JSON.parse(localStorage.getItem('isCreateSeance')) || false;
-            if(!this.fromSeance){
-                
-                //afficher la modale des astuces
-                const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
-                if(!showOpenDesignerModal){
-                    const infosParsed = JSON.stringify({showOpenDesignerModal:true});
-                    sessionStorage.setItem('showOpenDesignerModal', infosParsed);
-                    this.showAstuces();
-                }
+        this.fromSeance = JSON.parse(localStorage.getItem('isCreateSeance')) || false;
+        if(!this.fromSeance){
+            
+            //afficher la modale des astuces
+            const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
+            if(!showOpenDesignerModal){
+                const infosParsed = JSON.stringify({showOpenDesignerModal:true});
+                sessionStorage.setItem('showOpenDesignerModal', infosParsed);
+                this.showAstuces();
             }
+        }
+
+        setTimeout(() => {
             this.setShowLoader(false);
             this.setClassLoader('');
         },  3* 1000);

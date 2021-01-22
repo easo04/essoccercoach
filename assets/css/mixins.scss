@@ -272,3 +272,19 @@
         }
     }
 }
+
+@mixin icon-text {
+    &:not(:last-child){
+        margin-right: 10px;
+    }
+    svg{
+        color:#1DA78F;
+        font-size: 13px;
+        margin-right: 5px;
+    }
+    span{
+        @include font-s-bold;
+        font-family: $font-family-text;
+        color:#858585;
+    }
+}

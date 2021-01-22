@@ -49,23 +49,79 @@
                     </div>
                 </div>
                 <div v-if="currentStep === 'exercices'">
-                    <h3>Ajoutez les exercices de la séance</h3>
+                    <h3>
+                        Ajoutez les exercices de la séance
+                        <span class="compteur" v-if="exercices.length > 0">
+                            ({{exercices.length}}/5)
+                        </span>
+                    </h3>
                     <div class="add-exercice">
-                        <button class="btn btn-default" @click="addExercice()">Exercice <i class="fas fa-plus"></i></button>
+                        <button class="btn btn-default" @click="addExercice()" :class="{'disabled':exercices.length === 5}" :disabled="exercices.length === 5">Exercice <i class="fas fa-plus"></i></button>
                     </div>
                     <div class="lst-exerices">
-                        <div class="exercice-vide exercice-item" v-if="lstExercices.length === 0">
-                            Aucun exercice ajouté
+                        <div class="exercice-vide exercice-item" v-if="exercices.length === 0">
+                            <div>
+                                Aucun exercice ajouté
+                                <p>Vouz pouvez ajouter jusqu'à 5 exercices à votre séance</p>
+                            </div>
+                        </div>
+                        <div class="exercice-item" v-for="(exercice, i) in exercices" :key="i">
+                            <div class="exercice-description">
+                                <h4>{{exercice.theme}}</h4>
+                                <p>{{exercice.description}}</p>
+                                <div class="time-players">
+                                    <span v-if="exercice.players" class="icon-text"><i class="fas fa-tshirt"></i><span>{{exercice.players}}</span></span>
+                                    <span v-if="exercice.time" class="icon-text"><i class="fas fa-clock"></i><span>{{exercice.time}}</span></span>
+                                </div>
+                            </div>
+                            <div class="exercice-image">
+                                <img :src="exercice.image"/>
+                            </div>
+                            <div class="exercice-options" title="Options de l'exercice"><i class="fas fa-ellipsis-v"></i></div>
                         </div>
                     </div>
                 </div>
                 <div v-if="currentStep === 'download'">
-                    <h3>Télechargez la séance</h3>
+                    <div class="actions-download">
+                        <h3>Télechargez la séance en format pdf</h3>
+                        <span class="telecharger" @click="telechargerPDF()"><i class="fas fa-download download" title="Télécharger"></i></span>
+                    </div>
+                    <div class="seance-generated">
+                        <div id="seance">
+                            <div class="informations-seance">
+                                <h4>{{seance.theme}}</h4>
+                                <div class="infos-seance">
+                                    <span v-if="seance.time" class="icon-text"><span class="label">Durée: </span><span>{{seance.time}}</span></span>
+                                    <span v-if="seance.date" class="icon-text"><span class="label">Date: </span><span>{{seance.date}}</span><br><br></span>
+                                    <span v-if="seance.coach" class="icon-text"><span class="label">Entraîneur: </span><span>{{seance.coach}}</span></span>
+                                    <span v-if="seance.team" class="icon-text"><span class="label">Équipe: </span><span>{{seance.team}}</span><br><br></span>
+                                    <span v-if="seance.terrain" class="icon-text"><span class="label">Terrain: </span><span>{{seance.terrain}}</span></span>
+                                </div>
+                            </div>
+                            <div class="lst-exerices">
+                                <div class="exercice-item" v-for="(exercice, i) in exercices" :key="i">
+                                    <div class="exercice-description">
+                                        <h4>{{exercice.theme}}</h4>
+                                        <p>{{exercice.description}}</p>
+                                        <div class="time-players">
+                                            <span v-if="exercice.players" class="icon-text"><i class="fas fa-tshirt"></i><span>{{exercice.players}}</span></span>
+                                            <span v-if="exercice.time" class="icon-text"><i class="fas fa-clock"></i><span>{{exercice.time}}</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="exercice-image">
+                                        <img :src="exercice.image"/>
+                                    </div>
+                                    <div class="exercice-number">{{i+1}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="actions">
                     <div class="btns">
-                        <button class="btn btn-default-ghost" @click="previous()" v-if="currentStep !== 'informations'">Précédent</button>
+                        <button class="btn btn-default-ghost" @click="previous()" v-if="currentStep === 'exercices'">Précédent</button>
                         <button class="btn btn-default" @click="next()" v-if="currentStep !== 'download'" :class="{'disabled' : isBtnNextDisabled()}" :disabled="isBtnNextDisabled()">Suivant</button>
+                        <a class="link" @click="updateSeance()" v-if="currentStep === 'download'">Modifier la séance d'entraînement</a>
                     </div>
                 </div>
             </div>
@@ -109,6 +165,9 @@ export default {
         lstSteps(){
             return this.$store.state.seance.steps;
         },
+        exercices(){
+            return this.$store.state.seance.exercices;
+        }
     },
     methods:{
         scrollTop(){
@@ -146,19 +205,61 @@ export default {
                     result = this.seance.theme === undefined || this.seance.theme === '';
                     break;
                 case 'exercices':
-                    result = this.lstExercices.length === 0;
+                    result = this.exercices.length === 0;
                     break;
             }
             return result;
         },
         addExercice(){
-            this.$modal.show(
-                AddExerciceModal,
-                {},
-                {name : 'add-exercice-modal', classes:['modal-lg2'], clickToClose:false}
-            );
+            if(this.exercices.length < 5){      
+                this.$modal.show(
+                    AddExerciceModal,
+                    {},
+                    {name : 'add-exercice-modal', classes:['modal-lg2'], clickToClose:false}
+                );
+            }
         },
-        ...mapMutations({setCurrentState:'seance/setCurrentState', setStepCompleted:'seance/setStepCompleted', setSeance:'seance/setSeance'})
+        telechargerPDF(){
+            
+            this.setTextLoader('Téléchargement de la séance en cours ...');
+            this.setShowLoader(true);
+            const now = new Date();
+            const currentYear = now.getFullYear();
+
+            setTimeout(() => {
+                let domElement = document.getElementById("seance");
+                html2canvas(domElement, {
+                    onrendered: (canvas) =>{
+                        let img = canvas.toDataURL('image/png');
+                        let pdf = new jsPDF();
+                        pdf.addImage(img, 'JPEG', 10, 10);
+                        pdf.setFontSize(9);
+                        pdf.setTextColor(100);
+                        pdf.text(10,290, 'Séance d\'entraînement créée par essoccercoach.com'); 
+                        pdf.setFontSize(9);
+                        pdf.setTextColor(100);
+                        pdf.text(150,290, `© Copyrigth ESsoccerCoach  ${currentYear}`); 
+
+                        pdf.setProperties({
+                            title: 'Entraînement de soccer',
+                            subject: '',		
+                            author: 'ESsoccercoach',
+                            creator: 'ESsoccercoach'
+                        });
+
+                        pdf.save('entrainement.pdf');
+                        this.setTextLoader('');
+                        this.setShowLoader(false);
+                    }
+                });
+            }, 2 * 1000);
+        },
+        updateSeance(){
+            this.noStep = 1;
+            this.currentStep = 'informations';
+            this.setCurrentState(this.currentStep);
+        },
+        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setCurrentState:'seance/setCurrentState', setStepCompleted:'seance/setStepCompleted', setSeance:'seance/setSeance', setListExercices:'seance/setListExercices'})
     },
     mounted(){
         const fromDesigner = JSON.parse(localStorage.getItem('fromDesigner'));
@@ -180,7 +281,7 @@ export default {
             this.seance = seanceLocale.seance;
 
             //initialiser les exerices
-            this.lstExercices = seanceLocale.exercices;
+            this.setListExercices(seanceLocale.exercices);
 
             //ouvrir modale d'ajout d'exercice
             this.addExercice();

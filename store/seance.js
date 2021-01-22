@@ -37,5 +37,8 @@ export const mutations = {
     },
     setImageExercice(state, newValue){
         state.imageExercice = newValue;
+    },
+    setListExercices(state, newValue){
+        state.exercices = newValue;
     }
 }

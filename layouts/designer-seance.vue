@@ -2,7 +2,8 @@
     <div class="esdesigner">
         <div class="loading" :class="classLoader" v-if="showLoading">
             <div>
-                <Spinner :spinner="true"/>  
+                <Spinner :spinner="true"/>      
+                <h3>{{textLoader}}</h3>
             </div>
         </div>
         <div class="header-designer">
@@ -21,5 +22,16 @@
 </template>
 <script>
 export default {
+    computed:{
+        showLoading(){
+            return this.$store.state.showLoader;
+        },
+        textLoader(){
+            return this.$store.state.textLoader;
+        },
+        classLoader(){
+            return this.$store.state.classLoader;
+        },
+    }
 }
 </script>

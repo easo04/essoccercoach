@@ -100,7 +100,7 @@ body{
             }
         }
         .content{
-            padding: 30px 200px;
+            padding: 30px 150px;
             margin-top: 0;
             h3{
                 @include h3;
@@ -141,6 +141,10 @@ body{
                             border:2px solid #208994;
                         }
                     }
+                    .link{
+                        @include blue-link;
+                        @include font-s-sbold;
+                    }
                 }
             }
     
@@ -150,10 +154,19 @@ body{
                 justify-content: flex-end;
                 width: 100%;
                 height: auto;
+                .btn{
+                    &.disabled{
+                        background-color: #C9C9C9;
+                        cursor: auto;
+                        &:hover{
+                            background-color: #C9C9C9;
+                        }
+                    }
+                }
             }
     
             .lst-exerices{
-                margin-top: 15px;
+                margin-top: 32px;
                 min-height: 45vh; //TODO mis car le footer ne reste pas en bas
                 &.vide{
                     height: 300px;
@@ -170,22 +183,140 @@ body{
                 }
 
                 .exercice-item{
-                    height: auto;
-                    padding: 30px;
-                    background: #FDFDFD;
+                    min-height: 100px;
+                    padding: 25px;
+                    //background: #FDFDFD;
+                    background-color: transparent;
                     box-shadow: 1px 1px 4px rgba(201, 201, 201, 0.4);
                     border-radius: 5px;
                     border:1px solid rgba(201, 201, 201, 0.4);
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-column-gap: 10px;;
+                    position: relative;
+                    margin-bottom: 10px;
 
                     &.exercice-vide{
-                        height: 90px;
+                        height: 100px;
                         display: flex;
                         align-items: center;
                         color:$color-black-fonts-second;   
                         @include font-m-sbold;
                         font-family: $font-family-text;
+                        p{
+                            @include font-xm-sbold;
+                            color:#858585;
+                            margin-bottom:0;
+                        }
                     }   
+
+                    .exercice-description{
+                        h4{
+                            @include h4;
+                            color:$color-black-fonts;
+                            margin-top:0;
+                            margin-bottom: 14px;
+                        }
+                        p{
+                            @include font-xm;
+                            color:#5C5C5C;
+                            margin-top: 0;
+                            font-family: $font-family-text;
+                        }
+                        .time-players{
+                            .icon-text{
+                                @include icon-text;
+                            }
+                        }
+                    }
+
+                    .exercice-image{
+                        img{
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 5px;
+                        }
+                    }
+                    
+                    .exercice-options{
+                        position: absolute;
+                        top:10px;
+                        right: 10px;
+                        color:$color-icons-designer;
+                        cursor: pointer;
+                    }
+
+                    .exercice-number{               
+                        position: absolute;
+                        top: -10px;
+                        right: 2px;
+                        height: 30px;
+                        width: 30px;
+                        background-color: #1DA78F;
+                        color: #A7E9CA;
+                        border-radius: 50%;
+                        font-style: normal;
+                        font-size: 12px;
+                        line-height: 16px;
+                        font-weight: bold;
+                        font-family: Open Sans;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;   
+                        box-shadow: 1px 1px 4px rgba(201, 201, 201, 0.4);                    
+                    }
                 }
+            }
+
+            .actions-download{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                h4{
+                    margin: 0;
+                }
+                .telecharger{
+                    margin-top: 10px;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    color:$color-soccer-coach;
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+            }
+
+            .seance-generated{
+                box-shadow: 1px 1px 4px rgba(201, 201, 201, 0.4);
+                border-radius: 5px;
+                border:1px solid rgba(201, 201, 201, 0.4);
+                padding: 10px;
+                .informations-seance{
+                    h4{
+                        color:$color-black-fonts;
+                        border-bottom: 3px solid $color-soccer-coach;
+                        padding-bottom: 5px;
+                    }
+                    .infos-seance{
+                        .icon-text{
+                            @include icon-text;
+                            .label{
+                                color:#5C5C5C;
+                            }
+                        }
+                    }
+                }
+                
+
+                /*.lst-exerices{
+                    .exercice-item{
+                        .exercice-description{     
+                            h4{
+                                color:black;
+                                font-family: initial;
+                            }
+                        }
+                    }
+                }*/
             }
         }
     }

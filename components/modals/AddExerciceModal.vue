@@ -32,7 +32,7 @@
         </div>
         <div class="modal-footer">
             <div class="actions">
-                <button class="btn btn-default" @click="goHome()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Créez l'exercice</button>
+                <button class="btn btn-default" @click="save()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Créez l'exercice</button>
             </div>
         </div>
     </div>
@@ -86,8 +86,6 @@ export default {
             this.setImageExercice(undefined);
         },
         openDesigner(){
-            //this.setShowLoader(true);
-            //this.setClassLoader('open-designer');
 
             //add information in localstorage
             let seanceLocale = {
@@ -120,6 +118,7 @@ export default {
         },
         save(){
             this.addExercice(this.exercice);
+            this.hide();
         },
         isBtnSaveDisabled(){
             return (!this.exercice.theme || !this.exercice.description) ||
