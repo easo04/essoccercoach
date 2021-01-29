@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="copyrigth1">
+    <div class="copyrigth1" id="copyrigth1">
       <h2>Profitez de nos outils <strong>100% gratuits!</strong></h2>
       <p>
         Souvent, les entraîneurs ne disposons pas des outils nécessaires pour bien préparer nos 
@@ -163,6 +163,9 @@
             <button class="btn btn-default-ghost">Créez votre premier exercice</button>
           </div> 
         </div>
+    </div>
+    <div class="btn-top">
+      <i class="fas fa-angle-up"></i>
     </div>
   </div>
 </template>
