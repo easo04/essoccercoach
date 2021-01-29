@@ -1,116 +1,193 @@
-.header{
-    height: 100px;
-    padding: 0px 100px;
-    display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    background-color: $color-white-background;
-    position: fixed;
-    top: 0;
-    z-index: 900;
-    width: auto;
-    right: 0px;
-    left: 0px;
-    border-bottom: 1px solid $color-border;
-
-    .menu-desktop{
-        @include font-m-mbold;
-        color:$color-black-fonts-second;
-        font-family: Open Sans;
-        position: relative;
-        ul{
-            margin: 0;
-            padding: 0px 30px;
-            li{
-                display: inline;
-                margin-right: 16px;
-                cursor: pointer;
+.header-app{
+    .header{
+        height: 100px;
+        padding: 0px 100px;
+        display: grid;
+        grid-template-columns: auto 1fr 1fr;
+        background-color: $color-white-background;
+        position: fixed;
+        top: 0;
+        z-index: 900;
+        width: auto;
+        right: 0px;
+        left: 0px;
+        border-bottom: 1px solid $color-border;
+    
+        .menu-desktop{
+            @include font-m-mbold;
+            color:$color-black-fonts-second;
+            font-family: Open Sans;
+            position: relative;
+            ul{
+                margin: 0;
+                padding: 0px 30px;
+                li{
+                    display: inline;
+                    margin-right: 16px;
+                    cursor: pointer;
+                }
             }
-        }
-        .select-list{
-            position: absolute;
-            bottom: -249px;
-            right: 75px;
-            background-color: #FBFBFB;
-            border-radius: 5px;
-            color:#858585;
-            border:1px solid rgba(201, 201, 201, 0.5);
-            @include font-m-mbold;;
-            .item{
-                padding: 8px 20px;
-                cursor: pointer;
-                &:hover{
-                    background-color: #D4EEF1;
+            .select-list{
+                position: absolute;
+                bottom: -249px;
+                right: 75px;
+                background-color: #FBFBFB;
+                border-radius: 5px;
+                color:#858585;
+                border:1px solid rgba(201, 201, 201, 0.5);
+                @include font-m-mbold;;
+                .item{
+                    padding: 8px 20px;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: #D4EEF1;
+                    }
                 }
             }
         }
-    }
-    > div{
-        display: flex;
-        align-items: center;
-    }
-    .logo{
-        height: 100px;
-        h3{
-            @include h3;
-            color: $color-black-fonts;
-            margin-left: 10px;
+        > div{
+            display: flex;
+            align-items: center;
         }
-        .image-logo{
-            height: 80px;
-        }
-    }
-    .btn-new{
-        justify-content: flex-end;
-        position: relative;
-        .new-actions-list{
-            position: absolute;
-            bottom: -175px;
-            width: 400px;
-            background-color: #FBFBFB;
-            border-radius: 5px;
-            color:$color-black-fonts;
-            border:1px solid rgba(201, 201, 201, 0.5);
-            padding: 20px;
-            h4{
-                margin: 0;
-                margin-bottom: 20px;
+        .logo{
+            height: 100px;
+            h3{
+                @include h3;
+                color: $color-black-fonts;
+                margin-left: 10px;
             }
-            .items-actions{
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-gap: 20px;
-                border-top: 1px solid $color-gris-1;
-                padding-top: 20px;
-                .item-action-list{
-                    border:1px solid $color-soccer-coach;
-                    background-color: $color-soccer-coach;
-                    border-radius: 5px;
-                    color:$color-white-fonts;
-                    @include font-s-mbold;
-                    font-family: Open Sans;
-                    text-align: center;
-                    cursor: pointer;
-                    padding: 10px;
-                    .img-item-action{
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        .img{
-                            height: 60px;
-                            width: 60px;
+            .image-logo{
+                height: 80px;
+            }
+        }
+        .btn-new{
+            justify-content: flex-end;
+            position: relative;
+            .new-actions-list{
+                position: absolute;
+                bottom: -175px;
+                width: 400px;
+                background-color: #FBFBFB;
+                border-radius: 5px;
+                color:$color-black-fonts;
+                border:1px solid rgba(201, 201, 201, 0.5);
+                padding: 20px;
+
+                @media screen and (max-width: $screen-sm) {
+                    bottom: -200px;
+                    right: -20px;
+                    width: 318px;
+                }
+
+                h4{
+                    margin: 0;
+                    margin-bottom: 20px;
+                }
+                .items-actions{
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-gap: 20px;
+                    border-top: 1px solid $color-gris-1;
+                    padding-top: 20px;
+                    .item-action-list{
+                        border:1px solid $color-soccer-coach;
+                        background-color: $color-soccer-coach;
+                        border-radius: 5px;
+                        color:$color-white-fonts;
+                        @include font-s-mbold;
+                        font-family: Open Sans;
+                        text-align: center;
+                        cursor: pointer;
+                        padding: 10px;
+                        .img-item-action{
                             display: flex;
+                            justify-content: center;
                             align-items: center;
-                            img{
-                                width: 100%;
+                            .img{
+                                height: 60px;
+                                width: 60px;
+                                display: flex;
+                                align-items: center;
+                                img{
+                                    width: 100%;
+                                }
                             }
                         }
-                    }
-                    &:hover{
-                        background-color: #208994;
-                        border:1px solid #18676F;
+                        &:hover{
+                            background-color: #208994;
+                            border:1px solid #18676F;
+                        }
                     }
                 }
             }
         }
+        .btn-add-mobile{
+            display: none;
+        }
+    
+        @media screen and (max-width: $screen-sm) {
+            padding: 0px 20px;
+            height: 60px;
+            grid-template-columns: 1fr 1fr;
+            .menu-desktop{
+                display: none;
+            }
+            .logo{
+                height: 60px;
+                .image-logo{
+                    height: 80%;
+                }
+            }
+            .btn-new{
+                .btn-add{
+                    display: none;
+                }
+                .btn-add-mobile{
+                    display: block;
+                    color:$color-soccer-coach;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    
+    .menu-mobile{
+        height: 60px;
+        background-color: $color-white-background;
+        border-bottom: 1px solid $color-border;
+        border-top: 1px solid $color-border;
+        position: fixed;
+        top: 60px;
+        z-index: 700;
+        width: 100%;
+        display: none;
+
+        @media screen and (max-width: $screen-sm) {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .item-menu{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid transparent;
+            color:$color-black-fonts-second;
+
+            &.active{
+                border-color:  #208994;
+            }
+
+            .item-label{
+                @include font-s-sbold;
+                font-family: $font-family-text;
+            }
+        }
+
+
+
+
+
     }
 }

@@ -165,7 +165,9 @@
         </div>
     </div>
     <div class="btn-top">
-      <i class="fas fa-angle-up"></i>
+      <div class="btn-top-content">
+        <i class="fas fa-angle-up"></i>
+      </div>
     </div>
   </div>
 </template>

@@ -5,6 +5,10 @@
     font-weight: 800;
     font-size: 32px;
     line-height: 43px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 25px;
+        line-height: normal;
+    }
 }
 
 @mixin h2 {
@@ -13,6 +17,10 @@
     font-weight: 800;
     font-size: 25px;
     line-height: 43px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 20px;
+        line-height: normal;
+    }
 }
 
 @mixin h3 {
@@ -21,6 +29,10 @@
     font-weight: 800;
     font-size: 20px;
     line-height: 43px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 18px;
+        line-height: normal;
+    }
 }
 
 @mixin h4 {
@@ -29,6 +41,10 @@
     font-weight: 800;
     font-size: 16px;
     line-height: 19px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 14px;
+        line-height: normal;
+    }
 }
 
 @mixin font-s {

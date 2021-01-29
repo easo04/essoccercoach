@@ -1,5 +1,6 @@
 .landing-page{
     position: relative;
+
     .btn-top{
         display: none;
         position: fixed;
@@ -10,9 +11,6 @@
         background-color: #10444A;         
         border-radius: 50%;
         color:$color-white-fonts;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         border: 1px solid $color-white-fonts;
         z-index: 50;
         cursor: pointer;
@@ -20,7 +18,16 @@
         &:hover{
             font-size: 1.5em;
         }
+        margin-top: 20px;
+
+        .btn-top-content{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
     }
+
     h2{
         @include h1;
         color:$color-black-fonts;
@@ -28,15 +35,18 @@
         margin-bottom: 32px;
         margin-top:32px;
     }
+
     h3{
         color:$color-black-fonts;
         margin-top:0px;
     }
+
     p{
         @include font-l;
         color:$color-black-fonts-second;
         font-family: Open Sans;
     }
+
     .hero-image{
         height: 70vh;
         background-color: $color-blue-blackground;
@@ -78,6 +88,29 @@
                 height: auto;
                 width: 100%;
             }
+            @media screen and (max-width: $screen-sm) {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: $screen-sm) {
+            margin-top: 122px;
+            padding: 0px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .description{
+                display: block;
+                width: 100%;
+                text-align: center;
+                
+                .description-content{
+                    p{
+                        font-size: 20px;
+                    }
+                }
+            }
+
         }
     }
 
@@ -109,7 +142,11 @@
                 font-weight: 600;
             }
         }
+        @media screen and (max-width: $screen-sm) {
+            padding: 0px 20px;
+        }
     }
+
     .nos-outils{
         margin-top: 100px;
         background-color: $color-blue-blackground;
@@ -122,6 +159,9 @@
             grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 20px;
             height: auto;
+            @media screen and (max-width: $screen-sm) {
+                display: block;
+            }
             .outil{
                 h3{
                     text-align: center;
@@ -148,7 +188,19 @@
                 }
             }
         }
+
+        @media screen and (max-width: $screen-sm) {  
+            padding: 32px 20px 64px 20px;
+            .outils{
+                .outil{
+                    &:not(:last-child){
+                        margin-bottom: 50px;
+                    }
+                }
+            }
+        }
     }
+
     .copyrigth-outils{
         background-color: $color-gris-3;
         .item-copy{
@@ -157,8 +209,13 @@
             grid-gap: 60px;
             background-color: $color-white-background;
             padding: 100px;
+            
             &:not(:first-child){
                 margin-top: 1px;
+                padding: 100px;
+                @media screen and (max-width: $screen-sm) {  
+                    padding: 60px 20px;
+                }
             }
 
             .description-item{
@@ -197,6 +254,29 @@
                 }
             }
 
+            @media screen and (max-width: $screen-sm) {
+                grid-template-columns: 1fr;
+                grid-row-gap: 0px;
+                padding: 60px 20px;
+
+                .description-item{
+                    grid-row: 2;
+                    
+                    .description-item-content{
+                        width: 100%;
+                    }
+                }
+                .carrousel-item{
+                    grid-row: 1;
+                    .carrousel-images {
+                        height: 260px;
+                        .slider-component .sliders .images{
+                            height: 234px;
+                        }
+                    }
+                }
+            }
+
             &.createur-seances{
                 .description-item{
                     grid-column: 2;
@@ -206,9 +286,20 @@
                     grid-column: 1;
                     grid-row: 1;
                 }
+                @media screen and (max-width: $screen-sm) {
+                    .description-item{
+                        grid-column: 1;
+                        grid-row: 2;
+                    }
+                    .carrousel-item{
+                        grid-column: 1;
+                        grid-row: 1;
+                    }
+                }
             }
         }
     }
+
     .copyrigth-essoccercoach{
         margin-bottom: 100px;
         .images-essoccercoach{
@@ -242,9 +333,13 @@
             }
         }
     }
+
     .exercices-populaires{
         padding: 100px;
         background-color: $color-blue-blackground-clair;
+        @media screen and (max-width: $screen-sm) {
+            padding: 20px;
+        }
         h3{
             .fa-star{
                 color: $color-yellow;
@@ -264,12 +359,18 @@
             }
         }
     }
+
     .copyrigth2{
         height: auto;
         padding: 200px 200px;
         text-align: center;
         background-color: $color-blue-blackground;
         position: relative;
+
+        @media screen and (max-width: $screen-sm) {
+            
+            padding: 0;
+        }
 
         .message{
             position: relative;
