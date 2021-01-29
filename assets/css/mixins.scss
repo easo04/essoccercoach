@@ -283,8 +283,65 @@
         margin-right: 5px;
     }
     span{
-        @include font-s-bold;
-        font-family: $font-family-text;
+        @include font-s-sbold();
+        font-family: Lato;
         color:#858585;
     }
+}
+
+@mixin image-upload{
+    position: relative;
+    padding: 10px 24px;
+    background: transparent;
+    border-radius: 5px;
+    border:2px solid $color-soccer-coach;
+    font-family: Open Sans;
+    color: $color-soccer-coach;
+    @include font-m-bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-align: center;
+
+    &.with-image{
+        background-color: #A7E9CA;
+        border:2px solid #22C77B;
+        color:#0E5031;
+    }
+
+    .file-upload{
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        z-index: 50;
+        top: 0;
+        left: 0;
+    }
+
+    .file-upload-message{
+        position: relative;
+        z-index: 20;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 1em;
+        color: $color-soccer-coach;
+
+        .preview-image{
+            color:$color-border;
+            font-size: 0.5rem;
+        }
+    }
+
+    
+    &:hover{
+        background-color: $color-soccer-coach;
+        color:$color-white-fonts !important;
+    }
+
 }

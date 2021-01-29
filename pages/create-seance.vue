@@ -67,17 +67,21 @@
                         </div>
                         <div class="exercice-item" v-for="(exercice, i) in exercices" :key="i">
                             <div class="exercice-description">
-                                <h4>{{exercice.theme}}</h4>
-                                <p>{{exercice.description}}</p>
+                                <h4>{{exercice.theme}}</h4>   
                                 <div class="time-players">
                                     <span v-if="exercice.players" class="icon-text"><i class="fas fa-tshirt"></i><span>{{exercice.players}}</span></span>
                                     <span v-if="exercice.time" class="icon-text"><i class="fas fa-clock"></i><span>{{exercice.time}}</span></span>
                                 </div>
+                                <p>{{exercice.description}}</p>
                             </div>
                             <div class="exercice-image">
                                 <img :src="exercice.image"/>
                             </div>
-                            <div class="exercice-options" title="Options de l'exercice"><i class="fas fa-ellipsis-v"></i></div>
+                            <div class="exercice-options" title="Options de l'exercice" @click="setShowListOptions(i)"><i class="fas fa-ellipsis-v"></i></div>
+                            <div class="exercice-options-list" v-if="optionsExercice[i].showListOptions">
+                                <div @click="updateExercice(exercice)">Modifier</div>
+                                <div @click="deleteExerciceItem(i)">Supprimmer</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,19 +98,19 @@
                                     <span v-if="seance.time" class="icon-text"><span class="label">Durée: </span><span>{{seance.time}}</span></span>
                                     <span v-if="seance.date" class="icon-text"><span class="label">Date: </span><span>{{seance.date}}</span><br><br></span>
                                     <span v-if="seance.coach" class="icon-text"><span class="label">Entraîneur: </span><span>{{seance.coach}}</span></span>
-                                    <span v-if="seance.team" class="icon-text"><span class="label">Équipe: </span><span>{{seance.team}}</span><br><br></span>
+                                    <span v-if="seance.team" class="icon-text"><span class="label">Équipe: </span><span>{{seance.team}}</span></span>
                                     <span v-if="seance.terrain" class="icon-text"><span class="label">Terrain: </span><span>{{seance.terrain}}</span></span>
                                 </div>
                             </div>
                             <div class="lst-exerices">
                                 <div class="exercice-item" v-for="(exercice, i) in exercices" :key="i">
                                     <div class="exercice-description">
-                                        <h4>{{exercice.theme}}</h4>
-                                        <p>{{exercice.description}}</p>
+                                        <h4>{{exercice.theme}}</h4>             
                                         <div class="time-players">
-                                            <span v-if="exercice.players" class="icon-text"><i class="fas fa-tshirt"></i><span>{{exercice.players}}</span></span>
-                                            <span v-if="exercice.time" class="icon-text"><i class="fas fa-clock"></i><span>{{exercice.time}}</span></span>
+                                            <span v-if="exercice.players" class="icon-text"><span class="label">Joueurs: </span><span>{{exercice.players}}</span></span>
+                                            <span v-if="exercice.time" class="icon-text"><span class="label">Durée: </span><span>{{exercice.time}}</span></span>
                                         </div>
+                                        <p>{{exercice.description}}</p>
                                     </div>
                                     <div class="exercice-image">
                                         <img :src="exercice.image"/>
@@ -132,12 +136,15 @@
 import {mapMutations } from 'vuex';
 import GoHomeModal from '@/components/modals/GoHomeModal.vue';
 import AddExerciceModal from '@/components/modals/AddExerciceModal.vue';
+import DownloadSeanceSuccesModalVue from '../components/modals/DownloadSeanceSuccesModal.vue';
 export default {
     layout: 'designer-seance',
     props:['fromDesign'],
     head(){
         return{
             title:'Créez votre séance de soccer | ESsoccercoach',
+            link:[
+            ],
             script:[
                 {src:'/imports/interact.js'},
                 {src:'/imports/jspdf.min.js'},
@@ -149,7 +156,6 @@ export default {
         return{
             currentStep:'informations',
             noStep:1,
-            lstExercices:[],
             seance:{
                 theme:undefined,
                 time:undefined,
@@ -158,7 +164,8 @@ export default {
                 team:undefined,
                 terrain:undefined,
                 exercices:[]
-            }
+            },
+            optionsExercice:[],
         }
     },
     computed:{
@@ -169,7 +176,27 @@ export default {
             return this.$store.state.seance.exercices;
         }
     },
+    watch:{
+        exercices(){
+            if(this.exercices.length > 0){
+                const option = {
+                    showListOptions : false,
+                    indexExe : this.exercices.length-1
+                };
+                this.optionsExercice.push(option);
+            }
+        }
+    },
     methods:{
+        closeAllsSelects(){
+            this.optionsExercice.forEach(option => {
+                option.showListOptions = false;
+            });
+        },
+        setShowListOptions(index){
+            this.closeAllsSelects();
+            this.optionsExercice[index].showListOptions = this.optionsExercice[index].showListOptions ? false : true;
+        },
         scrollTop(){
             //scrollTop with jquery
             jQuery('html, body').animate({scrollTop: 0}, 200);
@@ -182,6 +209,7 @@ export default {
             );
         },
         next(){
+            this.closeAllsSelects();
             this.setStepCompleted({name:this.currentStep, completed:true});
             this.noStep++;
             const currentStep = this.lstSteps.find(s=>s.order === this.noStep);
@@ -209,6 +237,14 @@ export default {
                     break;
             }
             return result;
+        },
+        updateExercice(exercice){
+            this.closeAllsSelects();
+            this.$modal.show(
+                AddExerciceModal,
+                {exerciceUpdate:exercice},
+                {name : 'add-exercice-modal', classes:['modal-lg2'], clickToClose:false}
+            );
         },
         addExercice(){
             if(this.exercices.length < 5){      
@@ -248,6 +284,13 @@ export default {
                         });
 
                         pdf.save('entrainement.pdf');
+
+                        this.$modal.show(
+                            DownloadSeanceSuccesModalVue,
+                            {},
+                            {name : 'download-seance-succes-modal', classes:['modal-top'], clickToClose:false}
+                        );
+
                         this.setTextLoader('');
                         this.setShowLoader(false);
                     }
@@ -258,8 +301,14 @@ export default {
             this.noStep = 1;
             this.currentStep = 'informations';
             this.setCurrentState(this.currentStep);
+            this.setAllStepsNotCompleted();
         },
-        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setCurrentState:'seance/setCurrentState', setStepCompleted:'seance/setStepCompleted', setSeance:'seance/setSeance', setListExercices:'seance/setListExercices'})
+        deleteExerciceItem(index){
+            this.deleteExercice(index);
+            this.closeAllsSelects();
+        },
+        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setCurrentState:'seance/setCurrentState', setStepCompleted:'seance/setStepCompleted',
+            setSeance:'seance/setSeance', setListExercices:'seance/setListExercices', deleteExercice:'seance/deleteExercice', setAllStepsNotCompleted : 'seance/setAllStepsNotCompleted'})
     },
     mounted(){
         const fromDesigner = JSON.parse(localStorage.getItem('fromDesigner'));
@@ -293,6 +342,27 @@ export default {
             );
             
         }
+
+        this.$root.$on('newSeance', () =>{
+
+            //init all stores
+            this.setCurrentState('informations');
+            this.setSeance({});
+            this.setAllStepsNotCompleted();
+            this.setListExercices([]);
+
+            this.currentStep = 'informations';
+            this.noStep = 1;
+            this.seance = {
+                theme:undefined,
+                time:undefined,
+                date:undefined,
+                coach:undefined,
+                team:undefined,
+                terrain:undefined,
+                exercices:[]
+            };
+        });
 
         //vérifier si on était en mode modification d'exercice avant de quitter la page
         /*if(localStorage.getItem('indexExerciceUpdate')){

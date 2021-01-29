@@ -938,6 +938,7 @@ export default {
     created(){
         this.setShowLoader(true);
         this.setClassLoader('open-designer');
+        this.setTextLoader('Ouverture de ESDesigner ...');
 
         this.$root.$on('addText', (text) => {
             if(text){
@@ -960,19 +961,21 @@ export default {
         //afficher tous les icônes à l'écran
         printAllIcons();
 
+        
         this.fromSeance = JSON.parse(localStorage.getItem('isCreateSeance')) || false;
-        if(!this.fromSeance){
-            
-            //afficher la modale des astuces
-            const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
-            if(!showOpenDesignerModal){
-                const infosParsed = JSON.stringify({showOpenDesignerModal:true});
-                sessionStorage.setItem('showOpenDesignerModal', infosParsed);
-                this.showAstuces();
-            }
-        }
 
         setTimeout(() => {
+
+            if(!this.fromSeance){          
+                //afficher la modale des astuces
+                const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
+                if(!showOpenDesignerModal){
+                    const infosParsed = JSON.stringify({showOpenDesignerModal:true});
+                    sessionStorage.setItem('showOpenDesignerModal', infosParsed);
+                    this.showAstuces();
+                }
+            }
+
             this.setShowLoader(false);
             this.setClassLoader('');
         },  3* 1000);

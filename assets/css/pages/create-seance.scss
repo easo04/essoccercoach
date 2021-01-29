@@ -216,11 +216,13 @@ body{
                             color:$color-black-fonts;
                             margin-top:0;
                             margin-bottom: 14px;
+                            padding-bottom: 5px;
+                            border-bottom:2px solid $color-soccer-coach;
                         }
                         p{
                             @include font-xm;
                             color:#5C5C5C;
-                            margin-top: 0;
+                            margin-top: 16px;
                             font-family: $font-family-text;
                         }
                         .time-players{
@@ -246,6 +248,30 @@ body{
                         cursor: pointer;
                     }
 
+                    .exercice-options-list{
+                        position: absolute;
+                        top:30px;
+                        right: -50px;
+                        background-color: #FBFBFB;
+                        border-radius: 5px;
+                        box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+                        border:1px solid rgba(201, 201, 201, 0.25);
+                        z-index: 40;
+                        >div{
+                            cursor: pointer;
+                            @include font-xm-mbold;
+                            padding: 8px 20px;
+                            font-family: $font-family-text;
+                            color:$color-black-fonts-second;
+                            &:hover{
+                                background-color: #D4EEF1;
+                            }
+                            &:not(:last-child){
+                                border-bottom:1px solid $color-border-designer;
+                            }
+                        }
+                    }
+
                     .exercice-number{               
                         position: absolute;
                         top: -10px;
@@ -253,7 +279,7 @@ body{
                         height: 30px;
                         width: 30px;
                         background-color: #1DA78F;
-                        color: #A7E9CA;
+                        color: $color-white-fonts;
                         border-radius: 50%;
                         font-style: normal;
                         font-size: 12px;
@@ -292,31 +318,47 @@ body{
                 padding: 10px;
                 .informations-seance{
                     h4{
-                        color:$color-black-fonts;
-                        border-bottom: 3px solid $color-soccer-coach;
+                        color:black;
+                        border-bottom: 2px solid $color-soccer-coach;
                         padding-bottom: 5px;
                     }
                     .infos-seance{
                         .icon-text{
                             @include icon-text;
                             .label{
-                                color:#5C5C5C;
+                                color:black;
+                            }
+                            color:#5C5C5C !important;
+                        }
+                    }
+                    
+                }
+                
+
+                .lst-exerices{
+                    .exercice-item{
+                        box-shadow: none;
+                        border-color:$color-gris-2;
+                        .exercice-description{     
+                            h4{
+                                color:black;
+                                border-bottom:2px solid $color-soccer-coach;
+                                padding-bottom: 5px;
+                            }
+                            .icon-text{
+                                @include icon-text;
+                                .label{
+                                    color:black;
+                                }
+                                color:#5C5C5C !important;
+                            }
+                            p{
+                                margin-top: 16px;
+                                color:#1F1F1F;
                             }
                         }
                     }
                 }
-                
-
-                /*.lst-exerices{
-                    .exercice-item{
-                        .exercice-description{     
-                            h4{
-                                color:black;
-                                font-family: initial;
-                            }
-                        }
-                    }
-                }*/
             }
         }
     }

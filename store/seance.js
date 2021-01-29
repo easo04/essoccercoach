@@ -26,6 +26,9 @@ export const mutations = {
     setStepCompleted(state, step){
         state.steps.find(s=>s.name === step.name).completed = step.completed;
     },
+    setAllStepsNotCompleted(state){
+        state.steps.map(step => step.completed = false);
+    },
     setSeance(state, newValue){
         state.seance = newValue;
     },

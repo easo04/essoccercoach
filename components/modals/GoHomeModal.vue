@@ -22,6 +22,10 @@ export default {
         goHome () {
             this.hide();
             location.href = "/";
+
+            //supprimer le local storage de la session
+            localStorage.removeItem('fromDesigner');
+            localStorage.removeItem('seanceLocale');
         },
         hide () {
             this.$modal.hide('go-home-modal');

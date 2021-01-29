@@ -34,7 +34,7 @@
                     width: 80%;
                     h3{
                         margin: 0;
-                        width: 80%;
+                        width: 98%;
                     }
                 }
                 
@@ -166,7 +166,12 @@
                         display: grid;
                         grid-template-columns: 1fr 1fr;
                         grid-column-gap: 15px;
-
+                        .image-upload{
+                            @include image-upload;
+                            svg{
+                                margin-right: 5px;
+                            }
+                        }
                         .btn{    
                             &.with-image{
                                 background-color: #A7E9CA;
@@ -208,12 +213,13 @@
                     height:auto;
                     .actions{
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-end;
                         width: 100%;
                         margin: 5px;
+                        padding: 0 20px;
                         .btn{
                             &:not(:first-child){
-                                margin-left: 32px;
+                                margin-left: 10px;
                             }
                         }
                     }
