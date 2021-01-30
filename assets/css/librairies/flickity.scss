@@ -4,6 +4,12 @@
     height: 100px;
     background: #FCFCFC;
     border-radius: 5px;
+
+    &.next, &.previous{
+        @media screen and (max-width: $screen-sm) {    
+            display: none;
+        }
+    }
 }
 /* arrow color */
 .flickity-prev-next-button .arrow {

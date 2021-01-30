@@ -29,6 +29,14 @@
         Profitez-en bien!
       </p>
     </div>
+    <div class="exercices-populaires">
+      <h3>Exercices populaires <i class="fas fa-star"></i></h3>
+      <p>Consultez notre banque d'exercices pour créer vos séances d'entraînement:</p>
+      <ExercicesPopulaires/>
+      <div class="exercices-actions">
+        <a class="blue-link">Tous les exerices <i class="fas fa-caret-right"></i></a>
+      </div>
+    </div>
     <div class="nos-outils" id="nosOutils">
       <h2><i class="fas fa-futbol"></i> Nos outils</h2>
       <div class="outils">
@@ -135,14 +143,6 @@
             <p><i class="fas fa-check"></i> Texte check liste</p>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="exercices-populaires">
-      <h3>Exercices populaires <i class="fas fa-star"></i></h3>
-      <p>Consultez notre banque d'exercices pour créer vos séances d'entraînement:</p>
-      <ExercicesPopulaires/>
-      <div class="exercices-actions">
-        <a class="blue-link">Tous les exerices <i class="fas fa-caret-right"></i></a>
       </div>
     </div>
     <div class="copyrigth2">
