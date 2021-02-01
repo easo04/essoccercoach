@@ -23,14 +23,19 @@
         }
 
         &.open-designer{
-            background-color: rgba($color:$color-blue-blackground, $alpha:1);
-            
+            //background-color: rgba($color:$color-blue-blackground, $alpha:1);
+            background-color: $color-white-background;
+            .loading-content{
+                h3{
+                    color:$color-black-fonts;
+                }
+            }
             .logo{
                 width: 100%;
                 height: auto;
                 display: flex;
                 justify-content: center;      
-                margin-bottom: 100px;
+                margin-bottom: 120px;
                 img{
                     height: 120px;
                     width: 100px;
@@ -38,11 +43,11 @@
             }
     
             .spinner{
-                margin-bottom: 50px;
+                margin-bottom: 10px;
                 .spinner-content{
                     .spinner-spinner{
-                        width: 5rem;
-                        height: 5rem;
+                        width: 4rem;
+                        height: 4rem;
                     }
                 }
             }

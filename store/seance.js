@@ -43,5 +43,16 @@ export const mutations = {
     },
     setListExercices(state, newValue){
         state.exercices = newValue;
+    },
+    updateExercice(state, newExe){
+        let newArray = [...state.exercices]
+        newArray[newExe.index] = {
+            theme:newExe.theme,
+            time:newExe.time,
+            players:newExe.players,
+            description:newExe.description,
+            image:newExe.image,
+        };
+        state.exercices = newArray;
     }
 }

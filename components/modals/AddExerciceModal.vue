@@ -1,7 +1,8 @@
 <template>
     <div class="modal-add-exericice modal-custom">
         <div class="modal-header">
-            <div class="titre-modal"><h3>Ajoutez un nouvel exercice</h3></div>
+            <div class="titre-modal" v-if="!isModeUpdate"><h3>Ajoutez un nouvel exercice</h3></div>
+            <div class="titre-modal" v-else><h3>Modifiez l'exercice</h3></div>
             <div class="close-modal"><span @click="hide()"><i class="fas fa-times"></i></span></div>
         </div>
         <div class="modal-content">
@@ -35,7 +36,7 @@
         </div>
         <div class="modal-footer">
             <div class="actions">
-                <button v-if="!exerciceUpdate" class="btn btn-default" @click="save()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Créez l'exercice</button>
+                <button v-if="!isModeUpdate" class="btn btn-default" @click="save()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Créez l'exercice</button>
                 <button v-else class="btn btn-default" @click="save()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Modifiez l'exercice</button>
             </div>
         </div>
@@ -55,6 +56,7 @@ export default {
                 image:undefined,
             },
             fileName:undefined,
+            isModeUpdate:false,
         }
     },
     computed:{
@@ -107,10 +109,11 @@ export default {
             const isCreateSeanceParsed = JSON.stringify(true);
             localStorage.setItem('isCreateSeance', isCreateSeanceParsed);
 
-            /*if(this.isUpdateExercice){
-                const indexExerciceUpdateParsed = JSON.stringify(this.indexExerciceUpdate);
-                localStorage.setItem('indexExerciceUpdate', indexExerciceUpdateParsed);
-            }*/
+            //vérifier si on est en mode modification
+            if(this.exerciceUpdate){
+                const isExerciceUpdate = JSON.stringify(true);
+                localStorage.setItem('isExerciceUpdate', isExerciceUpdate);
+            }
 
             this.hide();
 
@@ -122,7 +125,11 @@ export default {
             //this.setClassLoader('');
         },
         save(){
-            this.addExercice(this.exercice);
+            if(this.isModeUpdate){
+                this.updateExercice(this.exercice);
+            }else{
+                this.addExercice(this.exercice);
+            }
             this.hide();
         },
         isBtnSaveDisabled(){
@@ -140,17 +147,26 @@ export default {
                 FR.readAsDataURL(files[0]);
             }
         },
-        ...mapMutations({addExercice:'seance/addExercice', setImageExercice:'seance/setImageExercice', setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader'})
+        ...mapMutations({addExercice:'seance/addExercice', setImageExercice:'seance/setImageExercice', updateExercice: 'seance/updateExercice',
+            setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader'})
     },
     created(){
         if(this.exerciceUpdate){
             this.exercice = {
+                index:this.exerciceUpdate.index,
                 theme:this.exerciceUpdate.theme,
                 time:this.exerciceUpdate.time,
                 players:this.exerciceUpdate.players,
                 description:this.exerciceUpdate.description,
                 image:this.exerciceUpdate.image, //contient l'image qu'on a créé dans esdesigner     
             };
+            this.isModeUpdate = true;
+        }
+
+        //vérifier si on était en mode modification d'exercice avant de quitter la page
+        if(localStorage.getItem('isExerciceUpdate')){
+            this.isModeUpdate = true;
+            localStorage.removeItem('isExerciceUpdate');
         }
     },
     mounted(){
@@ -158,12 +174,15 @@ export default {
             let seanceLocale = JSON.parse(localStorage.getItem('seanceLocale'));
             this.fileName = undefined;
             this.exercice = {
+                index:seanceLocale.exercice.index,
                 theme:seanceLocale.exercice.theme,
                 time:seanceLocale.exercice.time,
                 players:seanceLocale.exercice.players,
                 description:seanceLocale.exercice.description,
                 image:this.imageExercice, //contient l'image qu'on a créé dans esdesigner     
             };
+            
+            localStorage.removeItem('seanceLocale'); 
         }
     }
 }

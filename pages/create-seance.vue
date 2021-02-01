@@ -54,17 +54,17 @@
                     <h3>
                         Ajoutez les exercices de la séance
                         <span class="compteur" v-if="exercices.length > 0">
-                            ({{exercices.length}}/5)
+                            ({{exercices.length}}/4)
                         </span>
                     </h3>
                     <div class="add-exercice">
-                        <button class="btn btn-default" @click="addExercice()" :class="{'disabled':exercices.length === 5}" :disabled="exercices.length === 5">Exercice <i class="fas fa-plus"></i></button>
+                        <button class="btn btn-default" @click="addExercice()" :class="{'disabled':exercices.length === 4}" :disabled="exercices.length === 4">Exercice <i class="fas fa-plus"></i></button>
                     </div>
                     <div class="lst-exerices">
                         <div class="exercice-vide exercice-item" v-if="exercices.length === 0">
                             <div>
                                 Aucun exercice ajouté
-                                <p>Vouz pouvez ajouter jusqu'à 5 exercices à votre séance</p>
+                                <p>Vouz pouvez ajouter jusqu'à 4 exercices à votre séance</p>
                             </div>
                         </div>
                         <div class="exercice-item" v-for="(exercice, i) in exercices" :key="i">
@@ -80,8 +80,8 @@
                                 <img :src="exercice.image"/>
                             </div>
                             <div class="exercice-options" title="Options de l'exercice" @click="setShowListOptions(i)"><i class="fas fa-ellipsis-v"></i></div>
-                            <div class="exercice-options-list" v-if="optionsExercice[i].showListOptions">
-                                <div @click="updateExercice(exercice)">Modifier</div>
+                            <div class="exercice-options-list" v-if="optionsExercice[i] !== undefined && optionsExercice[i].showListOptions">
+                                <div @click="updateExercice(exercice, i)">Modifier</div>
                                 <div @click="deleteExerciceItem(i)">Supprimmer</div>
                             </div>
                         </div>
@@ -184,21 +184,27 @@ export default {
             if(this.exercices.length > 0){
                 const option = {
                     showListOptions : false,
-                    indexExe : this.exercices.length-1
                 };
                 this.optionsExercice.push(option);
             }
         }
     },
     methods:{
-        closeAllsSelects(){
-            this.optionsExercice.forEach(option => {
-                option.showListOptions = false;
+        closeAllsSelects(currentIndex){
+            this.optionsExercice.forEach((option, index) => {
+                if(currentIndex === undefined || (currentIndex !== undefined && index !== currentIndex)){
+                    option.showListOptions = false;
+                }
             });
         },
         setShowListOptions(index){
-            this.closeAllsSelects();
-            this.optionsExercice[index].showListOptions = this.optionsExercice[index].showListOptions ? false : true;
+            this.closeAllsSelects(index);
+
+            let newArray = [...this.optionsExercice];
+            if(newArray[index]){
+                newArray[index].showListOptions = !this.optionsExercice[index].showListOptions;
+                this.optionsExercice = newArray;
+            }
         },
         scrollTop(){
             //scrollTop with jquery
@@ -241,7 +247,8 @@ export default {
             }
             return result;
         },
-        updateExercice(exercice){
+        updateExercice(exercice, i){
+            exercice.index = i;
             this.closeAllsSelects();
             this.$modal.show(
                 AddExerciceModal,
@@ -314,15 +321,17 @@ export default {
             setSeance:'seance/setSeance', setListExercices:'seance/setListExercices', deleteExercice:'seance/deleteExercice', setAllStepsNotCompleted : 'seance/setAllStepsNotCompleted'})
     },
     created(){
-        this.setShowLoader(true);
-        this.setClassLoader('open-designer');
-        this.setTextLoader('ESsoccercoach');
     },
-    mounted(){
-        const fromDesigner = JSON.parse(localStorage.getItem('fromDesigner'));
+    mounted(){  
+        if(!localStorage.getItem('fromDesigner')){          
+            this.setShowLoader(true);
+            this.setClassLoader('open-designer');
+            this.setTextLoader('ESsoccercoach');
+        }
 
         this.scrollTop();
         
+        const fromDesigner = JSON.parse(localStorage.getItem('fromDesigner'));
         if(fromDesigner){
             let seanceLocale = JSON.parse(localStorage.getItem('seanceLocale'));
 
@@ -341,14 +350,15 @@ export default {
             this.setListExercices(seanceLocale.exercices);
 
             //ouvrir modale d'ajout d'exercice
-            this.addExercice();
-            
             this.$modal.show(
                 AddExerciceModal,
                 {withData:true},
                 {name : 'add-exercice-modal', classes:['modal-lg2'], clickToClose:false}
             );
+
             
+            //supprimer les objets sauvegardés en localstorage
+            localStorage.removeItem('fromDesigner'); 
         }
 
         this.$root.$on('newSeance', () =>{
@@ -371,22 +381,13 @@ export default {
                 exercices:[]
             };
         });
-
+        
         setTimeout(() => {
             this.setShowLoader(false);
             this.setClassLoader('');      
         },  3* 1000);
-        //vérifier si on était en mode modification d'exercice avant de quitter la page
-        /*if(localStorage.getItem('indexExerciceUpdate')){
-            this.indexExerciceUpdate = JSON.parse(localStorage.getItem('indexExerciceUpdate'));
-            this.isUpdateExercice = true;
-            localStorage.removeItem('indexExerciceUpdate');
-        }*/
     },
     beforeDestroy(){
-
-        //supprimer les objets sauvegardés en localstorage
-        localStorage.removeItem('fromDesigner');
     }
 
 }
