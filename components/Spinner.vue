@@ -9,12 +9,11 @@
                 <div class="bound bound3"></div>
             </div>
         </div>
-        <p v-if="showText">ESDesigner...</p>
     </div>
 </template>
 <script>
 export default {
-    props:['bound', 'spinner', 'showText']
+    props:['bound', 'spinner']
 }
 </script>
 <style lang="scss">

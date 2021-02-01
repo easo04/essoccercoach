@@ -15,12 +15,24 @@
         &.modal-lg{
             top:40px !important;
             width: 600px !important;
+            @media screen and (max-width: $screen-sm) {     
+                width: 100% !important;
+            }
            // height: 80% !important;
         }
 
         &.modal-lg2{
             top:10px !important;
             width: 600px !important;
+            @media screen and (max-width: $screen-sm) {     
+                width: 100% !important;
+                top: 8% !important;
+            }
+        }
+
+        @media screen and (max-width: $screen-sm) {
+            left: 0 !important;
+            width: 100% !important;
         }
 
         .modal-custom{
@@ -72,6 +84,16 @@
                     .btn{
                         &:not(:first-child){
                             margin-left: 10px;
+                        }
+                    }
+                    
+                    @media screen and (max-width: $screen-sm) {
+                        display: block;
+                        .btn{
+                            width: 100%;
+                            &:not(:first-child){
+                                margin-left: 0px;
+                            }
                         }
                     }
                 }
@@ -177,6 +199,13 @@
                                 background-color: #A7E9CA;
                                 border:2px solid #22C77B;
                                 color:#0E5031;
+                            }
+                        }
+
+                        @media screen and (max-width: $screen-sm) {  
+                            grid-template-columns: 1fr;      
+                            .btn-esdesigner{
+                                display: none;
                             }
                         }
                     }

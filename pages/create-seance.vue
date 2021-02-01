@@ -6,11 +6,13 @@
                     <div class="back-home"><a @click="goHome()" class="link"><i class="fas fa-home"></i> Retournez à l'accueil</a></div>
                     <h2>Séance d'entraînement</h2>
                     <div class="lst-steps">
-                        <div class="step" :class="{'active' : step.current, 'completed': step.completed}" v-for="(step, i) in lstSteps" :key="i">
-                            <div class="step-content">    
-                                <div class="number" v-if="step.name !== 'download'">{{i+1}}</div>
-                                <div class="number" v-else><i class="fas fa-file-download"></i></div>
-                                <span class="name">{{step.label}}</span>
+                        <div class="lst-steps-content">
+                            <div class="step" :class="{'active' : step.current, 'completed': step.completed}" v-for="(step, i) in lstSteps" :key="i">
+                                <div class="step-content">    
+                                    <div class="number" v-if="step.name !== 'download'">{{i+1}}</div>
+                                    <div class="number" v-else><i class="fas fa-file-download"></i></div>
+                                    <span class="name">{{step.label}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>            
@@ -89,6 +91,7 @@
                     <div class="actions-download">
                         <h3>Télechargez la séance en format pdf</h3>
                         <span class="telecharger" @click="telechargerPDF()"><i class="fas fa-download download" title="Télécharger"></i></span>
+                        <button class="btn btn-default btn-download-pdf" @click="telechargerPDF()">Télécharger <i class="fas fa-download download"></i></button>
                     </div>
                     <div class="seance-generated">
                         <div id="seance">

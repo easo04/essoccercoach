@@ -29,7 +29,7 @@
                         <i class="far fa-file-image"></i> Importer une image
                         <input type="file" name="image" id="input-file" :class="'file-upload file-upload'" @change="readFile" accept=".png, .jpg"/>
                     </div>
-                    <button class="btn btn-default-ghost" :class="{'with-image' : withData}" @click="openDesigner()"><i class="fas fa-paint-brush"></i> ESDesigner</button>
+                    <button class="btn btn-default-ghost btn-esdesigner" :class="{'with-image' : withData}" @click="openDesigner()"><i class="fas fa-paint-brush"></i> ESDesigner</button>
                 </div>
             </div>
         </div>

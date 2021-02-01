@@ -12,7 +12,6 @@ body{
             padding-top: 60px;
             display: flex;
             justify-content: center;
-            //align-items: center;
             .steps-content{
                 h2{
                     @include h2;
@@ -29,7 +28,6 @@ body{
                 } 
     
                 .lst-steps{
-                    
                     margin-bottom: 32px;
                     .step{
                         &:not(:last-child){      
@@ -308,6 +306,21 @@ body{
                     color:$color-soccer-coach;
                     font-size: 24px;
                     cursor: pointer;
+                    
+                    @media screen and (max-width: $screen-sm) {
+                        display: none;
+                    }
+                }
+                .btn-download-pdf{
+                    display: none;
+                    margin-bottom: 30px;
+                    @media screen and (max-width: $screen-sm) {
+                        display: block;
+                    }
+                }
+
+                @media screen and (max-width: $screen-sm) {
+                    grid-template-columns: 1fr;
                 }
             }
 
@@ -356,6 +369,81 @@ body{
                                 margin-top: 16px;
                                 color:#1F1F1F;
                             }
+                        }
+                    }
+                }
+            }
+        }
+
+        
+        @media screen and (max-width: $screen-sm) {
+            grid-template-columns: 1fr;   
+            .steps{
+                border-right: none;
+                border-bottom: 1px solid $color-border-designer; 
+                padding: 20px;
+                display: block;
+                .steps-content{
+                    text-align: left;
+                    .lst-steps{
+                        display: flex;
+                        justify-content: center;
+                        .lst-steps-content{
+                            display: flex;
+                            .step{                       
+                                &:not(:last-child){      
+                                    &::after{
+                                        display: none;
+                                    }
+                                }
+                                .step-content{ 
+                                    &::after{
+                                        content: '';
+                                        height: 5px;
+                                        width: 60px;
+                                        background-color: $color-gris-1;
+                                        display: block;
+                                        margin-top: 23px;
+                                    }
+                                    .name{
+                                        display: none;
+                                    }
+                                }
+            
+                                &.completed{
+                                    .step-content{        
+                                        &::after{
+                                            background-color: $color-soccer-coach;
+                                        }
+                                    }
+                                }
+    
+                                &:last-child{
+                                    .step-content{ 
+                                        &::after{
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .content{
+                padding: 20px;
+                .lst-exerices{
+                    .exercice-item{
+                        grid-template-columns: 1fr;
+                        grid-row-gap: 10px;
+                        .exercice-description{
+                            grid-row: 2;
+                        }
+                        .exercice-image{
+                            grid-row: 1;
+                        }
+                        .exercice-options-list{
+                            right: 0;
                         }
                     }
                 }
