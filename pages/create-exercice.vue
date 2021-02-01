@@ -938,7 +938,7 @@ export default {
     created(){
         this.setShowLoader(true);
         this.setClassLoader('open-designer');
-        this.setTextLoader('Ouverture de ESDesigner ...');
+        this.setTextLoader('ESsoccercoach');
 
         this.$root.$on('addText', (text) => {
             if(text){

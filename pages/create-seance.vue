@@ -307,8 +307,13 @@ export default {
             this.deleteExercice(index);
             this.closeAllsSelects();
         },
-        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setCurrentState:'seance/setCurrentState', setStepCompleted:'seance/setStepCompleted',
+        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setCurrentState:'seance/setCurrentState', setStepCompleted:'seance/setStepCompleted',
             setSeance:'seance/setSeance', setListExercices:'seance/setListExercices', deleteExercice:'seance/deleteExercice', setAllStepsNotCompleted : 'seance/setAllStepsNotCompleted'})
+    },
+    created(){
+        this.setShowLoader(true);
+        this.setClassLoader('open-designer');
+        this.setTextLoader('ESsoccercoach');
     },
     mounted(){
         const fromDesigner = JSON.parse(localStorage.getItem('fromDesigner'));
@@ -364,6 +369,10 @@ export default {
             };
         });
 
+        setTimeout(() => {
+            this.setShowLoader(false);
+            this.setClassLoader('');      
+        },  3* 1000);
         //vérifier si on était en mode modification d'exercice avant de quitter la page
         /*if(localStorage.getItem('indexExerciceUpdate')){
             this.indexExerciceUpdate = JSON.parse(localStorage.getItem('indexExerciceUpdate'));

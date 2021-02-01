@@ -1,7 +1,10 @@
 <template>
     <div class="esdesigner">
         <div class="loading" :class="classLoader" v-if="showLoading">
-            <div>
+            <div class="loading-content">          
+                <div class="logo">
+                    <img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/>
+                </div>
                 <Spinner :spinner="true"/>              
                 <h3>{{textLoader}}</h3>
             </div>

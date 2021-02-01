@@ -12,12 +12,40 @@
         align-items: center;
         z-index: 600;
 
-        &.open-designer{
-            background-color: rgba($color:$color-blue-blackground, $alpha:1);
+        .loading-content{
+            .logo{
+                display: none;
+            }
+
+            h3{
+                color:$color-white-fonts;
+            }
         }
 
-        h3{
-            color:$color-white-fonts;
+        &.open-designer{
+            background-color: rgba($color:$color-blue-blackground, $alpha:1);
+            
+            .logo{
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center;      
+                margin-bottom: 100px;
+                img{
+                    height: 120px;
+                    width: 100px;
+                }
+            }
+    
+            .spinner{
+                margin-bottom: 50px;
+                .spinner-content{
+                    .spinner-spinner{
+                        width: 5rem;
+                        height: 5rem;
+                    }
+                }
+            }
         }
     }
 
