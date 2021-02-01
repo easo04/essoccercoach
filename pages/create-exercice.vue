@@ -320,10 +320,6 @@ export default {
         return{
             title:'Créez votre exercice de soccer | ESsoccercoach',
             script:[
-                {src:'/imports/interact.js'},
-                {src:'/imports/jspdf.min.js'},
-                {src:'/imports/canvas2image.js'},
-                {src:'/drag.js'},
             ]
         }
     },

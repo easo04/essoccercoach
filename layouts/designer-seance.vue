@@ -3,7 +3,7 @@
         <div class="loading" :class="classLoader" v-if="showLoading">
             <div class="loading-content">
                 <div class="logo">
-                    <img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/>
+                    <img class="image-logo" src="@/assets/images/logo.png"/>
                 </div>
                 <Spinner :spinner="true"/>      
                 <h3>{{textLoader}}</h3>

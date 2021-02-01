@@ -17,6 +17,10 @@ export default {
       {src:'/fontawesome/js/all.js'},
       {src:'/flickity/flickity.pkgd.min.js'},
       {src:'/icons/icons.js'},
+      {src:'/imports/interact.js'},
+      {src:'/imports/jspdf.min.js'},
+      {src:'/imports/canvas2image.js'},
+      {src:'/drag.js'},
     ]
   },
 
