@@ -3,6 +3,7 @@ export const state = () => ({
   showLoader:false,
   textLoader:'',
   classLoader:'',
+  categorie:'tous',
 })
 
 export const mutations = {
@@ -17,5 +18,8 @@ export const mutations = {
   },
   setClassLoader(state, newValue){
     state.classLoader = newValue;
+  },
+  setCategorie(state, newValue){
+    state.categorie = newValue;
   }
 }

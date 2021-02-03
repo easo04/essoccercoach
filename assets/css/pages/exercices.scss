@@ -1,0 +1,120 @@
+.exercices-page{
+    .menu-types-exercices{
+        padding: 20px 100px 20px 100px;
+        background: #FBFBFB;
+        box-shadow: 0px 4px 10px rgba(201, 201, 201, 0.25);
+        h4{
+            color:$color-black-fonts;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .types{
+            display: flex;
+            >div{
+                @include font-xm-sbold;
+                color:#858585;
+                font-family: $font-family-text;
+                margin-right: 14px;
+                cursor: pointer;
+                a{
+                    text-decoration: none;
+                }
+
+                &.active{
+                    border-bottom: 4px solid #5C5C5C;
+                }
+            }
+        }
+    }
+
+    .content{
+        padding: 32px 100px;
+        margin-top: 0;
+        .liens{
+            .lien-categorie{
+                @include font-xm-mbold;
+                color:$color-black-fonts;
+                font-family: $font-family-text;
+            }
+        }
+        .liste-exercices{
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 16px;
+            margin-bottom: 30px;
+            .item-exercice{
+                width: 273px;
+                height: 340px;
+                background: $color-white-background;
+                box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
+                border-radius: 5px;
+                cursor: pointer;
+                .img{
+                    width: 100%;
+                    height: 200px;
+                    img{
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+                .description{
+                    padding: 20px;
+                    h4{
+                        color:$color-black-fonts;
+                        margin: 0;
+                    }
+                    p{
+                        @include font-s;
+                        color:$color-black-fonts-second;
+                        margin: 0;
+                        font-family: $font-family-text;
+                        margin-top: 14px;
+                    }
+                    .footer-description{
+                        margin-top: 14px;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        >div{
+                            display: flex;
+                            align-items: center
+                        }
+                        .icon-text{
+                            @include font-s-bold;
+                            font-family: $font-family-text;
+                            color:#858585;
+                            svg{
+                                color:#22C77B;
+                                margin-right: 5px;
+                            }
+                        }
+                        .type{
+                            justify-content: flex-end;
+                            @include font-s-bold;
+                            font-family: $font-family-text;
+                            color:#0E2650;
+                            >div{
+                                padding: 2px 10px;
+                                background-color: #A7BFE9;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .more-results{
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            .btn{
+                svg{
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}
