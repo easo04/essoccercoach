@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="content-terrain">
-                <div class="terrain-space" id="terrainSoccer" @click="clickTerrain($event)">
+                <div class="terrain-space" id="terrainSoccer">
                         <div class="nom-equipe">
                             <h4>{{teamName}}</h4>
                         </div>
@@ -187,7 +187,6 @@
                     </div>
                     <div class="lst-options-help" v-show="showOptionsHelp">
                         <div class="options">
-                            <div><div @click="showAstuces();setShowOptionsHelp()">Astuces</div></div>
                             <div><div @click="setShowOptionsHelp()">Tutoriel</div></div>
                             <div><div @click="setShowOptionsHelp()">Youtube</div></div>
                         </div>
@@ -198,12 +197,10 @@
     </div>
 </template>
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 import GoHomeModal from '@/components/modals/GoHomeModal.vue'
-import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
 import ModalOpenAlignementsVue from '../components/modals/ModalOpenAlignements.vue'
-
-const ID_TERRAIN = 'terrainSoccer';
+import DownloadAlignementSuccesModalVue from '../components/modals/DownloadAlignementSuccesModal.vue'
 
 export default {
     layout: 'designer',
@@ -307,13 +304,7 @@ export default {
             document.getElementById('terrainSoccer').style.backgroundRepeat  = 'no-repeat';
             this.terrainSelected = name;
         },
-        deselectionner(){
-            let lastObjectSelected = $('.object-selected-outil');
-            lastObjectSelected?.removeClass('object-selected-outil');  
-        },
         downloadExercice(){
-            this.deselectionner();
-            //this.closeAllSelectes();
             this.setTextLoader('Téléchargement de l\'image en cours ...');
             this.setShowLoader(true);
 
@@ -324,9 +315,9 @@ export default {
                         Canvas2Image.saveAsPNG(canvas,undefined,undefined,'alignement_essoccercoach'); 
                         this.setShowLoader(false);
                         this.$modal.show(
-                            DownloadSuccesModal,
+                            DownloadAlignementSuccesModalVue,
                             {},
-                            {name : 'download-succes-modal', classes:['modal-top'], clickToClose:false}
+                            {name : 'download-alignement-succes-modal', classes:['modal-top'], clickToClose:false}
                         );
                     }
                 });
@@ -339,12 +330,6 @@ export default {
             document.getElementById('deleteAll').classList.add('inactive');
             document.getElementById('copy').classList.add('inactive');
             document.getElementById('changeTransparence').classList.add('inactive');
-        },
-        clickTerrain(event){
-            if(event.target.id === ID_TERRAIN){
-                this.deselectionner();  
-                this.closeAllSelectes();
-            }
         },
         changeSysteme(){
             this.lstAttaquants=[];
