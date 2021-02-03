@@ -1,0 +1,114 @@
+.details-exercice{ 
+    @media screen and(max-width: $screen-sm){
+        margin-top: 120px;
+    }
+    h3{
+        color:$color-black-fonts;
+        margin-bottom: 16px;
+    }
+    .description-infos{
+        background-color: #E9E9E9;
+        padding: 100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px;
+        .infos{
+            display: flex;
+            align-items: center;
+            .links-way{
+                @include blue-link;
+                @include font-xm-sbold;
+                font-style: italic;
+                margin-bottom: 20px;
+            }
+            
+            h1{
+                margin: 0;
+                margin-bottom: 15px;
+                color:$color-black-fonts;
+            }
+            p{
+                color:$color-black-fonts-second;
+                font-family: $font-family-text;
+                @include font-m;
+            }
+            .footer-description{
+                margin-top: 14px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                >div{
+                    display: flex;
+                    align-items: center
+                }
+                .icon-text{
+                    @include font-m-bold;
+                    font-family: $font-family-text;
+                    color:#858585;
+                    svg{
+                        color:#22C77B;
+                        margin-right: 5px;
+                    }
+                }
+                .type{
+                    justify-content: flex-end;
+                    @include font-m-bold;
+                    font-family: $font-family-text;
+                    color:#0E2650;
+                    >div{
+                        padding: 10px 20px;
+                        background-color: #A7BFE9;
+                        border-radius: 20px;
+                    }
+                }
+            }
+        }
+        .image{
+            height: 100%;
+            width: 100%;
+            img{
+                height: 100%;
+                width: 100%;
+                border-radius: 5px;
+            }
+        }
+        @media screen and (max-width: $screen-sm) {
+            grid-template-columns: 1fr;
+            padding: 20px;
+            .image{
+                grid-row: 1;
+            }
+            .infos{
+                grid-row: 2;
+            }
+        }
+    }
+    .description-infos-2{
+        padding: 100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px;
+        >div{
+            border-top: 5px solid $color-soccer-coach;
+            p{
+                color:$color-black-fonts-second;
+                font-family: $font-family-text;
+                @include font-m;
+            }
+        }
+        @media screen and (max-width: $screen-sm) {
+            grid-template-columns: 1fr;
+            padding: 20px;
+        }
+    }
+    .exercices-same{
+        background-color: #EEF8F9;
+        padding: 50px 100px 50px 100px;
+        h3{
+            color:#5C5C5C;
+            margin: 0;
+        }
+        @media screen and (max-width: $screen-sm) {
+            padding: 20px;
+        }
+    }
+}
