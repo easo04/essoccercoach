@@ -73,7 +73,7 @@
             <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
           </div>
           <div class="outil-actions">
-            <button class="btn btn-default-ghost">Créez votre alignement</button>
+            <button class="btn btn-default-ghost" @click="goToCreateAlignements()">Créez votre alignement</button>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
             <div class="description-item-content">
               <h2>Créateur d'alignements</h2>
               <p>Faites l'alignement de votre équipe de façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
-              <div class="actions-item"><button class="btn btn-default">Créez votre alignement</button></div>
+              <div class="actions-item"><button class="btn btn-default" @click="goToCreateAlignements()">Créez votre alignement</button></div>
             </div>
         </div>
         <div class="carrousel-item">
@@ -200,7 +200,10 @@ export default {
     },
     goToCreateSeances(){
       this.$router.push({path: '/create-seance'});
-    }
+    },
+    goToCreateAlignements(){
+        this.$router.push({path: '/create-alignement'});  
+    },
   },
   created(){
     this.lstSlidesHero = slidesHero;

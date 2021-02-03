@@ -63,6 +63,30 @@ export const state = () => ({
         {'name': 'Passe aller-retour', 'image': 'arrow26.svg', 'forme': '', 'type':'pass'},
         {'name': 'Se déplacer', 'image': 'arrow27.svg', 'forme': '', 'type':'run'},
     ],
+    listeTerrainsAlignements : [
+        {'name': 'terrain1', 'color': '', 'image': 'terrain1.png'},	
+        {'name': 'terrain2', 'color': '', 'image': 'terrain2.png'},    
+        {'name': 'terrain3', 'color': '', 'image': 'terrain3.png'},
+        {'name': 'terrain4', 'color': '', 'image': 'terrain4.png'},
+        {'name': 'terrain5', 'color': '', 'image': 'terrain5.png'},
+        {'name': 'terrain6', 'color': '', 'image': 'terrain6.png'},
+        {'name': 'terrain7', 'color': '', 'image': 'terrain7.png'},
+        {'name': 'terrain8', 'color': '', 'image': 'terrain8.png'},
+    ],
+    listeJoueursAlignements :[
+        {'name': 'player5', 'image': 'player5.png'},
+        {'name': 'player6', 'image': 'player6.png'},
+        {'name': 'player7', 'image': 'player7.png'},
+        {'name': 'player8', 'image': 'player8.png'},
+        {'name': 'player9', 'image': 'player9.png'},
+        {'name': 'player10', 'image': 'player10.png'},
+        {'name': 'player11', 'image': 'player11.png'},
+        {'name': 'player12', 'image': 'player12.png'},
+        {'name': 'player13', 'image': 'player13.png'},
+        {'name': 'player14', 'image': 'player14.png'},
+        {'name': 'player15', 'image': 'player15.png'},
+        {'name': 'player16', 'image': 'player16.png'},
+    ],
 })
 
 export const getters = {

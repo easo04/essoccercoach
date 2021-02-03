@@ -186,6 +186,14 @@
     &.active{
         border: 1px solid #18676F;
     }
+    
+    &.disabled{
+        background-color: #C9C9C9;
+        cursor: auto;
+        &:hover{
+            background-color: #C9C9C9;
+        }
+    }
 }
 
 @mixin btn-default-ghost{
@@ -211,6 +219,7 @@
         background-color: $color-gris-1;
         color:$color-gris-2;
     }
+
 }
 
 @mixin blue-link {
@@ -243,6 +252,7 @@
             outline: none;
             border:2px solid #646464;
         }
+        margin-bottom: 16px;
     }
 
     .form-control-textarea{

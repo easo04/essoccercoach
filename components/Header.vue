@@ -45,7 +45,7 @@
                             </div>
                             <span>Séance</span>
                         </div>
-                        <div class="item-action-list">
+                        <div class="item-action-list" @click="goToCreateAlignements()">
                             <div class="img-item-action">
                                 <div class="img">
                                     <img src="@/assets/images/alignement-logo.png" alt="créer alignement"/>
@@ -110,6 +110,9 @@ export default {
         },
         goToCreateSeances(){
             this.$router.push({path: '/create-seance'});  
+        },
+        goToCreateAlignements(){
+            this.$router.push({path: '/create-alignement'});  
         },
     }
 }
