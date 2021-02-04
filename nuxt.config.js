@@ -46,6 +46,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/firebase',
   ],
 
   serverMiddleware: [
@@ -54,6 +55,25 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
+
+  //Firebase module configuration
+  firebase:{
+    config: {
+      apiKey: "AIzaSyAFdjN0MvRwatdGpSEozi1zM6ye-JfPq-A",
+      authDomain: "essoccercoach.firebaseapp.com",
+      databaseURL: "https://essoccercoach.firebaseio.com",
+      projectId: "essoccercoach",
+      storageBucket: "essoccercoach.appspot.com",
+      messagingSenderId: "359986135028",
+      appId: "1:359986135028:web:03cc97347a523c002103a1",
+      measurementId: "G-GHNVKKV4PB"
+    },
+    services: {
+      auth: true,
+      firestore: true,
+      storage: true,
+    }
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
