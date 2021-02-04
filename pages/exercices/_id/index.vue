@@ -16,6 +16,9 @@
             </div>
             <div class="image">
                 <img src="@/assets/images/exercice_essoccercoach.png"/>
+                <div class="reseau">
+                    <i class="fab fa-facebook"></i>
+                </div>
             </div>
         </div>
         <div class="description-infos-2">
@@ -30,39 +33,35 @@
         </div>
         <div class="exercices-same">
             <h3>Exercices de la même catégorie</h3>
-            <div class="carousel exercices-carrousel" data-flickity>
+            <div class="carousel exercices-carrousel">
                 <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercice</h4>
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
                     </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
                     <div class="description-exercice-item">
                     <h4>Description exercice</h4>
                     </div>
                 </div>
                 <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
+                    </div>
+                    <div class="description-exercice-item">
+                    <h4>Description exercice</h4>
+                    </div>
+                </div>
+                <div class="carousel-cell exercice-item">
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
+                    </div>
                     <div class="description-exercice-item">
                     <h4>Description exercice</h4>
                     </div>
                 </div>
                     <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercice</h4>
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
                     </div>
-                </div>
-                    <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercice</h4>
-                    </div>
-                </div>
-                    <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
                     <div class="description-exercice-item">
                     <h4>Description exercice</h4>
                     </div>

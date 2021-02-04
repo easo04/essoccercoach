@@ -1,13 +1,13 @@
 <template>
     <div class="exercices-page">
-        <ExercicesCategories/>
+        <ExercicesCategories :current-categorie="categorie.name"/>
         <div class="content">
             <div v-if="loading">
                 <SqueletExercices />
             </div>
             <div v-else>
                 <div class="liens">
-                    <span class="lien-categorie"> Exercices / Populaires</span>
+                    <span class="lien-categorie"> Exercices / {{categorie.label}}</span>
                 </div>
                 <div class="liste-exercices">
                     <div class="item-exercice">
@@ -124,7 +124,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex';
+
+const CATEGORIES = ['offensifs', 'deffensifs', 'rondos', 'physiques', 'tactiques', 'gardiens'];
 
 export default {
     head(){
@@ -142,11 +144,25 @@ export default {
     data(){
         return {
             showMoreResults:true,
-            loading:true,
+            categorie:undefined,
+            loading:true
         }
     },
     computed:{
-        ...mapState(['modePresentation'])
+        ...mapState(['modePresentation', 'categories'])
+    },
+    methods:{
+        ...mapMutations({setCategorie:'setCategorie'})
+    },
+    created(){
+        const catParam = this.categories.find(c => c.name === this.$route.params.categorie);
+        if(catParam){
+            this.categorie = catParam;
+        }else{
+            location.href = "/";
+        }
+    },
+    mounted(){
     }
 }
 </script>

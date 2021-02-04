@@ -2,27 +2,37 @@
     <div class="menu-types-exercices">
         <h4>Catégories d'exercices</h4>
         <div class="types">
-            <div :class="{'active':current==='tous'}" @click="setCategorieActive('tous')"><a>Tous</a></div>
-            <div :class="{'active':current==='rondos'}" @click="setCategorieActive('rondos')"><a>Rondos</a></div>
-            <div :class="{'active':current==='offensif'}" @click="setCategorieActive('offensif')"><a>Offensifs</a></div>
-            <div :class="{'active':current==='deffensif'}" @click="setCategorieActive('deffensif')"><a>Déffensifs</a></div>
-            <div :class="{'active':current==='physique'}" @click="setCategorieActive('physique')"><a>Physiques</a></div>
-            <div :class="{'active':current==='tactiques'}" @click="setCategorieActive('tactiques')"><a>Tactiques</a></div>
-            <div :class="{'active':current==='gardien'}" @click="setCategorieActive('gardien')"><a>Gardiens</a></div>
+            <div :class="{'active':current===categorie.name}" @click="setCategorieActive(categorie.name)" v-for="(categorie, i) in categories" :key="i">
+                <a @click="goToCategorie(categorie.name)">{{categorie.label}}</a>
+            </div>
         </div>
     </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 export default {
+    props:['currentCategorie'],
     data(){
         return{
-            current:'tous'
+            current:this.currentCategorie || 'populaires'
         }
+    },
+    computed:{
+        ...mapState(['categories'])
     },
     methods:{
         setCategorieActive(categorie){
             this.current = categorie;
+        },
+        goToCategorie(categorie){
+            let pathCategorie = `/exercices/categorie/${categorie}`;
+            if(categorie === 'populaires'){
+                pathCategorie = '/exercices';
+            }
+            this.$router.push({path:pathCategorie});
         }
+    },
+    mounted(){
     }
 }
 </script>

@@ -70,6 +70,13 @@
                 width: 100%;
                 border-radius: 5px;
             }
+            .reseau{
+                display: none;
+                svg{
+                    color:$color-black-fonts;
+                    font-size:18px;
+                }
+            }
         }
         @media screen and (max-width: $screen-sm) {
             grid-template-columns: 1fr;

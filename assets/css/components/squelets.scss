@@ -1,0 +1,45 @@
+$anmiation: mymove 2s infinite;
+.squelet-exerice{
+    .liens{
+        .lien{
+            width: 200px;
+            height: 20px;
+            background-color: $color-gris-1;
+            border-radius: 10px;
+            animation: $anmiation
+        }
+    }
+    .liste-exercices{
+        .item-exercice{
+            .image{
+                background-color: $color-gris-3;
+                width: 100%;
+                height: 200px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            .description{
+                .titre{
+                    width: 100%;
+                    height: 20px;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation
+                }
+                .infos{
+                    margin-top: 14px;
+                    width: 100%;
+                    height: 60px;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation
+                }
+            }
+        }
+    }
+}
+
+@keyframes mymove {
+    from {background-color: $color-gris-1;}
+    to {background-color: $color-gris-3;}
+}
