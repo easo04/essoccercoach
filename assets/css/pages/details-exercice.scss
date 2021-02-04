@@ -117,5 +117,13 @@
         @media screen and (max-width: $screen-sm) {
             padding: 20px;
         }
+
+        .content-exercices{
+            .exercices{
+                .exercice-item{
+                    min-width: 270px;
+                }
+            }
+        }
     }
 }

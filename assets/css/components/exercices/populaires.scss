@@ -1,33 +1,87 @@
 .exercices-carrousel{
     margin-top: 32px;
     display: flex;
-    .exercice-item{
-        width: 273px;
-        height: 244px;
-        margin-right: 20px;
-        background: $color-white-background;
-        box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
-        border-radius: 5px;
-        .image-exercice-item{
-            background-color: green;
-            height: 70%;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            width: 100%;
-            img{
-                height: 100%;
-                width: 100%;
-                object-fit: cover;;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-            }
+    align-items: center;
+    position: relative;
+
+    .previous, .next{
+        position: absolute;
+        height: 25%;
+        top:calc(50%-25%);
+        width: 50px;
+        line-height: 40px;
+        background-color: rgba($color: $color-black-fonts, $alpha: 0.5);
+        color:$color-white-fonts;
+        cursor: pointer;
+        z-index: 500;
+        transition: 0.2s ease all;
+        border:none;
+        font-size: 20px;
+        &:hover{
+            background-color: rgba($color: $color-black-fonts, $alpha: 0.7);
         }
-        .description-exercice-item{
-            padding: 10px;
-            h4{
-                color: $color-black-fonts;
-                margin: 0;
-            }
+        &:focus{
+            outline:none;
         }
+    }
+    .previous{
+        left: 0;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    .next{
+        right: 0;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .content-exercices{
+        width: 100%;
+        padding: 20px 0;
+        overflow: hidden;
+        scroll-behavior: smooth;
+        .exercices{
+            display: flex;
+            flex-wrap: nowrap;
+            .exercice-item{
+                min-width: 25%;
+                height: 244px;
+                margin-right: 20px;
+                background: $color-white-background;
+                box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
+                border-radius: 5px;
+                cursor: pointer;
+                .image-exercice-item{
+                    background-color: green;
+                    height: 70%;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    width: 100%;
+                    img{
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                    }
+                }
+                .description-exercice-item{
+                    padding: 10px;
+                    h4{
+                        color: $color-black-fonts;
+                        margin: 0;
+                    }
+                }
+
+                @media screen and (max-width: $screen-sm) {
+                    min-width: 90%;
+                }
+
+                &.hover{
+                    transform: scale(1.2);
+                    transform-origin: top;
+                }
+            }
+        }    
     }
 }
