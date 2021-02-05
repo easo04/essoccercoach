@@ -2,7 +2,7 @@
     <div class="modal-add-player-with-text modal-custom">
         <div class="modal-header">
             <div class="titre-modal"><h3>Ajoutez un joueur avec texte</h3></div>
-            <div class="close-modal"><span @click="hide()"><i class="fas fa-times"></i></span></div>
+            <div class="close-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
         </div>
         <div class="modal-content">
             <div class="form-group">

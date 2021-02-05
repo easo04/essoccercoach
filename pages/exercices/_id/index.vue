@@ -13,7 +13,7 @@
                         the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
                         as opposed to using 'Content here, content here', making it look like readable English. </p>
                         <div class="footer-description">
-                            <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10 joueurs</span></span></div>
+                            <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10 joueurs</span></span></div>
                             <div class="type"><div>Offensif</div></div>
                         </div>
                     </div>

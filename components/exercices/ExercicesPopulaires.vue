@@ -1,6 +1,9 @@
 <template>
     <div class="carousel exercices-carrousel">
-        <button class="btn previous" v-if="showPrevious" id="btn-previous" @click="previous()"><i class="fas fa-angle-left"></i></button>
+        <button class="btn previous" v-if="showPrevious" id="btn-previous" @click="previous()">
+            <!--<i class="fas fa-angle-left"></i>-->
+            <font-awesome-icon :icon="['fas', 'angle-left']"/>
+        </button>
         <div class="content-exercices">
             <div class="exercices">
                 <div class="carousel-cell exercice-item">
@@ -53,7 +56,9 @@
                 </div>
             </div>
         </div>
-        <button class="btn next" v-if="showNext" id="btn-next" @click="next()"><i class="fas fa-angle-right"></i></button>
+        <button class="btn next" v-if="showNext" id="btn-next" @click="next()">
+            <font-awesome-icon :icon="['fas', 'angle-right']"/>
+        </button>
     </div>
 </template>
 <script>

@@ -2,24 +2,24 @@
     <div class="creation-exercice creation-alignement">
         <div class="menu-top">
             <div class="principal-items">
-                <span @click="goHome()" class="icon-action"><i class="fas fa-home" title="Retourner à l'accueil"></i></span>
+                <span @click="goHome()" class="icon-action" title="Retournez à l'accueil"><font-awesome-icon :icon="['fas', 'home']"/></span>
             </div>
             <div class="secondary-items">
                 <div class="first-items">
                     <div class="objects icon-action" title="Afficher gardien" v-if="showGardien">
                         <span  @click="setShowGardien()" >
-                            <i class="fas fa-toggle-on"></i>
+                            <font-awesome-icon :icon="['fas', 'toggle-on']"/>
                         </span><br>
                         <span class="label">Afficher gardien</span>
                     </div>
                     <div class="objects icon-action" title="Afficher gardien" v-else>
                         <span  @click="setShowGardien()" v-if="!showGardien">
-                            <i class="fas fa-toggle-off"></i>
+                            <font-awesome-icon :icon="['fas', 'toggle-off']"/>
                         </span><br>
                         <span class="label">Afficher gardien</span>
                     </div>
                     <div class="objects icon-action" title="Remplaçants">
-                        <span @click="setShowRemplacantsSelect()"><i class="fas fa-user-friends"></i><i class="fas fa-sort-down"></i></span><br>
+                        <span @click="setShowRemplacantsSelect()"><font-awesome-icon :icon="['fas', 'user-friends']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span><br>
                         <span class="label">Remplaçants</span>
                     </div>
                     <div class="select-remplacants selects" v-if="showRemplacantsSelect">
@@ -28,8 +28,8 @@
                             <div class="show-remplacants">
                                 <div class="label-toggle"><span class="label">Affichez les remplacants</span></div>
                                 <div class="toggle" @click="setShowRemplacants()">
-                                    <span v-if="showRemplacants"><i class="fas fa-toggle-on"></i></span>
-                                    <span v-else><i class="fas fa-toggle-off"></i></span>
+                                    <span v-if="showRemplacants"><font-awesome-icon :icon="['fas', 'toggle-on']"/></span>
+                                    <span v-else><font-awesome-icon :icon="['fas', 'toggle-off']"/></span>
                                 </div>
                             </div>
                             <div class="form-content">
@@ -42,7 +42,7 @@
                             <div class="remplacants">
                                 <div class="item-remplacant" v-for="(r, i) in lstRemplacants" :key="i">
                                     <div>{{r}}</div>
-                                    <div class="trash" title="Supprimer" @click="deleteRemplacant(i)"><i class="fas fa-trash"></i></div>
+                                    <div class="trash" title="Supprimer" @click="deleteRemplacant(i)"><font-awesome-icon :icon="['fas', 'trash']"/></div>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="actions">
-                <span @click="downloadExercice()"><i class="fas fa-download download" title="Télécharger"></i></span>
+                <span @click="downloadExercice()" title="Télécharger" class="download"><font-awesome-icon :icon="['fas', 'download']"/></span>
             </div>
         </div>
         <div class="content">
@@ -63,7 +63,7 @@
                         <i class="icon-player"></i>
                     </div>
                     <div class="item-outils" :class="{'active' : contentItem === 'conf'}" title="Modifier la configuration" @click="selectContentItem('conf')">
-                        <i class="fas fa-cog"></i>
+                        <font-awesome-icon :icon="['fas', 'cog']"/>
                     </div>
                 </div>
                 <div class="content-item">
@@ -183,7 +183,7 @@
                 </div>
                 <div class="help">
                     <div class="question" :class="{'clicked' : showOptionsHelp}" @click="setShowOptionsHelp()">
-                        <i class="fas fa-question"></i>
+                        <font-awesome-icon :icon="['fas', 'question']"/>
                     </div>
                     <div class="lst-options-help" v-show="showOptionsHelp">
                         <div class="options">

@@ -2,7 +2,7 @@
     <div class="modal-download-succes modal-custom">
         <div class="modal-header">
             <div class="titre-modal"><h3>Votre exercice a été télechargé ✔️</h3></div>
-            <div class="close-modal"><span @click="hide()"><i class="fas fa-times"></i></span></div>
+            <div class="close-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
         </div>
         <div class="modal-content">
             <p class="thnks">Merci d'avoir utilisé ESsoccercoach Designer pour créer votre exercice!</p> 
@@ -20,9 +20,9 @@
             <div class="reseaux-sociaux">
                 <p>Suivez-nous sur les réseaux sociaux</p>
                 <div class="liste-reseaux">
-                    <a class="lien"><i class="fab fa-instagram"></i></a>
-                    <a class="lien"><i class="fab fa-facebook-square"></i></a>
-                    <a class="lien"><i class="fab fa-youtube-square"></i></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'instagram']"/></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'facebook-square']"/></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'youtube-square']"/></a>
                 </div>
             </div>
         </div>

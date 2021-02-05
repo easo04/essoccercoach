@@ -3,13 +3,13 @@
         <div class="content-footer">
             <div class="mail">
                 <h3>Contactez-nous</h3>
-                <a class="mailto" href="mailto:contact@essoccercoach.com"><i class="fas fa-envelope"></i> contact@essoccercoach.com</a>
+                <a class="mailto" href="mailto:contact@essoccercoach.com"><font-awesome-icon :icon="['fas', 'envelope']"/> contact@essoccercoach.com</a>
             </div>
             <div class="reseaux">
                 <div class="liste-reseaux">
-                    <a class="lien"><i class="fab fa-instagram"></i></a>
-                    <a class="lien"><i class="fab fa-facebook-square"></i></a>
-                    <a class="lien"><i class="fab fa-youtube-square"></i></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'instagram']"/></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'facebook-square']"/></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'youtube-square']"/></a>
                 </div>
             </div>
         </div>

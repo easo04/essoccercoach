@@ -11,10 +11,10 @@
                     <li>Nos outils</li>
                     <li>À propos</li>
                     <li @click="showExercicesOptions()" v-if="!showSelectExercices">
-                        Exercices <i class="fas fa-sort-down"></i>
+                        Exercices <font-awesome-icon :icon="['fas', 'sort-down']"/>
                     </li>
                     <li @click="showExercicesOptions()" v-if="showSelectExercices">
-                        Exercices <i class="fas fa-smile"></i>
+                        Exercices <font-awesome-icon :icon="['fas', 'smile']"/>
                     </li>
                 </ul>
                 <div class="select-list" v-if="showSelectExercices">
@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div class="btn-new">
-                <button class="btn btn-default btn-add" :class="{'active' : showNewActions}" @click="showActions()">Nouveau <i class="fas fa-plus"></i></button>
-                <span class="btn-add-mobile" :class="{'active' : showNewActions}" @click="showActions()"><i class="fas fa-plus"></i></span>
+                <button class="btn btn-default btn-add" :class="{'active' : showNewActions}" @click="showActions()">Nouveau <font-awesome-icon :icon="['fas', 'plus']"/></button>
+                <span class="btn-add-mobile" :class="{'active' : showNewActions}" @click="showActions()"><font-awesome-icon :icon="['fas', 'plus']"/></span>
                 <div class="new-actions-list" v-if="showNewActions">
                     <h4>Commencez à créer avec l'un de nos outils</h4>
                     <div class="items-actions">

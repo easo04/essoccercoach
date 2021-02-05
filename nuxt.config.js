@@ -14,7 +14,6 @@ export default {
     ],
     script:[
       {src:'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'},
-      {src:'/fontawesome/js/all.js'},
       {src:'/flickity/flickity.pkgd.min.js'},
       {src:'/icons/icons.js'},
       {src:'/imports/interact.js'},
@@ -47,6 +46,20 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/firebase',
+    [
+      'nuxt-fontawesome', {
+      imports: [
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+        },
+        {
+          set:'@fortawesome/free-brands-svg-icons',
+          icons: ['fab']
+        }
+      ]
+      }
+    ]
   ],
 
   serverMiddleware: [

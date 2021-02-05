@@ -2,24 +2,24 @@
     <div class="creation-exercice">
         <div class="menu-top">
             <div class="principal-items">
-                <span @click="goHome()" class="icon-action" v-if="!fromSeance"><i class="fas fa-home" title="Retourner à l'accueil"></i></span>
-                <span @click="goBack()" class="icon-action" v-else><i class="fas fa-arrow-alt-circle-left" title="Retourner en arrière"></i></span>
+                <span @click="goHome()" class="icon-action" v-if="!fromSeance" title="Retourner à l'accueil"><font-awesome-icon :icon="['fas', 'home']"/></span>
+                <span @click="goBack()" class="icon-action" v-else title="Retourner en arrière"><font-awesome-icon :icon="['fas', 'arrow-alt-circle-left']"/></span>
                 <div class="actions-s">
-                    <span class="icon-action inactive" id="undo" @click="undo()"><i class="fas fa-undo" title="Undo"></i></span>
-                    <span class="icon-action inactive" id="redo" @click="redo()"><i class="fas fa-redo" title="Rdo"></i></span>
+                    <span class="icon-action inactive" id="undo" @click="undo()" title="Undo"><font-awesome-icon :icon="['fas', 'undo']"/></span>
+                    <span class="icon-action inactive" id="redo" @click="redo()" title="Redo"><font-awesome-icon :icon="['fas', 'redo']"/></span>
                 </div>
             </div>
             <div class="secondary-items">
                 <div class="first-items">
-                    <span class="icon-action inactive" id="delete" @click="deleteObject()"><i class="fas fa-eraser" title="Effacer"></i></span>
-                    <span class="icon-action inactive" id="deleteAll" @click="deleteAll()"><i class="fas fa-trash-alt" title="Tout supprimer"></i></span>
+                    <span class="icon-action inactive" id="delete" @click="deleteObject()" title="Effacer"><font-awesome-icon :icon="['fas', 'eraser']"/></span>
+                    <span class="icon-action inactive" id="deleteAll" @click="deleteAll()" title="Tout supprimer"><font-awesome-icon :icon="['fas', 'trash-alt']"/></span>
                 </div>
                 <div class="second-items">
-                    <span class="icon-action" @click="addText()"><i class="fas fa-font" title="Ajouter texte"></i></span>
-                    <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><i class="fas fa-circle" title="Ajouter compteur"></i><span class="number">1</span></div>
-                    <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><i class="far fa-circle"></i><i class="fas fa-sort-down"></i></span>
-                    <span class="objects icon-action" title="Changer la couleur" @click="setShowSelectColors()"><i class="fas fa-fill couleur-select"></i><i class="fas fa-sort-down"></i></span>
-                    <span class="objects icon-action inactive" id="changeTransparence" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><i class="fas fa-sort-down"></i></span>
+                    <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
+                    <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><font-awesome-icon :icon="['fas', 'circle']"/><span class="number">1</span></div>
+                    <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><font-awesome-icon :icon="['fas', 'circle']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+                    <span class="objects icon-action  couleur-select" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+                    <span class="objects icon-action inactive" id="changeTransparence" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
                     <div class="select-couleurs selects" v-if="showSelectColors">
                         <div class="arrow-up"></div>
                         <div class="liste-couleurs">
@@ -71,14 +71,14 @@
                     </div>
                 </div>
                 <div class="third-items">
-                    <span class="icon-action inactive" id="copy" @click="makeCopy()"><i class="fas fa-copy" title="Faire une copie"></i></span>
-                    <span class="icon-action inactive" id="minus" @click="minus()"><i class="fas fa-search-minus" title="Zoom moins"></i></span>
-                    <span class="icon-action inactive" id="plus" @click="plus()"><i class="fas fa-search-plus" title="Zoom plus"></i></span>
+                    <span class="icon-action inactive" id="copy" @click="makeCopy()" title="Faire une copie"><font-awesome-icon :icon="['fas', 'copy']"/></span>
+                    <span class="icon-action inactive" id="minus" @click="minus()" title="Zoom moins"><font-awesome-icon :icon="['fas', 'search-minus']"/></span>
+                    <span class="icon-action inactive" id="plus" @click="plus()" title="Zoom plus"><font-awesome-icon :icon="['fas', 'search-plus']"/></span>
                 </div>
             </div>
             <div class="actions">
-                <span @click="downloadExercice()" v-if="!fromSeance"><i class="fas fa-download download" title="Télécharger"></i></span>
-                <span @click="saveExercice()" v-else><i class="fas fa-save save" title="Sauvegarder"></i></span>
+                <span @click="downloadExercice()" v-if="!fromSeance" class="download" title="Télécharger"><font-awesome-icon :icon="['fas', 'download']"/></span>
+                <span @click="saveExercice()" title="Sauvegarder" class="save" v-else><font-awesome-icon :icon="['fas', 'save']"/></span>
             </div>
         </div>
         <div class="content">
@@ -273,13 +273,13 @@
                             {{object.textObject}}
                         </div> 
                         <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
-                            <i class="fas fa-redo"></i>
+                            <font-awesome-icon :icon="['fas', 'redo']"/>
                         </div>
                     </div>
                 </div>
                 <div class="help">
                     <div class="question" :class="{'clicked' : showOptionsHelp}" @click="setShowOptionsHelp()">
-                        <i class="fas fa-question"></i>
+                        <font-awesome-icon :icon="['fas', 'question']"/>
                     </div>
                     <div class="lst-options-help" v-show="showOptionsHelp">
                         <div class="options">

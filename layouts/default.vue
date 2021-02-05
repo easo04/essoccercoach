@@ -2,7 +2,7 @@
   <div class="application">
     <Header/>
     <div class="content">
-      <Nuxt />
+      <Nuxt keep-alive/>
     </div>
     <Footer/>
   </div>

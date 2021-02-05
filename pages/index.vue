@@ -30,15 +30,15 @@
       </p>
     </div>
     <div class="exercices-populaires">
-      <h3>Exercices populaires <i class="fas fa-star"></i></h3>
+      <h3>Exercices populaires <font-awesome-icon :icon="['fas', 'star']"/></h3>
       <p>Consultez notre banque d'exercices pour créer vos séances d'entraînement:</p>
       <ExercicesPopulaires/>
       <div class="exercices-actions">
-        <a class="blue-link">Tous les exerices <i class="fas fa-caret-right"></i></a>
+        <a class="blue-link">Tous les exerices <font-awesome-icon :icon="['fas', 'caret-right']"/></a>
       </div>
     </div>
     <div class="nos-outils" id="nosOutils">
-      <h2><i class="fas fa-futbol"></i> Nos outils</h2>
+      <h2><font-awesome-icon :icon="['fas', 'futbol']"/> Nos outils</h2>
       <div class="outils">
         <div class="outil">
           <h3>Créateur d'exercices</h3>
@@ -137,10 +137,10 @@
           </div>
           <div class="image-essoccercoach"></div>
           <div class="task-list">
-            <p><i class="fas fa-check"></i> Texte check liste</p>
-            <p><i class="fas fa-check"></i> Texte check liste</p>
-            <p><i class="fas fa-check"></i> Texte check liste</p>
-            <p><i class="fas fa-check"></i> Texte check liste</p>
+            <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
+            <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
+            <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
+            <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@
     </div>
     <div class="btn-top">
       <div class="btn-top-content">
-        <i class="fas fa-angle-up"></i>
+        <font-awesome-icon :icon="['fas', 'angle-up']"/>
       </div>
     </div>
   </div>

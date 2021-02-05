@@ -2,7 +2,7 @@
     <div class="exercices-page">
         <ExercicesCategories/>
         <div class="content">
-            <div v-if="loading">
+            <div v-if="$fetchState.pending">
                 <SqueletExercices />
             </div>
             <div v-else>
@@ -18,7 +18,7 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
@@ -109,14 +109,14 @@
                             <h4>Rondo 4x4 + J</h4>
                             <p>Soy un parrafo de ejemplo para hacer un test ...</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><i class="fas fa-tshirt"></i><span>10</span></span></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
                                 <div class="type"><div>Offensif</div></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="more-results" v-if="showMoreResults">
-                    <button class="btn btn-default-ghost"><i class="fas fa-sort-down"></i> Plus de résultats</button>
+                    <button class="btn btn-default-ghost"><font-awesome-icon :icon="['fas', 'sort-down']"/> Plus de résultats</button>
                 </div>
             </div>
         </div>
@@ -124,9 +124,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
+    key(route) {
+        return route.fullPath
+    },
     head(){
         return{
             title:'Exercices de soccer | ESsoccercoach',
@@ -142,15 +143,37 @@ export default {
     data(){
         return {
             showMoreResults:true,
-            loading:true,
+            loading:false,
+            exercices:[]
         }
     },
     computed:{
-        ...mapState(['modePresentation'])
+    },
+    created(){
+    },
+    mounted(){
+        
+    },
+    activated() {
+        console.log('timestamp fetch' + this.$fetchState.timestamp )
+        // appeller fetch de nouveau si le dernier appel date de plus de 30 secondes
+        if (this.$fetchState.timestamp <= Date.now() - 30000) {
+            this.$fetch()
+        }
+    },
+    async fetch() {
+        console.log('fetch')
+        try{
+            const response = await this.$fire.firestore.collection('populaires').get();
+
+            response.docs.forEach(doc => {
+                let data = doc.data();
+                data.id = doc.id;
+                this.exercices.push(data);
+            });
+        }catch(err){
+            console.log(err);
+        }
     }
 }
 </script>
-
-<style lang="scss">
-
-</style>

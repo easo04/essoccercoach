@@ -3,14 +3,14 @@
         <div class="contenant">
             <div class="steps">
                 <div class="steps-content">     
-                    <div class="back-home"><a @click="goHome()" class="link"><i class="fas fa-home"></i> Retournez à l'accueil</a></div>
+                    <div class="back-home"><a @click="goHome()" class="link"><font-awesome-icon :icon="['fas', 'home']"/> Retournez à l'accueil</a></div>
                     <h2>Séance d'entraînement</h2>
                     <div class="lst-steps">
                         <div class="lst-steps-content">
                             <div class="step" :class="{'active' : step.current, 'completed': step.completed}" v-for="(step, i) in lstSteps" :key="i">
                                 <div class="step-content">    
                                     <div class="number" v-if="step.name !== 'download'">{{i+1}}</div>
-                                    <div class="number" v-else><i class="fas fa-file-download"></i></div>
+                                    <div class="number" v-else><font-awesome-icon :icon="['fas', 'file-download']"/></div>
                                     <span class="name">{{step.label}}</span>
                                 </div>
                             </div>
@@ -71,15 +71,15 @@
                             <div class="exercice-description">
                                 <h4>{{exercice.theme}}</h4>   
                                 <div class="time-players">
-                                    <span v-if="exercice.players" class="icon-text"><i class="fas fa-tshirt"></i><span>{{exercice.players}}</span></span>
-                                    <span v-if="exercice.time" class="icon-text"><i class="fas fa-clock"></i><span>{{exercice.time}}</span></span>
+                                    <span v-if="exercice.players" class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.players}}</span></span>
+                                    <span v-if="exercice.time" class="icon-text"><font-awesome-icon :icon="['fas', 'clock']"/><span>{{exercice.time}}</span></span>
                                 </div>
                                 <p>{{exercice.description}}</p>
                             </div>
                             <div class="exercice-image">
                                 <img :src="exercice.image"/>
                             </div>
-                            <div class="exercice-options" title="Options de l'exercice" @click="setShowListOptions(i)"><i class="fas fa-ellipsis-v"></i></div>
+                            <div class="exercice-options" title="Options de l'exercice" @click="setShowListOptions(i)"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></div>
                             <div class="exercice-options-list" v-if="optionsExercice[i] !== undefined && optionsExercice[i].showListOptions">
                                 <div @click="updateExercice(exercice, i)">Modifier</div>
                                 <div @click="deleteExerciceItem(i)">Supprimmer</div>
@@ -90,8 +90,8 @@
                 <div v-if="currentStep === 'download'">
                     <div class="actions-download">
                         <h3>Télechargez la séance en format pdf</h3>
-                        <span class="telecharger" @click="telechargerPDF()"><i class="fas fa-download download" title="Télécharger"></i></span>
-                        <button class="btn btn-default btn-download-pdf" @click="telechargerPDF()">Télécharger <i class="fas fa-download download"></i></button>
+                        <span class="telecharger" @click="telechargerPDF()"><font-awesome-icon :icon="['fas', 'download']"/></span>
+                        <button class="btn btn-default btn-download-pdf" @click="telechargerPDF()">Télécharger <font-awesome-icon :icon="['fas', 'download']"/></button>
                     </div>
                     <div class="seance-generated">
                         <div id="seance">

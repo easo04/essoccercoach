@@ -3,7 +3,7 @@
         <div class="modal-header">
             <div class="titre-modal" v-if="!isModeUpdate"><h3>Ajoutez un nouvel exercice</h3></div>
             <div class="titre-modal" v-else><h3>Modifiez l'exercice</h3></div>
-            <div class="close-modal"><span @click="hide()"><i class="fas fa-times"></i></span></div>
+            <div class="close-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
         </div>
         <div class="modal-content">
             <div class="form-content">
@@ -27,10 +27,10 @@
                 </div>
                 <div class="form-group-flex">
                     <div class="image-upload" :class="{'with-image' : fileName !== undefined}">
-                        <i class="far fa-file-image"></i> Importer une image
+                        <font-awesome-icon :icon="['fas', 'file-image']"/> Importer une image
                         <input type="file" name="image" id="input-file" :class="'file-upload file-upload'" @change="readFile" accept=".png, .jpg"/>
                     </div>
-                    <button class="btn btn-default-ghost btn-esdesigner" :class="{'with-image' : withData}" @click="openDesigner()"><i class="fas fa-paint-brush"></i> ESDesigner</button>
+                    <button class="btn btn-default-ghost btn-esdesigner" :class="{'with-image' : withData}" @click="openDesigner()"><font-awesome-icon :icon="['fas', 'paint-brush']"/> ESDesigner</button>
                 </div>
             </div>
         </div>

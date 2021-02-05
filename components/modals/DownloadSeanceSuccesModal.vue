@@ -2,7 +2,7 @@
     <div class="modal-download-succes modal-custom">
         <div class="modal-header">
             <div class="titre-modal"><h3>Votre séance d'entrainement a été télechargée ✔️</h3></div>
-            <div class="close-modal"><span @click="hide()"><i class="fas fa-times"></i></span></div>
+            <div class="close-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
         </div>
         <div class="modal-content">
             <p class="thnks">Merci d'avoir utilisé ESsoccercoach pour créer votre séance!</p> 
@@ -11,7 +11,7 @@
                     nouveautées: </p>
                 <div class="form-group-flex email-send">
                     <input type="email" name="addText" class="form-control" placeholder=" Votre email" v-model="email"/>
-                    <button class="btn btn-default" @click="sendEmail()"><i class="fas fa-paper-plane"></i></button>
+                    <button class="btn btn-default" @click="sendEmail()"><font-awesome-icon :icon="['fas', 'paper-plane']"/></button>
                 </div>
             </div>
             <div class="infolettre-succes" v-else>
@@ -20,9 +20,9 @@
             <div class="reseaux-sociaux">
                 <p>Suivez-nous sur les réseaux sociaux</p>
                 <div class="liste-reseaux">
-                    <a class="lien"><i class="fab fa-instagram"></i></a>
-                    <a class="lien"><i class="fab fa-facebook-square"></i></a>
-                    <a class="lien"><i class="fab fa-youtube-square"></i></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'instagram']"/></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'facebook-square']"/></a>
+                    <a class="lien"><font-awesome-icon :icon="['fab', 'youtube-square']"/></a>
                 </div>
             </div>
         </div>
