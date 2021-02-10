@@ -122,7 +122,7 @@
         </div>
       </div>
     </div>
-    <div class="copyrigth-essoccercoach">
+    <div class="copyrigth-essoccercoach" id="propos">
       <div class="images-essoccercoach">
         <div class="image-item"></div>
         <div class="image-item"></div>
@@ -227,6 +227,11 @@ export default {
         }
       });
     });
+
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
   }
 }
 </script>

@@ -2,7 +2,7 @@
     <div class="exercices-page">
         <ExercicesCategories :current-categorie="categorie.name"/>
         <div class="content">
-            <div v-if="loading">
+            <div v-if="$fetchState.pending">
                 <SqueletExercices />
             </div>
             <div v-else>
@@ -40,7 +40,7 @@ const CATEGORIES = ['offensifs', 'deffensifs', 'rondos', 'physiques', 'tactiques
 export default {
     head(){
         return{
-            title:'Exercices de soccer | ESsoccercoach',
+            title:'Exercices de soccer ' + this.categorie.label + ' | ESsoccercoach',
             meta:[
                 {
                     hid:'description',
@@ -54,7 +54,8 @@ export default {
         return {
             showMoreResults:true,
             categorie:undefined,
-            loading:true
+            loading:true,
+            exercices:[]
         }
     },
     computed:{
@@ -72,6 +73,21 @@ export default {
         }
     },
     mounted(){
+    },
+    async fetch() {
+        try{
+            
+            console.log('fetch ' + this.$route.params.categorie)
+            //récupérer les exercices par catégorie
+            const category = this.$route.params.categorie.substring(0, this.$route.params.categorie.length - 1);
+            const response = await this.$axios.$get(`exercices/category/${category}`)
+            
+            console.log(response)
+
+            this.exercices.push(response.exercices)
+        }catch(err){
+            console.log(err);
+        }
     }
 }
 </script>

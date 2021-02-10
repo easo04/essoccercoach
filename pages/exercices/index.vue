@@ -154,23 +154,15 @@ export default {
     mounted(){
         
     },
-    activated() {
-        console.log('timestamp fetch' + this.$fetchState.timestamp )
-        // appeller fetch de nouveau si le dernier appel date de plus de 30 secondes
-        if (this.$fetchState.timestamp <= Date.now() - 30000) {
-            this.$fetch()
-        }
-    },
     async fetch() {
         console.log('fetch')
         try{
-            const response = await this.$fire.firestore.collection('populaires').get();
+            
+            const response = await this.$axios.$get('exercices')
+            
+            console.log(response)
 
-            response.docs.forEach(doc => {
-                let data = doc.data();
-                data.id = doc.id;
-                this.exercices.push(data);
-            });
+            this.exercices.push(response.exercices)
         }catch(err){
             console.log(err);
         }

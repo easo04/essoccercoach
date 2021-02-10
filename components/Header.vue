@@ -7,19 +7,16 @@
             </div>
             <div class="menu-desktop">
                 <ul>
-                    <li>Accueil</li>
-                    <li>Nos outils</li>
-                    <li>À propos</li>
-                    <li @click="showExercicesOptions()" v-if="!showSelectExercices">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="#nosOutils">Nos outils</a></li>
+                    <li><a href="#propos">À propos</a></li>
+                    <li @click="showExercicesOptions()">
                         Exercices <font-awesome-icon :icon="['fas', 'sort-down']"/>
-                    </li>
-                    <li @click="showExercicesOptions()" v-if="showSelectExercices">
-                        Exercices <font-awesome-icon :icon="['fas', 'smile']"/>
                     </li>
                 </ul>
                 <div class="select-list" v-if="showSelectExercices">
-                    <div class="item" v-for="(item, i) in lstCategoriesExercices" :key="i">
-                        {{item}}
+                    <div class="item" v-for="(item, i) in categories" :key="i" @click="goToCatgory(item.name)">
+                        {{item.label}}
                     </div>
                 </div>
             </div>
@@ -86,14 +83,17 @@
     </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 export default {
     data(){
         return{
             showNewActions:false,
             currentItemMenu:'accueil',
             showSelectExercices:false,
-            lstCategoriesExercices:['Tous', 'Rondos', 'Offensifs', 'Défensifs', 'Physiques', 'Tactiques', 'Gardiens']
         }
+    },
+    computed:{
+        ...mapState(['modePresentation', 'categories'])
     },
     methods:{
         setCurrentItemMenu(item){
@@ -114,9 +114,14 @@ export default {
         goToCreateAlignements(){
             this.$router.push({path: '/create-alignement'});  
         },
+        goToCatgory(item){
+            this.showSelectExercices = false;
+            if(item === 'populaires'){
+                this.$router.push({path: `/exercices`});
+            }else{
+                this.$router.push({path: `/exercices/categorie/${item}`});
+            }
+        }
     }
 }
 </script>
-<style lang="scss" scoped>
-    //@import '@/assets/css/components/header.scss';
-</style>

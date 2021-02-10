@@ -67,7 +67,10 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    //baseURL: 'https://essoccercoach-api.herokuapp.com/api/',
+    baseURL: 'http://localhost:4000/api/'
+  },
 
   //Firebase module configuration
   firebase:{
@@ -86,6 +89,13 @@ export default {
       firestore: true,
       storage: true,
     }
+  },
+
+  
+  loading: {
+    color: '#28ABB9',
+    height: '5px',
+    continuous:true
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

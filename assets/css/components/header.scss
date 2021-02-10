@@ -25,12 +25,16 @@
                     display: inline;
                     margin-right: 16px;
                     cursor: pointer;
+                    a{
+                        text-decoration: none;
+                        color:$color-black-fonts-second;
+                    }
                 }
             }
             .select-list{
                 position: absolute;
-                bottom: -249px;
-                right: 75px;
+                bottom: -239px;
+                right: 90px;
                 background-color: #FBFBFB;
                 border-radius: 5px;
                 color:#858585;
@@ -42,6 +46,7 @@
                     &:hover{
                         background-color: #D4EEF1;
                     }
+                    font-size: 0.9em;
                 }
             }
         }
