@@ -1,38 +1,75 @@
 footer{
     height: auto;
-    background-color: $color-soccer-coach;
+    background-color: #18676F;
     position: relative;
     .content-footer{
-        padding: 20px 100px;
-        color:$color-black-fonts;
+        padding: 50px 100px 10px 100px;
+        color:$color-white-fonts;
         display: flex;
         flex-wrap: wrap;
-        .mail{
-            width: 50%;
-            h3{
+        .liste-services{
+            width: 70%;
+            display: flex;
+            h4{
                 margin: 0;
                 line-height: normal;
                 margin-bottom: 10px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                margin-bottom: 16px;
             }
-            .fa-envelope{
-                margin-right: 10px;
+
+            >div{
+                margin-right: 80px;
+                .liste{
+                    a{
+                        display: block;
+                        @include font-m;
+                        font-family: $font-family-text;
+                        cursor: pointer;
+                        margin-bottom: 10px;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
-            .mailto{
-                @include font-m;
-                margin: 0;
-                font-family: Open Sans;
-                color:$color-black-fonts;
-                text-decoration: none;
+
+            .contact{
+                
+                .fa-envelope{
+                    margin-right: 10px;
+                }
+                .mailto{
+                    @include font-m;
+                    margin: 0;
+                    font-family: Open Sans;
+                    color:$color-white-fonts;
+                    text-decoration: none;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
             }
         }
         .reseaux{
-            width: 50%;
+            width: 30%;
             font-size: 24px;
             display: flex;
             justify-content: flex-end;
-            align-items: center;
+            
+            .img{
+                margin-bottom: 10px;
+                img{
+                    height: 150px;
+                    width: 100px;
+                }
+            }
             .liste-reseaux{
+                display: flex;
+                justify-content: center;
                 a{
+                    cursor: pointer;
                     &:not(:first-child){
                         margin-left: 10px;
                     }
@@ -53,6 +90,33 @@ footer{
         }
 
     }
+    .infolettre{
+        @include font-xm-bold;
+        color:$color-white-fonts;
+        font-family: $font-family-text;
+        padding: 20px 100px 20px 100px;
+        display: flex;
+        justify-content: center;
+        p{
+            margin-bottom: 0;
+        }
+
+        .email-send{
+            .form-control{
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+                border-right-color: transparent;
+                @include font-xm;
+            }
+
+            .btn-default{
+                border-top-left-radius: 0 !important;
+                border-bottom-left-radius: 0 !important;
+                height: 50px;
+                margin-top: 16px;
+            }
+        }
+    }
     .copyrigth-footer{
         font-family: Open Sans;
         width: 100%;
@@ -60,9 +124,13 @@ footer{
         height: 40px;
         color: $color-white-fonts;
         text-align: center;
-        @include font-s;
+        @include font-xm;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
+        padding-bottom: 20px;
+        span{
+            margin-right: 100px;
+        }
     }
 }
