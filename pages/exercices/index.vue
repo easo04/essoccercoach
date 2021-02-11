@@ -158,7 +158,7 @@ export default {
         console.log('fetch')
         try{
             
-            const response = await this.$axios.$get('exercices')
+            const response = await this.$axios.$get('/api/exercices')
             
             console.log(response)
 

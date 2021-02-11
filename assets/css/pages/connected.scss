@@ -1,0 +1,131 @@
+.connect-page{
+    position: relative;
+    background-color: $color-white-background;
+    min-height: 100vh;
+    .header{
+        height: 60px;
+        border-bottom: 1px solid $color-border-designer;
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        grid-gap: 10px;
+        position: fixed;
+        top:0;
+        width: 100%;
+        z-index: 900;
+        background-color: $color-white-background;
+        .logo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            width: 70px;
+            border-right: 1px solid $color-border-designer;
+            .image-logo{
+                height: 50px;
+            }
+        }
+        .options{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 25px;
+            color:$color-soccer-coach;
+            cursor: pointer;
+            position: relative;
+            .profil{
+                display: flex;
+                align-items: center;
+                .welcome{
+                    margin-right: 14px;
+                }
+            }
+            .welcome{
+                @include font-xm-sbold;
+                font-family: $font-family-text;
+                color:$color-blue-blackground;
+            }
+            .liste-profil{
+                position: absolute;
+                bottom:-105px;
+                background-color: #FBFBFB;
+                border-radius: 5px;
+                color:$color-black-fonts;
+                border:1px solid rgba(201, 201, 201, 0.5);
+                padding: 10px;
+                width: 180px;
+                .options-profil{ 
+                    @include font-xm-sbold;
+                    font-family: $font-family-text;
+                    margin-top: 14px;
+                    color:$color-black-fonts-second;
+                    .label-icon{
+                        margin-left: 10px;
+                    }
+                    .logout{
+                        color:$color-red;
+                        margin-top: 14px;
+                        border-top:1px solid $color-border-designer;
+                        padding-top: 5px;
+                    }
+                }
+                h4{
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .menu-left{
+        position: fixed;
+        left:0;
+        border-right: 1px solid $color-border-designer;
+        width: 70px;
+        height: 100%;
+        background-color: $color-white-background;     
+        z-index: 900;
+        margin-top: 1px;
+        >div{
+            cursor: pointer;
+            height: auto;
+            color: $color-icons-designer;
+            padding: 10px;
+            &.active{
+                //background-color: #A9DDE3;
+                color:#18676F;
+            }
+            >div{
+                width: 100%;
+                @include font-s-sbold;
+                text-align: center;
+                font-family: $font-family-text;
+                img{
+                    width: 100%;
+                }
+                .icon-svg{
+                    font-size: 28px; 
+                }
+            }
+        }
+    }
+    .content{
+        min-height: 100vh;
+        margin-top: 60px;
+        margin-left: 70px;
+        .contenu{
+            padding: 20px;
+            background-color: $color-blue-blackground-clair;
+            min-height: 100vh;
+            .nuxt-content{
+                box-shadow: 2px 2px 10px 1px rgba(201, 201, 201, 0.4);
+                border-radius: 3px;
+                min-height: 100vh;
+                width: 100%;
+                background-color: $color-white-background;
+                h2{
+                    margin: 0;
+                    padding: 20px;
+                }
+            }
+        }
+    }
+}

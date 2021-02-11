@@ -46,6 +46,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/firebase',
+    '@nuxtjs/auth-next',
     [
       'nuxt-fontawesome', {
       imports: [
@@ -69,7 +70,17 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     //baseURL: 'https://essoccercoach-api.herokuapp.com/api/',
-    baseURL: 'http://localhost:4000/api/'
+    //baseURL: 'http://localhost:4000/api/',
+    headers: {
+      common: {
+        'Accept': 'application/json, text/plain, */*'
+      }
+    },
+    proxy:true
+  },
+
+  proxy:{
+      '/api/': { target: 'http://localhost:4000/api', pathRewrite: {'^/api/': ''}, changeOrigin: true}
   },
 
   //Firebase module configuration
@@ -88,6 +99,29 @@ export default {
       auth: true,
       firestore: true,
       storage: true,
+    }
+  },
+
+  auth:{
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+        },
+        user: {
+          property: 'user',
+        },
+        endpoints: {
+          login: { url: '/api/users/login', method: 'post'},
+          logout: { url: '/api/users/logout', method: 'delete'},
+          user: false
+        }
+      }
     }
   },
 

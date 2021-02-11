@@ -1,0 +1,19 @@
+.login-page{
+    h3{
+        color:$color-black-fonts;
+        margin-top: 0;
+    }
+    padding: 50px 480px;
+
+    .form-content{
+        background-color: $color-blue-blackground-clair;
+        padding: 20px;
+        border-radius: 5px;
+        .actions{
+            margin-top: 16px;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+    }
+}

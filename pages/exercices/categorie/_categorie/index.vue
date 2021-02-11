@@ -78,9 +78,10 @@ export default {
         try{
             
             console.log('fetch ' + this.$route.params.categorie)
+            
             //récupérer les exercices par catégorie
             const category = this.$route.params.categorie.substring(0, this.$route.params.categorie.length - 1);
-            const response = await this.$axios.$get(`exercices/category/${category}`)
+            const response = await this.$axios.$get(`/api/exercices/category/${category}`)
             
             console.log(response)
 
