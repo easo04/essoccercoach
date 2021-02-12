@@ -93,6 +93,10 @@
                 //background-color: #A9DDE3;
                 color:#18676F;
             }
+            &.deactivate{
+                color: $color-gris-1;
+                cursor: auto;
+            }
             >div{
                 width: 100%;
                 @include font-s-sbold;
@@ -123,7 +127,8 @@
                 background-color: $color-white-background;
                 h2{
                     margin: 0;
-                    padding: 20px;
+                    @include h2;
+                    color:$color-black-fonts;
                 }
             }
         }

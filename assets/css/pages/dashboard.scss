@@ -1,0 +1,56 @@
+.dashboard{
+    padding: 20px;
+    p{
+        @include font-m;
+        color:$color-black-fonts-second;
+        font-family: $font-family-text;
+    }
+    a{
+        text-decoration: none;
+        @include font-xm;
+        color:$color-black-fonts-second;
+        font-family: $font-family-text;
+    }
+    .actions-section{
+        margin-top: 50px;
+        display: flex;
+        .form-group .form-control{
+            margin-bottom: 0;
+        }
+        .btn-add{
+            margin-left: 20px;
+            display: flex;
+            align-items: flex-end;
+            .btn-default{
+                height: 50px;
+            }
+        }
+    }
+    .exercices{
+        margin-top: 50px;
+        .vide{
+            @include font-m;
+            font-family: $font-family-text;
+            color:$color-black-fonts-second;
+        }
+    }
+    .form-content{
+        margin-top: 50px;
+        padding: 0px 300px;
+        .image-upload{
+            @include image-upload;
+            svg{
+                margin-right: 5px;
+            }
+        }
+        .actions{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .form-control-textarea{
+            margin-bottom: 16px;
+        }
+    }
+}

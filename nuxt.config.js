@@ -104,9 +104,9 @@ export default {
 
   auth:{
     redirect: {
-      login: '/login',
+      login: '/dashboard',
       logout: '/login',
-      home: '/'
+      home: '/dashboard'
     },
     strategies: {
       local: {

@@ -28,7 +28,7 @@
                     <div>Exercices</div>
                 </div>
             </div>
-            <div>
+            <div class="deactivate">
                 <div>
                     <div class="icon-svg">
                         <svg class="icon-stroke">
@@ -38,7 +38,7 @@
                     <div>Séances</div>
                 </div>
             </div>
-            <div>
+            <div class="deactivate">
                 <div>
                     <div class="icon-svg">
                         <svg class="icon-stroke">
@@ -81,7 +81,7 @@ export default {
         logout(){
             this.$auth.logout();
             localStorage.removeItem('user');
-            this.$router.push("/login");
+            //this.$router.push("/login");
         }
     },
     mounted(){
@@ -90,7 +90,11 @@ export default {
         const user = JSON.parse(localStorage.getItem('user'));
         if(user){
             this.$auth.setUser(user);
+            console.log(this.$auth.user)
         }
+    },
+    beforeDestroy(){
+        //localStorage.removeItem('user')
     }
 }
 </script>
