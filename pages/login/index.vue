@@ -40,8 +40,6 @@ export default {
                 localStorage.setItem('user', userParsed);
 
                 this.$auth.setUser(response.data.user);
-                
-                //this.$router.push("/dashboard");
             }catch(err){
                 console.log('error' + err)
             }

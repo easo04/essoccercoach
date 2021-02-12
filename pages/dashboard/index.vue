@@ -25,7 +25,7 @@
 <script>
 import {mapState} from 'vuex';
 export default {
-    middleware: 'auth',
+    middleware: 'authentificated',
     layout:'connected',
     computed: {
         ...mapState(["auth", "categories"])

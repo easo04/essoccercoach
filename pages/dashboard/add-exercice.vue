@@ -45,7 +45,7 @@
 </template>
 <script>
 export default {
-    middleware: 'auth',
+    middleware: 'authentificated',
     layout:'connected',
     data(){
         return{
@@ -82,7 +82,7 @@ export default {
             }
         },
         save(){
-            
+
         }
     }
 }

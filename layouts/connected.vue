@@ -81,8 +81,10 @@ export default {
         logout(){
             this.$auth.logout();
             localStorage.removeItem('user');
-            //this.$router.push("/login");
         }
+    },
+    created(){
+
     },
     mounted(){
         console.log(this.$auth.user)
