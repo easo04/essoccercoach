@@ -21,9 +21,7 @@
             <div class="active">
                 <div>
                     <div class="icon-svg">
-                        <svg class="icon-stroke">
-                            <use href="@/assets/images/icons/icons.svg#terrain"/>
-                        </svg>
+                        <font-awesome-icon :icon="['fas', 'futbol']"/>
                     </div>
                     <div>Exercices</div>
                 </div>
@@ -31,9 +29,7 @@
             <div class="deactivate">
                 <div>
                     <div class="icon-svg">
-                        <svg class="icon-stroke">
-                            <use href="@/assets/images/icons/icons.svg#terrain"/>
-                        </svg>
+                        <font-awesome-icon :icon="['fas', 'clipboard']"/>
                     </div>
                     <div>Séances</div>
                 </div>
@@ -41,9 +37,7 @@
             <div class="deactivate">
                 <div>
                     <div class="icon-svg">
-                        <svg class="icon-stroke">
-                            <use href="@/assets/images/icons/icons.svg#terrain"/>
-                        </svg>
+                        <font-awesome-icon :icon="['fas', 'users']"/>
                     </div>
                     <div>Équipes</div>
                 </div>
@@ -52,7 +46,7 @@
         <div class="content">
             <div class="contenu">
                 <div class="nuxt-content">
-                    <nuxt keep-alive/>
+                    <nuxt/>
                 </div>
             </div>
         </div>

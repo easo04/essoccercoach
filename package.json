@@ -16,6 +16,7 @@
     "@nuxtjs/auth-next": "5.0.0-1612791489.a5d8c28",
     "@nuxtjs/axios": "^5.12.4",
     "@nuxtjs/firebase": "^7.4.1",
+    "cloudinary-vue": "^1.1.2",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "firebase": "^8.2.5",

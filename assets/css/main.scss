@@ -56,6 +56,16 @@ h4{
     }
 }
 
+.errors{
+    margin-top: 10px;
+    color:$color-red;
+    @include font-xm;
+    font-family: $font-family-text;
+    >div{
+        margin-bottom: 10px;
+    }
+}
+
 //librairies
 @import '@/assets/css/librairies/flickity.scss';
 @import '@/assets/css/librairies/drag.scss';

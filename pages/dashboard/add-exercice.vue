@@ -4,15 +4,15 @@
         <h2>Ajoutez un exercice</h2>
         <div class="form-content">
             <div class="form-group">
-                <label class="label-control" for="addText">Thème (Obligatoire): </label>
-                <input type="text" name="addText" class="form-control" v-model="exercice.theme"/>
+                <label class="label-control" for="theme">Thème (Obligatoire): </label>
+                <input type="text" name="theme" class="form-control" v-model="exercice.theme"/>
             </div>
             <div class="form-group">
-                <label class="label-control" for="addText">Nombre de joueurs: </label>
-                <input type="number" name="addText" class="form-control" v-model="exercice.players" />
+                <label class="label-control" for="nbPlayers">Nombre de joueurs: </label>
+                <input type="number" name="nbPlayers" class="form-control" v-model="exercice.players" />
             </div>
             <div class="form-group">
-                <label class="label-control" for="category">Filtrer par catégorie: </label>
+                <label class="label-control" for="category">Catégorie (Obligatoire): </label>
                 <select name="category" class="form-control" v-model="exercice.category">
                     <option v-for="(cat, index) in categoriesExercice" :key="index">
                         {{cat.label}}
@@ -20,16 +20,16 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="label-control" for="addText">Description (Obligatoire): </label>
-                <textarea  rows="4" cols="50"  autocomplete="off" name="addText" class="form-control-textarea" v-model="exercice.description"></textarea>
+                <label class="label-control" for="description">Description (Obligatoire): </label>
+                <textarea  rows="4" cols="50"  autocomplete="off" name="description" class="form-control-textarea" v-model="exercice.description"></textarea>
             </div>
             <div class="form-group">
-                <label class="label-control" for="addText">Disposition (Obligatoire): </label>
-                <textarea  rows="4" cols="50"  autocomplete="off" name="addText" class="form-control-textarea" v-model="exercice.disposition"></textarea>
+                <label class="label-control" for="dispo">Disposition: </label>
+                <textarea  rows="4" cols="50"  autocomplete="off" name="dispo" class="form-control-textarea" v-model="exercice.disposition"></textarea>
             </div>
             <div class="form-group">
-                <label class="label-control" for="addText">Objectifs (Obligatoire): </label>
-                <textarea  rows="4" cols="50"  autocomplete="off" name="addText" class="form-control-textarea" v-model="exercice.objectif"></textarea>
+                <label class="label-control" for="obj">Objectifs: </label>
+                <textarea  rows="4" cols="50"  autocomplete="off" name="obj" class="form-control-textarea" v-model="exercice.objectifs"></textarea>
             </div>
             <div class="form-group">
                 <div class="image-upload" :class="{'with-image' : fileName !== undefined}">
@@ -68,7 +68,8 @@ export default {
     },
     methods:{
         isBtnSaveDisabled(){
-            return true;
+            return !this.exercice.theme && !this.exercice.description 
+            && !this.exercice.category && !this.exercice.image;
         },
         readFile: function(event) {
             let files = event.target.files;
@@ -81,8 +82,34 @@ export default {
                 FR.readAsDataURL(files[0]);
             }
         },
-        save(){
+        async save(){
 
+            //save the image
+
+            let categoryNameDb = this.categoriesExercice.find(c=>c.label === this.exercice.category).name;
+            categoryNameDb = categoryNameDb.substring(0, categoryNameDb.length - 1);
+
+            //save the exercice
+            const data = {
+                title : this.exercice.theme,
+                description : this.exercice.description,
+                disposition : this.exercice.disposition,
+                objectifs : this.exercice.objectifs,
+                nbPlayers : this.exercice.players,
+                category : categoryNameDb,
+                popular : false,
+                image_url : 'https://res.cloudinary.com/dgtvlmmxg/image/upload/v1612800601/exercices/1601074656125_rx6grl.png',
+                image_id : '1601074656125_rx6grl',
+            };
+
+            try{
+                const response = await this.$axios.$post('/api/exercices',  data);
+                console.log(response)
+                this.$router.push('/dashboard');
+            }catch(err){
+                const error = err.response.data;
+                console.log(error)
+            }
         }
     }
 }
