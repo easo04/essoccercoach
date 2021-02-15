@@ -10,7 +10,7 @@
                     <span class="lien-categorie"> Exercices / Populaires</span>
                 </div>
                 <div class="liste-exercices">
-                    <div class="item-exercice" v-for="(exercice, index) in exercices" :key="index" @click="goToDetails(exercice.id)">
+                    <div class="item-exercice" v-for="(exercice, index) in exercices" :key="index" @click="goToDetails(exercice)">
                         <div class="img">
                             <img src="@/assets/images/exercice_essoccercoach.png"/>
                         </div>
@@ -68,8 +68,9 @@ export default {
             }
             return description;
         },
-        goToDetails(id){
-            this.$router.push({path:`/exercices/${id}`})
+        goToDetails(exercice){
+            let titleFormatted = exercice.title.toLowerCase().split(' ').join('-');
+            this.$router.push({path:`/exercices/${exercice.id}-${titleFormatted}`})
         },
     },
     created(){

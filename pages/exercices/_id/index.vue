@@ -20,8 +20,12 @@ export default {
     async fetch() {
         try{
             
+            //split de string param
+            const param = this.$route.params.id.split('-');
+            const id = param[0];
+
             //récupérer les exercices par catégorie
-            const response = await this.$axios.$get(`/api/exercices/${this.$route.params.id}`);
+            const response = await this.$axios.$get(`/api/exercices/${id}`);
             console.log(response.exercice)
             this.exercice = response.exercice;
         }catch(err){
