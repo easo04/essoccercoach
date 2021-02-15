@@ -33,6 +33,9 @@
             font-family: $font-family-text;
             color:$color-black-fonts-second;
         }
+        .nbExercices{
+            @include font-xm-sbold;
+        }
         .liste-exercices{
             margin-top: 30px;
             display: grid;
@@ -44,11 +47,12 @@
             }
             .item-exercice{
                 width: 273px;
-                height: 340px;
+                //height: 340px;
+                height: 380px;
                 background: $color-white-background;
                 box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
                 border-radius: 5px;
-                cursor: pointer;
+                position: relative;
                 @media screen and (max-width: $screen-sm) {
                     width: 100%;
                     height: 320px;;
@@ -64,12 +68,24 @@
                 .img{
                     width: 100%;
                     height: 200px;
+                    position: relative;
                     img{
                         border-top-left-radius: 5px;
                         border-top-right-radius: 5px;
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
+                    }
+                    .populaire{
+                        color:$color-yellow;
+                        position: absolute;
+                        bottom:0;
+                        right: 0;
+                        @include font-s-sbold;
+                        font-family: $font-family-text;
+                        background-color: rgba($color: $color-yellow, $alpha: 0.3);
+                        padding: 5px;
+                        border-top-left-radius: 5px;
                     }
                 }
                 .description{
@@ -115,6 +131,35 @@
                         }
                     }
                 }
+                .delete{
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    color: $color-black-fonts;
+                    z-index: 500;
+                    cursor: pointer;
+                }
+                .actions{
+                    border-top: 1px solid $color-border-designer;
+                    padding: 5px;
+                    .btn{
+                        width: 100%;
+                    }
+                    .consulter{
+                        border-color: #2260C7;
+                        color:#2260C7;
+                        &:hover{
+                            background-color: #2260C7;
+                        }
+                    }
+                    .modify{
+                        border-color: #22C77B;
+                        color:#22C77B;
+                        &:hover{
+                            background-color: #22C77B;
+                        }
+                    }
+                }
             }
         }
     }
@@ -135,6 +180,33 @@
         }
         .form-control-textarea{
             margin-bottom: 16px;
+        }
+    }
+    .actions-details{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 20px;
+        .actions2{
+            display: flex;
+            justify-content: flex-end;
+            align-content: center;
+            .btns{
+                display: flex;
+                >div{
+                    &:not(:last-child){    
+                        margin-right: 20px;
+                    }
+                    cursor: pointer;
+                    color:$color-icons-designer;
+                    font-size: 1.5em;
+                    &:hover{
+                        color:$color-black-fonts;
+                    }
+                }
+                .is-popular{
+                    color:$color-yellow;
+                }
+            }
         }
     }
 }

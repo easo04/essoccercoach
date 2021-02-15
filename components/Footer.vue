@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="copyrigth-footer">
-            <span>© Copyrigth ESsoccerCoach 2021</span>
+            <span>© Copyrigth ESsoccercoach 2021</span>
         </div>
     </footer>
 </template>

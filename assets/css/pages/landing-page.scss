@@ -385,7 +385,7 @@
         height: auto;
         padding: 200px 200px;
         text-align: center;
-        background-color: $color-blue-blackground;
+        background-color: black;
         position: relative;
 
         @media screen and (max-width: $screen-sm) {
@@ -435,7 +435,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            opacity: 0.1;
+            opacity: 0.6;
             background-image: url('../../assets/images/soccer3.jpg'); 
             background-repeat: no-repeat;
             background-position: 50% 0;

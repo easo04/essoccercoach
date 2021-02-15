@@ -75,18 +75,16 @@ export default {
         logout(){
             this.$auth.logout();
             localStorage.removeItem('user');
+            localStorage.removeItem('exercices');
         }
     },
     created(){
 
     },
     mounted(){
-        console.log(this.$auth.user)
-
         const user = JSON.parse(localStorage.getItem('user'));
         if(user){
             this.$auth.setUser(user);
-            console.log(this.$auth.user)
         }
     },
     beforeDestroy(){

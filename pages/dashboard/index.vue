@@ -21,66 +21,95 @@
             </div>
         </div>
         <div class="exercices">
-            <div class="vide" v-if="exercices.length === 0"> Aucun exercie</div>
-            <div class="liste-exercices" v-else>
+            <div class="vide" v-if="exerciceByFilter.length === 0"> Aucun exercie</div>
+            <p class="nbExercices" v-else>Nombre d'exercices: {{exerciceByFilter.length}}</p>
+            <div class="liste-exercices">
                 <div class="item-exercice" v-for="(exercice, index) in exerciceByFilter" :key="index">
                     <div class="img">
                         <img src="@/assets/images/exercice_essoccercoach.png"/>
                         <!--<img :src="exercice.image_url"/>-->
+                        <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
                     </div>
                     <div class="description">
                         <h4>{{exercice.title}}</h4>
-                        <p>{{exercice.description}}</p>
+                        <p>{{getDescriptionFormatted(exercice.description)}}</p>
                         <div class="footer-description">
                             <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.nbPlayers}}</span></span></div>
                             <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
                         </div>
                     </div>
+                    <div class="actions">
+                        <button class="btn btn-default-ghost" @click="goToExercice(exercice)">Consulter</button>
+                    </div>
+                    <div class="delete" title="Supprimez l'exercice" @click="deleteExercice(exercice.id, exercice.title, index)"><font-awesome-icon :icon="['fas', 'trash']"/></div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
+import DeleteExerciceModalVue from '../../components/modals/DeleteExerciceModal.vue';
 export default {
     middleware: 'authentificated',
     layout:'connected',
     computed: {
-        ...mapState(["auth", "categories"])
+        ...mapState(["auth", "categories", "exercices"])
     },
     data(){
         return{
-            exercices:[],
             category:'Tous',
             exerciceByFilter:[]
         }
     },
     methods:{
         async getAllExercices(){
-            let response = await this.$axios.$get('/api/exercices');
-            this.exerciceByFilter = this.exercices = response.exercices;
+            const exercicesLocal = JSON.parse(localStorage.getItem('exercices'));
+            if(!exercicesLocal){
+                let response = await this.$axios.$get('/api/exercices');
+                this.setListExercices(response.exercices);
+                this.exerciceByFilter = this.exercices;
+
+                //save exercices in localstorage
+                const exercicesParsed = JSON.stringify(response.exercices);
+                localStorage.setItem('exercices', exercicesParsed);
+            }else{
+                this.setListExercices(exercicesLocal);
+                this.exerciceByFilter = this.exercices;
+            }
         },
         getCategoryFormatted(category){
             return this.$store.state.categories.find(c=>c.name === category + 's').label;
         },
+        getDescriptionFormatted(description){
+            if(description.length > 50){    
+                return description.substring(0, 50) + '...';
+            }
+            return description;
+        },
         filterByCategory(){
             if(this.category === 'Tous'){
-                this.exercicesByFilter = this.exercices;
+                this.exerciceByFilter = this.exercices;
             }else{
-                this.exercicesByFilter = [];
-                console.log(this.exercices.filter(e=> this.getCategoryFormatted(e.category) === this.category))
-                const exercices = this.exercices.filter(e=> this.getCategoryFormatted(e.category) === this.category);
-                Array.prototype.push.apply(this.exercicesByFilter, exercices);
-
-                exercices.forEach(exe =>{
-                    this.exercicesByFilter.push(exe)
-                });
+                this.exerciceByFilter = [];
+                this.exerciceByFilter = this.exercices.filter(e=> this.getCategoryFormatted(e.category) === this.category);
             }
         },
         createExercice(){
             this.$router.push({path: '/dashboard/add-exercice'});  
-        }
+        },
+        deleteExercice(id, title, index){
+            this.$modal.show(
+                DeleteExerciceModalVue,
+                { idExercice:id, title:title, index:index},
+                {name : 'delete-exercice-modal', classes:['modal-s']},
+                {}
+            );
+        },
+        goToExercice(exercice){
+            this.$router.push({path:`/dashboard/details-exercice/${exercice.id}`})
+        },
+        ...mapMutations({setListExercices:'setListExercices'})
     },
     mounted(){
 

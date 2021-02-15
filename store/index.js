@@ -10,7 +10,8 @@ export const state = () => ({
   {label:'Rondos', name:'rondos'},
   {label:'Physiques', name:'physiques'},
   {label:'Tactiques', name:'tactiques'},
-  {label:'Gardiens', name:'gardiens'}]
+  {label:'Gardiens', name:'gardiens'}],
+  exercices:[]
 })
 
 export const mutations = {
@@ -28,5 +29,14 @@ export const mutations = {
   },
   setCategorie(state, newValue){
     state.categorie = newValue;
+  },
+  setListExercices(state, newValue){
+    state.exercices = newValue;
+  },
+  addExercice(state, exercice){
+    state.exercices.push(exercice);
+  },
+  removeExercice(state, index){
+    state.exercices.splice(index, 1);
   }
 }
