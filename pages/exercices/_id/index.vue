@@ -1,10 +1,10 @@
 <template>
     <div class="exercices-publiques-detail">
-        <div class="details-exercice" v-if="loading">
+        <div class="details-exercice" v-if="$fetchState.pending">
             <SqueletDetailsExercice/>
         </div>
         <div v-else>
-            <DetailsExercice :exercice="exercice" v-if="exercice.id"/>
+            <DetailsExercice :exercice="exercice"/>
         </div>
     </div>
 </template>
@@ -13,12 +13,20 @@ export default {
     data(){
         return{
             exercice:{},
-            loading:false
-
         }
     },
     mounted(){
-        console.log(this.$route.params.id);
+    },
+    async fetch() {
+        try{
+            
+            //récupérer les exercices par catégorie
+            const response = await this.$axios.$get(`/api/exercices/${this.$route.params.id}`);
+            console.log(response.exercice)
+            this.exercice = response.exercice;
+        }catch(err){
+            console.log(err);
+        }
     }
 }
 </script>

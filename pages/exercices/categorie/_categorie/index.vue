@@ -10,7 +10,7 @@
                     <span class="lien-categorie"> Exercices / {{categorie.label}}</span>
                 </div>
                 <div class="liste-exercices">
-                    <div class="item-exercice" v-for="(exercice, index) in exercices" :key="index">
+                    <div class="item-exercice" v-for="(exercice, index) in exercices" :key="index" @click="goToDetails(exercice.id)">
                         <div class="img">
                             <img src="@/assets/images/exercice_essoccercoach.png"/>
                             <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
@@ -68,6 +68,9 @@ export default {
                 return description.substring(0, 50) + '...';
             }
             return description;
+        },
+        goToDetails(id){
+            this.$router.push({path:`/exercices/${id}`})
         },
         ...mapMutations({setCategorie:'setCategorie'})
     },
