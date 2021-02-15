@@ -4,7 +4,7 @@
             <SqueletDetailsExercice/>
         </div>
         <div v-else>
-            <DetailsExercice :exercice="exercice"/>
+            <DetailsExercice :exercice="exercice" :exercices-same-category="exercicesSameCaetegory"/>
         </div>
     </div>
 </template>
@@ -13,6 +13,7 @@ export default {
     data(){
         return{
             exercice:{},
+            exercicesSameCaetegory:[]
         }
     },
     mounted(){
@@ -25,9 +26,15 @@ export default {
             const id = param[0];
 
             //récupérer les exercices par catégorie
-            const response = await this.$axios.$get(`/api/exercices/${id}`);
-            console.log(response.exercice)
+            let response = await this.$axios.$get(`/api/exercices/${id}`);
             this.exercice = response.exercice;
+
+            const data = {
+                category:this.exercice.category,
+                id:this.exercice.id
+            };
+            let responseSame = await this.$axios.$post(`/api/exercices/same-category`, data);
+            this.exercicesSameCaetegory = responseSame.exercices;
         }catch(err){
             console.log(err);
         }

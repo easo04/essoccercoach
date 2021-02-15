@@ -34,36 +34,12 @@
             <div class="carousel exercices-carrousel">
                 <div class="content-exercices">
                     <div class="exercices">
-                        <div class="carousel-cell exercice-item">
+                        <div class="carousel-cell exercice-item" v-for="(exe, index) in exercicesSameCategory" :key="index">
                             <div class="image-exercice-item">
                                 <img src="@/assets/images/exercice_essoccercoach.png"/>
                             </div>
                             <div class="description-exercice-item">
-                            <h4>Description exercice</h4>
-                            </div>
-                        </div>
-                        <div class="carousel-cell exercice-item">
-                            <div class="image-exercice-item">
-                                <img src="@/assets/images/exercice_essoccercoach.png"/>
-                            </div>
-                            <div class="description-exercice-item">
-                            <h4>Description exercice</h4>
-                            </div>
-                        </div>
-                        <div class="carousel-cell exercice-item">
-                            <div class="image-exercice-item">
-                                <img src="@/assets/images/exercice_essoccercoach.png"/>
-                            </div>
-                            <div class="description-exercice-item">
-                            <h4>Description exercice</h4>
-                            </div>
-                        </div>
-                            <div class="carousel-cell exercice-item">
-                            <div class="image-exercice-item">
-                                <img src="@/assets/images/exercice_essoccercoach.png"/>
-                            </div>
-                            <div class="description-exercice-item">
-                            <h4>Description exercice</h4>
+                                <h4>{{exe.title}}</h4>
                             </div>
                         </div>
                     </div>
@@ -74,7 +50,7 @@
 </template>
 <script>
 export default {
-    props:['exercice', 'showSameCategory', 'showCheminExercice'],
+    props:['exercice', 'showSameCategory', 'showCheminExercice', 'exercicesSameCategory'],
     data(){
         return{
             showCategory: this.showSameCategory !== undefined ? this.showSameCategory : true,
