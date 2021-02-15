@@ -78,12 +78,24 @@
                 .img{
                     width: 100%;
                     height: 200px;
+                    position: relative;
                     img{
                         border-top-left-radius: 5px;
                         border-top-right-radius: 5px;
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
+                    }
+                    .populaire{
+                        color:$color-yellow;
+                        position: absolute;
+                        bottom:0;
+                        right: 0;
+                        @include font-s-sbold;
+                        font-family: $font-family-text;
+                        background-color: rgba($color: $color-yellow, $alpha: 0.3);
+                        padding: 5px;
+                        border-top-left-radius: 5px;
                     }
                 }
                 .description{

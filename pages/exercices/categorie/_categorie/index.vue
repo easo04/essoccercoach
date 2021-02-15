@@ -10,16 +10,17 @@
                     <span class="lien-categorie"> Exercices / {{categorie.label}}</span>
                 </div>
                 <div class="liste-exercices">
-                    <div class="item-exercice">
+                    <div class="item-exercice" v-for="(exercice, index) in exercices" :key="index">
                         <div class="img">
                             <img src="@/assets/images/exercice_essoccercoach.png"/>
+                            <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
                         </div>
                         <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
+                            <h4>{{exercice.title}}</h4>
+                            <p>{{getDescriptionFormatted(exercice.description)}}</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.nbPlayers}}</span></span></div>
+                                <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
                             </div>
                         </div>
                     </div>
@@ -34,8 +35,6 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-
-const CATEGORIES = ['offensifs', 'deffensifs', 'rondos', 'physiques', 'tactiques', 'gardiens'];
 
 export default {
     head(){
@@ -54,7 +53,6 @@ export default {
         return {
             showMoreResults:true,
             categorie:undefined,
-            loading:true,
             exercices:[]
         }
     },
@@ -62,6 +60,15 @@ export default {
         ...mapState(['modePresentation', 'categories'])
     },
     methods:{
+        getCategoryFormatted(category){
+            return this.$store.state.categories.find(c=>c.name === category + 's').label;
+        },
+        getDescriptionFormatted(description){
+            if(description.length > 50){    
+                return description.substring(0, 50) + '...';
+            }
+            return description;
+        },
         ...mapMutations({setCategorie:'setCategorie'})
     },
     created(){
@@ -77,15 +84,11 @@ export default {
     async fetch() {
         try{
             
-            console.log('fetch ' + this.$route.params.categorie)
-            
             //récupérer les exercices par catégorie
             const category = this.$route.params.categorie.substring(0, this.$route.params.categorie.length - 1);
-            const response = await this.$axios.$get(`/api/exercices/category/${category}`)
-            
-            console.log(response)
+            const response = await this.$axios.$get(`/api/exercices/category/${category}`);
 
-            this.exercices.push(response.exercices)
+            this.exercices=response.exercices;
         }catch(err){
             console.log(err);
         }

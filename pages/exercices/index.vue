@@ -10,107 +10,16 @@
                     <span class="lien-categorie"> Exercices / Populaires</span>
                 </div>
                 <div class="liste-exercices">
-                    <div class="item-exercice">
+                    <div class="item-exercice" v-for="(exercice, index) in exercices" :key="index">
                         <div class="img">
                             <img src="@/assets/images/exercice_essoccercoach.png"/>
                         </div>
                         <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
+                            <h4>{{exercice.title}}</h4>
+                            <p>{{getDescriptionFormatted(exercice.description)}}</p>
                             <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-exercice">
-                        <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
-                        </div>
-                        <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-exercice">
-                        <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
-                        </div>
-                        <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-exercice">
-                        <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
-                        </div>
-                        <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-exercice">
-                        <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
-                        </div>
-                        <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-exercice">
-                        <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
-                        </div>
-                        <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-exercice">
-                        <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
-                        </div>
-                        <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-exercice">
-                        <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
-                        </div>
-                        <div class="description">
-                            <h4>Rondo 4x4 + J</h4>
-                            <p>Soy un parrafo de ejemplo para hacer un test ...</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>10</span></span></div>
-                                <div class="type"><div>Offensif</div></div>
+                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.nbPlayers}}</span></span></div>
+                                <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
                             </div>
                         </div>
                     </div>
@@ -149,20 +58,26 @@ export default {
     },
     computed:{
     },
+    methods:{
+        getCategoryFormatted(category){
+            return this.$store.state.categories.find(c=>c.name === category + 's').label;
+        },
+        getDescriptionFormatted(description){
+            if(description.length > 50){    
+                return description.substring(0, 50) + '...';
+            }
+            return description;
+        },
+    },
     created(){
     },
     mounted(){
         
     },
     async fetch() {
-        console.log('fetch')
         try{
-            
-            const response = await this.$axios.$get('/api/exercices')
-            
-            console.log(response)
-
-            this.exercices.push(response.exercices)
+            const response = await this.$axios.$get('/api/exercices/populars/get-all');
+            this.exercices = response.exercices;
         }catch(err){
             console.log(err);
         }
