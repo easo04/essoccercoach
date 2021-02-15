@@ -34,7 +34,7 @@
             <div class="carousel exercices-carrousel">
                 <div class="content-exercices">
                     <div class="exercices">
-                        <div class="carousel-cell exercice-item" v-for="(exe, index) in exercicesSameCategory" :key="index">
+                        <div class="carousel-cell exercice-item" v-for="(exe, index) in exercicesSameCategory" :key="index" @click="goToDetails(exercice)">
                             <div class="image-exercice-item">
                                 <img src="@/assets/images/exercice_essoccercoach.png"/>
                             </div>
@@ -60,6 +60,10 @@ export default {
     methods:{
         getCategoryFormatted(category){
             return this.$store.state.categories.find(c=>c.name === category + 's').label;
+        },
+        goToDetails(exercice){
+            let titleFormatted = exercice.title.toLowerCase().split(' ').join('-');
+            this.$router.push({path:`/exercices/${exercice.id}-${titleFormatted}`})
         },
     },
     mounted(){

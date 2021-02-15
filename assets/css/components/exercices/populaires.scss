@@ -77,9 +77,10 @@
                     min-width: 90%;
                 }
 
-                &.hover{
-                    transform: scale(1.2);
-                    transform-origin: top;
+                &:hover{
+                    //transform: scale(1.1);
+                    //transform-origin: top;
+                    box-shadow: 2px 2px 5px 1px rgba(201, 201, 201, 0.8);
                 }
             }
         }    
