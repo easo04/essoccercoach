@@ -2,7 +2,7 @@
     <div class="details-exercice">
         <div class="description-infos">
             <div class="infos">
-                <div>
+                <div class="content-infos">
                     <div class="links-way" v-if="showChemin">
                         <NuxtLink to="/exercices">Exercices</NuxtLink>
                         / <NuxtLink :to="`/exercices/categorie/${exercice.category}s`">{{getCategoryFormatted(exercice.category)}}</NuxtLink> / {{exercice.title}}

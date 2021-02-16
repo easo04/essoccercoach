@@ -1,0 +1,54 @@
+.help-page{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: 80vh;
+    .menu-help{
+        border-right: 1px solid $color-border;
+        padding: 50px 50px 50px 100px;
+        font-family: $font-family-text;
+
+        .item-principal{
+            h4{
+                color: $color-black-fonts-second;
+                font-weight: 400;
+                cursor: pointer;
+                svg{
+                    margin-right: 10px;
+                }
+            }
+            
+            &.active{
+                h4{
+                    font-weight: 800;
+                }
+            }
+
+            &:hover{
+                h4{
+                    color:$color-soccer-coach;
+                }
+            }
+
+            .items-secondaires{
+                padding: 0px 25px;
+                .item{
+                    @include font-xm;
+                    color: $color-black-fonts-second;
+                    padding: 7px;
+                    cursor: pointer;
+                    &.selected{
+                        color:$color-soccer-coach;
+                        background-color: $color-blue-blackground-clair;
+                        border-radius: 5px;
+                    }
+                    &:hover{
+                        color:$color-soccer-coach;
+                    }
+                }
+            }
+        }
+    }
+    .content-help{
+        padding: 70px 50px;
+    }
+}

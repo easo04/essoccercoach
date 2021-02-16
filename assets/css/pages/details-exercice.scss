@@ -15,59 +15,63 @@
         .infos{
             display: flex;
             align-items: center;
-            .links-way{
-                //@include blue-link;
-                @include font-xm-sbold;
-                font-style: italic;
-                margin-bottom: 20px;
-                font-family: $font-family-text;
-                color:$color-blue-obscur-1;
-                a{
-                    @include blue-link;
+            .content-infos{
+                width: 100%;
+                .links-way{
+                    //@include blue-link;
                     @include font-xm-sbold;
                     font-style: italic;
+                    margin-bottom: 20px;
+                    font-family: $font-family-text;
+                    color:$color-blue-obscur-1;
+                    a{
+                        @include blue-link;
+                        @include font-xm-sbold;
+                        font-style: italic;
+                    }
+                }
+                
+                h1{
+                    margin: 0;
+                    margin-bottom: 15px;
+                    color:$color-black-fonts;
+                }
+                p{
+                    color:$color-black-fonts-second;
+                    font-family: $font-family-text;
+                    @include font-m;
+                }
+                .footer-description{
+                    margin-top: 14px;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    >div{
+                        display: flex;
+                        align-items: center
+                    }
+                    .icon-text{
+                        @include font-m-bold;
+                        font-family: $font-family-text;
+                        color:#858585;
+                        svg{
+                            color:#22C77B;
+                            margin-right: 5px;
+                        }
+                    }
+                    .type{
+                        justify-content: flex-end;
+                        @include font-m-bold;
+                        font-family: $font-family-text;
+                        color:#0E2650;
+                        >div{
+                            padding: 10px 20px;
+                            background-color: #A7BFE9;
+                            border-radius: 20px;
+                        }
+                    }
                 }
             }
             
-            h1{
-                margin: 0;
-                margin-bottom: 15px;
-                color:$color-black-fonts;
-            }
-            p{
-                color:$color-black-fonts-second;
-                font-family: $font-family-text;
-                @include font-m;
-            }
-            .footer-description{
-                margin-top: 14px;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                >div{
-                    display: flex;
-                    align-items: center
-                }
-                .icon-text{
-                    @include font-m-bold;
-                    font-family: $font-family-text;
-                    color:#858585;
-                    svg{
-                        color:#22C77B;
-                        margin-right: 5px;
-                    }
-                }
-                .type{
-                    justify-content: flex-end;
-                    @include font-m-bold;
-                    font-family: $font-family-text;
-                    color:#0E2650;
-                    >div{
-                        padding: 10px 20px;
-                        background-color: #A7BFE9;
-                        border-radius: 20px;
-                    }
-                }
-            }
         }
         .image{
             height: 100%;
@@ -130,9 +134,6 @@
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     grid-gap: 10px;
-                    .exercice-item{
-                        min-width: 270px;
-                    }
                 }
             }
         }

@@ -30,7 +30,7 @@ export default {
                 },
             ],
             htmlAttrs:{
-              lang:'en'
+              lang:'fr'
             }
         }
 
