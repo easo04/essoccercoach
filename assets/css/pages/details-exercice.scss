@@ -16,10 +16,17 @@
             display: flex;
             align-items: center;
             .links-way{
-                @include blue-link;
+                //@include blue-link;
                 @include font-xm-sbold;
                 font-style: italic;
                 margin-bottom: 20px;
+                font-family: $font-family-text;
+                color:$color-blue-obscur-1;
+                a{
+                    @include blue-link;
+                    @include font-xm-sbold;
+                    font-style: italic;
+                }
             }
             
             h1{

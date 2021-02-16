@@ -13,12 +13,14 @@ export default {
     data(){
         return{
             exercice:{},
-            exercicesSameCaetegory:[]
+            exercicesSameCaetegory:[],
         }
     },
     mounted(){
+        console.log($nuxt.$route.path);
     },
     async fetch() {
+
         try{
             
             //split de string param

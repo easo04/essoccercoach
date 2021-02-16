@@ -3,7 +3,10 @@
         <div class="description-infos">
             <div class="infos">
                 <div>
-                    <div class="links-way" v-if="showChemin">Exercices / Tous / Rondo 4x4 + 2 jokers</div>
+                    <div class="links-way" v-if="showChemin">
+                        <NuxtLink to="/exercices">Exercices</NuxtLink>
+                        / <NuxtLink :to="`/exercices/categorie/${exercice.category}s`">{{getCategoryFormatted(exercice.category)}}</NuxtLink> / {{exercice.title}}
+                    </div>
                     <h1>{{exercice.title}}</h1>
                     <p>{{exercice.description}}</p>
                     <div class="footer-description">
@@ -67,11 +70,6 @@ export default {
         },
     },
     mounted(){
-        if(this.idExercice){
-
-            //get infos exercices
-        }
-        console.log(this.exercice.id)
     }
 }
 </script>
