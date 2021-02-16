@@ -1,4 +1,25 @@
 .header-app{
+    position: relative;
+    .header-second{
+        height: 25px;
+        width: 100%;
+        background-color: #18676F;
+        position: fixed;
+        top: 0;
+        z-index: 900;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        .login{
+            margin-right: 100px;
+            a{
+                @include font-s;
+                color:$color-white-fonts;
+                font-family: $font-family-text;
+                text-decoration: none;
+            }
+        }
+    }
     .header{
         height: 100px;
         padding: 0px 100px;
@@ -6,7 +27,7 @@
         grid-template-columns: auto 1fr 1fr;
         background-color: $color-white-background;
         position: fixed;
-        top: 0;
+        top: 25px;
         z-index: 900;
         width: auto;
         right: 0px;

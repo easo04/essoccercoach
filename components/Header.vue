@@ -1,5 +1,8 @@
 <template>
     <div class="header-app">
+        <div class="header-second">
+            <div class="login"><NuxtLink to="/login">Se connecter</NuxtLink></div>
+        </div>
         <div class="header">
             <div class="logo">
                 <img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/>

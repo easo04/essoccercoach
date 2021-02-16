@@ -113,6 +113,167 @@ $anmiation: mymove 3s infinite;
     }
 }
 
+.squelet-landing-page{
+    .hero-image{
+        background: $color-white-background !important;
+        align-items: center;
+        .description{
+            .description-content{
+                width: 100%;
+                .titre{
+                    height: 30px;
+                    width: 90%;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation;
+                    margin-bottom: 20px;
+                }
+                .description-p{
+                    height: 200px;
+                    width: 90%;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation;
+                }
+                .action-btn{
+                    height: 50px;
+                    width: 180px;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation;
+                }
+            }
+        }
+        .carrousel{
+            .carrousel-images{
+                .image{
+                    height: 300px;
+                    width: 100%;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation;
+                }
+            }
+        }
+    }
+    .copyrigth1{
+        height: 300px;
+        .content-copy1{
+            background-color: $color-gris-1;
+            border-radius: 10px;
+            animation: $anmiation;
+            margin-bottom: 20px;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .exercices-populaires{
+        .titre{
+            height: 30px;
+            width: 30%;
+            background-color: $color-gris-1;
+            border-radius: 10px;
+            animation: $anmiation;
+            margin-bottom: 20px;
+        }
+        .liste-exercices{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            .item-exercice{
+                background-color: $color-gris-1;
+                border-radius: 10px;
+                animation: $anmiation;
+                min-width: 25%;
+                height: 244px;
+            }
+        }
+    }
+    .nos-outils{
+        .title{
+            display: flex;
+            justify-content: center;
+            >div{
+                height: 30px;
+                width: 300px;
+                background-color: $color-gris-1;
+                border-radius: 10px;
+                animation: $anmiation;
+            }
+            margin-bottom: 30px;
+        }
+        .outils{
+            .outil{
+                .outil-logo{
+                    .image{
+                        height: 100px;
+                        width: 100px;
+                        background-color: $color-gris-1;
+                        border-radius: 10px;
+                        animation: $anmiation;
+                        margin-bottom: 20px;
+                    }
+                }
+                .outil-content{
+                    height: 120px;
+                    width: 100%;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation;
+                    margin-bottom: 20px;
+                }
+                .outil-actions{
+                    .btn{      
+                        height: 50px;
+                        width: 180px;
+                        background-color: $color-gris-1;
+                        border-radius: 10px;
+                        animation: $anmiation;
+                    }
+                }
+            }
+        }
+    }
+    .copyrigth-outils{
+        .item-copy{
+            .description-item{
+                .description-item-content{
+                    width: 100%;
+                    .title{
+                        background-color: $color-gris-1;
+                        border-radius: 10px;
+                        animation: $anmiation;
+                        height: 30px;
+                        width: 80%;
+                        margin-bottom: 20px;
+                    }
+                    .para{
+                        background-color: $color-gris-1;
+                        border-radius: 10px;
+                        animation: $anmiation;
+                        height: 180px;
+                        width: 80%;
+                    }
+                    .actions-item{
+                        background-color: $color-gris-1;
+                        border-radius: 10px;
+                        animation: $anmiation;
+                        height: 50px;
+                        width: 200px;
+                    }
+                }
+            }
+        }
+        .carrousel-item{
+            .carrousel-images{
+                background-color: $color-gris-1;
+                border-radius: 10px;
+                animation: $anmiation;
+            }
+        }
+    }
+}
+
 @keyframes mymove {
     from {background-color: $color-gris-1;}
     to {background-color: $color-gris-3;}
