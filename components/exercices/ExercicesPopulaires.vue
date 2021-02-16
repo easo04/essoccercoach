@@ -1,7 +1,6 @@
 <template>
     <div class="carousel exercices-carrousel">
         <button class="btn previous" v-if="showPrevious" id="btn-previous" @click="previous()">
-            <!--<i class="fas fa-angle-left"></i>-->
             <font-awesome-icon :icon="['fas', 'angle-left']"/>
         </button>
         <div class="content-exercices">
@@ -12,30 +11,6 @@
                     </div>
                     <div class="description-exercice-item">
                         <h4>{{exercice.title}}</h4>
-                    </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item">
-                        <img src="@/assets/images/exercice_essoccercoach.png"/>
-                    </div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercice</h4>
-                    </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item">
-                        <img src="@/assets/images/exercice_essoccercoach.png"/>
-                    </div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercice</h4>
-                    </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item">
-                        <img src="@/assets/images/exercice_essoccercoach.png"/>
-                    </div>
-                    <div class="description-exercice-item">
-                    <h4>Description exerciceeee</h4>
                     </div>
                 </div>
             </div>

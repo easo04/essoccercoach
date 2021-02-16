@@ -179,7 +179,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import {lstSlidersHomeHero as slidesHero, lstSlidersHomeExercices as slidesExercices,
 lstSlidersHomeSeances as slidesSeances, 
 lstSlidersHomeAlignements as slidesAlignements} from '@/static/sliders-list.js';
@@ -197,9 +196,6 @@ export default {
     }
   },
   computed:{
-      exercice(){
-        return this.$store.state.esdesigner.exercice
-      }
   },
   methods:{
     goToCreateExercices(){
@@ -247,7 +243,9 @@ export default {
       try{
         
           const response = await this.$axios.$get('/api/exercices/populars/get-all');
-          this.exercicesPopulaires = response.exercices;
+          for(let i=0;i<7;i++){
+            this.exercicesPopulaires.push(response.exercices[i])
+          }
       }catch(err){
           console.log(err);
       }

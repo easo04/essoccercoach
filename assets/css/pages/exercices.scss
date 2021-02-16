@@ -58,7 +58,7 @@
             }
             .item-exercice{
                 width: 273px;
-                height: 340px;
+                height: 380px;
                 background: $color-white-background;
                 box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
                 border-radius: 5px;
@@ -103,9 +103,11 @@
                 }
                 .description{
                     padding: 20px;
+                    height: 140px;
                     h4{
                         color:$color-black-fonts;
                         margin: 0;
+                        height: 38px
                     }
                     p{
                         @include font-s;
@@ -113,6 +115,7 @@
                         margin: 0;
                         font-family: $font-family-text;
                         margin-top: 14px;
+                        height: 50px;
                     }
                     .footer-description{
                         margin-top: 14px;

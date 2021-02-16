@@ -24,7 +24,7 @@
             <div class="vide" v-if="exerciceByFilter.length === 0"> Aucun exercie</div>
             <p class="nbExercices" v-else>Nombre d'exercices: {{exerciceByFilter.length}}</p>
             <div class="liste-exercices">
-                <div class="item-exercice" v-for="(exercice, index) in exerciceByFilter" :key="index">
+                <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index">
                     <div class="img">
                         <img src="@/assets/images/exercice_essoccercoach.png"/>
                         <!--<img :src="exercice.image_url"/>-->
@@ -45,21 +45,40 @@
                 </div>
             </div>
         </div>
+        <div class="more-results" v-if="showMoreResults">
+            <button class="btn btn-default-ghost" @click="showMore()"><font-awesome-icon :icon="['fas', 'sort-down']"/> Plus de résultats</button>
+        </div>
     </div>
 </template>
 <script>
 import {mapState, mapMutations} from 'vuex';
 import DeleteExerciceModalVue from '../../components/modals/DeleteExerciceModal.vue';
+const MAX_RESULTS_SHOW = 12;
 export default {
     middleware: 'authentificated',
     layout:'connected',
     computed: {
+        showMoreResults(){
+            return this.maxResults < this.exercices.length && this.exerciceByFilter.length > MAX_RESULTS_SHOW;
+        },
+        listeExercices(){
+            let retval = [];
+            if(this.maxResults < this.exercices.length && this.exerciceByFilter.length > MAX_RESULTS_SHOW){     
+                for(let i = 0; i < this.maxResults; i++){
+                    retval.push(this.exerciceByFilter[i]);
+                }
+            }else{
+                retval = this.exerciceByFilter;
+            }
+            return retval;
+        },
         ...mapState(["auth", "categories", "exercices"])
     },
     data(){
         return{
             category:'Tous',
-            exerciceByFilter:[]
+            exerciceByFilter:[],
+            maxResults:MAX_RESULTS_SHOW,
         }
     },
     methods:{
@@ -88,10 +107,12 @@ export default {
             return description;
         },
         filterByCategory(){
+            this.exerciceByFilter = [];
             if(this.category === 'Tous'){
                 this.exerciceByFilter = this.exercices;
+            }else if(this.category === 'Populaires'){
+                this.exerciceByFilter = this.exercices.filter(e=> e.popular === 1);
             }else{
-                this.exerciceByFilter = [];
                 this.exerciceByFilter = this.exercices.filter(e=> this.getCategoryFormatted(e.category) === this.category);
             }
         },
@@ -108,6 +129,9 @@ export default {
         },
         goToExercice(exercice){
             this.$router.push({path:`/dashboard/details-exercice/${exercice.id}`})
+        },
+        showMore(){
+            this.maxResults+=12;
         },
         ...mapMutations({setListExercices:'setListExercices'})
     },

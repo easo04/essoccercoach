@@ -44,6 +44,7 @@
     </div>
 </template>
 <script>
+import {mapState, mapMutations} from 'vuex';
 export default {
     middleware: 'authentificated',
     layout:'connected',
@@ -64,7 +65,8 @@ export default {
     computed:{
         categoriesExercice(){
             return this.$store.state.categories.filter(c => c.name !== 'populaires');
-        }
+        },
+        ...mapState(["exercices"])
     },
     methods:{
         isBtnSaveDisabled(){
@@ -84,7 +86,7 @@ export default {
         },
         async save(){
 
-            //save the image
+            //TODO save the image
 
             let categoryNameDb = this.categoriesExercice.find(c=>c.label === this.exercice.category).name;
             categoryNameDb = categoryNameDb.substring(0, categoryNameDb.length - 1);
@@ -104,13 +106,21 @@ export default {
 
             try{
                 const response = await this.$axios.$post('/api/exercices',  data);
-                console.log(response)
+
+                data.id = response.exercice_id;
+                this.addExercice(data);
+                
+                 //save exercices in localstorage
+                const exercicesParsed = JSON.stringify(this.exercices);
+                localStorage.setItem('exercices', exercicesParsed);
+
                 this.$router.push('/dashboard');
             }catch(err){
                 const error = err.response.data;
                 console.log(error)
             }
-        }
+        },
+        ...mapMutations({addExercice:'addExercice'})
     }
 }
 </script>

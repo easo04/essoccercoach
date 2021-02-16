@@ -10,7 +10,7 @@
                     <span class="lien-categorie"> Exercices / {{categorie.label}}</span>
                 </div>
                 <div class="liste-exercices">
-                    <div class="item-exercice" v-for="(exercice, index) in exercices" :key="index" @click="goToDetails(exercice)">
+                    <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index" @click="goToDetails(exercice)">
                         <div class="img">
                             <img src="@/assets/images/exercice_essoccercoach.png"/>
                             <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="more-results" v-if="showMoreResults">
-                    <button class="btn btn-default-ghost"><font-awesome-icon :icon="['fas', 'sort-down']"/> Plus de résultats</button>
+                    <button class="btn btn-default-ghost" @click="showMore()"><font-awesome-icon :icon="['fas', 'sort-down']"/> Plus de résultats</button>
                 </div>
             </div>
         </div>
@@ -51,12 +51,25 @@ export default {
     },
     data(){
         return {
-            showMoreResults:true,
             categorie:undefined,
             exercices:[]
         }
     },
     computed:{
+        showMoreResults(){
+            return this.maxResults < this.exercices.length && this.exercices.length > MAX_RESULTS_SHOW;
+        },
+        listeExercices(){
+            let retval = [];
+            if(this.maxResults < this.exercices.length && this.exercices.length > MAX_RESULTS_SHOW){     
+                for(let i = 0; i < this.maxResults; i++){
+                    retval.push(this.exercices[i]);
+                }
+            }else{
+                retval = this.exercices;
+            }
+            return retval;
+        },
         ...mapState(['modePresentation', 'categories'])
     },
     methods:{
@@ -72,6 +85,9 @@ export default {
         goToDetails(exercice){
             let titleFormatted = exercice.title.toLowerCase().split(' ').join('-');
             this.$router.push({path:`/exercices/${exercice.id}-${titleFormatted}`})
+        },
+        showMore(){
+            this.maxResults+=12;
         },
         ...mapMutations({setCategorie:'setCategorie'})
     },
