@@ -6,52 +6,36 @@
         </button>
         <div class="content-exercices">
             <div class="exercices">
+                <div class="carousel-cell exercice-item" v-for="(exercice, index) in exercices" :key="index" @click="goToDetails(exercice)">
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
+                    </div>
+                    <div class="description-exercice-item">
+                        <h4>{{exercice.title}}</h4>
+                    </div>
+                </div>
                 <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
+                    </div>
                     <div class="description-exercice-item">
                     <h4>Description exercice</h4>
                     </div>
                 </div>
                 <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
+                    </div>
                     <div class="description-exercice-item">
                     <h4>Description exercice</h4>
                     </div>
                 </div>
                 <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercice</h4>
+                    <div class="image-exercice-item">
+                        <img src="@/assets/images/exercice_essoccercoach.png"/>
                     </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
                     <div class="description-exercice-item">
                     <h4>Description exerciceeee</h4>
-                    </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercicerrr</h4>
-                    </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercicerrrr</h4>
-                    </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercicehhhh</h4>
-                    </div>
-                </div>
-                <div class="carousel-cell exercice-item">
-                    <div class="image-exercice-item"></div>
-                    <div class="description-exercice-item">
-                    <h4>Description exercicehhhh</h4>
                     </div>
                 </div>
             </div>
@@ -65,6 +49,7 @@
 const EXERCICES_PER_PAGE = 4;
 const NB_MAXIMUN_EXERCICES = 8;
 export default {
+    props:['exercices'],
     data(){
         return{
             showPrevious:false,
@@ -101,7 +86,11 @@ export default {
             }*/
             
             this.showNext = true;
-        }
+        },
+        goToDetails(exercice){
+            let titleFormatted = exercice.title.toLowerCase().split(' ').join('-');
+            this.$router.push({path:`/exercices/${exercice.id}-${titleFormatted}`})
+        },
     },
     mounted(){
 

@@ -32,9 +32,9 @@
     <div class="exercices-populaires">
       <h3>Exercices populaires <font-awesome-icon :icon="['fas', 'star']"/></h3>
       <p>Consultez notre banque d'exercices pour créer vos séances d'entraînement:</p>
-      <ExercicesPopulaires/>
+      <ExercicesPopulaires :exercices="exercicesPopulaires"/>
       <div class="exercices-actions">
-        <a class="blue-link">Tous les exerices <font-awesome-icon :icon="['fas', 'caret-right']"/></a>
+        <a class="blue-link" @click="goToExercices()">Tous les exerices <font-awesome-icon :icon="['fas', 'caret-right']"/></a>
       </div>
     </div>
     <div class="nos-outils" id="nosOutils">
@@ -187,6 +187,7 @@ export default {
       lstSlidesExercices: [],
       lstSlidesSeances : [],
       lstSlidesAlignements : [],
+      exercicesPopulaires:[]
     }
   },
   computed:{
@@ -202,8 +203,11 @@ export default {
       this.$router.push({path: '/create-seance'});
     },
     goToCreateAlignements(){
-        this.$router.push({path: '/create-alignement'});  
+      this.$router.push({path: '/create-alignement'});  
     },
+    goToExercices(){
+      this.$router.push({path: '/exercices'}); 
+    }
   },
   created(){
     this.lstSlidesHero = slidesHero;
@@ -232,7 +236,17 @@ export default {
       this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
     })
-  }
+  },
+  async fetch() {
+      try{
+        
+          //const response = await this.$axios.$get('/api/exercices/populars/get-all');
+          const response = await this.$axios.$get('/api/exercices/populars/get-all');
+          this.exercicesPopulaires = response.exercices;
+      }catch(err){
+          console.log(err);
+      }
+  } 
 }
 </script>
 
