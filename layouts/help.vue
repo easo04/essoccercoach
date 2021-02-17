@@ -3,12 +3,12 @@
         <Header/>
         <div class="content help-page">
             <div class="menu-help">
-                <div class="item-principal" :class="{'active':itemSelected==='esdesigner'}" @click="setItemSelected('esdesigner')">
-                    <h4 v-if="itemSelected==='esdesigner'"><font-awesome-icon :icon="['fas', 'chevron-down']"/> ESDesigner</h4>
-                    <h4 v-else><font-awesome-icon :icon="['fas', 'chevron-right']"/> ESDesigner</h4>
+                <div class="item-principal" :class="{'active':itemSelected==='esdesigner'}">
+                    <h4 v-if="itemSelected==='esdesigner'" @click="setItemSelected('esdesigner')"><font-awesome-icon :icon="['fas', 'chevron-down']"/> ESDesigner</h4>
+                    <h4 v-else @click="setItemSelected('esdesigner')"><font-awesome-icon :icon="['fas', 'chevron-right']"/> ESDesigner</h4>
                     <div class="items-secondaires" v-show="itemSelected==='esdesigner'">
                         <div class="item" :class="{'selected': item.item === secondarySelected}" v-for="(item, i) in itemsDesigner" :key="i" @click="setSencondaryItem(item.item)">
-                            {{item.label}}
+                            <NuxtLink :to="item.url">{{item.label}}</NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ export default {
     data(){
         return{
             itemSelected:'esdesigner',
-            itemsDesigner:[{item:'commencer', label:'Commencer', selected:false, url:''}, {item:'formes', label:'Formes', selected:false, url:''}],
+            itemsDesigner:[{item:'commencer', label:'Commencer', selected:false, url:'/help'}, {item:'formes', label:'Formes', selected:false, url:'/help/esdesigner-formes'}],
             itemsSeance:[{item:'commencer-seance', label:'Commencer', selected:false, url:''}, {item:'ajout-exercice', label:'Ajouter exercice', selected:false, url:''}],
             itemsAlignement:[{item:'commencer-alignement', label:'Commencer', selected:false, url:''}, {item:'ajout-joueurs', label:'Ajouter joueur', selected:false, url:''}],
             secondarySelected:'commencer'

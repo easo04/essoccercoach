@@ -1,6 +1,6 @@
 <template>
     <div class="help-page-content">
-        <h2>Hola</h2>
+        <h2>Ajouter formes</h2>
     </div>
 </template>
 <script>

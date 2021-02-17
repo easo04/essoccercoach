@@ -1,11 +1,16 @@
 .help-page{
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    height: 80vh;
+    //display: grid;
+    //grid-template-columns: 315px 1fr;
+    position: relative;
+    min-height: 100vh;
     .menu-help{
         border-right: 1px solid $color-border;
         padding: 50px 50px 50px 100px;
         font-family: $font-family-text;
+        position: fixed;
+        left: 0;
+        height: 100%;
+        width: 165px;
 
         .item-principal{
             h4{
@@ -15,6 +20,9 @@
                 svg{
                     margin-right: 10px;
                 }
+                &:hover{
+                    color:$color-soccer-coach;
+                }
             }
             
             &.active{
@@ -23,32 +31,44 @@
                 }
             }
 
-            &:hover{
-                h4{
-                    color:$color-soccer-coach;
-                }
-            }
-
             .items-secondaires{
                 padding: 0px 25px;
                 .item{
-                    @include font-xm;
-                    color: $color-black-fonts-second;
-                    padding: 7px;
-                    cursor: pointer;
-                    &.selected{
-                        color:$color-soccer-coach;
-                        background-color: $color-blue-blackground-clair;
-                        border-radius: 5px;
+                    margin-bottom: 10px;
+                    a{
+                        @include font-xm;
+                        color: $color-black-fonts-second;
+                        text-decoration: none;
+                        cursor: pointer;
+                        padding: 7px;
+
+                        &:hover{
+                            color:$color-soccer-coach;
+                        }
                     }
-                    &:hover{
-                        color:$color-soccer-coach;
+                    &.selected{
+                        a{
+                            color:$color-soccer-coach;
+                            background-color: $color-blue-blackground-clair;
+                        }
+                        border-radius: 5px;
                     }
                 }
             }
         }
     }
     .content-help{
-        padding: 70px 50px;
+        min-height: 100vh;
+        padding: 55px 50px;
+        margin-left: 315px;
+        h2{
+            color:$color-black-fonts;
+            @include h2;
+            margin-top: 0;
+        }
+        .help-page-content{
+
+
+        }
     }
 }
