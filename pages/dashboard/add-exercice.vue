@@ -70,8 +70,8 @@ export default {
     },
     methods:{
         isBtnSaveDisabled(){
-            return !this.exercice.theme && !this.exercice.description 
-            && !this.exercice.category && !this.exercice.image;
+            return this.exercice.theme === undefined || this.exercice.description === undefined 
+            || this.exercice.category === undefined || this.exercice.image === undefined;
         },
         readFile: function(event) {
             let files = event.target.files;
@@ -86,10 +86,21 @@ export default {
         },
         async save(){
 
-            //TODO save the image
+            let image;
+            if(this.exercice.image){
+
+                //save the image to cloudinary
+                //image = await this.$cloudinary.upload(this.exercice.image, {upload_preset: process.env.CLOUDINARY_PRESET});
+            }
 
             let categoryNameDb = this.categoriesExercice.find(c=>c.label === this.exercice.category).name;
             categoryNameDb = categoryNameDb.substring(0, categoryNameDb.length - 1);
+
+            //const imageId = image.public_id ?? ''; 
+            //const imageUrl = image.url ?? '';
+
+            const imageId = 'https://res.cloudinary.com/dgtvlmmxg/image/upload/v1612800601/exercices/1601074656125_rx6grl.png'
+            const imageUrl = '1601074656125_rx6grl'
 
             //save the exercice
             const data = {
@@ -100,18 +111,21 @@ export default {
                 nbPlayers : this.exercice.players,
                 category : categoryNameDb,
                 popular : false,
-                image_url : 'https://res.cloudinary.com/dgtvlmmxg/image/upload/v1612800601/exercices/1601074656125_rx6grl.png',
-                image_id : '1601074656125_rx6grl',
+                image_url : imageUrl,
+                image_id : imageId,
             };
 
             try{
                 const response = await this.$axios.$post('/api/exercices',  data);
 
                 data.id = response.exercice_id;
-                this.addExercice(data);
+                data.created_at = new Date();
+                
+                let exercicesStorage = JSON.parse(localStorage.getItem('exercices'));
+                exercicesStorage.push(data);
                 
                  //save exercices in localstorage
-                const exercicesParsed = JSON.stringify(this.exercices);
+                const exercicesParsed = JSON.stringify(exercicesStorage);
                 localStorage.setItem('exercices', exercicesParsed);
 
                 this.$router.push('/dashboard');

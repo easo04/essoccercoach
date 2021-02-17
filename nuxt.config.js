@@ -36,6 +36,13 @@ export default {
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
+  env: {
+    CLOUDINARY_PRESET: 'uoqb58bx',
+    CLOUDINARY_API_KEY:'662499467823844',
+    CLOUD_NAME:'dgtvlmmxg',
+    CLOUDINARY_API_SECRET:'AjW6XrGRuT_umuLy2IUkn5g1zhI'
+  },
+
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
@@ -60,7 +67,8 @@ export default {
         }
       ]
       }
-    ]
+    ],
+    "@nuxtjs/cloudinary"
   ],
 
   serverMiddleware: [
@@ -123,6 +131,12 @@ export default {
         }
       }
     }
+  },
+
+  cloudinary: {
+    cloudName: process.env.CLOUD_NAME,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
   },
 
   
