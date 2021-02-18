@@ -84,17 +84,25 @@
         <div class="content">
             <div class="menu-left">
                 <div class="items-menu">
-                    <div class="item-terrain" :class="{'active' : contentItem === 'terrain'}" title="Changer le terrain" @click="selectContentItem('terrain')">
-                        <i class="icon-terrain"></i>
+                    <div class="item-terrain" :class="{'active' : contentItem === 'terrain'}" title="Changer le terrain" @click="selectContentItem('terrain')">      
+                        <svg class="icon-stroke">
+                            <use href="@/assets/images/icons/icons.svg#terrain"/>
+                        </svg>
                     </div>
                     <div class="item-player" :class="{'active' : contentItem === 'joueur'}" title="Ajouter un joueur" @click="selectContentItem('joueur')">
-                        <i class="icon-player"></i>
+                        <svg class="icon">
+                            <use href="@/assets/images/icons/icons.svg#player"/>
+                        </svg>
                     </div>
                     <div class="item-outils" :class="{'active' : contentItem === 'outil'}" title="Ajouter un outil" @click="selectContentItem('outil')">
-                        <i class="icon-outil"></i>
+                        <svg class="icon-outil">
+                            <use href="@/assets/images/icons/icons.svg#outil"/>
+                        </svg>
                     </div>
                     <div class="item-lignes" :class="{'active' : contentItem === 'ligne'}" title="Ajouter une ligne" @click="selectContentItem('ligne')">
-                        <i class="icon-arrow"></i>
+                        <svg class="icon-arrow">
+                            <use href="@/assets/images/icons/icons.svg#arrow"/>
+                        </svg>
                     </div>
                 </div>
                 <div class="content-item">
@@ -284,8 +292,8 @@
                     <div class="lst-options-help" v-show="showOptionsHelp">
                         <div class="options">
                             <div><div @click="showAstuces();setShowOptionsHelp()">Astuces</div></div>
-                            <div><div @click="setShowOptionsHelp()">Tutoriel</div></div>
-                            <div><div @click="setShowOptionsHelp()">Youtube</div></div>
+                            <div><div @click="setShowOptionsHelp()"><a href="https://www.youtube.com" target="_blank">Youtube</a></div></div>
+                            <div><div @click="setShowOptionsHelp()"><a href="/help" target="_blank">Documentation</a></div></div>
                         </div>
                     </div>
                 </div>
@@ -294,7 +302,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import {mapMutations } from 'vuex'
 import GoHomeModal from '@/components/modals/GoHomeModal.vue'
 import AddPlayerWithTextModal from '@/components/modals/AddPlayerWithTextModal.vue'
 import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
@@ -944,7 +952,6 @@ export default {
 
     },
     mounted(){
-        let globalThis = this;
         
         //detecter tous les clicks qui se font dans terrainSoccer
         $('.logo').click(event =>{
@@ -953,10 +960,6 @@ export default {
         });
 
         $('.fa-fill').addClass('black-color');
-
-        //afficher tous les icônes à l'écran
-        printAllIcons();
-
         
         this.fromSeance = JSON.parse(localStorage.getItem('isCreateSeance')) || false;
 

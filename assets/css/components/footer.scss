@@ -28,6 +28,8 @@ footer{
                         font-family: $font-family-text;
                         cursor: pointer;
                         margin-bottom: 10px;
+                        text-decoration: none;
+                        color:$color-white-fonts;
                         &:hover{
                             text-decoration: underline;
                         }
@@ -48,6 +50,21 @@ footer{
                     text-decoration: none;
                     &:hover{
                         text-decoration: underline;
+                    }
+                }
+                .doc{
+                    margin-top: 20px;
+                    a{
+                        display: block;
+                        @include font-m;
+                        font-family: $font-family-text;
+                        cursor: pointer;
+                        margin-bottom: 10px;
+                        text-decoration: none;
+                        color:$color-white-fonts;
+                        &:hover{
+                            text-decoration: underline;
+                        }
                     }
                 }
             }
@@ -115,6 +132,10 @@ footer{
                 height: 50px;
                 margin-top: 16px;
             }
+        }
+        .infolettre-succes {
+            @include font-xm;
+            text-align: center;
         }
     }
     .copyrigth-footer{

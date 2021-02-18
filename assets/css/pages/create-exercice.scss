@@ -780,6 +780,12 @@
                                 &:hover{
                                     background-color: $color-border-designer;
                                 }
+                                a{
+                                    @include font-s-sbold;
+                                    color:$color-black-fonts-second;
+                                    font-family: $font-family-text;
+                                    text-decoration: none;
+                                }
                             }
                             
                             &:nth-child(2){
@@ -789,7 +795,7 @@
                             }
                             &:nth-child(3){
                                 >div{
-                                    width: 80px;
+                                    width: 100px;
                                 }
                             }
                         }

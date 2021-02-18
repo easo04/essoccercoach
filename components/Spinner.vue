@@ -18,14 +18,12 @@ export default {
 </script>
 <style lang="scss">
     .spinner{
-        
         .spinner-content{
-            
             display: flex;
             justify-content: center;
             .spinner-spinner{
-                width: 10rem;
-                height: 10rem;
+                width: 5rem;
+                height: 5rem;
                 border-radius: 50%;
                 display:inline-block;
                 border:2px solid #28ABB9;

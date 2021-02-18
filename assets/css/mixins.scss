@@ -256,6 +256,9 @@
         &:-internal-autofill-selected{
             background-color: #FDFDFD !important;
         }
+        &.error{
+            border:1px solid $color-red;
+        }
     }
 
     .form-control-textarea{

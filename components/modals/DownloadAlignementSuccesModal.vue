@@ -6,17 +6,7 @@
         </div>
         <div class="modal-content">
             <p class="thnks">Merci d'avoir utilisé ESsoccercoach pour créer votre alignement!</p> 
-            <div class="infolettre" v-if="showInfolettre">
-                <p>Abonnez-vous à notre infolettre pour recevoir les dernières 
-                    nouveautées: </p>
-                <div class="form-group-flex email-send">
-                    <input type="email" name="addText" class="form-control" placeholder=" Votre email" v-model="email"/>
-                    <button class="btn btn-default" @click="sendEmail()"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-            <div class="infolettre-succes" v-else>
-                <p v-if="showSuccesEmailMessage">Votre inscription a été fait avec succès! ✅</p>
-            </div>
+            <SendEmailInput/>
             <div class="reseaux-sociaux">
                 <p>Suivez-nous sur les réseaux sociaux</p>
                 <div class="liste-reseaux">
@@ -36,13 +26,6 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-            email:undefined,
-            showInfolettre:true,
-            showSuccesEmailMessage:true
-        }
-    },
     methods: {
         goHome () {
             this.hide();
@@ -53,30 +36,6 @@ export default {
         hide () {
             this.$modal.hide('download-alignement-succes-modal');
         },
-        sendEmail(){
-            if(this.email){
-                const infosUser = {
-                    email:this.email,
-                    send:true
-                };
-
-                //sauvegarder dans le localestorage
-                const infosParsed = JSON.stringify(infosUser);
-                sessionStorage.setItem('infosUserSend', infosParsed);
-                
-                this.showInfolettre = false;
-                this.showSuccesEmailMessage = true;
-            }
-        },
-    },
-    created(){
-        const infosUser = JSON.parse(sessionStorage.getItem('infosUserSend'));
-        if(infosUser){
-            this.showInfolettre = false;
-            this.showSuccesEmailMessage = false;
-        }
-    },
-    mount () {
     }
 }
 </script>
