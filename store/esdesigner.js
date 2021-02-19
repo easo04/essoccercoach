@@ -13,9 +13,9 @@ export const state = () => ({
     ],
     listeJoueurs : [
         {'name': 'player-mouvement-red', 'image': 'player-mouvement-red.png'},
-        {'name': 'player-mouvement-red', 'image': 'player-mouvement-blue.png'},
-        {'name': 'player-mouvement-red', 'image': 'player-mouvement-yellow.png'},
-        {'name': 'player-mouvement-red', 'image': 'player-mouvement-black.png'},
+        {'name': 'player-mouvement-blue', 'image': 'player-mouvement-blue.png'},
+        {'name': 'player-mouvement-yellow', 'image': 'player-mouvement-yellow.png'},
+        {'name': 'player-mouvement-black', 'image': 'player-mouvement-black.png'},
     ],
     listeGardiens : [
         {'name': 'player-gardien-green', 'image': 'player-gardien-green.png'},

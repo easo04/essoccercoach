@@ -45,21 +45,9 @@
         <h2><font-awesome-icon :icon="['fas', 'futbol']"/> Nos outils</h2>
         <div class="outils">
           <div class="outil">
-            <h3>Créateur d'exercices</h3>
-            <div class="outil-logo">
-              <img src="@/assets/images/exercices-logo.png" alt="créer exercice"/>
-            </div>
-            <div class="outil-content">
-              <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
-            </div>
-            <div class="outil-actions">
-              <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre exercice</button>
-            </div>
-          </div>
-          <div class="outil">
             <h3>Créateur de séances</h3>
             <div class="outil-logo">
-              <img src="@/assets/images/seance-logo.png" alt="créer séance"/>
+              <img src="@/assets/images/seance_logo.png" alt="créer séance de soccer"/>
             </div>
             <div class="outil-content">
               <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
@@ -69,9 +57,21 @@
             </div>
           </div>
           <div class="outil">
+            <h3>Créateur d'exercices</h3>
+            <div class="outil-logo">
+              <img src="@/assets/images/exercice_logo.png" alt="créer exercice de soccer"/>
+            </div>
+            <div class="outil-content">
+              <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
+            </div>
+            <div class="outil-actions">
+              <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre exercice</button>
+            </div>
+          </div>
+          <div class="outil">
             <h3>Créateur d'alignements</h3>
             <div class="outil-logo">
-              <img src="@/assets/images/alignement-logo.png" alt="créer alignement"/>
+              <img src="@/assets/images/alignement_logo.png" alt="créer alignement de soccer"/>
             </div>
             <div class="outil-content">
               <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
@@ -128,9 +128,15 @@
       </div>
       <div class="copyrigth-essoccercoach" id="propos">
         <div class="images-essoccercoach">
-          <div class="image-item"></div>
-          <div class="image-item"></div>
-          <div class="image-item"></div>
+          <div class="image-item">
+              <img src="@/assets/images/copyrigth_essoccercoach2.png" alt="créateur de séances de soccer"/>
+          </div>
+          <div class="image-item">
+              <img src="@/assets/images/copyrigth_essoccercoach1.png" alt="esdesigner le créateur d'exercices de soccer"/>
+          </div>
+          <div class="image-item">
+            <img src="@/assets/images/copyrigth_essoccercoach3.png" alt="créateur d'alignements de soccer"/>
+          </div>
         </div>
         <div class="description-essoccercoach">
           <h2>ESsoccercoach</h2>

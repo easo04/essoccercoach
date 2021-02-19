@@ -8,7 +8,7 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/logo_app.ico' },
       { rel: 'stylesheet', href: '/flickity/flickity.css', media:'screen'},
       { rel: 'stylesheet', href: '/icons/icons.css', media:'screen'},
     ],
@@ -36,12 +36,12 @@ export default {
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
-  env: {
+  /*env: {
     CLOUDINARY_PRESET: 'uoqb58bx',
     CLOUDINARY_API_KEY:'662499467823844',
-    CLOUD_NAME:'dgtvlmmxg',
-    CLOUDINARY_API_SECRET:'AjW6XrGRuT_umuLy2IUkn5g1zhI'
-  },
+    CLOUD_NAME:"dgtvlmmxg",
+    CLOUDINARY_API_SECRET:"AjW6XrGRuT_umuLy2IUkn5g1zhI"
+  },*/
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -72,13 +72,11 @@ export default {
   ],
 
   serverMiddleware: [
-    '@/api/index.js',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     //baseURL: 'https://essoccercoach-api.herokuapp.com/api/',
-    //baseURL: 'http://localhost:4000/api/',
     headers: {
       common: {
         'Accept': 'application/json, text/plain, */*'
@@ -133,10 +131,11 @@ export default {
     }
   },
 
+  //cloudinary module configuration
   cloudinary: {
-    cloudName: process.env.CLOUD_NAME,
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
+    cloudName: "dgtvlmmxg",
+    apiKey: "662499467823844",
+    apiSecret: "AjW6XrGRuT_umuLy2IUkn5g1zhI",
   },
 
   

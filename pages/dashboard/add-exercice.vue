@@ -90,7 +90,7 @@ export default {
             if(this.exercice.image){
 
                 //save the image to cloudinary
-                //image = await this.$cloudinary.upload(this.exercice.image, {upload_preset: process.env.CLOUDINARY_PRESET});
+                //image = await this.$cloudinary.upload(this.exercice.image, {upload_preset: "uoqb58bx"});
             }
 
             let categoryNameDb = this.categoriesExercice.find(c=>c.label === this.exercice.category).name;

@@ -24,7 +24,7 @@ export const lstSlidersModalOpenDesigner = [
 export const lstSlidersHomeHero = [
     {
         text:undefined,
-        image:'open-designer1.png',
+        image:'image_hero1.png',
     },
     {
         text:undefined,

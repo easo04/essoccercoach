@@ -171,6 +171,10 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    img{
+                        height: 200px;
+                        width: 200px;
+                    }
                 }
                 .outil-content{
                     margin-top: 20px;
@@ -302,7 +306,7 @@
 
     .copyrigth-essoccercoach{
         margin-bottom: 60px;
-        border-top:1px solid $color-black-fonts-second;
+        //border-top:1px solid $color-black-fonts-second;
         @media screen and (max-width: $screen-sm) {    
             padding-top: 50px;
         }
@@ -310,10 +314,18 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             height: auto;
+            grid-gap: 10px;
+            background: $color-white-background;
             .image-item{
                 height: 400px;
-                background-color: green;
-                border-left: 1px solid red;
+                background-color: $color-blue-blackground-clair;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    height: 350px;
+                    width: 350px;
+                }
             }
             
             @media screen and (max-width: $screen-sm) {
