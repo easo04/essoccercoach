@@ -165,7 +165,7 @@
               </div> 
             </div> 
             <div class="message-btn">    
-              <button class="btn btn-default-ghost">Créez votre premier exercice</button>
+              <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre premier exercice</button>
             </div> 
           </div>
       </div>

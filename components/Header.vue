@@ -18,7 +18,7 @@
                     </li>
                 </ul>
                 <div class="select-list" v-if="showSelectExercices">
-                    <div class="item" v-for="(item, i) in categories" :key="i" @click="goToCatgory(item.name)">
+                    <div class="item" v-for="(item, i) in categories" :key="i" @click="goToCatgory(item.url)">
                         {{item.label}}
                     </div>
                 </div>
@@ -103,10 +103,10 @@ export default {
             this.currentItemMenu = item;
         },
         showActions(){
-            this.showNewActions = this.showNewActions ? false : true;
+            this.showNewActions = !this.showNewActions;
         },
         showExercicesOptions(){
-            this.showSelectExercices = this.showSelectExercices ? false : true;
+            this.showSelectExercices = !this.showSelectExercices;
         },
         goToCreateExercices(){
             this.$router.push({path: '/create-exercice'});
@@ -119,11 +119,7 @@ export default {
         },
         goToCatgory(item){
             this.showSelectExercices = false;
-            if(item === 'populaires'){
-                this.$router.push({path: `/exercices`});
-            }else{
-                this.$router.push({path: `/exercices/categorie/${item}`});
-            }
+            this.$router.push(item);
         }
     }
 }

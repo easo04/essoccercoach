@@ -12,12 +12,16 @@
             display: flex;
             >div{
                 @include font-xm-sbold;
-                color:#858585;
                 font-family: $font-family-text;
                 margin-right: 14px;
                 cursor: pointer;
                 a{
+                    color:#858585;
                     text-decoration: none;
+
+                    &:hover{
+                        color:#6a6a6a;
+                    }
                 }
 
                 &.active{

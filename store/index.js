@@ -4,13 +4,13 @@ export const state = () => ({
   textLoader:'',
   classLoader:'',
   categorie:'populaires',
-  categories:[{label:'Populaires', name:'populaires'}, 
-  {label:'Offensifs', name:'offensifs'},
-  {label:'Déffensifs', name:'deffensifs'},
-  {label:'Rondos', name:'rondos'},
-  {label:'Physiques', name:'physiques'},
-  {label:'Tactiques', name:'tactiques'},
-  {label:'Gardiens', name:'gardiens'}],
+  categories:[{label:'Populaires', name:'populaires', url:'/exercices'}, 
+  {label:'Offensifs', name:'offensifs', url:'/exercices/categorie/offensifs'},
+  {label:'Déffensifs', name:'deffensifs', url:'/exercices/categorie/deffensifs'},
+  {label:'Rondos', name:'rondos', url:'/exercices/categorie/rondos'},
+  {label:'Physiques', name:'physiques', url:'/exercices/categorie/physiques'},
+  {label:'Tactiques', name:'tactiques', url:'/exercices/categorie/tactiques'},
+  {label:'Gardiens', name:'gardiens', url:'/exercices/categorie/gardiens'}],
   exercices:[]
 })
 

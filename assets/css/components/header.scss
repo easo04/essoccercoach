@@ -49,6 +49,9 @@
                     a{
                         text-decoration: none;
                         color:$color-black-fonts-second;
+                        &:hover{
+                            color:#4a4a4a;
+                        }
                     }
                 }
             }
@@ -64,10 +67,10 @@
                 .item{
                     padding: 8px 20px;
                     cursor: pointer;
+                    font-size: 0.9em;
                     &:hover{
                         background-color: #D4EEF1;
                     }
-                    font-size: 0.9em;
                 }
             }
         }

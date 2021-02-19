@@ -57,10 +57,14 @@
             <div class="menu-left">
                 <div class="items-menu">
                     <div class="item-terrain" :class="{'active' : contentItem === 'terrain'}" title="Changer le terrain" @click="selectContentItem('terrain')">
-                        <i class="icon-terrain"></i>
+                        <svg class="icon-stroke">
+                            <use href="@/assets/images/icons/icons.svg#terrain"/>
+                        </svg>
                     </div>
                     <div class="item-player" :class="{'active' : contentItem === 'joueur'}" title="Ajouter un joueur" @click="selectContentItem('joueur')">
-                        <i class="icon-player"></i>
+                        <svg class="icon">
+                            <use href="@/assets/images/icons/icons.svg#player"/>
+                        </svg>
                     </div>
                     <div class="item-outils" :class="{'active' : contentItem === 'conf'}" title="Modifier la configuration" @click="selectContentItem('conf')">
                         <font-awesome-icon :icon="['fas', 'cog']"/>
@@ -401,8 +405,6 @@ export default {
     },
     mounted(){
 
-        //afficher tous les icônes à l'écran
-        printAllIcons();
         this.changeSysteme();
         this.lstSystemes = this.lstSystemes11Players;
 
