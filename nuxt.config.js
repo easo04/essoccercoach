@@ -8,7 +8,7 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
       { rel: 'stylesheet', href: '/flickity/flickity.css', media:'screen'},
       { rel: 'stylesheet', href: '/icons/icons.css', media:'screen'},
     ],

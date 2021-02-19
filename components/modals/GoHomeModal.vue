@@ -21,7 +21,7 @@ export default {
     methods: {
         goHome () {
             this.hide();
-            location.href = "/";
+            this.$router.push('/');
 
             //supprimer le local storage de la session
             localStorage.removeItem('fromDesigner');
