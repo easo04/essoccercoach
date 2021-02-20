@@ -50,9 +50,9 @@
     .hero-image{
         height: 70vh;
         background-color: $color-blue-blackground;
-        background: url('../../assets/images/image-background.jpg');  
-        background-repeat: no-repeat;     
-        background-size: 100% 100vh;
+        //background: url('../../assets/images/image-background.jpg');  
+        //background-repeat: no-repeat;     
+        //background-size: 100% 100vh;
         padding: 0px 100px;
         display: flex;
         position: relative;
@@ -68,6 +68,9 @@
                     color:$color-white-background;
                     margin-top: 0;
                     margin-bottom: 0;
+                    .accent{
+                        color:$color-soccer-coach;
+                    }
                 }
                 p{
                     @include h3;
@@ -395,9 +398,9 @@
 
     .copyrigth2{
         height: auto;
-        padding: 200px 200px;
+        padding: 100px 200px;
         text-align: center;
-        background-color: black;
+        background-color: #E9E9E9;
         position: relative;
 
         @media screen and (max-width: $screen-sm) {
@@ -413,12 +416,15 @@
         .message{
             position: relative;
             z-index: 2;
-            h2, p{
-                color:$color-white-fonts;
+            h2{
+                color:$color-black-fonts;
+            }
+            p{
+                color:$color-black-fonts-second;
             }
             .compteur{
                 margin-top: 50px;
-                color:$color-white-fonts;
+                color:$color-blue-blackground;
                 font-family: Open Sans;
                 .exercices-compteur{
                     span{
@@ -438,7 +444,27 @@
             }
         }
 
-        &::before{
+        .icon-img1{
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            img{
+                height: 200px;
+                width: 200px;
+            }
+        }
+
+        .icon-img2{
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            img{
+                height: 200px;
+                width: 200px;
+            }
+        }
+
+        /*&::before{
             content: ' ';
             display: block;
             position: absolute;
@@ -453,6 +479,6 @@
             background-position: 50% 0;
             //background-size: cover;
             background-size: 100% 100%;
-        }
+        }*/
     }
 }

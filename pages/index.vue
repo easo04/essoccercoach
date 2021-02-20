@@ -7,7 +7,7 @@
       <div class="hero-image" id="accueil">
         <div class="description">
           <div class="description-content">
-            <h1>Bienvenue à ESSoccerCoach, le créateur d'exercices gratuit pour les entraîneurs de soccer.</h1>
+            <h1>Bienvenue à <span class="accent">ESsoccercoach</span>, le créateur d'exercices gratuit pour les entraîneurs de soccer.</h1>
             <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos outils.</p>
             <div class="action-btn"><a class="btn btn-default-ghost" href="#nosOutils">Choisir un de nos outils</a></div>
           </div>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="nos-outils" id="nosOutils">
-        <h2><font-awesome-icon :icon="['fas', 'futbol']"/> Nos outils</h2>
+        <h2>Nos outils</h2>
         <div class="outils">
           <div class="outil">
             <h3>Créateur de séances</h3>
@@ -157,7 +157,7 @@
       </div>
       <div class="copyrigth2">
           <div class="message">
-            <h2>Un outil offert à des <br><span>entraîneur de soccer</span> passionés!</h2>
+            <h2>Un outil offert à des <br><span>entraîneurs de soccer</span> passionés!</h2>
             <p>
               Nous vous offrons un outil conçu par un entrâineur de soccer pour aider tous 
               les entraîneurs qui ont besoin de créer leurs exercices de façon simple et rapide.<br><br>
@@ -173,6 +173,12 @@
             <div class="message-btn">    
               <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre premier exercice</button>
             </div> 
+          </div>
+          <div class="icon-img1">
+            <img src="@/assets/images/icons/goal-outline.svg"/>
+          </div>
+          <div class="icon-img2">
+            <img src="@/assets/images/icons/stopwatch.svg"/>
           </div>
       </div>
       <div class="btn-top">
