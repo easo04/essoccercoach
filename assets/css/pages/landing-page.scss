@@ -89,7 +89,15 @@
             .carrousel-images{
                 margin-left: 60px;
                 height: auto;
-                width: 100%;
+                .slider-component{
+                    .sliders{
+                        .images{
+                            img{
+                                height: auto;
+                            }
+                        }
+                    }
+                }
             }
             @media screen and (max-width: $screen-sm) {
                 display: none;
@@ -232,6 +240,7 @@
                     h2{
                         color:$color-black-fonts;
                         text-align: left;
+                        margin-top: 0;
                     }
                     p{
                         @include font-m;
@@ -248,15 +257,14 @@
                 display: flex;
                 align-items: center;
                 .carrousel-images{
-                    height: 380px;
+                    height: auto;
                     width: 100%;
-                    .slider-component{
-                        .sliders{
-                            .images{
-                                height:350px;
-                                border:1px solid $color-border;
-                            }
-                        }
+
+                    img{
+                        width: 100%;
+                        height: auto;
+                        //object-fit: cover;
+                        border-radius: 5px;
                     }
                 }
             }

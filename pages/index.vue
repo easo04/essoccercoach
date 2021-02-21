@@ -86,42 +86,42 @@
         <div class="createur-exercices item-copy">
           <div class="description-item">
               <div class="description-item-content">
-                <h2>Créateur d'exercices</h2>
+                <h2>Créateur d'exercices de soccer</h2>
                 <p>La préparation des exercices est très importante dans la <strong>planification</strong> d'une séance d'entraînement. <br><br>Avec notre <strong>créateur d'exercices</strong>, vous pouvez créer vos exercices de façon très simple et les télécharger en image.</p>
                 <div class="actions-item"><button class="btn btn-default" @click="goToCreateExercices()">Créez votre exercice</button></div>
               </div>
           </div>
           <div class="carrousel-item">
             <div class="carrousel-images">
-              <Slider :lst-slides="lstSlidesExercices" :autoplay="true" :interval="15"/>
+                <img src="@/assets/images/exercices_createur.png" alt="créateur d'exercices de soccer"/>
             </div>
           </div>
         </div>
         <div class="createur-seances item-copy">
           <div class="description-item">
               <div class="description-item-content">
-                <h2>Créateur de séances</h2>
+                <h2>Créateur de séances d'entraînement de soccer</h2>
                 <p>Avez-vous un entraînement aujourd'hui?<br><br> Planifiez votre <strong>séance d'entraînement</strong> avec notre créateur de séances.</p>
                 <div class="actions-item"><button class="btn btn-default" @click="goToCreateSeances()">Créez votre séance</button></div>
               </div>
           </div>
           <div class="carrousel-item">
             <div class="carrousel-images">
-              <Slider :lst-slides="lstSlidesSeances" :autoplay="true" :interval="15"/>
+              <img src="@/assets/images/seances_createur.png" alt="créateur de séances d'entraînement de soccer"/>
             </div>
           </div>
         </div>
         <div class="createur-alignements item-copy">
           <div class="description-item">
               <div class="description-item-content">
-                <h2>Créateur d'alignements</h2>
+                <h2>Créateur d'alignements de soccer</h2>
                 <p>Faites l'alignement de votre équipe de façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
                 <div class="actions-item"><button class="btn btn-default" @click="goToCreateAlignements()">Créez votre alignement</button></div>
               </div>
           </div>
           <div class="carrousel-item">
             <div class="carrousel-images">
-              <Slider :lst-slides="lstSlidesExercices" :autoplay="true" :interval="15"/>
+              <img src="@/assets/images/alignements_createur.png" alt="créateur d'alignements de soccer"/>
             </div>
           </div>
         </div>
