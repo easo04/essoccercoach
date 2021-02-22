@@ -32,7 +32,7 @@
         width: auto;
         right: 0px;
         left: 0px;
-        border-bottom: 1px solid $color-border;
+        border-bottom: 1px solid $color-gris-4;
     
         .menu-desktop{
             @include font-m-mbold;
@@ -94,7 +94,7 @@
             position: relative;
             .new-actions-list{
                 position: absolute;
-                bottom: -175px;
+                bottom: -195px;
                 width: 400px;
                 background-color: #FBFBFB;
                 border-radius: 5px;
@@ -118,23 +118,28 @@
                     grid-gap: 20px;
                     border-top: 1px solid $color-gris-1;
                     padding-top: 20px;
+                    height: 120px;
                     .item-action-list{
                         border:1px solid $color-soccer-coach;
                         background-color: $color-soccer-coach;
-                        border-radius: 5px;
+                        border-radius: 50%;
                         color:$color-white-fonts;
                         @include font-s-mbold;
                         font-family: Open Sans;
                         text-align: center;
                         cursor: pointer;
                         padding: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: auto;
                         .img-item-action{
                             display: flex;
                             justify-content: center;
                             align-items: center;
                             .img{
                                 height: 60px;
-                                width: 60px;
+                                width: 70px;
                                 display: flex;
                                 align-items: center;
                                 img{

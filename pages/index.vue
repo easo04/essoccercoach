@@ -38,7 +38,7 @@
         <p>Consultez notre banque d'exercices pour créer vos séances d'entraînement:</p>
         <ExercicesPopulaires :exercices="exercicesPopulaires"/>
         <div class="exercices-actions">
-          <a class="blue-link" @click="goToExercices()">Tous les exerices <font-awesome-icon :icon="['fas', 'caret-right']"/></a>
+          <a class="blue-link" href="/exercices">Tous les exerices <font-awesome-icon :icon="['fas', 'caret-right']"/></a>
         </div>
       </div>
       <div class="nos-outils" id="nosOutils">
@@ -50,7 +50,7 @@
               <img src="@/assets/images/seance_logo.png" alt="créer séance de soccer"/>
             </div>
             <div class="outil-content">
-              <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
+              <span>Créez vos exercices de soccer et télécharchez les avec notre outil de création d'exercices <strong>ESDesigner</strong>.</span>
             </div>
             <div class="outil-actions">
               <button class="btn btn-default-ghost" @click="goToCreateSeances()">Créez votre séance</button>
@@ -62,7 +62,7 @@
               <img src="@/assets/images/exercice_logo.png" alt="créer exercice de soccer"/>
             </div>
             <div class="outil-content">
-              <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
+              <span>Créez vos séances d'entraînement d'une façon simple et rapide avec notre <strong>créateur de séances</strong>.</span>
             </div>
             <div class="outil-actions">
               <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre exercice</button>
@@ -74,7 +74,7 @@
               <img src="@/assets/images/alignement_logo.png" alt="créer alignement de soccer"/>
             </div>
             <div class="outil-content">
-              <span>Créez vos exercices gartuitement d'une façon rapide avec notre outil de réation d'exercices <strong>ESDesigner</strong></span>
+              <span>Créez l'alignement de votre prochain match avec notre <strong>créateur d'alignements</strong>.</span>
             </div>
             <div class="outil-actions">
               <button class="btn btn-default-ghost" @click="goToCreateAlignements()">Créez votre alignement</button>
@@ -142,15 +142,20 @@
           <h2>ESsoccercoach</h2>
           <div class="description-essoccercoach-texte">
             <div class="description-texte">
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
-              remaining essentially unchanged. It was popularised in the 1960s with the release of.</p>
+              <p>Nous sommes des passionnés du soccer qui ont conçu un outil <strong>100% gratuit</strong> pour aider
+                tous les entraîneurs qui cherchent un outil pour créer leurs exercies, leurs séances d'entraînement
+                et leurs alignements. <br><br>Notre objectif est d'offrir les meilleurs outils
+                pour contribuer au <strong>dévéloppement du soccer</strong> dans notre environnement. 
+              </p>
             </div>
-            <div class="image-essoccercoach"></div>
+            <div class="image-essoccercoach">
+              <img src="@/assets/images/copyrigth_essoccercoach1.png" alt="esdesigner le créateur d'exercices de soccer"/>
+            </div>
             <div class="task-list">
-              <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
-              <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
-              <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
-              <p><font-awesome-icon :icon="['fas', 'check']"/> Texte check liste</p>
+              <p><font-awesome-icon :icon="['fas', 'check']"/> Créateur d'exercices de soccer</p>
+              <p><font-awesome-icon :icon="['fas', 'check']"/> Créateur de séances d'entraînement</p>
+              <p><font-awesome-icon :icon="['fas', 'check']"/> Créateur d'alignements</p>
+              <p><font-awesome-icon :icon="['fas', 'check']"/> Banque d'exercices avec plus de <strong>100</strong> exercices</p>
             </div>
           </div>
         </div>
@@ -219,9 +224,6 @@ export default {
     goToCreateAlignements(){
       this.$router.push({path: '/create-alignement'});  
     },
-    goToExercices(){
-      this.$router.push({path: '/exercices'}); 
-    }
   },
   created(){
     this.lstSlidesHero = slidesHero;
