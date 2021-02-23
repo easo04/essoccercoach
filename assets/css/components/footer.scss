@@ -10,6 +10,10 @@ footer{
         .liste-services{
             width: 70%;
             display: flex;
+            flex-wrap: wrap;
+            @media screen and (max-width: $screen-sm) {
+                width: 100%;
+            }
             h4{
                 margin: 0;
                 line-height: normal;
@@ -34,6 +38,10 @@ footer{
                             text-decoration: underline;
                         }
                     }
+                }
+
+                @media screen and (max-width: $screen-sm) {
+                    margin-bottom: 20px;
                 }
             }
 
@@ -74,6 +82,10 @@ footer{
             font-size: 24px;
             display: flex;
             justify-content: flex-end;
+
+            @media screen and (max-width: $screen-sm) {
+                width: 100%;
+            }
             
             .img{
                 margin-bottom: 10px;
@@ -102,7 +114,7 @@ footer{
 
             .reseaux{
                 margin-top: 15px;
-                justify-content: start;
+                justify-content: center;
             }
         }
 
@@ -116,6 +128,15 @@ footer{
         justify-content: center;
         p{
             margin-bottom: 0;
+        }
+
+        @media screen and (max-width: $screen-sm) {
+            padding: 20px;
+            
+
+            >div{
+                width: 100%;
+            }
         }
 
         .email-send{
@@ -152,6 +173,13 @@ footer{
         padding-bottom: 20px;
         span{
             margin-right: 100px;
+        }
+        @media screen and (max-width: $screen-sm) {
+            
+            justify-content: center;
+            span{
+                margin-right: 0;
+            }
         }
     }
 }

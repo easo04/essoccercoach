@@ -11,8 +11,8 @@
             <div class="menu-desktop">
                 <ul>
                     <li><a href="/">Accueil</a></li>
-                    <li><a href="#nosOutils">Nos outils</a></li>
-                    <li><a href="#propos">À propos</a></li>
+                    <li><a href="/#nosOutils">Nos outils</a></li>
+                    <li><a href="/#propos">À propos</a></li>
                     <li @click="showExercicesOptions()">
                         Exercices <font-awesome-icon :icon="['fas', 'sort-down']"/>
                     </li>
@@ -66,26 +66,34 @@
         <div class="menu-mobile">
             <div class="item-menu" :class="{'active' : currentItemMenu === 'accueil'}" @click="setCurrentItemMenu('accueil')">
                 <div>
-                    <i class="fas fa-home"></i>
-                    <div class="item-label">Accueil</div>
+                    <a href="/">
+                        <font-awesome-icon :icon="['fas', 'home']"/>
+                        <div class="item-label">Accueil</div>
+                    </a>
                 </div>
             </div>
             <div class="item-menu" :class="{'active' : currentItemMenu === 'outils'}" @click="setCurrentItemMenu('outils')">
                 <div>
-                    <i class="fas fa-trophy"></i>
-                    <div class="item-label">Nos outils</div>
+                    <a href="/#nosOutils">
+                        <font-awesome-icon :icon="['fas', 'trophy']"/>
+                        <div class="item-label">Nos outils</div>
+                    </a>
                 </div>
             </div>
             <div class="item-menu" :class="{'active' : currentItemMenu === 'nous'}" @click="setCurrentItemMenu('nous')">
                 <div>
-                    <i class="fas fa-bullhorn"></i>
-                    <div class="item-label">À propos</div>
+                    <a href="/#propos">
+                        <font-awesome-icon :icon="['fas', 'bullhorn']"/>
+                        <div class="item-label">À propos</div>
+                    </a>
                 </div>
             </div>
             <div class="item-menu" :class="{'active' : currentItemMenu === 'exercices'}" @click="setCurrentItemMenu('exercices')">
                 <div>
-                    <i class="fas fa-futbol"></i>
-                    <div class="item-label">Exercices</div>
+                    <a href="/exercices">
+                        <font-awesome-icon :icon="['fas', 'futbol']"/>
+                        <div class="item-label">Exercices</div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -126,6 +134,15 @@ export default {
         goToCatgory(item){
             this.showSelectExercices = false;
             this.$router.push(item);
+        }
+    },
+    created(){
+        if(this.$route.fullPath.includes('nosOutils')){
+            this.currentItemMenu = 'outils';
+        }else if(this.$route.fullPath.includes('propos')){
+            this.currentItemMenu = 'nous';
+        }else if(this.$route.path.includes('exercices')){
+            this.currentItemMenu = 'exercices';
         }
     }
 }

@@ -1,6 +1,6 @@
 .details-exercice{ 
     @media screen and(max-width: $screen-sm){
-        margin-top: 120px;
+        margin-top: 147px;
     }
     h3{
         color:$color-black-fonts;
@@ -91,7 +91,7 @@
         }
         @media screen and (max-width: $screen-sm) {
             grid-template-columns: 1fr;
-            padding: 20px;
+            padding: 40px 20px;
             .image{
                 grid-row: 1;
             }
@@ -115,7 +115,7 @@
         }
         @media screen and (max-width: $screen-sm) {
             grid-template-columns: 1fr;
-            padding: 20px;
+            padding: 40px 20px;
         }
     }
     .exercices-same{
@@ -126,7 +126,7 @@
             margin: 0;
         }
         @media screen and (max-width: $screen-sm) {
-            padding: 20px;
+            padding: 40px 20px;
         }
         .exercices-carrousel{ 
             .content-exercices{
@@ -134,6 +134,12 @@
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     grid-gap: 10px;
+                    
+                    @media screen and (max-width: $screen-sm) {
+                        display: flex;
+                        width: 100%;
+                        overflow-x: scroll;
+                    }
                 }
             }
         }

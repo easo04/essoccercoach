@@ -68,21 +68,27 @@ $anmiation: mymove 3s infinite;
                     animation: $anmiation;
                 }
                 .footer-description{
+                    margin-top: 20px;
+                    display: flex;;
                     .nbPlayers{
                         display: flex;
                         align-items: center;
+                        width: 50%;
                         >div{
-                            width: 50px;
-                            height: 20px;
+                            width: 70px;
+                            height: 40px;
                             background-color: $color-gris-1;
                             border-radius: 10px;
                             animation: $anmiation;
                         }
                     }
                     .type{
+                        width: 50%;
+                        display: flex;
+                        justify-content: flex-end;
                         >div{
-                            width: 50px;
-                            height: 20px;
+                            width: 70px;
+                            height: 40px;
                             background-color: $color-gris-1;
                             border-radius: 20px;
                             animation: $anmiation;
@@ -98,6 +104,9 @@ $anmiation: mymove 3s infinite;
                 background-color: $color-gris-1;
                 border-radius: 5px;
                 animation: $anmiation;
+                @media screen and (max-width: $screen-sm) {
+                    height: 200px;
+                }
             }
         }
     }

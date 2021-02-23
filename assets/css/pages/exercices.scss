@@ -13,7 +13,7 @@
             >div{
                 @include font-xm-sbold;
                 font-family: $font-family-text;
-                margin-right: 14px;
+                margin-right: 18px;
                 cursor: pointer;
                 a{
                     color:#858585;
@@ -31,7 +31,7 @@
         }
 
         @media screen and (max-width: $screen-sm) {
-            margin-top: 120px;
+            margin-top: 149px;
             padding: 20px;
             overflow-x: visible;
             overflow-y: hidden;
@@ -59,6 +59,7 @@
             margin-bottom: 30px;
             @media screen and (max-width: $screen-sm) {
                 grid-template-columns: 1fr;
+                grid-gap: 50px;
             }
             .item-exercice{
                 width: 273px;
@@ -72,7 +73,7 @@
                 }
                 @media screen and (max-width: $screen-sm) {
                     width: 100%;
-                    height: 320px;;
+                    height: 380px;;
                 }
                 
                 /*@media screen and (max-width: $screen-sm) {

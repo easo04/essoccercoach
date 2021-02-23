@@ -93,7 +93,7 @@
           </div>
           <div class="carrousel-item">
             <div class="carrousel-images">
-                <img src="@/assets/images/exercices_createur.png" alt="créateur d'exercices de soccer"/>
+                <img src="@/assets/images/exercices_createur2.png" alt="créateur d'exercices de soccer"/>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@
           </div>
           <div class="carrousel-item">
             <div class="carrousel-images">
-              <img src="@/assets/images/seances_createur.png" alt="créateur de séances d'entraînement de soccer"/>
+              <img src="@/assets/images/seances_createur2.png" alt="créateur de séances d'entraînement de soccer"/>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@
           </div>
           <div class="carrousel-item">
             <div class="carrousel-images">
-              <img src="@/assets/images/alignements_createur.png" alt="créateur d'alignements de soccer"/>
+              <img src="@/assets/images/alignements_createur2.png" alt="créateur d'alignements de soccer"/>
             </div>
           </div>
         </div>

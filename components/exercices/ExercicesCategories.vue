@@ -26,7 +26,6 @@ export default {
         },
     },
     mounted(){
-        console.log('current ' + this.currentCategorie)
         this.current = this.currentCategorie || 'populaires'
     }
 }

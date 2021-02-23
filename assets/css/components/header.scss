@@ -12,6 +12,9 @@
         align-items: center;
         .login{
             margin-right: 100px;
+            @media screen and (max-width: $screen-sm) {
+                margin-right: 20px;
+            }
             a{
                 @include font-s;
                 color:$color-white-fonts;
@@ -103,9 +106,9 @@
                 padding: 20px;
 
                 @media screen and (max-width: $screen-sm) {
-                    bottom: -200px;
-                    right: -20px;
-                    width: 318px;
+                    bottom: -190px;
+                    right: -21px;
+                    width: 334px;
                 }
 
                 h4{
@@ -119,6 +122,10 @@
                     border-top: 1px solid $color-gris-1;
                     padding-top: 20px;
                     height: 120px;
+                    @media screen and (max-width: $screen-sm) {
+                        height: 90px;
+                    }
+    
                     .item-action-list{
                         border:1px solid $color-soccer-coach;
                         background-color: $color-soccer-coach;
@@ -191,7 +198,7 @@
         border-bottom: 1px solid $color-border;
         border-top: 1px solid $color-border;
         position: fixed;
-        top: 60px;
+        top: 85px;
         z-index: 700;
         width: 100%;
         display: none;
@@ -208,6 +215,11 @@
             text-align: center;
             border-bottom: 5px solid transparent;
             color:$color-black-fonts-second;
+
+            a{
+                color:$color-black-fonts-second;
+                text-decoration: none;
+            }
 
             &.active{
                 border-color:  #208994;
