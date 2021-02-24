@@ -337,10 +337,12 @@
     }
 
     .copyrigth-exercices{
-        background-color: $color-blue-blackground;
         padding: 100px 300px;
         position: relative;   
         text-align: center;
+        background: url('../../assets/images/background_exercices.jpg');  
+        background-repeat: no-repeat;     
+        background-size: 100% 100%;
         @media screen and (max-width: $screen-sm) {
             padding: 50px 20px;
 

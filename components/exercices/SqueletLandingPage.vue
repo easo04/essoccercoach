@@ -73,6 +73,7 @@
                 </div>
                 <div class="carrousel-item">
                     <div class="carrousel-images">
+                        <div class="image"></div>
                     </div>
                 </div>
             </div>
@@ -86,6 +87,7 @@
                 </div>
                 <div class="carrousel-item">
                     <div class="carrousel-images">
+                        <div class="image"></div>
                     </div>
                 </div>
             </div>
@@ -99,6 +101,7 @@
                 </div>
                 <div class="carrousel-item">
                     <div class="carrousel-images">
+                        <div class="image"></div>
                     </div>
                 </div>
             </div>

@@ -155,6 +155,7 @@ $anmiation: mymove 3s infinite;
         }
         .carrousel{
             .carrousel-images{
+                width: 100%;
                 .image{
                     height: 300px;
                     width: 100%;
@@ -199,6 +200,7 @@ $anmiation: mymove 3s infinite;
         }
     }
     .nos-outils{
+        background-color: $color-white-background!important;
         .title{
             display: flex;
             justify-content: center;
@@ -275,9 +277,14 @@ $anmiation: mymove 3s infinite;
         }
         .carrousel-item{
             .carrousel-images{
-                background-color: $color-gris-1;
-                border-radius: 10px;
-                animation: $anmiation;
+                width: 100%;
+                .image{
+                    height: 300px;
+                    width: 100%;
+                    background-color: $color-gris-1;
+                    border-radius: 10px;
+                    animation: $anmiation;
+                }
             }
         }
     }
