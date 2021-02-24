@@ -158,6 +158,17 @@
                     padding: 10px 30px;
                     text-align: center;
                     @include font-xm-sbold;
+                    .slider-component{
+                        .sliders{
+                            .images{
+                                img{
+                                    object-fit: fill;
+                                    border-radius: 5px;
+                                    box-shadow: 0px 4px 10px rgba(201, 201, 201, 0.6);
+                                }
+                            }
+                        }
+                    }
                 }
                 .modal-footer{
                     display: inline;
