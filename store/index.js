@@ -11,7 +11,8 @@ export const state = () => ({
   {label:'Physiques', name:'physiques', url:'/exercices/categorie/physiques'},
   {label:'Tactiques', name:'tactiques', url:'/exercices/categorie/tactiques'},
   {label:'Gardiens', name:'gardiens', url:'/exercices/categorie/gardiens'}],
-  exercices:[]
+  exercices:[],
+  currentItemMenu:'accueil'
 })
 
 export const mutations = {
@@ -38,5 +39,8 @@ export const mutations = {
   },
   removeExercice(state, index){
     state.exercices.splice(index, 1);
+  },
+  setCurrentItemMenu(state, newValue){
+    state.currentItemMenu = newValue;
   }
 }

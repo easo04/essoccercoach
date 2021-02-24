@@ -302,7 +302,7 @@
     </div>
 </template>
 <script>
-import {mapMutations } from 'vuex'
+import {mapMutations} from 'vuex'
 import GoHomeModal from '@/components/modals/GoHomeModal.vue'
 import AddPlayerWithTextModal from '@/components/modals/AddPlayerWithTextModal.vue'
 import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'

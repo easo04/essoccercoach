@@ -304,7 +304,8 @@
                 .carrousel-item{
                     grid-row: 1;
                     .carrousel-images {
-                        height: 260px;
+                        height: auto;
+                        margin-bottom: 30px;
                         .slider-component .sliders .images{
                             height: 234px;
                         }
@@ -341,7 +342,8 @@
         position: relative;   
         text-align: center;
         @media screen and (max-width: $screen-sm) {
-            padding: 0;
+            padding: 50px 20px;
+
             .texte{
                 h2{
                     margin: 0;

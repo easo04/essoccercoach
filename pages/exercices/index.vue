@@ -34,6 +34,7 @@
 
 <script>
 const MAX_RESULTS_SHOW = 12;
+import {mapMutations} from 'vuex';
 export default {
     key(route) {
         return route.fullPath
@@ -84,12 +85,14 @@ export default {
             return description;
         },
         goToDetails(exercice){
+            this.setCurrentItemMenu('exercices');
             let titleFormatted = exercice.title.toLowerCase().split(' ').join('-');
             this.$router.push({path:`/exercices/${exercice.id}-${titleFormatted}`})
         },
         showMore(){
             this.maxResults+=12;
         },
+        ...mapMutations({setCurrentItemMenu:'setCurrentItemMenu'})
     },
     created(){
     },

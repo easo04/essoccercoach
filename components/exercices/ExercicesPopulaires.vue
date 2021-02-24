@@ -23,6 +23,7 @@
 <script>
 const EXERCICES_PER_PAGE = 4;
 const NB_MAXIMUN_EXERCICES = 8;
+import {mapMutations} from 'vuex';
 export default {
     props:['exercices'],
     data(){
@@ -63,9 +64,11 @@ export default {
             this.showNext = true;
         },
         goToDetails(exercice){
+            this.setCurrentItemMenu('exercices');
             let titleFormatted = exercice.title.toLowerCase().split(' ').join('-');
             this.$router.push({path:`/exercices/${exercice.id}-${titleFormatted}`})
         },
+        ...mapMutations({setCurrentItemMenu:'setCurrentItemMenu'})
     },
     mounted(){
 

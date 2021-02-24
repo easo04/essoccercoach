@@ -100,22 +100,18 @@
     </div>
 </template>
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
 export default {
     data(){
         return{
             showNewActions:false,
-            currentItemMenu:'accueil',
             showSelectExercices:false,
         }
     },
     computed:{
-        ...mapState(['modePresentation', 'categories'])
+        ...mapState(['modePresentation', 'categories', 'currentItemMenu'])
     },
     methods:{
-        setCurrentItemMenu(item){
-            this.currentItemMenu = item;
-        },
         showActions(){
             this.showNewActions = !this.showNewActions;
         },
@@ -134,15 +130,16 @@ export default {
         goToCatgory(item){
             this.showSelectExercices = false;
             this.$router.push(item);
-        }
+        },
+        ...mapMutations({setCurrentItemMenu:'setCurrentItemMenu'})
     },
     created(){
         if(this.$route.fullPath.includes('nosOutils')){
-            this.currentItemMenu = 'outils';
+            this.setCurrentItemMenu('outils');
         }else if(this.$route.fullPath.includes('propos')){
-            this.currentItemMenu = 'nous';
+            this.setCurrentItemMenu('nous');
         }else if(this.$route.path.includes('exercices')){
-            this.currentItemMenu = 'exercices';
+            this.setCurrentItemMenu('exercices');
         }
     }
 }
