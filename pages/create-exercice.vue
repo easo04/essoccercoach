@@ -119,17 +119,8 @@
                                 </div>
                             </div>
                             <div class="avec-ligne" v-if="ongletTerrainSelected === 'avec-ligne'">
-                                <div class="item-terrain-al">
-
-                                </div>
-                                <div class="item-terrain-al">
-
-                                </div>
-                                <div class="item-terrain-al">
-
-                                </div>
-                                <div class="item-terrain-al">
-
+                                <div class="item-terrain-sl" v-for="(terrain, indexT) in terrainsLines" :key="indexT" @click="changeTerrain(terrain.image, terrain.name, true)">
+                                    <img :src="require('~/assets/images/terrain/lignes/' + terrain.image)" :alt="terrain.name" :title="terrain.name">
                                 </div>
                             </div>
                         </div>
@@ -344,6 +335,9 @@ export default {
         terrains(){
             return this.$store.state.esdesigner.listeTerrains;
         },
+        terrainsLines(){
+            return this.$store.state.esdesigner.listeTerrainsLines;
+        },
         gardiens(){
             return this.$store.state.esdesigner.listeGardiens;
         },
@@ -512,8 +506,9 @@ export default {
         addPlayerImg(img, name){
             this.addObjectToList('drag-joueur-img', name, 'joueurs/' + img, true);
         },
-        changeTerrain(image, name){
-            document.getElementById('terrainSoccer').style.backgroundImage = 'url(' + require('~/assets/images/terrain/' + image) + ')';
+        changeTerrain(image, name, isLine){
+            const pathLigne = isLine ? 'lignes/' : '';
+            document.getElementById('terrainSoccer').style.backgroundImage = 'url(' + require('~/assets/images/terrain/' + pathLigne + image) + ')';
             document.getElementById('terrainSoccer').style.backgroundRepeat  = 'no-repeat';
             this.terrainSelected = name;
         },

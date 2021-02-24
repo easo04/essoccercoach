@@ -9,7 +9,7 @@
         <div class="modal-footer">
             <div class="actions">
                 <a @click="hide()" class="link">Passer les astuces</a>
-                <button class="btn btn-default" @click="next()">Suivant</button>
+                <button class="btn btn-default" @click="next()">{{btnNextLabel}}</button>
             </div>
         </div>
     </div>
@@ -23,6 +23,7 @@ export default {
         return{
             lstSlides : [],
             currentIndex: 0,
+            btnNextLabel:'Suivant'
         }
     },
     methods:{
@@ -34,6 +35,10 @@ export default {
                 this.currentIndex++;
             }else{
                 this.hide();
+            }
+
+            if(this.currentIndex === this.lstSlides.length - 1){
+                this.btnNextLabel = 'Commencez'
             }
         }
     },

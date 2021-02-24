@@ -12,7 +12,7 @@ export const lstSlidersModalOpenDesigner = [
         text:'Vous pouvez ajouter du texte et le déplacer à l\'endroit de votre choix. Vous pouvez également changer la couleur du texte.'
     },
     {
-        image:'open-designer3.gif',
+        image:'open-designer3.png',
         text:'Vous pouvez ajouter des formes à votre exercice, changer leurs couleurs et ajuster leurs dimensions.'
     },
     {

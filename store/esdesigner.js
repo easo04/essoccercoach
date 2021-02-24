@@ -11,6 +11,14 @@ export const state = () => ({
         {'name': 'terrain16', 'color': '', 'image': 'terrain16.png'},
         {'name': 'terrain13', 'color': '', 'image': 'terrain13.png'},
     ],
+    listeTerrainsLines : [
+        {'name': 'terrain1', 'color': '', 'image': 'terrain1.png'},	
+        {'name': 'terrain2', 'color': '', 'image': 'terrain2.png'},    
+        {'name': 'terrain3', 'color': '', 'image': 'terrain3.png'},    
+        {'name': 'terrain4', 'color': '', 'image': 'terrain4.png'},    
+        {'name': 'terrain5', 'color': '', 'image': 'terrain5.png'},      
+        {'name': 'terrain6', 'color': '', 'image': 'terrain6.png'},  
+    ],
     listeJoueurs : [
         {'name': 'player-mouvement-red', 'image': 'player-mouvement-red.png'},
         {'name': 'player-mouvement-blue', 'image': 'player-mouvement-blue.png'},
