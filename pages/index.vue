@@ -126,16 +126,31 @@
           </div>
         </div>
       </div>
+      <div class="copyrigth-exercices">
+        <div class="texte">
+          <div>
+            <h2>Consultez notre banque d'exercices de soccer avec plus de 100 exercices disponibles!</h2> 
+            <p>Vous trouverez différents exercices divisés en catégories. Aussi, vous pouvez utiliser les exercices
+              populaires dans vos séances d'entraînment</p> 
+          </div>  
+        </div> 
+        <div class="message-btn">    
+          <a class="btn btn-default-ghost" href="/exercices">Consultez les exercices</a>
+        </div>      
+        <div class="image">
+          <img src="@/assets/images/icons/timeline.svg" alt="créer séance de soccer"/>
+        </div> 
+      </div>
       <div class="copyrigth-essoccercoach" id="propos">
         <div class="images-essoccercoach">
           <div class="image-item">
-              <img src="@/assets/images/copyrigth_essoccercoach2.png" alt="créateur de séances de soccer"/>
+              <img src="@/assets/images/es1.jpg" alt="créateur de séances de soccer"/>
           </div>
           <div class="image-item">
-              <img src="@/assets/images/copyrigth_essoccercoach1.png" alt="esdesigner le créateur d'exercices de soccer"/>
+              <img src="@/assets/images/es2.jpg" alt="esdesigner le créateur d'exercices de soccer"/>
           </div>
           <div class="image-item">
-            <img src="@/assets/images/copyrigth_essoccercoach3.png" alt="créateur d'alignements de soccer"/>
+            <img src="@/assets/images/es3.jpg" alt="créateur d'alignements de soccer"/>
           </div>
         </div>
         <div class="description-essoccercoach">
@@ -149,7 +164,7 @@
               </p>
             </div>
             <div class="image-essoccercoach">
-              <img src="@/assets/images/copyrigth_essoccercoach1.png" alt="esdesigner le créateur d'exercices de soccer"/>
+              <img src="@/assets/images/es2.jpg" alt="esdesigner le créateur d'exercices de soccer"/>
             </div>
             <div class="task-list">
               <p><font-awesome-icon :icon="['fas', 'check']"/> Créateur d'exercices de soccer</p>
@@ -176,7 +191,7 @@
               </div> 
             </div> 
             <div class="message-btn">    
-              <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre premier exercice</button>
+              <a class="btn btn-default-ghost" href="/exercices">Créez votre premier exercice</a>
             </div> 
           </div>
           <div class="icon-img1">
@@ -196,9 +211,7 @@
 </template>
 
 <script>
-import {lstSlidersHomeHero as slidesHero, lstSlidersHomeExercices as slidesExercices,
-lstSlidersHomeSeances as slidesSeances, 
-lstSlidersHomeAlignements as slidesAlignements} from '@/static/sliders-list.js';
+import {lstSlidersHomeHero as slidesHero} from '@/static/sliders-list.js';
 import Slider from '@/components/Slider.vue';
 import SqueletLandingPage from '../components/exercices/SqueletLandingPage.vue';
 export default {
@@ -206,9 +219,6 @@ export default {
   data(){
     return{
       lstSlidesHero : [],
-      lstSlidesExercices: [],
-      lstSlidesSeances : [],
-      lstSlidesAlignements : [],
       exercicesPopulaires:[],
     }
   },
@@ -227,9 +237,6 @@ export default {
   },
   created(){
     this.lstSlidesHero = slidesHero;
-    this.lstSlidesExercices = slidesExercices;
-    this.lstSlidesSeances = slidesSeances;
-    this.lstSlidesAlignements = slidesAlignements;
   },
   mounted(){
     $(document).ready(function(){

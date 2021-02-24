@@ -203,8 +203,8 @@
                 .outil-content{
                     margin-top: 20px;
                     @include font-m;
-                    font-family: Open Sans;
-                    color:$color-white-fonts;
+                    font-family: Open Sans;               
+                    color: #D4EEF1;
                     text-align: center;
                     height: 100px;
                 }
@@ -335,6 +335,48 @@
         }
     }
 
+    .copyrigth-exercices{
+        background-color: $color-blue-blackground;
+        padding: 100px 300px;
+        position: relative;   
+        text-align: center;
+        @media screen and (max-width: $screen-sm) {
+            padding: 0;
+            .texte{
+                h2{
+                    margin: 0;
+                }
+            }
+        }
+        .image{
+            position: absolute;
+            top:50px;
+            right: 50px;
+            display: none;
+
+            
+            img{
+                height: 150px;
+                width: 150px;
+            }
+        }
+        .texte{
+            h2{
+                color:$color-white-fonts;
+            }
+            p{
+                @include font-l;
+                color: #D4EEF1;
+            }
+        }
+        .message-btn{
+            margin-top: 30px;
+            a{
+                display: inline-block
+            }
+        }
+    }
+
     .copyrigth-essoccercoach{
         margin-bottom: 60px;
         //border-top:1px solid $color-black-fonts-second;
@@ -345,17 +387,15 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             height: auto;
-            grid-gap: 10px;
             background: $color-white-background;
             .image-item{
-                height: 400px;
+                height: auto;
                 background-color: $color-blue-blackground-clair;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                padding: 60px 20px;
                 img{
-                    height: 350px;
-                    width: 350px;
+                    height: auto;
+                    width: 100%;
+                    border-radius: 5px;
                 }
             }
             
@@ -476,7 +516,10 @@
                 }
             }
             .message-btn{
-                margin-top: 20px;
+                margin-top: 30px;
+                a{
+                    display: inline-block
+                }
             }
         }
 
