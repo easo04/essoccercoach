@@ -335,6 +335,7 @@ body{
                         color:black;
                         border-bottom: 2px solid $color-soccer-coach;
                         padding-bottom: 5px;
+                        margin-top: 0;
                     }
                     .infos-seance{
                         .icon-text{
@@ -350,6 +351,7 @@ body{
                 
 
                 .lst-exerices{
+                    margin-top: 10px;
                     .exercice-item{
                         box-shadow: none;
                         border-color:$color-gris-2;
@@ -358,6 +360,7 @@ body{
                                 color:black;
                                 border-bottom:2px solid $color-soccer-coach;
                                 padding-bottom: 5px;
+                                margin-top: 0;
                             }
                             .icon-text{
                                 @include icon-text;

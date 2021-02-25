@@ -99,7 +99,7 @@
                                 <h4>{{seance.theme}}</h4>
                                 <div class="infos-seance">
                                     <span v-if="seance.time" class="icon-text"><span class="label">Durée: </span><span>{{seance.time}}</span></span>
-                                    <span v-if="seance.date" class="icon-text"><span class="label">Date: </span><span>{{seance.date}}</span><br><br></span>
+                                    <span v-if="seance.date" class="icon-text"><span class="label">Date: </span><span>{{seance.date}}</span><br></span>
                                     <span v-if="seance.coach" class="icon-text"><span class="label">Entraîneur: </span><span>{{seance.coach}}</span></span>
                                     <span v-if="seance.team" class="icon-text"><span class="label">Équipe: </span><span>{{seance.team}}</span></span>
                                     <span v-if="seance.terrain" class="icon-text"><span class="label">Terrain: </span><span>{{seance.terrain}}</span></span>
@@ -182,10 +182,13 @@ export default {
     watch:{
         exercices(){
             if(this.exercices.length > 0){
-                const option = {
-                    showListOptions : false,
-                };
-                this.optionsExercice.push(option);
+                this.optionsExercice = [];
+                this.exercices.forEach(exe =>{ 
+                    const option = {
+                        showListOptions : false,
+                    };
+                    this.optionsExercice.push(option);
+                });
             }
         }
     },
@@ -248,11 +251,12 @@ export default {
             return result;
         },
         updateExercice(exercice, i){
-            exercice.index = i;
+            let exerciceScope = {...exercice};
+            exerciceScope.index = i;
             this.closeAllsSelects();
             this.$modal.show(
                 AddExerciceModal,
-                {exerciceUpdate:exercice},
+                {exerciceUpdate:exerciceScope},
                 {name : 'add-exercice-modal', classes:['modal-lg2'], clickToClose:false}
             );
         },
@@ -266,7 +270,7 @@ export default {
             }
         },
         telechargerPDF(){
-            
+            this.scrollTop();
             this.setTextLoader('Téléchargement de la séance en cours ...');
             this.setShowLoader(true);
             const now = new Date();
@@ -278,7 +282,7 @@ export default {
                     onrendered: (canvas) =>{
                         let img = canvas.toDataURL('image/png');
                         let pdf = new jsPDF();
-                        pdf.addImage(img, 'JPEG', 10, 10);
+                        pdf.addImage(img, 'JPEG', 11, 5);
                         pdf.setFontSize(9);
                         pdf.setTextColor(100);
                         pdf.text(10,290, 'Séance d\'entraînement créée par essoccercoach.com'); 
