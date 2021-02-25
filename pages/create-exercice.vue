@@ -115,12 +115,12 @@
                         <div class="content-onglet">
                             <div class="sans-ligne" v-if="ongletTerrainSelected === 'sans-ligne'">
                                 <div class="item-terrain-sl" v-for="(terrain, indexT) in terrains" :key="indexT" @click="changeTerrain(terrain.image, terrain.name)">
-                                    <img :src="require('~/assets/images/terrain/' + terrain.image)" :alt="terrain.name" :title="terrain.name">
+                                    <img :src="require('~/assets/images/terrain/' + terrain.image)" :alt="terrain.name" :title="terrain.name"/>
                                 </div>
                             </div>
                             <div class="avec-ligne" v-if="ongletTerrainSelected === 'avec-ligne'">
                                 <div class="item-terrain-sl" v-for="(terrain, indexT) in terrainsLines" :key="indexT" @click="changeTerrain(terrain.image, terrain.name, true)">
-                                    <img :src="require('~/assets/images/terrain/lignes/' + terrain.image)" :alt="terrain.name" :title="terrain.name">
+                                    <img :src="require('~/assets/images/terrain/lignes/' + terrain.image)" :alt="terrain.name" :title="terrain.name"/>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                         <h4>Joueurs en mouvements</h4>
                         <div class="item-joueur-mouvement">
                             <div class="joueur-add joueur-add-img" v-for="(playerImg, indexPlayerIndex) in joueurs" :key="indexPlayerIndex" @click="addPlayerImg(playerImg.image, playerImg.name)">
-                                <img :id="'player-img-' + playerImg.name" :src="require('~/assets/images/joueurs/' + playerImg.image)">
+                                <img :id="'player-img-' + playerImg.name" :src="require('~/assets/images/joueurs/' + playerImg.image)"/>
                             </div> 
                         </div>
                         <h4>Gardiens</h4>
@@ -204,25 +204,25 @@
                             <h4>Ballons</h4>
                             <div class="items-outils">
                                 <div class="outil-li-div cones" v-for="(outil, indexO) in ballonsOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
                                 </div>
                             </div>
                             <h4>Buts</h4>
                             <div class="items-outils">
                                 <div class="outil-li-div" v-for="(outil, indexO) in butOuils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
                                 </div>
                             </div>
                             <h4>Cônes</h4>
                             <div class="items-outils">
                                 <div class="outil-li-div cones" v-for="(outil, indexO) in conesOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
                                 </div>
                             </div>
                             <h4>Outils exercices</h4>
                             <div class="items-outils">
                                 <div class="outil-li-div cones" v-for="(outil, indexO) in othersOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name">
+                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
                                 </div>
                             </div>
                         </div>
@@ -943,10 +943,6 @@ export default {
         ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setImageExercice:'seance/setImageExercice'})
     },
     created(){
-        this.setShowLoader(true);
-        this.setClassLoader('open-designer');
-        this.setTextLoader('ESsoccercoach');
-
         this.$root.$on('addText', (text) => {
             if(text){
                 this.addPlayerWithText(text);

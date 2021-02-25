@@ -387,9 +387,6 @@ export default {
         ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setAlignement:'alignement/setAlignement'})
     },
     created(){
-        this.setShowLoader(true);
-        this.setClassLoader('open-designer');
-        this.setTextLoader('ESsoccercoach');
 
         const init =  { 
                 nom:'Nom de l\'équipe',

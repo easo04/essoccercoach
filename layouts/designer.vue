@@ -26,6 +26,7 @@
     </div>
 </template>
 <script>
+import {mapMutations} from 'vuex'
 export default {
     computed:{
         showLoading(){
@@ -37,6 +38,14 @@ export default {
         classLoader(){
             return this.$store.state.classLoader;
         },
+    },
+    methods:{
+        ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader'})
+    },
+    created(){
+        this.setShowLoader(true);
+        this.setClassLoader('open-designer');
+        this.setTextLoader('ESsoccercoach');
     }
 }
 </script>
