@@ -12,7 +12,7 @@
             <div class="secondary-items">
                 <div class="first-items">
                     <span class="icon-action inactive" id="delete" @click="deleteObject()" title="Effacer"><font-awesome-icon :icon="['fas', 'eraser']"/></span>
-                    <span class="icon-action inactive" id="deleteAll" @click="deleteAll()" title="Tout supprimer"><font-awesome-icon :icon="['fas', 'trash-alt']"/></span>
+                    <span class="icon-action inactive" id="deleteAll" @click="openModalDeleteAll()" title="Tout supprimer"><font-awesome-icon :icon="['fas', 'trash-alt']"/></span>
                 </div>
                 <div class="second-items">
                     <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
@@ -298,6 +298,7 @@ import GoHomeModal from '@/components/modals/GoHomeModal.vue'
 import AddPlayerWithTextModal from '@/components/modals/AddPlayerWithTextModal.vue'
 import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
 import ModalOpenDesigner from '@/components/modals/ModalOpenDesigner.vue'
+import ConfirmDeleteAllVue from '../components/modals/ConfirmDeleteAll.vue'
 
 //enum pour le type d'actions
 const ACTIONS = {
@@ -765,6 +766,13 @@ export default {
             document.getElementById('copy').classList.add('inactive');
             document.getElementById('changeTransparence').classList.add('inactive');
         },
+        openModalDeleteAll(){
+            this.$modal.show(
+                ConfirmDeleteAllVue,
+                {},
+                {name : 'delete-all-modal', classes:['modal-s']}
+            );
+        },
         deleteAll(){
             if(this.lstObjectsDraggable.length > 0){
                 this.closeAllSelectes();
@@ -943,6 +951,10 @@ export default {
             if(text){
                 this.addPlayerWithText(text);
             }
+        });
+
+        this.$root.$on('deleteAll', () => {
+            this.deleteAll();
         });
 
     },
