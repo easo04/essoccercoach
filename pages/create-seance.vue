@@ -136,6 +136,13 @@
                         <a class="link" @click="updateSeance()" v-if="currentStep === 'download'">Modifier la séance d'entraînement</a>
                     </div>
                 </div>
+                <div class="help">
+                    <div class="question" @click="setShowOptionsHelp()">
+                        <a href="/help/seances" target="_blank">
+                            <font-awesome-icon :icon="['fas', 'question']"/>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -172,11 +179,12 @@ export default {
                 coach:undefined,
                 team:undefined,
                 terrain:undefined,
-                exercices:[]
+                exercices:[],
             },
             optionsExercice:[],
             showAddExerciceOptions:false,
-            exercicesPopulaires:[]
+            exercicesPopulaires:[],
+            showOptionsHelp:false,
         }
     },
     computed:{
@@ -204,6 +212,9 @@ export default {
         }
     },
     methods:{
+        setShowOptionsHelp(){
+            this.showOptionsHelp = !this.showOptionsHelp;
+        },
         setShowAddExerciceOptions(){
             this.showAddExerciceOptions = !this.showAddExerciceOptions;
         },

@@ -191,7 +191,7 @@
                     </div>
                     <div class="lst-options-help" v-show="showOptionsHelp">
                         <div class="options">
-                            <div><div @click="setShowOptionsHelp()">Tutoriel</div></div>
+                            <div><div @click="setShowOptionsHelp()"><a href="/help/alignements" target="_blank">Tutoriel</a></div></div>
                             <div><div @click="setShowOptionsHelp()">Youtube</div></div>
                         </div>
                     </div>
@@ -272,7 +272,7 @@ export default {
             this.playerTypeSelect = img;
         },
         setShowOptionsHelp(){
-            this.showOptionsHelp = this.showOptionsHelp ? false : true;
+            this.showOptionsHelp = !this.showOptionsHelp;
         },
         goHome(){
             this.$modal.show(

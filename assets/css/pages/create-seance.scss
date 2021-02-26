@@ -101,6 +101,7 @@ body{
         .content{
             padding: 30px 150px;
             margin-top: 0;
+            position: relative;
             h3{
                 @include h3;
                 color:$color-black-fonts;
@@ -399,6 +400,33 @@ body{
                                 color:#1F1F1F;
                             }
                         }
+                    }
+                }
+            }
+
+            .help{
+                position: absolute;
+                bottom: 30px;
+                right: 20px;
+                .question{
+                    height: 40px;
+                    width: 40px;
+                    background-color: $color-white-background;
+                    border:1px solid $color-border-designer;
+                    border-radius: 50%;
+                    box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 16px;
+                    cursor: pointer;
+                    a{
+                    color: $color-black-fonts-second;
+                    }
+                    &:hover{
+                        height: 41px;
+                        width: 41px;
+                        font-size: 17px;
                     }
                 }
             }
