@@ -1,6 +1,6 @@
 <template>
     <div class="create-seance">
-        <div class="contenant">
+        <div class="contenant" v-if="!showLoading">
             <div class="steps">
                 <div class="steps-content">     
                     <div class="back-home"><a @click="goHome()" class="link"><font-awesome-icon :icon="['fas', 'home']"/> Retournez à l'accueil</a></div>
@@ -58,7 +58,11 @@
                         </span>
                     </h3>
                     <div class="add-exercice">
-                        <button class="btn btn-default" @click="addExercice()" :class="{'disabled':exercices.length === 4}" :disabled="exercices.length === 4">Exercice <i class="fas fa-plus"></i></button>
+                        <button class="btn btn-default" @click="setShowAddExerciceOptions()" :class="{'disabled':exercices.length === 4}" :disabled="exercices.length === 4">Exercice <font-awesome-icon :icon="['fas', 'plus']"/></button>
+                        <div class="options-add-exercice" v-if="showAddExerciceOptions">
+                            <div @click="addExercicePopular()">Populaires <font-awesome-icon :icon="['fas', 'star']"/></div>
+                            <div @click="addExercice()">Nouveau <font-awesome-icon :icon="['fas', 'plus-circle']"/></div>
+                        </div>
                     </div>
                     <div class="lst-exerices">
                         <div class="exercice-vide exercice-item" v-if="exercices.length === 0">
@@ -77,7 +81,8 @@
                                 <p>{{exercice.description}}</p>
                             </div>
                             <div class="exercice-image">
-                                <img :src="exercice.image"/>
+                                <img src="@/assets/images/exercice_essoccercoach.png" v-if="exercice.popular"/>
+                                <img :src="exercice.image" v-else/>
                             </div>
                             <div class="exercice-options" title="Options de l'exercice" @click="setShowListOptions(i)"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></div>
                             <div class="exercice-options-list" v-if="optionsExercice[i] !== undefined && optionsExercice[i].showListOptions">
@@ -136,10 +141,11 @@
     </div>
 </template>
 <script>
-import {mapMutations } from 'vuex';
+import {mapMutations} from 'vuex';
 import GoHomeModal from '@/components/modals/GoHomeModal.vue';
 import AddExerciceModal from '@/components/modals/AddExerciceModal.vue';
 import DownloadSeanceSuccesModalVue from '../components/modals/DownloadSeanceSuccesModal.vue';
+import AddExercicesPopulairesModalVue from '../components/modals/AddExercicesPopulairesModal.vue';
 export default {
     layout: 'designer-seance',
     props:['fromDesign'],
@@ -169,9 +175,14 @@ export default {
                 exercices:[]
             },
             optionsExercice:[],
+            showAddExerciceOptions:false,
+            exercicesPopulaires:[]
         }
     },
     computed:{
+        showLoading(){
+            return this.$store.state.showLoader;
+        },
         lstSteps(){
             return this.$store.state.seance.steps;
         },
@@ -193,12 +204,16 @@ export default {
         }
     },
     methods:{
+        setShowAddExerciceOptions(){
+            this.showAddExerciceOptions = !this.showAddExerciceOptions;
+        },
         closeAllsSelects(currentIndex){
             this.optionsExercice.forEach((option, index) => {
                 if(currentIndex === undefined || (currentIndex !== undefined && index !== currentIndex)){
                     option.showListOptions = false;
                 }
             });
+            this.showAddExerciceOptions = false;
         },
         setShowListOptions(index){
             this.closeAllsSelects(index);
@@ -261,11 +276,24 @@ export default {
             );
         },
         addExercice(){
+            this.scrollTop();
+            this.showAddExerciceOptions = false;
             if(this.exercices.length < 5){      
                 this.$modal.show(
                     AddExerciceModal,
                     {},
-                    {name : 'add-exercice-modal', classes:['modal-lg2'], clickToClose:false}
+                    {name : 'add-exercice-modal', classes:['modal-lg2'], clickToClose:false, scrollable:true, height:'auto'}
+                );
+            }
+        },
+        addExercicePopular(){
+            this.scrollTop();
+            this.showAddExerciceOptions = false;
+            if(this.exercices.length < 5){      
+                this.$modal.show(
+                    AddExercicesPopulairesModalVue,
+                    {},
+                    {name : 'add-exercice-populars-modal', classes:['modal-lg2'], clickToClose:false, scrollable:true, height:'auto'}
                 );
             }
         },
@@ -385,7 +413,7 @@ export default {
                 exercices:[]
             };
         });
-        
+
         setTimeout(() => {
             this.setShowLoader(false);
             this.setClassLoader('');      

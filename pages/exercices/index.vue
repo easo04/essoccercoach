@@ -97,7 +97,9 @@ export default {
     created(){
     },
     mounted(){
-        
+        if(this.exercices.length > 0){
+            localStorage.setItem('exercices-populaires', JSON.stringify(this.exercices));
+        }
     },
     async fetch() {
         try{

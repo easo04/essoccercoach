@@ -153,12 +153,37 @@ body{
                 justify-content: flex-end;
                 width: 100%;
                 height: auto;
+                position:relative;
                 .btn{
                     &.disabled{
                         background-color: #C9C9C9;
                         cursor: auto;
                         &:hover{
                             background-color: #C9C9C9;
+                        }
+                    }
+                }
+                .options-add-exercice{
+                    position: absolute;
+                    bottom: -80px;
+                    background-color: #FBFBFB;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+                    border:1px solid rgba(201, 201, 201, 0.25);
+                    z-index: 40;
+                    width: 135px;
+                    >div{
+                        cursor: pointer;
+                        @include font-xm-mbold;
+                        padding: 8px 20px;
+                        font-family: $font-family-text;
+                        color:$color-black-fonts-second;
+                        text-align: center;
+                        &:hover{
+                            background-color: #D4EEF1;
+                        }
+                        &:not(:last-child){
+                            border-bottom:1px solid $color-border-designer;
                         }
                     }
                 }

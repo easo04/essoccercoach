@@ -23,7 +23,7 @@
         }
 
         &.modal-lg2{
-            top:10px !important;
+            top:3% !important;
             width: 600px !important;
             @media screen and (max-width: $screen-sm) {     
                 width: 100% !important;
@@ -238,6 +238,61 @@
                         }
                     }
                 }
+
+                &.populars{
+                    .modal-content{
+                        h4{
+                            margin-top: 0;
+                            svg{
+                                color:$color-yellow;
+                            }
+                        }
+                        .liste-exercices{
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            grid-gap: 20px;
+                            .item-exercice{
+                                height: 150px;
+                                background: $color-white-background;
+                                box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
+                                border-radius: 5px;
+                                cursor: pointer;
+                                .image-exercice-item{
+                                    height: 95px;
+                                    width: 100%;
+                                    position: relative;
+                                    img{
+                                        border-top-left-radius: 5px;
+                                        border-top-right-radius: 5px;
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                    .type{
+                                        position: absolute;
+                                        bottom: 0;
+                                        right: 0;
+                                        width: auto;
+                                        padding: 2px 4px;
+                                        @include font-s-sbold;
+                                        font-family: $font-family-text;
+                                        color: #0E2650;
+                                        background-color: #A7BFE9;
+                                        border-top-left-radius: 5px;
+                                    }
+                                }
+                                .description-exercice-item{
+                                    padding: 3px 10px;
+                                    font-family: Lato;
+                                    @include font-s-bold;
+                                    color:$color-black-fonts;
+                                }
+                                &:hover{
+                                    box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.8);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -268,4 +323,12 @@
             }
         }
     }
+    &.scrollable{
+        .vm--modal {
+            margin-bottom: 20px!important;
+            &.modal-lg2{
+                top: 10px !important;;
+            }
+        }
+    } 
 }

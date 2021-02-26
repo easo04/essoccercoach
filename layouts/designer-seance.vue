@@ -9,17 +9,19 @@
                 <h3>{{textLoader}}</h3>
             </div>
         </div>
-        <div class="header-designer">
-            <div class="logo">
-                <img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/>
-                <h4>ESsoccercoach</h4>
+        <div>
+            <div class="header-designer">
+                <div class="logo">
+                    <img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/>
+                    <h4>ESsoccercoach</h4>
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <Nuxt />
-        </div>
-        <div class="footer-designer-seance">
-            © Outil créé par ESsoccercoach
+            <div class="content">
+                <Nuxt />
+            </div>
+            <div class="footer-designer-seance">
+                © Outil créé par ESsoccercoach
+            </div>
         </div>
     </div>
 </template>
@@ -35,6 +37,10 @@ export default {
         classLoader(){
             return this.$store.state.classLoader;
         },
+    },
+    created(){
+    },
+    mounted(){
     }
 }
 </script>

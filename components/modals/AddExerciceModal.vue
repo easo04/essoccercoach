@@ -54,6 +54,7 @@ export default {
                 players:undefined,
                 description:undefined,
                 image:undefined,
+                pupular:false,
             },
             fileName:undefined,
             isModeUpdate:false,
@@ -158,6 +159,7 @@ export default {
                 time:this.exerciceUpdate.time,
                 players:this.exerciceUpdate.players,
                 description:this.exerciceUpdate.description,
+                popular:this.exerciceUpdate.popular || false,
                 image:this.exerciceUpdate.image, //contient l'image qu'on a créé dans esdesigner     
             };
             this.isModeUpdate = true;

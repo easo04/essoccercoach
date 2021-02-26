@@ -25,7 +25,7 @@
           séances d'entraînement. Le papier et le crayon deviennent rapidement nos meilleurs amis 
           lorsque nous voulons planifier
           nos entraînements ou nos exercices.
-          <br><br><strong>ESSoccerCoach</strong> vous offre plusieurs outils pour vous permettre de 
+          <br><br><strong>ESsoccercoach</strong> vous offre plusieurs outils pour vous permettre de 
           créer de façon très simple vos <strong>exercices</strong>, vos <strong>séances d'entraînement</strong>
           et vos <strong>alignements</strong>.
         </p>
@@ -131,7 +131,7 @@
           <div>
             <h2>Consultez notre banque d'exercices de soccer avec plus de 100 exercices disponibles!</h2> 
             <p>Vous trouverez différents exercices divisés en catégories. Aussi, vous pouvez utiliser les exercices
-              populaires dans vos séances d'entraînment</p> 
+              populaires dans vos séances d'entraînement</p> 
           </div>  
         </div> 
         <div class="message-btn">    
@@ -258,14 +258,14 @@ export default {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
-    })
+    });
   },
   async fetch() {
       try{
         
           const response = await this.$axios.$get('/api/exercices/populars/get-all');
           for(let i=0;i<7;i++){
-            this.exercicesPopulaires.push(response.exercices[i])
+            this.exercicesPopulaires.push(response.exercices[i]);
           }
       }catch(err){
           console.log(err);

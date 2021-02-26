@@ -17,11 +17,18 @@
     </div>
 </template>
 <script>
+import {mapMutations} from 'vuex';
 export default {
     methods: {
         goHome () {
             this.hide();
             this.$router.push('/');
+
+            //init all stores
+            this.setCurrentState('informations');
+            this.setSeance({});
+            this.setAllStepsNotCompleted();
+            this.setListExercices([]);
 
             //supprimer le local storage de la session
             localStorage.removeItem('fromDesigner');
@@ -29,7 +36,9 @@ export default {
         },
         hide () {
             this.$modal.hide('go-home-modal');
-        }
+        },
+        ...mapMutations({setCurrentState:'seance/setCurrentState', setSeance:'seance/setSeance', 
+            setListExercices:'seance/setListExercices', setAllStepsNotCompleted : 'seance/setAllStepsNotCompleted'})
     },
     mount () {
     }

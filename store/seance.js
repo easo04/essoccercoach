@@ -52,6 +52,7 @@ export const mutations = {
             players:newExe.players,
             description:newExe.description,
             image:newExe.image,
+            popular:newExe.popular,
         };
         state.exercices = newArray;
     }
