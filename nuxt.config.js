@@ -1,12 +1,29 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'essoccercoach',
+    title: 'ESsoccercoach',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
-    ],
+      {
+        hid:'description',
+        name:'description',
+        content:'Vous cherchez un outil pour créer vos exercices de soccer gratuitement? Nous avons le meilleur outil pour vous ✅ Création d\'exercices ✅ Création de séances ✅ Création d\'alignements'
+      },
+      {
+          hid:'keywords',
+          name:'keywords',
+          content:'exercices de soccer, soccer coach, créateur d\'exercices'
+      },
+      {
+          hid:'robots',
+          name:'robots',
+          content:'index'
+      },
+    ],   
+    htmlAttrs:{
+      lang:'fr'
+    },
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo_app.ico' },
       { rel: 'stylesheet', href: '/flickity/flickity.css', media:'screen'},

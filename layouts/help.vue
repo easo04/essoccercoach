@@ -12,12 +12,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="item-principal" :class="{'active':itemSelected==='seance'}" @click="setItemSelected('seance')">
+                <div class="item-principal" :class="{'active':itemSelected==='seance'}">
                     <h4 v-if="itemSelected==='seance'"><font-awesome-icon :icon="['fas', 'chevron-down']"/> Création d'une séance d'entrâinement</h4>
-                    <h4 v-else><font-awesome-icon :icon="['fas', 'chevron-right']"/>  Création d'une séance d'entrâinement</h4>
+                    <h4 v-else @click="setItemSelected('seance')"><font-awesome-icon :icon="['fas', 'chevron-right']"/>  Création d'une séance d'entrâinement</h4>
                     <div class="items-secondaires" v-show="itemSelected==='seance'">
                         <div class="item" :class="{'selected': item.item === secondarySelected}" v-for="(item, i) in itemsSeance" :key="i" @click="setSencondaryItem(item.item)">
-                            {{item.label}}
+                            <NuxtLink :to="item.url">{{item.label}}</NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <h4 v-else><font-awesome-icon :icon="['fas', 'chevron-right']"/>  Création d'un alignement</h4>
                     <div class="items-secondaires" v-show="itemSelected==='alignement'">
                         <div class="item" :class="{'selected': item.item === secondarySelected}" v-for="(item, i) in itemsAlignement" :key="i" @click="setSencondaryItem(item.item)">
-                            {{item.label}}
+                            <NuxtLink :to="item.url">{{item.label}}</NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -42,33 +42,16 @@
 export default {
     head(){
         return{
-            title:'Le créateur d\'exercices de soccer | ESSoccerCoach',
-            meta:[
-                {
-                    hid:'description',
-                    name:'description',
-                    content:'Vous cherchez un outil pour créer vos exercices de soccer gratuitement? Nous avons le meilleur outil pour vous ✅ Création d\'exercices ✅ Création de séances ✅ Création d\'alignements'
-                },
-                {
-                    hid:'keywords',
-                    name:'keywords',
-                    content:'exercices de soccer, soccer coach, créateur d\'exercices'
-                },
-                {
-                    hid:'robots',
-                    name:'robots',
-                    content:'index'
-                },
-            ],
+            title:'Documentation | ESsoccercoach',
         }
-
     },
     data(){
         return{
             itemSelected:'esdesigner',
-            itemsDesigner:[{item:'commencer', label:'Commencer', selected:false, url:'/help'}, {item:'formes', label:'Formes', selected:false, url:'/help/esdesigner-formes'}],
-            itemsSeance:[{item:'commencer-seance', label:'Commencer', selected:false, url:''}, {item:'ajout-exercice', label:'Ajouter exercice', selected:false, url:''}],
-            itemsAlignement:[{item:'commencer-alignement', label:'Commencer', selected:false, url:''}, {item:'ajout-joueurs', label:'Ajouter joueur', selected:false, url:''}],
+            itemsDesigner:[{item:'commencer', label:'Commencer', selected:false, url:'/help'}, {item:'formes', label:'Ajouter des formes', selected:false, url:'/help/esdesigner-formes'},
+            {item:'texte', label:'Ajouter du texte', selected:false, url:'/help/esdesigner-texte'}],
+            itemsSeance:[{item:'commencer-seance', label:'Commencer', selected:false, url:'/help/seances'}, {item:'ajout-exercice', label:'Ajouter un exercice', selected:false, url:'/help/seances/add-exercice'}],
+            itemsAlignement:[{item:'commencer-alignement', label:'Commencer', selected:false, url:'/help/alignements'}],
             secondarySelected:'commencer'
         }
     },
@@ -76,16 +59,37 @@ export default {
         setItemSelected(item){
             this.itemSelected = item;
 
-            if(item==='seance'){
+            if(item ==='seance'){
                 this.setSencondaryItem('commencer-seance');
-            }else if(item==='alignement'){
+                this.$router.push('/help/seances');
+            }else if(item ==='alignement'){
                 this.setSencondaryItem('commencer-alignement');
+                this.$router.push('/help/alignements');
             }else{
                 this.setSencondaryItem('commencer');
+                this.$router.push('/help');
             }
         },
         setSencondaryItem(item){
             this.secondarySelected = item;
+        }
+    },
+    created(){
+        const path = this.$route.path;
+        let item = this.itemsDesigner.find(i=>i.url === path);
+        let itemLabel = 'esdesigner';
+        if(!item){
+            item = this.itemsSeance.find(i=>i.url === path);
+            itemLabel = 'seance';
+            if(!item){
+                item = this.itemsAlignement.find(i=>i.url === path);
+                itemLabel = 'alignement';
+            }
+        }
+
+        if(item){
+            this.itemSelected = itemLabel;
+            this.secondarySelected = item.item;
         }
     }
 }
