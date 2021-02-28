@@ -12,6 +12,8 @@ export const state = () => ({
   {label:'Tactiques', name:'tactiques', url:'/exercices/categorie/tactiques'},
   {label:'Gardiens', name:'gardiens', url:'/exercices/categorie/gardiens'}],
   exercices:[],
+  emails:[],
+  users:[],
   currentItemMenu:'accueil'
 })
 
@@ -42,5 +44,20 @@ export const mutations = {
   },
   setCurrentItemMenu(state, newValue){
     state.currentItemMenu = newValue;
+  },
+  setListEmails(state, newValue){
+    state.emails = newValue;
+  },
+  setListUsers(state, newValue){
+    state.users = newValue;
+  },
+  addUser(state, user){
+    state.users.push(user);
+  },
+  deleteUser(state, index){
+    state.users.splice(index, 1);
+  },
+  deleteEmail(state, index){
+    state.emails.splice(index, 1);
   }
 }

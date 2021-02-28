@@ -18,12 +18,28 @@
             </div>
         </div>
         <div class="menu-left">
-            <div class="active">
+            <div :class="{'active' : itemSelected === 'exercices'}" @click="goToExercices()">
                 <div>
                     <div class="icon-svg">
                         <font-awesome-icon :icon="['fas', 'futbol']"/>
                     </div>
                     <div>Exercices</div>
+                </div>
+            </div>
+            <div :class="{'active' : itemSelected === 'emails'}" @click="goToEmails()" v-if="showIfAdmin()">
+                <div>
+                    <div class="icon-svg">
+                        <font-awesome-icon :icon="['fas', 'envelope']"/>
+                    </div>
+                    <div>Emails</div>
+                </div>
+            </div>
+            <div :class="{'active' : itemSelected === 'users'}" @click="goToUsers()" v-if="showIfAdmin()">
+                <div>
+                    <div class="icon-svg">
+                        <font-awesome-icon :icon="['fas', 'user']"/>
+                    </div>
+                    <div>Usagers</div>
                 </div>
             </div>
             <div class="deactivate">
@@ -54,6 +70,7 @@
 </template>
 <script>
 import {mapState} from 'vuex';
+const ROUTES_ONLY_ADMINS = ['users', 'emails'];
 export default {
     head(){
         return{
@@ -62,7 +79,8 @@ export default {
     },
     data(){
         return{
-            showListProfil:false
+            showListProfil:false,
+            itemSelected:'exercices',
         }
     },
     computed: {
@@ -76,19 +94,48 @@ export default {
             this.$auth.logout();
             localStorage.removeItem('user');
             localStorage.removeItem('exercices');
+            localStorage.removeItem('emails');
+        },
+        goToEmails(){
+            this.itemSelected = 'emails';
+            this.$router.push('/dashboard/emails');
+        },
+        goToExercices(){
+            this.itemSelected = 'exercices';
+            this.$router.push('/dashboard');
+        },
+        goToUsers(){
+            this.itemSelected = 'users';
+            this.$router.push('/dashboard/users');
+        },
+        showIfAdmin(){
+            return this.auth.user.subscription === 'admin';
         }
     },
     created(){
-
+        if(this.$route.path.includes('emails')){
+            this.itemSelected = 'emails';
+        }else if(this.$route.path.includes('users')){
+            this.itemSelected = 'users';
+        }else{
+            this.itemSelected = 'exercices';
+        }
     },
     mounted(){
         const user = JSON.parse(localStorage.getItem('user'));
         if(user){
             this.$auth.setUser(user);
         }
+
+        if(ROUTES_ONLY_ADMINS.find(r=>this.$route.path.includes(r))){
+            console.log('include')
+            if(this.auth.user.subscription !== 'admin'){
+                console.log('not admin')
+                this.$router.push('/dashboard');
+            }
+        }
     },
     beforeDestroy(){
-        //localStorage.removeItem('user')
     }
 }
 </script>

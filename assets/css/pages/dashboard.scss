@@ -1,5 +1,6 @@
 .dashboard{
     padding: 20px;
+    position: relative;
     p{
         @include font-m;
         color:$color-black-fonts-second;
@@ -11,6 +12,23 @@
         color:$color-black-fonts-second;
         font-family: $font-family-text;
     }
+
+    .copy-all, .show-all{
+        span{
+            margin-top: 20px;
+            @include blue-link;
+        }
+    }
+
+    .form-group{
+        position: relative;
+        width: 100%;
+        height: auto;
+        .copy-all{
+            float: right;
+        }
+    }
+
     .actions-section{
         margin-top: 50px;
         display: flex;
@@ -221,6 +239,35 @@
             }
             @media screen and (max-width: $screen-sm) {
                 width: 100%;
+            }
+        }
+    }
+    .lst-emails{
+        margin-top: 20px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        .item-email{
+            display: flex;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(201, 201, 201, 0.4);
+            padding: 20px;
+            border-radius: 5px;
+            .label-email{
+                @include font-m;
+                color:$color-black-fonts-second;
+                font-family: $font-family-text;          
+                width: 80%;
+            }
+            .delete{
+                width: 20%;
+                display: flex;
+                justify-content: flex-end;
+                svg{
+                    color:$color-black-fonts;
+                    cursor: pointer;
+                }
             }
         }
     }

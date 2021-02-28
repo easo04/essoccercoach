@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard">
         <h2>Exercices publiques</h2>
-        <p>La liste de'exercices publiques qui seront affichés dans l'application.</p>
+        <p>La liste d'exercices publiques qui seront affichés dans l'application.</p>
         <div class="actions-section">
             <div class="filter-exercices">
                 <div class="form-group">
