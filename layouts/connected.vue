@@ -107,10 +107,10 @@ export default {
         goToUsers(){
             this.itemSelected = 'users';
             this.$router.push('/dashboard/users');
-            this.setShowListProfil();
         },
         goToMonProfil(){
             this.$router.push('/dashboard/profil');
+            this.setShowListProfil();
         },
         showIfAdmin(){
             return this.auth.user.subscription === 'admin';

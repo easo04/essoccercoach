@@ -68,6 +68,12 @@ export default {
             this.customStyle = 'succes';
             this.showMessage = true;
         });
+
+        this.$root.$on('passwordUpdated', ()=>{
+            this.customMessage = 'Le mot de passe été modifié';
+            this.customStyle = 'succes';
+            this.showMessage = true;
+        });
     }
 }
 </script>

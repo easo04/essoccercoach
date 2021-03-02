@@ -67,9 +67,9 @@ export default {
 
             try{
                 const response = await this.$axios.post('/api/users/update-password', data);  
-
+                console.log(response)
                 if(response.data.code === CODE_SUCCES){
-                    this.$root.$emit('loadUser');
+                    this.$root.$emit('passwordUpdated');
                     this.hide();
                 }
             }catch(err){
