@@ -11,7 +11,7 @@
                 <div class="liste-profil" v-if="showListProfil">
                     <h4>{{auth.user.first_name}} {{auth.user.last_name}}</h4>
                     <div class="options-profil">
-                        <div><font-awesome-icon :icon="['fas', 'user']"/> <span class="label-icon">Mon profile</span></div>
+                        <div @click="goToMonProfil()"><font-awesome-icon :icon="['fas', 'user']"/> <span class="label-icon">Mon profile</span></div>
                         <div class="logout" @click="logout()"><font-awesome-icon :icon="['fas', 'sign-out-alt']"/> <span class="label-icon">Fermez la session</span></div>
                     </div>
                 </div>
@@ -107,6 +107,10 @@ export default {
         goToUsers(){
             this.itemSelected = 'users';
             this.$router.push('/dashboard/users');
+            this.setShowListProfil();
+        },
+        goToMonProfil(){
+            this.$router.push('/dashboard/profil');
         },
         showIfAdmin(){
             return this.auth.user.subscription === 'admin';

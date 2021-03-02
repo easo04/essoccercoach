@@ -1,11 +1,19 @@
 .dashboard{
     padding: 20px;
     position: relative;
+
+    .addNewUser, .btn-add{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
     p{
         @include font-m;
         color:$color-black-fonts-second;
         font-family: $font-family-text;
     }
+
     a{
         text-decoration: none;
         @include font-xm;
@@ -34,14 +42,6 @@
         display: flex;
         .form-group .form-control{
             margin-bottom: 0;
-        }
-        .btn-add{
-            margin-left: 20px;
-            display: flex;
-            align-items: flex-end;
-            .btn-default{
-                height: 50px;
-            }
         }
     }
     .exercices{
@@ -268,6 +268,70 @@
                     color:$color-black-fonts;
                     cursor: pointer;
                 }
+            }
+        }
+    }
+    .lst-users{
+        margin-top: 20px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        .item-user{
+            box-shadow: 0px 4px 10px rgba(201, 201, 201, 0.4);
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+            @include font-m;
+            color:$color-black-fonts-second;
+            font-family: $font-family-text;  
+            h4{
+                margin-top: 0;
+            }
+            .delete{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                svg{
+                    color:$color-black-fonts;
+                    cursor: pointer;
+                }
+            }
+            .type{
+                margin-top: 20px;
+                font-weight: 600;
+                &.admin{
+                    color:#208994;
+                }
+                &.premium{
+                    color:green;
+                }
+                &.middle{
+                    color:yellow;
+                } 
+                &.free{
+                    color:blue;
+                }
+            }
+            button{
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+    }
+
+    &.mon-profil{
+        .info-user{
+            .label{
+                font-weight: 600;
+            }
+
+            .blue-link{
+                @include blue-link;
+            }
+
+            .link{
+                margin-top: 20px;
             }
         }
     }

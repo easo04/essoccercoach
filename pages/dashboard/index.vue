@@ -1,5 +1,8 @@
 <template>
     <div class="dashboard">
+        <div class="btn-add">
+            <button class="btn btn-default" @click="createExercice()">Nouveau <font-awesome-icon :icon="['fas', 'plus']"/></button>
+        </div>
         <h2>Exercices publiques</h2>
         <p>La liste d'exercices publiques qui seront affichés dans l'application.</p>
         <div class="actions-section">
@@ -15,9 +18,6 @@
                         </option>
                     </select>
                 </div>
-            </div>
-            <div class="btn-add">
-                <button class="btn btn-default" @click="createExercice()">Nouveau <font-awesome-icon :icon="['fas', 'plus']"/></button>
             </div>
         </div>
         <div class="exercices">
