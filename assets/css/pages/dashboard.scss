@@ -321,6 +321,9 @@
     }
 
     &.mon-profil{
+        p{
+            @include font-xm;
+        }
         .info-user{
             .label{
                 font-weight: 600;
