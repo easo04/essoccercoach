@@ -26,41 +26,6 @@
             <div class="btn-new">
                 <button class="btn btn-default btn-add" :class="{'active' : showNewActions}" @click="showActions()">Nouveau <font-awesome-icon :icon="['fas', 'plus']"/></button>
                 <span class="btn-add-mobile" :class="{'active' : showNewActions}" @click="showActions()"><font-awesome-icon :icon="['fas', 'plus']"/></span>
-                <div class="new-actions-list" v-if="showNewActions">
-                    <h4>Commencez à créer avec l'un de nos outils</h4>
-                    <div class="items-actions">
-                        <div class="item-action-list" @click="goToCreateSeances()">
-                            <div>
-                                <div class="img-item-action">
-                                    <div class="img">
-                                        <img src="@/assets/images/seance_icon_action.png" alt="créer séance de soccer"/>
-                                    </div>
-                                </div>
-                                <span>Séance</span>
-                            </div>
-                        </div>
-                        <div class="item-action-list" @click="goToCreateExercices()">
-                            <div>
-                                <div class="img-item-action">
-                                    <div class="img">
-                                        <img src="@/assets/images/exercice_icon_action.png" alt="créer exercice de soccer"/>
-                                    </div>
-                                </div>
-                                <span>Exercice</span>
-                            </div>
-                        </div>
-                        <div class="item-action-list" @click="goToCreateAlignements()">
-                            <div>
-                                <div class="img-item-action">
-                                    <div class="img">
-                                        <img src="@/assets/images/alignement_icon_action.png" alt="créer alignement de soccer"/>
-                                    </div>
-                                </div>
-                                <span>Alignement</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="menu-mobile">
@@ -96,6 +61,41 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="new-actions-list" v-if="showNewActions">
+                    <h4>Commencez à créer avec l'un de nos outils</h4>
+                    <div class="items-actions">
+                        <div class="item-action-list" @click="goToCreateSeances()">
+                            <div>
+                                <div class="img-item-action">
+                                    <div class="img">
+                                        <img src="@/assets/images/seance_icon_action.png" alt="créer séance de soccer"/>
+                                    </div>
+                                </div>
+                                <span>Séance</span>
+                            </div>
+                        </div>
+                        <div class="item-action-list" @click="goToCreateExercices()">
+                            <div>
+                                <div class="img-item-action">
+                                    <div class="img">
+                                        <img src="@/assets/images/exercice_icon_action.png" alt="créer exercice de soccer"/>
+                                    </div>
+                                </div>
+                                <span>Exercice</span>
+                            </div>
+                        </div>
+                        <div class="item-action-list" @click="goToCreateAlignements()">
+                            <div>
+                                <div class="img-item-action">
+                                    <div class="img">
+                                        <img src="@/assets/images/alignement_icon_action.png" alt="créer alignement de soccer"/>
+                                    </div>
+                                </div>
+                                <span>Alignement</span>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
 </template>

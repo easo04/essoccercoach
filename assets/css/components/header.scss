@@ -1,5 +1,8 @@
 .header-app{
     position: relative;
+    height: auto;
+    width: 100%;
+    z-index: 900;
     .header-second{
         height: 25px;
         width: 100%;
@@ -94,73 +97,6 @@
         }
         .btn-new{
             justify-content: flex-end;
-            position: relative;
-            .new-actions-list{
-                position: absolute;
-                bottom: -195px;
-                width: 400px;
-                background-color: #FBFBFB;
-                border-radius: 5px;
-                color:$color-black-fonts;
-                border:1px solid rgba(201, 201, 201, 0.5);
-                padding: 20px;
-
-                @media screen and (max-width: $screen-sm) {
-                    bottom: -190px;
-                    right: -21px;
-                    width: 334px;
-                }
-
-                h4{
-                    margin: 0;
-                    margin-bottom: 20px;
-                }
-                .items-actions{
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                    grid-gap: 20px;
-                    border-top: 1px solid $color-gris-1;
-                    padding-top: 20px;
-                    height: 120px;
-                    @media screen and (max-width: $screen-sm) {
-                        height: 90px;
-                    }
-    
-                    .item-action-list{
-                        border:1px solid $color-soccer-coach;
-                        background-color: $color-soccer-coach;
-                        border-radius: 50%;
-                        color:$color-white-fonts;
-                        @include font-s-mbold;
-                        font-family: Open Sans;
-                        text-align: center;
-                        cursor: pointer;
-                        padding: 10px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: auto;
-                        .img-item-action{
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            .img{
-                                height: 60px;
-                                width: 70px;
-                                display: flex;
-                                align-items: center;
-                                img{
-                                    width: 100%;
-                                }
-                            }
-                        }
-                        &:hover{
-                            background-color: #208994;
-                            border:1px solid #18676F;
-                        }
-                    }
-                }
-            }
         }
         .btn-add-mobile{
             display: none;
@@ -190,13 +126,12 @@
                 }
             }
         }
-    }
-    
+    } 
     .menu-mobile{
         height: 60px;
         background-color: $color-white-background;
-        border-bottom: 1px solid $color-border;
-        border-top: 1px solid $color-border;
+        border-bottom: 1px solid $color-gris-4;
+        border-top: 1px solid $color-gris-4;
         position: fixed;
         top: 85px;
         z-index: 700;
@@ -235,5 +170,98 @@
 
 
 
+    }
+    .new-actions-list{
+        position: fixed;
+        top: 100px;
+        right: 100px;
+        width: 400px;
+        background-color: #FBFBFB;
+        border-radius: 5px;
+        color:$color-black-fonts;
+        border:1px solid rgba(201, 201, 201, 0.5);
+        padding: 20px;
+        z-index: 901;
+        box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
+
+        @media screen and (max-width: $screen-sm) {
+            top: 84px;
+            right: 0;
+            width: calc(100vw - 42px);
+            height: 250px;
+        }
+
+        @media screen and (max-width: $screen-xs) {
+            height: 150px;
+        }
+
+        h4{
+            margin: 0;
+            margin-bottom: 20px;
+        }
+        .items-actions{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            border-top: 1px solid $color-gris-1;
+            padding-top: 20px;
+            height: 120px;
+            @media screen and (max-width: $screen-sm) {
+                height: 190px;
+                grid-gap: 20px;
+            }
+
+            @media screen and (max-width: $screen-xs) {
+                height: 90px;
+                grid-gap: 5px;
+            }
+    
+
+            .item-action-list{
+                border:1px solid $color-soccer-coach;
+                background-color: $color-soccer-coach;
+                border-radius: 50%;
+                color:$color-white-fonts;
+                @include font-s-mbold;
+                font-family: Open Sans;
+                text-align: center;
+                cursor: pointer;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: auto;
+                .img-item-action{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .img{
+                        height: 60px;
+                        width: 70px;
+                        display: flex;
+                        align-items: center;
+                        @media screen and (max-width: $screen-sm) {
+                            height: auto;
+                            width: 100px;
+                        }
+                        @media screen and (max-width: $screen-xs) {
+                            height: 60px;
+                            width: 70px;
+                        }
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+                &:hover{
+                    background-color: #208994;
+                    border:1px solid #18676F;
+                }
+
+                @media screen and (max-width: $screen-sm) {
+                    padding: 0;
+                }
+            }
+        }
     }
 }

@@ -74,6 +74,10 @@
                 }
 
                 @media screen and (max-width: $screen-sm) {
+                    min-width: 50%;
+                }
+
+                @media screen and (max-width: $screen-xs) {
                     min-width: 90%;
                 }
 
