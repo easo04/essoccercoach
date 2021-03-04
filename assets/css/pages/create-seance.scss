@@ -429,6 +429,10 @@ body{
                         font-size: 17px;
                     }
                 }
+
+                @media screen and (max-width: $screen-sm) {
+                    display: none;
+                }
             }
         }
 

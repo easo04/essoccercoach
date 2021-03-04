@@ -1,290 +1,292 @@
 <template>
     <div class="creation-exercice">
-        <div class="menu-top">
-            <div class="principal-items">
-                <span @click="goHome()" class="icon-action" v-if="!fromSeance" title="Retourner à l'accueil"><font-awesome-icon :icon="['fas', 'home']"/></span>
-                <span @click="goBack()" class="icon-action" v-else title="Retourner en arrière"><font-awesome-icon :icon="['fas', 'arrow-alt-circle-left']"/></span>
-                <div class="actions-s">
-                    <span class="icon-action inactive" id="undo" @click="undo()" title="Undo"><font-awesome-icon :icon="['fas', 'undo']"/></span>
-                    <span class="icon-action inactive" id="redo" @click="redo()" title="Redo"><font-awesome-icon :icon="['fas', 'redo']"/></span>
+        <div v-if="!showLoading">
+            <div class="menu-top">
+                <div class="principal-items">
+                    <span @click="goHome()" class="icon-action" v-if="!fromSeance" title="Retourner à l'accueil"><font-awesome-icon :icon="['fas', 'home']"/></span>
+                    <span @click="goBack()" class="icon-action" v-else title="Retourner en arrière"><font-awesome-icon :icon="['fas', 'arrow-alt-circle-left']"/></span>
+                    <div class="actions-s">
+                        <span class="icon-action inactive" id="undo" @click="undo()" title="Undo"><font-awesome-icon :icon="['fas', 'undo']"/></span>
+                        <span class="icon-action inactive" id="redo" @click="redo()" title="Redo"><font-awesome-icon :icon="['fas', 'redo']"/></span>
+                    </div>
+                </div>
+                <div class="secondary-items">
+                    <div class="first-items">
+                        <span class="icon-action inactive" id="delete" @click="deleteObject()" title="Effacer"><font-awesome-icon :icon="['fas', 'eraser']"/></span>
+                        <span class="icon-action inactive" id="deleteAll" @click="openModalDeleteAll()" title="Tout supprimer"><font-awesome-icon :icon="['fas', 'trash-alt']"/></span>
+                    </div>
+                    <div class="second-items">
+                        <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
+                        <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><font-awesome-icon :icon="['fas', 'circle']"/><span class="number">1</span></div>
+                        <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><font-awesome-icon :icon="['fas', 'circle']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+                        <span class="objects icon-action  couleur-select" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+                        <span class="objects icon-action inactive" id="changeTransparence" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+                        <div class="select-couleurs selects" v-if="showSelectColors">
+                            <div class="arrow-up"></div>
+                            <div class="liste-couleurs">
+                                <div class="black" @click="changeColor('black')"></div>
+                                <div class="red" @click="changeColor('red')"></div>
+                                <div class="yellow" @click="changeColor('yellow')"></div>
+                                <div class="blue" @click="changeColor('blue')"></div>
+                                <div class="white" @click="changeColor('white')"></div>
+                                <div class="green" @click="changeColor('green')"></div>
+                            </div>
+                        </div>
+                        <div class="select-formes selects" v-if="showSelectFormes">
+                            <div class="arrow-up"></div>
+                            <div class="liste-formes">
+                                <div class="item-forme" @click="addForm('circle')"> 
+                                    <svg class="icon">
+                                        <use href="@/assets/images/icons/icons.svg#circle-stroke"/>
+                                    </svg> Cercle
+                                </div>
+                                <div class="item-forme" @click="addForm('square')">
+                                    <svg class="icon">
+                                        <use href="@/assets/images/icons/icons.svg#square-stroke"/>
+                                    </svg> Rectangle
+                                </div>
+                                <div class="item-forme" @click="addForm('triangle')">
+                                    <svg class="icon">
+                                        <use href="@/assets/images/icons/icons.svg#triangle-stroke"/>
+                                    </svg> Triangle
+                                </div>
+                                <div class="item-forme" @click="addForm('line-v')">
+                                    <svg class="icon">
+                                        <use href="@/assets/images/icons/icons.svg#line-v-solid"/>
+                                    </svg> Ligne verticale
+                                </div>
+                                <div class="item-forme" @click="addForm('line-h')">
+                                    <svg class="icon">
+                                        <use href="@/assets/images/icons/icons.svg#line-h-solid"/>
+                                    </svg> Ligne horizontale
+                                </div>
+                            </div>
+                        </div>
+                        <div class="select-transparence selects" v-if="showSelectTransparence">
+                            <div class="arrow-up"></div>
+                            <div class="liste-formes">
+                                <div class="select-opacity">
+                                    10% <input type="range" id="range-opacity" min="10" max="100" class="slider" name="range" value="100" v-model="rangeOpacity" @change="editOpacityForme()"> 100%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="third-items">
+                        <span class="icon-action inactive" id="copy" @click="makeCopy()" title="Faire une copie"><font-awesome-icon :icon="['fas', 'copy']"/></span>
+                        <span class="icon-action inactive" id="minus" @click="minus()" title="Zoom moins"><font-awesome-icon :icon="['fas', 'search-minus']"/></span>
+                        <span class="icon-action inactive" id="plus" @click="plus()" title="Zoom plus"><font-awesome-icon :icon="['fas', 'search-plus']"/></span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <span @click="downloadExercice()" v-if="!fromSeance" class="download" title="Télécharger"><font-awesome-icon :icon="['fas', 'download']"/></span>
+                    <span @click="saveExercice()" title="Sauvegarder" class="save" v-else><font-awesome-icon :icon="['fas', 'save']"/></span>
                 </div>
             </div>
-            <div class="secondary-items">
-                <div class="first-items">
-                    <span class="icon-action inactive" id="delete" @click="deleteObject()" title="Effacer"><font-awesome-icon :icon="['fas', 'eraser']"/></span>
-                    <span class="icon-action inactive" id="deleteAll" @click="openModalDeleteAll()" title="Tout supprimer"><font-awesome-icon :icon="['fas', 'trash-alt']"/></span>
-                </div>
-                <div class="second-items">
-                    <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
-                    <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><font-awesome-icon :icon="['fas', 'circle']"/><span class="number">1</span></div>
-                    <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><font-awesome-icon :icon="['fas', 'circle']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
-                    <span class="objects icon-action  couleur-select" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
-                    <span class="objects icon-action inactive" id="changeTransparence" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
-                    <div class="select-couleurs selects" v-if="showSelectColors">
-                        <div class="arrow-up"></div>
-                        <div class="liste-couleurs">
-                            <div class="black" @click="changeColor('black')"></div>
-                            <div class="red" @click="changeColor('red')"></div>
-                            <div class="yellow" @click="changeColor('yellow')"></div>
-                            <div class="blue" @click="changeColor('blue')"></div>
-                            <div class="white" @click="changeColor('white')"></div>
-                            <div class="green" @click="changeColor('green')"></div>
+            <div class="content">
+                <div class="menu-left">
+                    <div class="items-menu">
+                        <div class="item-terrain" :class="{'active' : contentItem === 'terrain'}" title="Changer le terrain" @click="selectContentItem('terrain')">      
+                            <svg class="icon-stroke">
+                                <use href="@/assets/images/icons/icons.svg#terrain"/>
+                            </svg>
+                        </div>
+                        <div class="item-player" :class="{'active' : contentItem === 'joueur'}" title="Ajouter un joueur" @click="selectContentItem('joueur')">
+                            <svg class="icon">
+                                <use href="@/assets/images/icons/icons.svg#player"/>
+                            </svg>
+                        </div>
+                        <div class="item-outils" :class="{'active' : contentItem === 'outil'}" title="Ajouter un outil" @click="selectContentItem('outil')">
+                            <svg class="icon-outil">
+                                <use href="@/assets/images/icons/icons.svg#outil"/>
+                            </svg>
+                        </div>
+                        <div class="item-lignes" :class="{'active' : contentItem === 'ligne'}" title="Ajouter une ligne" @click="selectContentItem('ligne')">
+                            <svg class="icon-arrow">
+                                <use href="@/assets/images/icons/icons.svg#arrow"/>
+                            </svg>
                         </div>
                     </div>
-                    <div class="select-formes selects" v-if="showSelectFormes">
-                        <div class="arrow-up"></div>
-                        <div class="liste-formes">
-                            <div class="item-forme" @click="addForm('circle')"> 
-                                <svg class="icon">
-                                    <use href="@/assets/images/icons/icons.svg#circle-stroke"/>
-                                </svg> Cercle
+                    <div class="content-item">
+                        <div class="content-item-terrains" v-if="contentItem === 'terrain'">
+                            <h3>Terrains</h3>
+                            <div class="onglets">
+                                <div class="item-onglet" :class="{'active' : ongletTerrainSelected === 'sans-ligne'}" @click="selectOngletTerrain('sans-ligne')">Sans lignes</div>
+                                <div class="item-onglet" :class="{'active' : ongletTerrainSelected === 'avec-ligne'}" @click="selectOngletTerrain('avec-ligne')">Avec lignes</div>
                             </div>
-                            <div class="item-forme" @click="addForm('square')">
-                                <svg class="icon">
-                                    <use href="@/assets/images/icons/icons.svg#square-stroke"/>
-                                </svg> Rectangle
-                            </div>
-                            <div class="item-forme" @click="addForm('triangle')">
-                                <svg class="icon">
-                                    <use href="@/assets/images/icons/icons.svg#triangle-stroke"/>
-                                </svg> Triangle
-                            </div>
-                            <div class="item-forme" @click="addForm('line-v')">
-                                <svg class="icon">
-                                    <use href="@/assets/images/icons/icons.svg#line-v-solid"/>
-                                </svg> Ligne verticale
-                            </div>
-                            <div class="item-forme" @click="addForm('line-h')">
-                                <svg class="icon">
-                                    <use href="@/assets/images/icons/icons.svg#line-h-solid"/>
-                                </svg> Ligne horizontale
-                            </div>
-                        </div>
-                    </div>
-                    <div class="select-transparence selects" v-if="showSelectTransparence">
-                        <div class="arrow-up"></div>
-                        <div class="liste-formes">
-                            <div class="select-opacity">
-                                10% <input type="range" id="range-opacity" min="10" max="100" class="slider" name="range" value="100" v-model="rangeOpacity" @change="editOpacityForme()"> 100%
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="third-items">
-                    <span class="icon-action inactive" id="copy" @click="makeCopy()" title="Faire une copie"><font-awesome-icon :icon="['fas', 'copy']"/></span>
-                    <span class="icon-action inactive" id="minus" @click="minus()" title="Zoom moins"><font-awesome-icon :icon="['fas', 'search-minus']"/></span>
-                    <span class="icon-action inactive" id="plus" @click="plus()" title="Zoom plus"><font-awesome-icon :icon="['fas', 'search-plus']"/></span>
-                </div>
-            </div>
-            <div class="actions">
-                <span @click="downloadExercice()" v-if="!fromSeance" class="download" title="Télécharger"><font-awesome-icon :icon="['fas', 'download']"/></span>
-                <span @click="saveExercice()" title="Sauvegarder" class="save" v-else><font-awesome-icon :icon="['fas', 'save']"/></span>
-            </div>
-        </div>
-        <div class="content">
-            <div class="menu-left">
-                <div class="items-menu">
-                    <div class="item-terrain" :class="{'active' : contentItem === 'terrain'}" title="Changer le terrain" @click="selectContentItem('terrain')">      
-                        <svg class="icon-stroke">
-                            <use href="@/assets/images/icons/icons.svg#terrain"/>
-                        </svg>
-                    </div>
-                    <div class="item-player" :class="{'active' : contentItem === 'joueur'}" title="Ajouter un joueur" @click="selectContentItem('joueur')">
-                        <svg class="icon">
-                            <use href="@/assets/images/icons/icons.svg#player"/>
-                        </svg>
-                    </div>
-                    <div class="item-outils" :class="{'active' : contentItem === 'outil'}" title="Ajouter un outil" @click="selectContentItem('outil')">
-                        <svg class="icon-outil">
-                            <use href="@/assets/images/icons/icons.svg#outil"/>
-                        </svg>
-                    </div>
-                    <div class="item-lignes" :class="{'active' : contentItem === 'ligne'}" title="Ajouter une ligne" @click="selectContentItem('ligne')">
-                        <svg class="icon-arrow">
-                            <use href="@/assets/images/icons/icons.svg#arrow"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <div class="content-item-terrains" v-if="contentItem === 'terrain'">
-                        <h3>Terrains</h3>
-                        <div class="onglets">
-                            <div class="item-onglet" :class="{'active' : ongletTerrainSelected === 'sans-ligne'}" @click="selectOngletTerrain('sans-ligne')">Sans lignes</div>
-                            <div class="item-onglet" :class="{'active' : ongletTerrainSelected === 'avec-ligne'}" @click="selectOngletTerrain('avec-ligne')">Avec lignes</div>
-                        </div>
-                        <div class="content-onglet">
-                            <div class="sans-ligne" v-if="ongletTerrainSelected === 'sans-ligne'">
-                                <div class="item-terrain-sl" v-for="(terrain, indexT) in terrains" :key="indexT" @click="changeTerrain(terrain.image, terrain.name)">
-                                    <img :src="require('~/assets/images/terrain/' + terrain.image)" :alt="terrain.name" :title="terrain.name"/>
+                            <div class="content-onglet">
+                                <div class="sans-ligne" v-if="ongletTerrainSelected === 'sans-ligne'">
+                                    <div class="item-terrain-sl" v-for="(terrain, indexT) in terrains" :key="indexT" @click="changeTerrain(terrain.image, terrain.name)">
+                                        <img :src="require('~/assets/images/terrain/' + terrain.image)" :alt="terrain.name" :title="terrain.name"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="avec-ligne" v-if="ongletTerrainSelected === 'avec-ligne'">
-                                <div class="item-terrain-sl" v-for="(terrain, indexT) in terrainsLines" :key="indexT" @click="changeTerrain(terrain.image, terrain.name, true)">
-                                    <img :src="require('~/assets/images/terrain/lignes/' + terrain.image)" :alt="terrain.name" :title="terrain.name"/>
+                                <div class="avec-ligne" v-if="ongletTerrainSelected === 'avec-ligne'">
+                                    <div class="item-terrain-sl" v-for="(terrain, indexT) in terrainsLines" :key="indexT" @click="changeTerrain(terrain.image, terrain.name, true)">
+                                        <img :src="require('~/assets/images/terrain/lignes/' + terrain.image)" :alt="terrain.name" :title="terrain.name"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="content-item-joueurs" v-if="contentItem === 'joueur'">
+                            <h3>Joueurs</h3>
+                            <h4>Joueurs sans texte</h4>
+                            <div class="item-joueur-simple">
+                                <div class="joueur-add" @click="addPlayerByColor('red')">
+                                    <svg class="icon red">
+                                        <use href="@/assets/images/icons/icons.svg#player-color"/>
+                                    </svg>
+                                </div> 
+                                <div class="joueur-add" @click="addPlayerByColor('blue-claro')">
+                                    <svg class="icon blue-claro">
+                                        <use href="@/assets/images/icons/icons.svg#player-color"/>
+                                    </svg>
+                                </div> 
+                                <div class="joueur-add" @click="addPlayerByColor('yellow')">
+                                    <svg class="icon yellow">
+                                        <use href="@/assets/images/icons/icons.svg#player-color"/>
+                                    </svg>
+                                </div>
+                                <div class="joueur-add" @click="addPlayerByColor('black')">
+                                    <svg class="icon black">
+                                        <use href="@/assets/images/icons/icons.svg#player-color"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h4>Joueurs avec texte</h4>
+                            <div class="item-joueur-text">
+                                <div class="joueur-add with-text" @click="addPlayerWithTextByColor('red')">
+                                    <svg class="icon red">
+                                        <use href="@/assets/images/icons/icons.svg#player-text"/>
+                                    </svg>
+                                </div> 
+                                <div class="joueur-add with-text" @click="addPlayerWithTextByColor('blue-claro')">
+                                    <svg class="icon blue-claro">
+                                        <use href="@/assets/images/icons/icons.svg#player-text"/>
+                                    </svg>
+                                </div> 
+                                <div class="joueur-add with-text" @click="addPlayerWithTextByColor('yellow')">
+                                    <svg class="icon yellow">
+                                        <use href="@/assets/images/icons/icons.svg#player-text"/>
+                                    </svg>
+                                </div>
+                                <div class="joueur-add with-text" @click="addPlayerWithTextByColor('black')">
+                                    <svg class="icon black">
+                                        <use href="@/assets/images/icons/icons.svg#player-text"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h4>Joueurs en mouvements</h4>
+                            <div class="item-joueur-mouvement">
+                                <div class="joueur-add joueur-add-img" v-for="(playerImg, indexPlayerIndex) in joueurs" :key="indexPlayerIndex" @click="addPlayerImg(playerImg.image, playerImg.name)">
+                                    <img :id="'player-img-' + playerImg.name" :src="require('~/assets/images/joueurs/' + playerImg.image)"/>
+                                </div> 
+                            </div>
+                            <h4>Gardiens</h4>
+                            <div class="item-joueur-simple">
+                                <div class="joueur-add gardien" @click="addPlayerGardienByColor('green')">
+                                    <svg class="icon gardien-green">
+                                        <use href="@/assets/images/icons/icons.svg#player-gardien"/>
+                                    </svg>
+                                </div>
+                                <div class="joueur-add gardien" @click="addPlayerGardienByColor('orange')">
+                                    <svg class="icon gardien-orange">
+                                        <use href="@/assets/images/icons/icons.svg#player-gardien"/>
+                                    </svg>
+                                </div>
+                                <div class="joueur-add gardien" @click="addPlayerGardienByColor('mauve')">
+                                    <svg class="icon gardien-mauve">
+                                        <use href="@/assets/images/icons/icons.svg#player-gardien"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-item-outils" v-if="contentItem === 'outil'">
+                            <h3>Outils</h3>
+                            <div class="content-outils">
+                                <h4>Ballons</h4>
+                                <div class="items-outils">
+                                    <div class="outil-li-div cones" v-for="(outil, indexO) in ballonsOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                        <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
+                                    </div>
+                                </div>
+                                <h4>Buts</h4>
+                                <div class="items-outils">
+                                    <div class="outil-li-div" v-for="(outil, indexO) in butOuils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                        <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
+                                    </div>
+                                </div>
+                                <h4>Cônes</h4>
+                                <div class="items-outils">
+                                    <div class="outil-li-div cones" v-for="(outil, indexO) in conesOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                        <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
+                                    </div>
+                                </div>
+                                <h4>Outils exercices</h4>
+                                <div class="items-outils">
+                                    <div class="outil-li-div cones" v-for="(outil, indexO) in othersOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
+                                        <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-item-lignes" v-if="contentItem === 'ligne'">
+                            <h3>Lignes</h3>
+                            <div class="content-lines">
+                                <h4>Lignes de passes</h4>
+                                <div class="items-lignes">
+                                    <div class="ligne-li-div" v-for="(ligne, indexL) in passLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
+                                        <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
+                                    </div>
+                                </div>
+                                <h4>Lignes de mouvement</h4>
+                                <div class="items-lignes">
+                                    <div class="ligne-li-div" v-for="(ligne, indexL) in runLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
+                                        <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
+                                    </div>
+                                </div>
+                                <h4>Lignes de dribble</h4>
+                                <div class="items-lignes">
+                                    <div class="ligne-li-div" v-for="(ligne, indexL) in dribleLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
+                                        <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="content-item-joueurs" v-if="contentItem === 'joueur'">
-                        <h3>Joueurs</h3>
-                        <h4>Joueurs sans texte</h4>
-                        <div class="item-joueur-simple">
-                            <div class="joueur-add" @click="addPlayerByColor('red')">
-                                <svg class="icon red">
-                                    <use href="@/assets/images/icons/icons.svg#player-color"/>
-                                </svg>
+                </div>
+                <div class="content-terrain">
+                    <div class="terrain-space" id="terrainSoccer" @click="clickTerrain($event)">
+                        <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" :class="object.class" @click="selectObject(object.id, indexObj)">
+                            <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && object.type !== 'drag-forme'"/>
+                            <div class="number-object" v-if="object.type === 'drag-number'">
+                                <div class="circle"></div>
+                                <div class="number">{{object.number}}</div>
+                            </div>
+                            <div :class="object.forme + ' forme-' + object.classColor" v-if="object.type === 'drag-forme' && !isFormeImg(object.forme)">        
+                            </div>
+                            <div :class="'forme-img ' + object.forme" v-if="object.type === 'drag-forme' && isFormeImg(object.forme)">
+                                <img :src="require('~/assets/images/formes/' + object.forme + '-' + object.formeImgColor + '.png')"/>
+                            </div>
+                            <div class="text-input" v-if="object.type === 'drag-text'">
+                                <input type="text" :class="object.classColor" :id="'input-text' + indexObj" v-model="object.text" name="name" autocomplete="off" @blur="verifyText(indexObj)">
+                            </div>
+                            <div class="text-player" v-if="object.textObject && object.textObject !== ''">
+                                {{object.textObject}}
                             </div> 
-                            <div class="joueur-add" @click="addPlayerByColor('blue-claro')">
-                                <svg class="icon blue-claro">
-                                    <use href="@/assets/images/icons/icons.svg#player-color"/>
-                                </svg>
-                            </div> 
-                            <div class="joueur-add" @click="addPlayerByColor('yellow')">
-                                <svg class="icon yellow">
-                                    <use href="@/assets/images/icons/icons.svg#player-color"/>
-                                </svg>
-                            </div>
-                            <div class="joueur-add" @click="addPlayerByColor('black')">
-                                <svg class="icon black">
-                                    <use href="@/assets/images/icons/icons.svg#player-color"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <h4>Joueurs avec texte</h4>
-                        <div class="item-joueur-text">
-                            <div class="joueur-add with-text" @click="addPlayerWithTextByColor('red')">
-                                <svg class="icon red">
-                                    <use href="@/assets/images/icons/icons.svg#player-text"/>
-                                </svg>
-                            </div> 
-                            <div class="joueur-add with-text" @click="addPlayerWithTextByColor('blue-claro')">
-                                <svg class="icon blue-claro">
-                                    <use href="@/assets/images/icons/icons.svg#player-text"/>
-                                </svg>
-                            </div> 
-                            <div class="joueur-add with-text" @click="addPlayerWithTextByColor('yellow')">
-                                <svg class="icon yellow">
-                                    <use href="@/assets/images/icons/icons.svg#player-text"/>
-                                </svg>
-                            </div>
-                            <div class="joueur-add with-text" @click="addPlayerWithTextByColor('black')">
-                                <svg class="icon black">
-                                    <use href="@/assets/images/icons/icons.svg#player-text"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <h4>Joueurs en mouvements</h4>
-                        <div class="item-joueur-mouvement">
-                            <div class="joueur-add joueur-add-img" v-for="(playerImg, indexPlayerIndex) in joueurs" :key="indexPlayerIndex" @click="addPlayerImg(playerImg.image, playerImg.name)">
-                                <img :id="'player-img-' + playerImg.name" :src="require('~/assets/images/joueurs/' + playerImg.image)"/>
-                            </div> 
-                        </div>
-                        <h4>Gardiens</h4>
-                        <div class="item-joueur-simple">
-                            <div class="joueur-add gardien" @click="addPlayerGardienByColor('green')">
-                                <svg class="icon gardien-green">
-                                    <use href="@/assets/images/icons/icons.svg#player-gardien"/>
-                                </svg>
-                            </div>
-                            <div class="joueur-add gardien" @click="addPlayerGardienByColor('orange')">
-                                <svg class="icon gardien-orange">
-                                    <use href="@/assets/images/icons/icons.svg#player-gardien"/>
-                                </svg>
-                            </div>
-                            <div class="joueur-add gardien" @click="addPlayerGardienByColor('mauve')">
-                                <svg class="icon gardien-mauve">
-                                    <use href="@/assets/images/icons/icons.svg#player-gardien"/>
-                                </svg>
+                            <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
+                                <font-awesome-icon :icon="['fas', 'redo']"/>
                             </div>
                         </div>
                     </div>
-                    <div class="content-item-outils" v-if="contentItem === 'outil'">
-                        <h3>Outils</h3>
-                        <div class="content-outils">
-                            <h4>Ballons</h4>
-                            <div class="items-outils">
-                                <div class="outil-li-div cones" v-for="(outil, indexO) in ballonsOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
-                                </div>
-                            </div>
-                            <h4>Buts</h4>
-                            <div class="items-outils">
-                                <div class="outil-li-div" v-for="(outil, indexO) in butOuils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
-                                </div>
-                            </div>
-                            <h4>Cônes</h4>
-                            <div class="items-outils">
-                                <div class="outil-li-div cones" v-for="(outil, indexO) in conesOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
-                                </div>
-                            </div>
-                            <h4>Outils exercices</h4>
-                            <div class="items-outils">
-                                <div class="outil-li-div cones" v-for="(outil, indexO) in othersOutils" :key="indexO" @click="addOutil(outil.name, outil.image)">
-                                    <img :src="require('~/assets/images/outils/outils_list/' + outil.image)" :alt="outil.name" :title="outil.name"/>
-                                </div>
-                            </div>
+                    <div class="help">
+                        <div class="question" :class="{'clicked' : showOptionsHelp}" @click="setShowOptionsHelp()">
+                            <font-awesome-icon :icon="['fas', 'question']"/>
                         </div>
-                    </div>
-                    <div class="content-item-lignes" v-if="contentItem === 'ligne'">
-                        <h3>Lignes</h3>
-                        <div class="content-lines">
-                            <h4>Lignes de passes</h4>
-                            <div class="items-lignes">
-                                <div class="ligne-li-div" v-for="(ligne, indexL) in passLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
-                                    <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
-                                </div>
+                        <div class="lst-options-help" v-show="showOptionsHelp">
+                            <div class="options">
+                                <div><div @click="showAstuces();setShowOptionsHelp()">Astuces</div></div>
+                                <div><div @click="setShowOptionsHelp()"><a href="https://www.youtube.com" target="_blank">Youtube</a></div></div>
+                                <div><div @click="setShowOptionsHelp()"><a href="/help" target="_blank">Documentation</a></div></div>
                             </div>
-                            <h4>Lignes de mouvement</h4>
-                            <div class="items-lignes">
-                                <div class="ligne-li-div" v-for="(ligne, indexL) in runLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
-                                    <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
-                                </div>
-                            </div>
-                            <h4>Lignes de dribble</h4>
-                            <div class="items-lignes">
-                                <div class="ligne-li-div" v-for="(ligne, indexL) in dribleLignes" :key="indexL" @click="addArrow(ligne.name, ligne.image)">
-                                    <img :src="require('~/assets/images/lignes/ligne_list/' + ligne.image)" :alt="ligne.name" :title="ligne.name">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content-terrain">
-                <div class="terrain-space" id="terrainSoccer" @click="clickTerrain($event)">
-                    <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" :class="object.class" @click="selectObject(object.id, indexObj)">
-                        <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && object.type !== 'drag-forme'"/>
-                        <div class="number-object" v-if="object.type === 'drag-number'">
-                            <div class="circle"></div>
-                            <div class="number">{{object.number}}</div>
-                        </div>
-                        <div :class="object.forme + ' forme-' + object.classColor" v-if="object.type === 'drag-forme' && !isFormeImg(object.forme)">        
-                        </div>
-                        <div :class="'forme-img ' + object.forme" v-if="object.type === 'drag-forme' && isFormeImg(object.forme)">
-                            <img :src="require('~/assets/images/formes/' + object.forme + '-' + object.formeImgColor + '.png')"/>
-                        </div>
-                        <div class="text-input" v-if="object.type === 'drag-text'">
-                            <input type="text" :class="object.classColor" :id="'input-text' + indexObj" v-model="object.text" name="name" autocomplete="off" @blur="verifyText(indexObj)">
-                        </div>
-                        <div class="text-player" v-if="object.textObject && object.textObject !== ''">
-                            {{object.textObject}}
-                        </div> 
-                        <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
-                            <font-awesome-icon :icon="['fas', 'redo']"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="help">
-                    <div class="question" :class="{'clicked' : showOptionsHelp}" @click="setShowOptionsHelp()">
-                        <font-awesome-icon :icon="['fas', 'question']"/>
-                    </div>
-                    <div class="lst-options-help" v-show="showOptionsHelp">
-                        <div class="options">
-                            <div><div @click="showAstuces();setShowOptionsHelp()">Astuces</div></div>
-                            <div><div @click="setShowOptionsHelp()"><a href="https://www.youtube.com" target="_blank">Youtube</a></div></div>
-                            <div><div @click="setShowOptionsHelp()"><a href="/help" target="_blank">Documentation</a></div></div>
                         </div>
                     </div>
                 </div>
@@ -362,6 +364,9 @@ export default {
         },
         othersOutils(){
             return this.$store.getters['esdesigner/outilAutres'];
+        },
+        showLoading(){
+            return this.$store.state.showLoader;
         },
     },
     watch:{

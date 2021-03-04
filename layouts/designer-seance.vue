@@ -16,7 +16,7 @@
                     <h4>ESsoccercoach</h4>
                 </div>
             </div>
-            <div class="content">
+            <div class="content-designer-seance">
                 <Nuxt />
             </div>
             <div class="footer-designer-seance">

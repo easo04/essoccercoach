@@ -5,7 +5,7 @@
         </div>
         <div class="header">
             <div class="logo">
-                <img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/>
+                <a href="/"><img class="image-logo" src="@/assets/images/logo.png" alt="essoccercoach logo"/></a>
                 <h3>ESsoccercoach</h3>
             </div>
             <div class="menu-desktop">

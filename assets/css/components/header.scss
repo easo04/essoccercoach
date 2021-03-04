@@ -91,8 +91,11 @@
                 color: $color-black-fonts;
                 margin-left: 10px;
             }
-            .image-logo{
+            a{
                 height: 80px;
+                .image-logo{
+                    height: 80px;
+                }
             }
         }
         .btn-new{
@@ -111,8 +114,11 @@
             }
             .logo{
                 height: 60px;
-                .image-logo{
+                a{
                     height: 80%;
+                    .image-logo{
+                        height: 100%;
+                    }
                 }
             }
             .btn-new{
