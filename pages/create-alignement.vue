@@ -314,20 +314,17 @@ export default {
             this.terrainSelected = name;
         },
         downloadExercice(){
-            this.setTextLoader('Téléchargement de l\'image en cours ...');
-            this.setShowLoader(true);
 
             setTimeout(() => {
                 let domElement = document.getElementById("terrainSoccer");    
+                this.$modal.show(
+                    DownloadAlignementSuccesModalVue,
+                    {},
+                    {name : 'download-alignement-succes-modal', classes:['modal-top'], clickToClose:false}
+                );
                 html2canvas(domElement, {
                     onrendered: (canvas) => {
                         Canvas2Image.saveAsPNG(canvas,undefined,undefined,'alignement_essoccercoach'); 
-                        this.setShowLoader(false);
-                        this.$modal.show(
-                            DownloadAlignementSuccesModalVue,
-                            {},
-                            {name : 'download-alignement-succes-modal', classes:['modal-top'], clickToClose:false}
-                        );
                     }
                 });
             }, 2 * 1000);

@@ -612,20 +612,17 @@ export default {
         downloadExercice(){
             this.deselectionner();
             this.closeAllSelectes();
-            this.setTextLoader('Téléchargement de l\'image en cours ...');
-            this.setShowLoader(true);
 
             setTimeout(() => {
-                let domElement = document.getElementById("terrainSoccer");    
+                let domElement = document.getElementById("terrainSoccer"); 
+                this.$modal.show(
+                    DownloadSuccesModal,
+                    {},
+                    {name : 'download-succes-modal', classes:['modal-top'], clickToClose:false}
+                );   
                 html2canvas(domElement, {
                     onrendered: (canvas) => {
                         Canvas2Image.saveAsPNG(canvas,undefined,undefined,'exercice_essoccercoach'); 
-                        this.setShowLoader(false);
-                        this.$modal.show(
-                            DownloadSuccesModal,
-                            {},
-                            {name : 'download-succes-modal', classes:['modal-top'], clickToClose:false}
-                        );
                     }
                 });
             }, 2 * 1000);
@@ -633,8 +630,6 @@ export default {
         saveExercice(){
             this.deselectionner();
             this.closeAllSelectes();
-            this.setTextLoader('Sauvegarde de l\'exercice en cours ...');
-            this.setShowLoader(true);
 
             const dowloadImage = new Promise((resolve) => {    
                 let domElement = document.getElementById("terrainSoccer");
@@ -651,8 +646,6 @@ export default {
 
                 //goToDesignSeance
                 localStorage.setItem('fromDesigner', JSON.stringify(true));
-                this.setShowLoader(false);
-                this.setTextLoader('');
                 this.$router.push({name: 'create-seance'});
 
             });
