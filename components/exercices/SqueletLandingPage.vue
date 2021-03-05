@@ -22,9 +22,9 @@
             <div class="titre"></div>
             <div class="liste-exercices">
                 <div class="item-exercice"></div>
-                <div class="item-exercice"></div>
-                <div class="item-exercice"></div>
-                <div class="item-exercice"></div>
+                <div class="item-exercice item2"></div>
+                <div class="item-exercice item3"></div>
+                <div class="item-exercice item4"></div>
             </div>
         </div>
         <div class="nos-outils" id="nosOutils">

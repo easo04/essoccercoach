@@ -36,9 +36,6 @@
 const MAX_RESULTS_SHOW = 12;
 import {mapMutations} from 'vuex';
 export default {
-    key(route) {
-        return route.fullPath
-    },
     head(){
         return{
             title:'Exercices de soccer | ESsoccercoach',
@@ -46,7 +43,6 @@ export default {
     },
     data(){
         return {
-            loading:false,
             exercices:[],
             maxResults:MAX_RESULTS_SHOW,
         }

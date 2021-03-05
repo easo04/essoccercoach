@@ -165,6 +165,19 @@ $anmiation: mymove 3s infinite;
                 }
             }
         }
+
+        @media screen and (max-width: $screen-sm) {
+            .description{
+                .description-content{
+                    .titre, .description-p, .action-btn{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: $screen-xs) {
+        }
     }
     .copyrigth1{
         height: 300px;
@@ -196,6 +209,26 @@ $anmiation: mymove 3s infinite;
                 animation: $anmiation;
                 min-width: 25%;
                 height: 244px;
+            }
+        }
+        
+        @media screen and (max-width: $screen-sm) {
+            .titre{
+                width: 50%;
+            }
+            .liste-exercices{
+                grid-template-columns: repeat(3, 1fr);
+                .item4{
+                    display: none;
+                }
+            }
+        }
+        @media screen and (max-width: $screen-xs) {
+            .liste-exercices{
+                grid-template-columns: 1fr;
+                .item2, .item3, .item4{
+                    display: none;;
+                }
             }
         }
     }
@@ -271,6 +304,21 @@ $anmiation: mymove 3s infinite;
                         animation: $anmiation;
                         height: 50px;
                         width: 200px;
+                    }
+
+                    @media screen and (max-width: $screen-sm) {
+                        .title, .para{
+                            width: 100%;
+                        }
+                        .actions-item{
+                            width: 50%;
+                        }
+                    }
+
+                    @media screen and (max-width: $screen-xs) {
+                        .title, .para, .actions-item{
+                            width: 100%;
+                        }
                     }
                 }
             }
