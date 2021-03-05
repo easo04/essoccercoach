@@ -35,7 +35,7 @@
       </div>
       <div class="exercices-populaires">
         <h3>Exercices populaires <font-awesome-icon :icon="['fas', 'star']"/></h3>
-        <p>Consultez notre banque d'exercices pour créer vos séances d'entraînement:</p>
+        <p>Consultez notre banque d'exercices de soccer avec plus de 100 exercices à votre disposition:</p>
         <ExercicesPopulaires :exercices="exercicesPopulaires"/>
         <div class="exercices-actions">
           <a class="blue-link" href="/exercices">Tous les exerices <font-awesome-icon :icon="['fas', 'caret-right']"/></a>
