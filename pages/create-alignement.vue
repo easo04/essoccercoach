@@ -212,9 +212,7 @@ export default {
     layout: 'designer',
     head(){
         return{
-            title:'Créez votre alignement | ESsoccercoach',
-            script:[
-            ]
+            title:'Créez votre alignement de soccer | ESsoccercoach',
         }
     },
     computed:{

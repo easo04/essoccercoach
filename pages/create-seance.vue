@@ -159,8 +159,6 @@ export default {
     head(){
         return{
             title:'Créez votre séance de soccer | ESsoccercoach',
-            link:[
-            ],
             script:[
                 {src:'/imports/interact.js'},
                 {src:'/imports/jspdf.min.js'},

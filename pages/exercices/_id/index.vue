@@ -16,9 +16,6 @@ export default {
             exercicesSameCaetegory:[],
         }
     },
-    mounted(){
-        console.log($nuxt.$route.path);
-    },
     async fetch() {
 
         try{

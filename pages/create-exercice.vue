@@ -321,8 +321,6 @@ export default {
     head(){
         return{
             title:'Créez votre exercice de soccer | ESsoccercoach',
-            script:[
-            ]
         }
     },
     computed:{

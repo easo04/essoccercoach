@@ -39,14 +39,7 @@ import { mapState, mapMutations } from 'vuex';
 export default {
     head(){
         return{
-            title:'Exercices de soccer ' + this.categorie.label + ' | ESsoccercoach',
-            meta:[
-                {
-                    hid:'description',
-                    name:'description',
-                    content:'Exercices de soccer'
-                }
-            ]
+            title:'Exercices de soccer - ' + this.categorie.label + ' | ESsoccercoach',
         }
     },
     data(){

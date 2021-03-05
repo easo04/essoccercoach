@@ -42,13 +42,6 @@ export default {
     head(){
         return{
             title:'Exercices de soccer | ESsoccercoach',
-            meta:[
-                {
-                    hid:'description',
-                    name:'description',
-                    content:'Exercices de soccer'
-                }
-            ]
         }
     },
     data(){
