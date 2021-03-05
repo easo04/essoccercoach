@@ -3,6 +3,22 @@
     //grid-template-columns: 315px 1fr;
     position: relative;
     min-height: 100vh;
+
+    
+    .show-menu{
+        display: none;
+        position: absolute;
+        top:25px;
+        left: 5px;
+        color:$color-black-fonts;
+        font-size: 1.5rem;
+        transition: all 0.4s;
+        @media screen and (max-width: $screen-sm) {
+            display: block;
+
+        }
+    }
+
     .menu-help{
         border-right: 1px solid $color-border;
         padding: 50px 50px 50px 100px;
@@ -11,6 +27,7 @@
         left: 0;
         height: 100%;
         width: 165px;
+        transition: all 0.4s;
 
         .item-principal{
             h4{
@@ -56,6 +73,28 @@
                 }
             }
         }
+
+        .unshow-menu{
+            display: none;
+            position: absolute;
+            top:30px;
+            right: 5px;
+            font-size: 1.5rem;
+            color:$color-black-fonts;
+            @media screen and (max-width: $screen-sm) {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: $screen-sm) {
+            left: -230px;
+            background-color: $color-white-background;
+            padding: 30px;
+            overflow-y:scroll;
+            &.show{
+                left: 0;
+            }
+        }
     }
     .content-help{
         min-height: 100vh;
@@ -97,6 +136,20 @@
                     height: auto;
                     border-radius: 5px;
                     box-shadow: 0px 4px 10px rgba(201, 201, 201, 0.6);
+                }
+            }
+        }
+        @media screen and (max-width: $screen-sm) {
+            padding: 55px 20px;
+            margin-left: 0px;
+            h2{
+                max-width: 100%;
+            }
+            .help-page-content{
+                .content-page{
+                    h3{
+                        max-width: 100%;
+                    }
                 }
             }
         }

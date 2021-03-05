@@ -2,7 +2,7 @@
     <div class="application">
         <Header/>
         <div class="content help-page">
-            <div class="menu-help">
+            <div class="menu-help" :class="{'show' :  show}">
                 <div class="item-principal" :class="{'active':itemSelected==='esdesigner'}">
                     <h4 v-if="itemSelected==='esdesigner'" @click="setItemSelected('esdesigner')"><font-awesome-icon :icon="['fas', 'chevron-down']"/> ESDesigner</h4>
                     <h4 v-else @click="setItemSelected('esdesigner')"><font-awesome-icon :icon="['fas', 'chevron-right']"/> ESDesigner</h4>
@@ -30,7 +30,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="unshow-menu" @click="showMenu()"><font-awesome-icon :icon="['fas', 'caret-left']"/></div>
             </div>
+            <div class="show-menu" @click="showMenu()" v-if="!show"><font-awesome-icon :icon="['fas', 'bars']"/></div>
             <div class="content-help">
                 <nuxt/>
             </div>
@@ -52,7 +54,8 @@ export default {
             {item:'texte', label:'Ajouter du texte', selected:false, url:'/help/esdesigner-texte'}],
             itemsSeance:[{item:'commencer-seance', label:'Commencer', selected:false, url:'/help/seances'}, {item:'ajout-exercice', label:'Ajouter un exercice', selected:false, url:'/help/seances/add-exercice'}],
             itemsAlignement:[{item:'commencer-alignement', label:'Commencer', selected:false, url:'/help/alignements'}],
-            secondarySelected:'commencer'
+            secondarySelected:'commencer',
+            show:false
         }
     },
     methods:{
@@ -72,6 +75,10 @@ export default {
         },
         setSencondaryItem(item){
             this.secondarySelected = item;
+            this.showMenu();
+        },
+        showMenu(){
+            this.show = !this.show;
         }
     },
     created(){
