@@ -95,6 +95,7 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     //baseURL: 'https://essoccercoach-api.herokuapp.com/api/',
+    //baseURL local: http://localhost:4000/api
     headers: {
       common: {
         'Accept': 'application/json, text/plain, */*'
@@ -104,7 +105,7 @@ export default {
   },
 
   proxy:{
-      '/api/': { target: 'http://localhost:4000/api', pathRewrite: {'^/api/': ''}, changeOrigin: true}
+      '/api/': { target: 'https://essoccercoach-api.herokuapp.com/api/', pathRewrite: {'^/api/': ''}, changeOrigin: true}
   },
 
   //Firebase module configuration
