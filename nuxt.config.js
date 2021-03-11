@@ -29,6 +29,7 @@ export default {
       { rel: 'shortcut icon', type: 'image/x-icon', href: '/logo_app.ico' },
       { rel: 'stylesheet', href: '/flickity/flickity.css', media:'screen'},
       { rel: 'stylesheet', href: '/icons/icons.css', media:'screen'},
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap'}
     ],
     script:[
       {src:'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'},
