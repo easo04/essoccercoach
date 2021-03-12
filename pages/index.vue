@@ -158,7 +158,7 @@
           <div class="description-essoccercoach-texte">
             <div class="description-texte">
               <p>Nous sommes des passionnés du soccer qui ont conçu un outil <strong>100% gratuit</strong> pour aider
-                tous les entraîneurs qui cherchent un outil pour créer leurs exercies, leurs séances d'entraînement
+                tous les entraîneurs qui cherchent un outil pour créer leurs exercices, leurs séances d'entraînement
                 et leurs alignements. <br><br>Notre objectif est d'offrir les meilleurs outils
                 pour contribuer au <strong>dévéloppement du soccer</strong> dans notre environnement. 
               </p>
