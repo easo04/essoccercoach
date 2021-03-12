@@ -7,7 +7,7 @@
         <div class="content-page">
             <div class="item-content">
                 <h3>Informations de la séance</h3>
-                <p>Rmplissez les informations concernant la séance d'entraînement. Le bouton <strong>Suivant</strong> est seulement
+                <p>Remplissez les informations concernant la séance d'entraînement. Le bouton <strong>Suivant</strong> est seulement
                     disponible lorsque tous les champs obligatoires ont été remplis. 
                 </p>
                 <img src="@/assets/images/help/seance-infos.png" />
