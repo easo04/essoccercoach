@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -55,13 +57,6 @@ export default {
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
-  /*env: {
-    CLOUDINARY_PRESET: 'uoqb58bx',
-    CLOUDINARY_API_KEY:'662499467823844',
-    CLOUD_NAME:"dgtvlmmxg",
-    CLOUDINARY_API_SECRET:"AjW6XrGRuT_umuLy2IUkn5g1zhI"
-  },*/
-
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
@@ -71,7 +66,6 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/firebase',
     '@nuxtjs/auth-next',
     [
       'nuxt-fontawesome', {
@@ -87,8 +81,13 @@ export default {
       ]
       }
     ],
-    "@nuxtjs/cloudinary"
+    "@nuxtjs/cloudinary",
+    '@nuxtjs/dotenv'
   ],
+
+  dotenv:{
+    systemvars:true
+  },
 
   serverMiddleware: [
   ],
@@ -106,26 +105,7 @@ export default {
   },
 
   proxy:{
-      '/api/': { target: 'https://essoccercoach-api.herokuapp.com/api/', pathRewrite: {'^/api/': ''}, changeOrigin: true}
-  },
-
-  //Firebase module configuration
-  firebase:{
-    config: {
-      apiKey: "AIzaSyAFdjN0MvRwatdGpSEozi1zM6ye-JfPq-A",
-      authDomain: "essoccercoach.firebaseapp.com",
-      databaseURL: "https://essoccercoach.firebaseio.com",
-      projectId: "essoccercoach",
-      storageBucket: "essoccercoach.appspot.com",
-      messagingSenderId: "359986135028",
-      appId: "1:359986135028:web:03cc97347a523c002103a1",
-      measurementId: "G-GHNVKKV4PB"
-    },
-    services: {
-      auth: true,
-      firestore: true,
-      storage: true,
-    }
+      '/api/': { target: process.env.URL_API, pathRewrite: {'^/api/': ''}, changeOrigin: true}
   },
 
   auth:{
@@ -153,9 +133,9 @@ export default {
 
   //cloudinary module configuration
   cloudinary: {
-    cloudName: "dgtvlmmxg",
-    apiKey: "662499467823844",
-    apiSecret: "AjW6XrGRuT_umuLy2IUkn5g1zhI",
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
   },
 
   

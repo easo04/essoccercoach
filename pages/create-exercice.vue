@@ -301,6 +301,7 @@ import AddPlayerWithTextModal from '@/components/modals/AddPlayerWithTextModal.v
 import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
 import ModalOpenDesigner from '@/components/modals/ModalOpenDesigner.vue'
 import ConfirmDeleteAllVue from '../components/modals/ConfirmDeleteAll.vue'
+import NavigatorService from '@/static/services/NavigatorService.js'
 
 //enum pour le type d'actions
 const ACTIONS = {
@@ -964,7 +965,7 @@ export default {
 
         setTimeout(() => {
 
-            if(!this.fromSeance){          
+            if(!this.fromSeance && !NavigatorService.isMobile()){          
                 //afficher la modale des astuces
                 const showOpenDesignerModal = JSON.parse(sessionStorage.getItem('showOpenDesignerModal'));
                 if(!showOpenDesignerModal){

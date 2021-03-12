@@ -33,7 +33,7 @@
           Profitez-en bien!
         </p>
       </div>
-      <div class="exercices-populaires">
+      <div class="exercices-populaires" v-if="exercicesPopulaires.length > 0">
         <h3>Exercices populaires <font-awesome-icon :icon="['fas', 'star']"/></h3>
         <p>Consultez notre banque d'exercices de soccer avec plus de 100 exercices à votre disposition:</p>
         <ExercicesPopulaires :exercices="exercicesPopulaires"/>
@@ -264,8 +264,11 @@ export default {
       try{
         
           const response = await this.$axios.$get('/api/exercices/populars/get-all');
-          for(let i=0;i<7;i++){
-            this.exercicesPopulaires.push(response.exercices[i]);
+          if(response.exercices && response.exercices.length > 0){ 
+            const size = response.exercices.length > 7 ? 7 : response.exercices.length;         
+            for(let i=0;i<size;i++){
+              this.exercicesPopulaires.push(response.exercices[i]);
+            }
           }
       }catch(err){
           console.log(err);

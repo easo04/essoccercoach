@@ -90,17 +90,17 @@ export default {
             if(this.exercice.image){
 
                 //save the image to cloudinary
-                //image = await this.$cloudinary.upload(this.exercice.image, {upload_preset: "uoqb58bx"});
+                image = await this.$cloudinary.upload(this.exercice.image, {upload_preset: process.env.CLOUDINARY_PRESET});
             }
 
             let categoryNameDb = this.categoriesExercice.find(c=>c.label === this.exercice.category).name;
             categoryNameDb = categoryNameDb.substring(0, categoryNameDb.length - 1);
 
-            //const imageId = image.public_id ?? ''; 
-            //const imageUrl = image.url ?? '';
+            const imageId = image.public_id ?? ''; 
+            const imageUrl = image.url ?? '';
 
-            const imageId = 'https://res.cloudinary.com/dgtvlmmxg/image/upload/v1612800601/exercices/1601074656125_rx6grl.png'
-            const imageUrl = '1601074656125_rx6grl'
+            //const imageId = 'https://res.cloudinary.com/dgtvlmmxg/image/upload/v1612800601/exercices/1601074656125_rx6grl.png'
+            //const imageUrl = '1601074656125_rx6grl'
 
             //save the exercice
             const data = {

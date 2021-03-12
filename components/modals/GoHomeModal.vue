@@ -29,6 +29,7 @@ export default {
             this.setSeance({});
             this.setAllStepsNotCompleted();
             this.setListExercices([]);
+            this.setCurrentItemMenu('accueil');
 
             //supprimer le local storage de la session
             localStorage.removeItem('fromDesigner');
@@ -38,7 +39,8 @@ export default {
             this.$modal.hide('go-home-modal');
         },
         ...mapMutations({setCurrentState:'seance/setCurrentState', setSeance:'seance/setSeance', 
-            setListExercices:'seance/setListExercices', setAllStepsNotCompleted : 'seance/setAllStepsNotCompleted'})
+            setListExercices:'seance/setListExercices', setAllStepsNotCompleted : 'seance/setAllStepsNotCompleted',
+            setCurrentItemMenu: 'setCurrentItemMenu'})
     },
     mount () {
     }
