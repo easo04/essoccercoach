@@ -439,6 +439,9 @@
             .description-texte{
                 p{
                     text-align: justify;
+                    @media screen and (max-width: $screen-sm) {
+                        text-align: center;
+                    }
                 }
             }
             .image-essoccercoach{
@@ -449,6 +452,7 @@
                 img{
                     height: auto;
                     width: 100%;
+                    border-radius: 5px;
                 }
                 @media screen and (max-width: $screen-sm) {
                     display: block;

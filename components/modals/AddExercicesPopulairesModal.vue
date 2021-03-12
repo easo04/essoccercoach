@@ -27,6 +27,7 @@
 </template>
 <script>
 import {mapMutations} from 'vuex';
+const MAX_EXERCICES_SHOW = 7;
 export default {
     data(){
         return{
@@ -56,7 +57,8 @@ export default {
         async getExercicesPopulaires(){
             try{
                 const response = await this.$axios.$get('/api/exercices/populars/get-all');
-                for(let i=0;i<7;i++){
+                const size = response.exercices.length > MAX_EXERCICES_SHOW ? MAX_EXERCICES_SHOW : response.exercices.length;
+                for(let i=0;i<size;i++){
                     this.exercicesPopulaires.push(response.exercices[i]);
                 }
                 localStorage.setItem('exercices-populaires', JSON.stringify(this.exercicesPopulaires));
@@ -72,7 +74,8 @@ export default {
     async mounted(){
         if(localStorage.getItem('exercices-populaires')){
             let exercices = JSON.parse(localStorage.getItem('exercices-populaires'));
-            for(let i=0;i<7;i++){
+            const size = exercices.length > MAX_EXERCICES_SHOW ? MAX_EXERCICES_SHOW : exercices.length;
+            for(let i=0;i<size;i++){
                 this.exercicesPopulaires.push(exercices[i]);
             }
         }else{

@@ -60,6 +60,10 @@
                         cursor: pointer;
                     }
                 }
+
+                @media screen and (max-width: $screen-sm) {
+                    padding: 10px 20px;
+                }
             }
             .modal-content{
                 padding: 30px 100px;
@@ -146,6 +150,9 @@
                                 cursor: pointer;
                                 &:not(:last-child){
                                     margin-right: 10px;
+                                }
+                                svg{
+                                    color:$color-black-fonts-second;
                                 }
                             }
                         }

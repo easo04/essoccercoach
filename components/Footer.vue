@@ -16,7 +16,7 @@
         <div class="content-footer">
             <div class="liste-services">
                 <div class="services">
-                    <h4>Nos services</h4>
+                    <h4>Nos outils</h4>
                     <div class="liste">
                         <a href="/create-exercice">Création d'exercice</a>
                         <a href="/create-seance">Création de séance</a>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="liste-reseaux">
                         <div>
-                            <a class="lien"><font-awesome-icon :icon="['fab', 'instagram']"/></a>
+                            <a class="lien" href="https://www.instagram.com/essoccercoach/" target="_blanc"><font-awesome-icon :icon="['fab', 'instagram']"/></a>
                             <a class="lien"><font-awesome-icon :icon="['fab', 'facebook-square']"/></a>
                             <a class="lien"><font-awesome-icon :icon="['fab', 'youtube-square']"/></a>
                         </div>

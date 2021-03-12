@@ -187,15 +187,11 @@
                             </div>
                     </div>
                     <div class="help">
-                        <div class="question" :class="{'clicked' : showOptionsHelp}" @click="setShowOptionsHelp()">
-                            <font-awesome-icon :icon="['fas', 'question']"/>
-                        </div>
-                        <div class="lst-options-help" v-show="showOptionsHelp">
-                            <div class="options">
-                                <div><div @click="setShowOptionsHelp()"><a href="/help/alignements" target="_blank">Tutoriel</a></div></div>
-                                <div><div @click="setShowOptionsHelp()">Youtube</div></div>
+                        <a href="/help/alignements" target="_blank">
+                            <div class="question" :class="{'clicked' : showOptionsHelp}" @click="setShowOptionsHelp()">                            
+                                <font-awesome-icon :icon="['fas', 'question']"/>          
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

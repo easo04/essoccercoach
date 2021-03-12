@@ -284,7 +284,6 @@
                         <div class="lst-options-help" v-show="showOptionsHelp">
                             <div class="options">
                                 <div><div @click="showAstuces();setShowOptionsHelp()">Astuces</div></div>
-                                <div><div @click="setShowOptionsHelp()"><a href="https://www.youtube.com" target="_blank">Youtube</a></div></div>
                                 <div><div @click="setShowOptionsHelp()"><a href="/help" target="_blank">Documentation</a></div></div>
                             </div>
                         </div>

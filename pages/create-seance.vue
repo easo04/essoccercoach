@@ -137,11 +137,11 @@
                     </div>
                 </div>
                 <div class="help">
-                    <div class="question" @click="setShowOptionsHelp()">
-                        <a href="/help/seances" target="_blank">
+                    <a href="/help/seances" target="_blank">
+                        <div class="question" @click="setShowOptionsHelp()">
                             <font-awesome-icon :icon="['fas', 'question']"/>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

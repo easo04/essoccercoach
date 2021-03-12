@@ -9,11 +9,7 @@
             <SendEmailInput/>
             <div class="reseaux-sociaux">
                 <p>Suivez-nous sur les réseaux sociaux</p>
-                <div class="liste-reseaux">
-                    <a class="lien"><font-awesome-icon :icon="['fab', 'instagram']"/></a>
-                    <a class="lien"><font-awesome-icon :icon="['fab', 'facebook-square']"/></a>
-                    <a class="lien"><font-awesome-icon :icon="['fab', 'youtube-square']"/></a>
-                </div>
+                <ListReseaux/>
             </div>
         </div>
         <div class="modal-footer">
