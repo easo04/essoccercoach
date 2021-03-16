@@ -115,7 +115,7 @@
           <div class="description-item">
               <div class="description-item-content">
                 <h2>Créateur d'alignements de soccer</h2>
-                <p>Faites l'alignement de votre équipe de façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
+                <p>Faites l'alignement de votre équipe de façon <strong>simple</strong> et <strong>rapide</strong>. <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
                 <div class="actions-item"><button class="btn btn-default" @click="goToCreateAlignements()">Créez votre alignement</button></div>
               </div>
           </div>
@@ -131,7 +131,7 @@
           <div>
             <h2>Consultez notre banque d'exercices de soccer avec plus de 100 exercices disponibles!</h2> 
             <p>Vous trouverez différents exercices divisés en catégories. Aussi, vous pouvez utiliser les exercices
-              populaires dans vos séances d'entraînement</p> 
+              populaires dans vos séances d'entraînement.</p> 
           </div>  
         </div> 
         <div class="message-btn">    
