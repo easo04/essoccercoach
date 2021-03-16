@@ -207,6 +207,10 @@
         grid-template-columns: 300px 1fr;
         min-height: 80vh;
 
+        @media screen and (min-width: $screen-lg-x) {
+            min-height: 90vh;
+        }
+
         .menu-left{
             display: flex;
             .items-menu{
@@ -250,6 +254,7 @@
                     line-height: 50px;
                 }
                 .content-item-terrains{
+                    height: 100%;
                     .onglets{
                         display: flex;
                         width: 100%;
@@ -275,7 +280,7 @@
                         overflow: scroll;
                         overflow-x: hidden;
                         @media screen and (min-width: $screen-lg-x) {
-                            height: 600px;
+                            height: 800px;
                         }
                         .item-terrain-sl{
                             height: 122px;
@@ -399,10 +404,14 @@
                     }
                 }
                 .content-item-outils{
+                    height: 100%;
                     .content-outils{
                         height: 400px;
                         overflow: scroll;
                         overflow-x: hidden;
+                        @media screen and (min-width: $screen-lg-x) {
+                            height: 800px;
+                        }
                         .items-outils{
                             display: flex;
                             padding: 0px 10px;
@@ -429,10 +438,14 @@
                     }
                 }
                 .content-item-lignes{
+                    height: 100%;
                     .content-lines{
                         height: 410px;
                         overflow: scroll;
                         overflow-x: hidden;
+                        @media screen and (min-width: $screen-lg-x) {
+                            height: 800px;
+                        }
                         .items-lignes{
                             display: flex;
                             padding: 0px 10px;
