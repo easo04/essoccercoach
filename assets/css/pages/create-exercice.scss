@@ -207,10 +207,6 @@
         grid-template-columns: 300px 1fr;
         min-height: 80vh;
 
-        @media screen and (min-width: $screen-lg-x) {
-            min-height: 90vh;
-        }
-
         .menu-left{
             display: flex;
             .items-menu{
@@ -280,7 +276,7 @@
                         overflow: scroll;
                         overflow-x: hidden;
                         @media screen and (min-width: $screen-lg-x) {
-                            height: 800px;
+                            height: 600px;
                         }
                         .item-terrain-sl{
                             height: 122px;
@@ -410,7 +406,7 @@
                         overflow: scroll;
                         overflow-x: hidden;
                         @media screen and (min-width: $screen-lg-x) {
-                            height: 800px;
+                            height: 600px;
                         }
                         .items-outils{
                             display: flex;
@@ -444,7 +440,7 @@
                         overflow: scroll;
                         overflow-x: hidden;
                         @media screen and (min-width: $screen-lg-x) {
-                            height: 800px;
+                            height: 600px;
                         }
                         .items-lignes{
                             display: flex;

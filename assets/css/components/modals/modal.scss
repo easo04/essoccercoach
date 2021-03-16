@@ -19,7 +19,9 @@
             @media screen and (max-width: $screen-sm) {     
                 width: 100% !important;
             }
-           // height: 80% !important;
+            @media screen and (min-width: $screen-lg-x) {    
+                top: 20% !important;
+            }
         }
 
         &.modal-lg2{
