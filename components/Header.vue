@@ -13,15 +13,15 @@
                     <li><a href="/">Accueil</a></li>
                     <li><a href="/#nosOutils">Nos outils</a></li>
                     <li><a href="/#propos">À propos</a></li>
-                    <li @click="showExercicesOptions()">
+                    <li class="exercices-link">
                         Exercices <font-awesome-icon :icon="['fas', 'sort-down']"/>
+                        <ul class="select-list">
+                            <li class="item" v-for="(item, i) in categories" :key="i" @click="goToCatgory(item.url)">
+                                {{item.label}}
+                            </li>
+                        </ul>
                     </li>
                 </ul>
-                <div class="select-list" v-if="showSelectExercices">
-                    <div class="item" v-for="(item, i) in categories" :key="i" @click="goToCatgory(item.url)">
-                        {{item.label}}
-                    </div>
-                </div>
             </div>
             <div class="btn-new">
                 <button class="btn btn-default btn-add" :class="{'active' : showNewActions}" @click="showActions()">Nouveau <font-awesome-icon :icon="['fas', 'plus']"/></button>
@@ -63,39 +63,39 @@
             </div>
         </div>
         <div class="new-actions-list" v-if="showNewActions">
-                    <h4>Commencez à créer avec l'un de nos outils</h4>
-                    <div class="items-actions">
-                        <div class="item-action-list" @click="goToCreateSeances()">
-                            <div>
-                                <div class="img-item-action">
-                                    <div class="img">
-                                        <img src="@/assets/images/seance_icon_action.png" alt="créer séance de soccer"/>
-                                    </div>
-                                </div>
-                                <span>Séance</span>
+            <h4>Commencez à créer avec l'un de nos outils</h4>
+            <div class="items-actions">
+                <div class="item-action-list" @click="goToCreateSeances()">
+                    <div>
+                        <div class="img-item-action">
+                            <div class="img">
+                                <img src="@/assets/images/seance_icon_action.png" alt="créer séance de soccer"/>
                             </div>
                         </div>
-                        <div class="item-action-list" @click="goToCreateExercices()">
-                            <div>
-                                <div class="img-item-action">
-                                    <div class="img">
-                                        <img src="@/assets/images/exercice_icon_action.png" alt="créer exercice de soccer"/>
-                                    </div>
-                                </div>
-                                <span>Exercice</span>
-                            </div>
-                        </div>
-                        <div class="item-action-list" @click="goToCreateAlignements()">
-                            <div>
-                                <div class="img-item-action">
-                                    <div class="img">
-                                        <img src="@/assets/images/alignement_icon_action.png" alt="créer alignement de soccer"/>
-                                    </div>
-                                </div>
-                                <span>Alignement</span>
-                            </div>
-                        </div>
+                        <span>Séance</span>
                     </div>
+                </div>
+                <div class="item-action-list" @click="goToCreateExercices()">
+                    <div>
+                        <div class="img-item-action">
+                            <div class="img">
+                                <img src="@/assets/images/exercice_icon_action.png" alt="créer exercice de soccer"/>
+                            </div>
+                        </div>
+                        <span>Exercice</span>
+                    </div>
+                </div>
+                <div class="item-action-list" @click="goToCreateAlignements()">
+                    <div>
+                        <div class="img-item-action">
+                            <div class="img">
+                                <img src="@/assets/images/alignement_icon_action.png" alt="créer alignement de soccer"/>
+                            </div>
+                        </div>
+                        <span>Alignement</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -105,7 +105,6 @@ export default {
     data(){
         return{
             showNewActions:false,
-            showSelectExercices:false,
         }
     },
     computed:{
@@ -114,9 +113,6 @@ export default {
     methods:{
         showActions(){
             this.showNewActions = !this.showNewActions;
-        },
-        showExercicesOptions(){
-            this.showSelectExercices = !this.showSelectExercices;
         },
         goToCreateExercices(){
             this.$router.push({path: '/create-exercice'});
@@ -128,7 +124,7 @@ export default {
             this.$router.push({path: '/create-alignement'});  
         },
         goToCatgory(item){
-            this.showSelectExercices = false;
+            console.log('go ' + item)
             this.$router.push(item);
         },
         ...mapMutations({setCurrentItemMenu:'setCurrentItemMenu'})

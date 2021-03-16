@@ -48,6 +48,7 @@
             ul{
                 margin: 0;
                 padding: 0px 30px;
+                display: flex;
                 li{
                     display: inline;
                     margin-right: 16px;
@@ -59,23 +60,35 @@
                             color:#4a4a4a;
                         }
                     }
-                }
-            }
-            .select-list{
-                position: absolute;
-                bottom: -239px;
-                right: 90px;
-                background-color: #FBFBFB;
-                border-radius: 5px;
-                color:#858585;
-                border:1px solid rgba(201, 201, 201, 0.5);
-                @include font-m-mbold;
-                .item{
-                    padding: 8px 20px;
-                    cursor: pointer;
-                    font-size: 0.9em;
-                    &:hover{
-                        background-color: #D4EEF1;
+
+                    &.exercices-link{
+                        &:hover{
+                            .select-list{
+                                display: block;
+                            }
+                        }
+                        .select-list{
+                            position: absolute;
+                            //bottom: -239px;
+                            //right: 90px;
+                            background-color: #FBFBFB;
+                            border-radius: 5px;
+                            color:#858585;
+                            border:1px solid rgba(201, 201, 201, 0.5);
+                            @include font-m-mbold;
+                            display: none;
+                            padding: 0;
+                            .item{
+                                padding: 8px 20px;
+                                cursor: pointer;
+                                font-size: 0.9em;
+                                display: block;
+                                margin-right: 0;
+                                &:hover{
+                                    background-color: #D4EEF1;
+                                }
+                            }
+                        }
                     }
                 }
             }

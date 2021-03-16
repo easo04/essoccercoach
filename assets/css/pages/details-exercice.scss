@@ -140,6 +140,13 @@
                         width: 100%;
                         overflow-x: scroll;
                     }
+
+                    .exercice-item{
+                        width: 100%;
+                        @media screen and (max-width: $screen-sm) {
+                            width: 25%;
+                        }
+                    }
                 }
             }
         }
