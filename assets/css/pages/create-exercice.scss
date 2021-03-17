@@ -669,6 +669,13 @@
                     .square{
                         width: 100%;
                         height: 100%;
+                        &.border-lines{
+                            border: 2px solid white;
+                        }
+                        &.fill-none{
+                            background: none;
+                            border: 2px solid white;
+                        }
                     }
 
                     .forme-img{

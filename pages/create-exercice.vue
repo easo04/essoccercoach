@@ -75,6 +75,8 @@
                         <span class="icon-action inactive" id="copy" @click="makeCopy()" title="Faire une copie"><font-awesome-icon :icon="['fas', 'copy']"/></span>
                         <span class="icon-action inactive" id="minus" @click="minus()" title="Zoom moins"><font-awesome-icon :icon="['fas', 'search-minus']"/></span>
                         <span class="icon-action inactive" id="plus" @click="plus()" title="Zoom plus"><font-awesome-icon :icon="['fas', 'search-plus']"/></span>
+                        <span class="icon-action inactive" id="border" @click="border()" title="Ajouter une bordure"><font-awesome-icon :icon="['fas', 'border-style']"/></span>
+                        <span class="icon-action inactive" id="fillNone" @click="fillNone()" title="Enlever la couleur de fond"><font-awesome-icon :icon="['fas', 'tint-slash']"/></span>
                     </div>
                 </div>
                 <div class="actions">
@@ -701,6 +703,17 @@ export default {
                     document.getElementById('minus').classList.remove('inactive');
                 }
             }
+
+            //vérifier si c'est une forme pour activer le border
+            const objectSelectedForme = this.objectSelected[0];
+            if(objectSelectedForme.id.includes('forme') 
+                && objectSelectedForme.children[0].classList.contains("square")){
+                document.getElementById('border').classList.remove('inactive');
+                document.getElementById('fillNone').classList.remove('inactive');
+            }else{
+                document.getElementById('border').classList.add('inactive');
+                document.getElementById('fillNone').classList.add('inactive');
+            }
         },
         rotate(){
             if(this.objectSelected){
@@ -735,6 +748,8 @@ export default {
             document.getElementById('copy').classList.add('inactive');
             document.getElementById('minus').classList.add('inactive');
             document.getElementById('plus').classList.add('inactive');
+            document.getElementById('border').classList.add('inactive');
+            document.getElementById('fillNone').classList.add('inactive');
         },
         deleteObject() {
             if(this.objectSelected){
@@ -934,6 +949,28 @@ export default {
                 }
             }else{
                 document.getElementById('minus').classList.add('inactive');
+            }
+        },
+        border(){
+            const objectForme = this.objectSelected[0];
+            if(objectForme.children[0].classList.contains("square")){
+                const classBorder = "border-lines";
+                if(objectForme.children[0].classList.contains(classBorder)){
+                    objectForme.children[0].classList.remove(classBorder);
+                }else{
+                    objectForme.children[0].classList.add(classBorder);
+                }
+            }
+        },
+        fillNone(){
+            const objectForme = this.objectSelected[0];
+            if(objectForme.children[0].classList.contains("square")){
+                const classBorder = "fill-none";
+                if(objectForme.children[0].classList.contains(classBorder)){
+                    objectForme.children[0].classList.remove(classBorder);
+                }else{
+                    objectForme.children[0].classList.add(classBorder);
+                }
             }
         },
         ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setImageExercice:'seance/setImageExercice'})
