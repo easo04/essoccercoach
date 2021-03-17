@@ -1040,15 +1040,37 @@ export default {
             let objectCopied = document.getElementById(this.objectDOMCopied.idCopied);
             objectCopied.style.height = this.objectDOMCopied.objectCopied.style.height;
             objectCopied.style.width = this.objectDOMCopied.objectCopied.style.width;
+            
+            const object = this.objectDOMCopied.objectCopied.children[0];
 
             //ajuster l'opacité de la forme
-            let object = this.objectDOMCopied.objectCopied.children[0];
             if(object.classList.contains('circle') || object.classList.contains('triangle')){
                 objectCopied.children[0].children[0].style.opacity = object.children[0].style.opacity;
             }else{
                 objectCopied.children[0].style.opacity = object.style.opacity;
             }
-            
+
+            let color;
+            object.classList.forEach(c=>{
+                if(c.includes('-color')){
+                    color = c;
+                }
+            });
+
+            //ajuster la couleur de la forme
+            if(color){
+                objectCopied.children[0].classList.add(color);
+            }
+
+            //ajuster la bordure de la forme
+            if(object.classList.contains('border-lines')){
+                objectCopied.children[0].classList.add('border-lines');
+            }
+
+            //ajuster le fill-color-none de la forme
+            if(object.classList.contains('fill-none')){
+                objectCopied.children[0].classList.add('fill-none');
+            }
 
             this.objectDOMCopied = undefined;
         }
