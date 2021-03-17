@@ -12,7 +12,7 @@
                 <div class="liste-exercices">
                     <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index" @click="goToDetails(exercice)">
                         <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
+                            <img :src="exercice.image_url"/>
                             <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
                         </div>
                         <div class="description">

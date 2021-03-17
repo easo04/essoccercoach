@@ -12,7 +12,7 @@
                 <div class="liste-exercices">
                     <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index" @click="goToDetails(exercice)">
                         <div class="img">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
+                            <img :src="exercice.image_url"/>
                         </div>
                         <div class="description">
                             <h4>{{exercice.title}}</h4>
@@ -93,6 +93,7 @@ export default {
     async fetch() {
         try{
             const response = await this.$axios.$get('/api/exercices/populars/get-all');
+            console.log(response)
             this.exercices = response.exercices;
         }catch(err){
             console.log(err);

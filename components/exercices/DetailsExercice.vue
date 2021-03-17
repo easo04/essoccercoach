@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="image">
-                <img src="@/assets/images/exercice_essoccercoach.png"/>
+                <img :src="exercice.image_url"/>
                 <div class="reseau">
                     <i class="fab fa-facebook"></i>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="exercices">
                         <div class="carousel-cell exercice-item" v-for="(exe, index) in exercicesSameCategory" :key="index" @click="goToDetails(exe)">
                             <div class="image-exercice-item">
-                                <img src="@/assets/images/exercice_essoccercoach.png"/>
+                                <img :src="exe.image_url"/>
                             </div>
                             <div class="description-exercice-item">
                                 <h4>{{exe.title}}</h4>

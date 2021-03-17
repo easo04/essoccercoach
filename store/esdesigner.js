@@ -17,7 +17,8 @@ export const state = () => ({
         {'name': 'terrain3', 'color': '', 'image': 'terrain3.png'},    
         {'name': 'terrain4', 'color': '', 'image': 'terrain4.png'},    
         {'name': 'terrain5', 'color': '', 'image': 'terrain5.png'},      
-        {'name': 'terrain6', 'color': '', 'image': 'terrain6.png'},  
+        {'name': 'terrain6', 'color': '', 'image': 'terrain6.png'}, 
+        {'name': 'terrain7', 'color': '', 'image': 'terrain7.png'},   
     ],
     listeJoueurs : [
         {'name': 'player-mouvement-red', 'image': 'player-mouvement-red.png'},
@@ -60,7 +61,7 @@ export const state = () => ({
     listeLignes : [
         {'name': 'Mouvement', 'image': 'arrow6.svg', 'forme': '', 'type':'run'},
         {'name': 'Drible', 'image': 'arrow11.svg', 'forme': '', 'type':'drible'},
-        {'name': 'Drible', 'image': 'arrow29.svg', 'forme': '', 'type':'drible'},
+        {'name': 'Drible', 'image': 'arrow15.svg', 'forme': '', 'type':'drible'},
         {'name': 'Passe en profondeur', 'image': 'arrow9.svg', 'forme': '', 'type':'pass'},
         {'name': 'Mouvement courve', 'image': 'arrow32.svg', 'forme': '', 'type':'run'},
         {'name': 'Passe courve', 'image': 'arrow28.svg', 'forme': '', 'type':'pass'},
