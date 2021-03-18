@@ -78,11 +78,11 @@ export default {
                 objectifs : this.exercice.objectifs,
                 nbPlayers : this.exercice.nbPlayers,
                 category : categoryNameDb,
+                id: this.exercice.id
             };
 
             try{
                 const response = await this.$axios.$post('/api/exercices/update',  data);
-                this.exercice.created_at = new Date();
                 
                 //delete storage variables
                 localStorage.removeItem('exercices');
