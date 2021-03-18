@@ -68,7 +68,7 @@
             .item-exercice{
                 //width: 273px;
                 width: 100%;
-                height: 380px;
+                height: 320px;
                 background: $color-white-background;
                 box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
                 border-radius: 5px;
@@ -119,17 +119,14 @@
                 }
                 .description{
                     padding: 20px;
-                    height: 185px;
+                    height: 125px;
                     h4{
                         color:$color-black-fonts;
                         margin: 0;
-                        height: 68px
+                        height: 38px
                     }
                     @media screen and (max-width: $screen-sm) {
                         height: 140px;
-                        h4{
-                            height: 38px;
-                        }
                     }
                     p{
                         @include font-s;
@@ -140,7 +137,7 @@
                         height: 50px;
                     }
                     .footer-description{
-                        margin-top: 20px;
+                        margin-top: 10px;
                         display: grid;
                         grid-template-columns: 1fr 1fr;
                         >div{
