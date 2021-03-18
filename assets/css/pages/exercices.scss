@@ -90,14 +90,20 @@
                 }*/
                 .img{
                     width: 100%;
-                    height: 200px;
+                    height: 154px;
                     position: relative;
                     img{
                         border-top-left-radius: 5px;
                         border-top-right-radius: 5px;
                         width: 100%;
-                        height: 100%;
+                        height: auto;
                         object-fit: cover;
+                    }
+                    @media screen and (max-width: $screen-sm) {
+                        height: 200px;
+                        img{
+                            height: 100%;
+                        }
                     }
                     .populaire{
                         color:$color-yellow;
@@ -113,11 +119,17 @@
                 }
                 .description{
                     padding: 20px;
-                    height: 140px;
+                    height: 185px;
                     h4{
                         color:$color-black-fonts;
                         margin: 0;
-                        height: 38px
+                        height: 68px
+                    }
+                    @media screen and (max-width: $screen-sm) {
+                        height: 140px;
+                        h4{
+                            height: 38px;
+                        }
                     }
                     p{
                         @include font-s;
@@ -128,7 +140,7 @@
                         height: 50px;
                     }
                     .footer-description{
-                        margin-top: 14px;
+                        margin-top: 20px;
                         display: grid;
                         grid-template-columns: 1fr 1fr;
                         >div{

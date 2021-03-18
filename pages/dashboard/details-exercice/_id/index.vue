@@ -7,7 +7,7 @@
             <div class="actions2">
                 <div class="btns">
                     <div class="star" title="Populaire" :class="{'is-popular' : exercice.popular === 1}" @click="makeExercicePopulaire()"><font-awesome-icon :icon="['fas', 'star']"/></div>
-                    <div class="modify" title="Moodifiez l'exercice"><font-awesome-icon :icon="['fas', 'pencil-alt']"/></div>
+                    <div class="modify" title="Moodifiez l'exercice" @click="updateExercice()"><font-awesome-icon :icon="['fas', 'pencil-alt']"/></div>
                     <div class="delete" title="Supprimez l'exercice" @click="deleteExercice()"><font-awesome-icon :icon="['fas', 'trash']"/></div>
                 </div>
             </div>
@@ -67,6 +67,10 @@ import DeleteExerciceModalVue from '../../../../components/modals/DeleteExercice
                     {}
                 );
             },
+            updateExercice(){
+                localStorage.setItem('exercice-update', JSON.stringify(this.exercice))
+                this.$router.push({path: '/dashboard/update-exercice'});  
+            }
         },
         mounted(){
 
