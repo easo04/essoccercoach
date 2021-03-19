@@ -12,7 +12,7 @@
                 <div class="liste-exercices">
                     <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index" @click="goToDetails(exercice)">
                         <div class="img">
-                            <img :src="exercice.image_url"/>
+                            <img :src="getImageHttpsFormat(exercice.image_url)"/>
                         </div>
                         <div class="description">
                             <h4>{{exercice.title}}</h4>
@@ -64,6 +64,9 @@ export default {
         },
     },
     methods:{
+        getImageHttpsFormat(url){
+            return url.replace('http', 'https');
+        },
         getCategoryFormatted(category){
             return this.$store.state.categories.find(c=>c.name === category + 's').label;
         },

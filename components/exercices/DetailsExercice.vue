@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="image">
-                <img :src="exercice.image_url"/>
+                <img :src="getImageHttpsFormat(exercice.image_url)"/>
                 <div class="reseau">
                     <i class="fab fa-facebook"></i>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="exercices">
                         <div class="carousel-cell exercice-item" v-for="(exe, index) in exercicesSameCategory" :key="index" @click="goToDetails(exe)">
                             <div class="image-exercice-item">
-                                <img :src="exe.image_url"/>
+                                <img :src="getImageHttpsFormat(exe.image_url)"/>
                             </div>
                             <div class="description-exercice-item">
                                 <h4>{{exe.title}}</h4>
@@ -61,6 +61,9 @@ export default {
         }
     },
     methods:{
+        getImageHttpsFormat(url){
+            return url.replace('http', 'https');
+        },
         getCategoryFormatted(category){
             return this.$store.state.categories.find(c=>c.name === category + 's').label;
         },

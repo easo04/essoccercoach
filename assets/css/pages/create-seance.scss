@@ -267,8 +267,10 @@ body{
                     }
 
                     .exercice-image{
+                        display: flex;
+                        align-items: center;
                         img{
-                            height: 100%;
+                            height: auto;
                             width: 100%;
                             border-radius: 5px;
                         }

@@ -7,7 +7,7 @@
     .previous, .next{
         position: absolute;
         height: 25%;
-        top:calc(50%-25%);
+        //top:calc(50%-25%);
         width: 50px;
         line-height: 40px;
         background-color: rgba($color: $color-black-fonts, $alpha: 0.5);

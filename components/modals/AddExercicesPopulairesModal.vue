@@ -13,7 +13,7 @@
                 <div class="liste-exercices">
                     <div class="item-exercice" v-for="exercice in exercicesPopulaires" :key="exercice.id" @click="selectExercice(exercice)">
                         <div class="image-exercice-item">
-                            <img src="@/assets/images/exercice_essoccercoach.png"/>
+                            <img :src="getImageHttpsFormat(exercice.image_url)"/>
                             <div class="type">{{getCategoryFormatted(exercice.category)}}</div>
                         </div>
                         <div class="description-exercice-item">
@@ -36,6 +36,9 @@ export default {
         }
     },
     methods:{
+        getImageHttpsFormat(url){
+            return url.replace('http', 'https');
+        },
         getCategoryFormatted(category){
             return this.$store.state.categories.find(c=>c.name === category + 's').label;
         },

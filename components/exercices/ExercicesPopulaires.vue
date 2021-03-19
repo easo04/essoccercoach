@@ -7,7 +7,7 @@
             <div class="exercices">
                 <div class="carousel-cell exercice-item" v-for="(exercice, index) in exercices" :key="index" @click="goToDetails(exercice)">
                     <div class="image-exercice-item">
-                        <img :src="exercice.image_url"/>
+                        <img :src="getImageHttpsFormat(exercice.image_url)"/>
                     </div>
                     <div class="description-exercice-item">
                         <h4>{{exercice.title}}</h4>
@@ -35,6 +35,9 @@ export default {
         }
     },
     methods:{
+        getImageHttpsFormat(url){
+            return url.replace('http', 'https');
+        },
         next(){
             let content = document.querySelector('.content-exercices');
             //let exercices = document.querySelectorAll('.exercice-item');

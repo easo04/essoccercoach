@@ -12,7 +12,7 @@
                 <div class="liste-exercices">
                     <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index" @click="goToDetails(exercice)">
                         <div class="img">
-                            <img :src="exercice.image_url"/>
+                            <img :src="getImageHttpsFormat(exercice.image_url)"/>
                             <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
                         </div>
                         <div class="description">
@@ -66,6 +66,9 @@ export default {
         ...mapState(['modePresentation', 'categories'])
     },
     methods:{
+        getImageHttpsFormat(url){
+            return url.replace('http', 'https');
+        },
         getCategoryFormatted(category){
             return this.$store.state.categories.find(c=>c.name === category + 's').label;
         },

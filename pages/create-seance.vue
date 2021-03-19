@@ -81,7 +81,7 @@
                                 <p>{{exercice.description}}</p>
                             </div>
                             <div class="exercice-image">
-                                <img src="@/assets/images/exercice_essoccercoach.png" v-if="exercice.popular"/>
+                                <img :src="getImageHttpsFormat(exercice.image)" v-if="exercice.popular"/>
                                 <img :src="exercice.image" v-else/>
                             </div>
                             <div class="exercice-options" title="Options de l'exercice" @click="setShowListOptions(i)"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></div>
@@ -121,7 +121,8 @@
                                         <p>{{exercice.description}}</p>
                                     </div>
                                     <div class="exercice-image">
-                                        <img :src="exercice.image"/>
+                                        <img :src="getImageHttpsFormat(exercice.image)" v-if="exercice.popular"/>
+                                        <img :src="exercice.image" v-else/>
                                     </div>
                                     <div class="exercice-number">{{i+1}}</div>
                                 </div>
@@ -210,6 +211,9 @@ export default {
         }
     },
     methods:{
+        getImageHttpsFormat(url){
+            return url.replace('http', 'https');
+        },
         setShowOptionsHelp(){
             this.showOptionsHelp = !this.showOptionsHelp;
         },
@@ -308,8 +312,6 @@ export default {
         },
         telechargerPDF(){
             this.scrollTop();
-            this.setTextLoader('Téléchargement de la séance en cours ...');
-            this.setShowLoader(true);
             const now = new Date();
             const currentYear = now.getFullYear();
 
@@ -341,9 +343,6 @@ export default {
                             {},
                             {name : 'download-seance-succes-modal', classes:['modal-top'], clickToClose:false}
                         );
-
-                        this.setTextLoader('');
-                        this.setShowLoader(false);
                     }
                 });
             }, 2 * 1000);
