@@ -81,8 +81,7 @@
                                 <p>{{exercice.description}}</p>
                             </div>
                             <div class="exercice-image">
-                                <img :src="getImageHttpsFormat(exercice.image)" v-if="exercice.popular"/>
-                                <img :src="exercice.image" v-else/>
+                                <img :src="exercice.image"/>
                             </div>
                             <div class="exercice-options" title="Options de l'exercice" @click="setShowListOptions(i)"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></div>
                             <div class="exercice-options-list" v-if="optionsExercice[i] !== undefined && optionsExercice[i].showListOptions">
@@ -121,8 +120,7 @@
                                         <p>{{exercice.description}}</p>
                                     </div>
                                     <div class="exercice-image">
-                                        <img :src="getImageHttpsFormat(exercice.image)" v-if="exercice.popular"/>
-                                        <img :src="exercice.image" v-else/>
+                                        <img :src="exercice.image"/>
                                     </div>
                                     <div class="exercice-number">{{i+1}}</div>
                                 </div>
@@ -211,9 +209,6 @@ export default {
         }
     },
     methods:{
-        getImageHttpsFormat(url){
-            return url.replace('http', 'https');
-        },
         setShowOptionsHelp(){
             this.showOptionsHelp = !this.showOptionsHelp;
         },
@@ -314,7 +309,6 @@ export default {
             return new Promise((resolve, reject) =>{
                 html2canvas(exercice, {
                     onrendered: (canvas) =>{
-                        console.log(canvas)
                         const image = canvas.toDataURL('image/png');
                         const response = {
                             height: canvas.height,
@@ -347,91 +341,65 @@ export default {
             const now = new Date();
             const currentYear = now.getFullYear();
 
-            //setTimeout(() => {
-                //let domElement = document.getElementById("seance");
+            const infosSeance = document.getElementById("infos-seance");
+            const canvasInfoSeance = await this.getCanvasImageExercice(infosSeance);
 
-                const infosSeance = document.getElementById("infos-seance");
-                const canvasInfoSeance = await this.getCanvasImageExercice(infosSeance);
+            const canvasExercices = await this.getListExercicesImages();
 
-                const canvasExercices = await this.getListExercicesImages();
+            let pdf = new jsPDF();
+            const pointX = 11;
+            const pointY = 5;
+            const endPointY = 290;
+            pdf.setFontSize(9);
+            pdf.setTextColor(100);
+            pdf.text(pointX, endPointY, 'Séance d\'entraînement créée par essoccercoach.com'); 
+            pdf.setFontSize(9);
+            pdf.setTextColor(100);
+            pdf.text(150, endPointY, `© Copyrigth ESsoccerCoach  ${currentYear}`); 
 
-                let pdf = new jsPDF();
-                const pointX = 11;
-                const pointY = 5;
-                const endPointY = 290;
-                pdf.setFontSize(9);
-                pdf.setTextColor(100);
-                pdf.text(pointX, endPointY, 'Séance d\'entraînement créée par essoccercoach.com'); 
-                pdf.setFontSize(9);
-                pdf.setTextColor(100);
-                pdf.text(150, endPointY, `© Copyrigth ESsoccerCoach  ${currentYear}`); 
+            //add infos séance
+            pdf.addImage(canvasInfoSeance.image, 'JPEG', pointX, pointY);
+            
+            let lastPointY = pointY + canvasInfoSeance.height;
 
-                //add infos séance
-                pdf.addImage(canvasInfoSeance.image, 'JPEG', pointX, pointY);
+            //add exercices 
+            canvasExercices.forEach((canvas, index) => {
                 
-                let lastPointY = pointY + canvasInfoSeance.height;
-
-                //add exercices 
-                canvasExercices.forEach((canvas, index) => {
-                    
-                    //s'il y a plus de 2 exercices et que l'hauteur de l'image est > 300
-                    //il faut ajouter une nouvelle page
-                    if(index >= 2 && canvas.height > 300){
-                        pdf.addPage();
-                        lastPointY = pointY;
-                    }
-                    pdf.addImage(canvas.image, 'JPEG', pointX, lastPointY);
-                    lastPointY = 120;
-                });
-
-                //vérifier si une nouvelle page a été ajoutée
-                if(pdf.internal.getNumberOfPages() > 1){
-                    pdf.setFontSize(9);
-                    pdf.setTextColor(100);
-                    pdf.text(10,290, 'Séance d\'entraînement créée par essoccercoach.com'); 
-                    pdf.setFontSize(9);
-                    pdf.setTextColor(100);
-                    pdf.text(150,290, `© Copyrigth ESsoccerCoach  ${currentYear}`);
+                //s'il y a plus de 2 exercices et que l'hauteur de l'image est > 300
+                //il faut ajouter une nouvelle page
+                if(index >= 2 && canvas.height > 300){
+                    pdf.addPage();
+                    lastPointY = pointY;
                 }
+                pdf.addImage(canvas.image, 'JPEG', pointX, lastPointY);
+                lastPointY = 120;
+            });
 
-                pdf.setProperties({
-                    title: 'Entraînement de soccer',
-                    subject: '',		
-                    author: 'ESsoccercoach',
-                    creator: 'ESsoccercoach'
-                });
+            //vérifier si une nouvelle page a été ajoutée
+            if(pdf.internal.getNumberOfPages() > 1){
+                pdf.setFontSize(9);
+                pdf.setTextColor(100);
+                pdf.text(10,290, 'Séance d\'entraînement créée par essoccercoach.com'); 
+                pdf.setFontSize(9);
+                pdf.setTextColor(100);
+                pdf.text(150,290, `© Copyrigth ESsoccerCoach  ${currentYear}`);
+            }
 
-                pdf.save('entrainement.pdf');
+            pdf.setProperties({
+                title: 'Entraînement de soccer',
+                subject: '',		
+                author: 'ESsoccercoach',
+                creator: 'ESsoccercoach'
+            });
 
-                /*html2canvas(domElement, {
-                    onrendered: (canvas) =>{
-                        let img = canvas.toDataURL('image/png');
-                        let pdf = new jsPDF();
-                        pdf.addImage(img, 'JPEG', 11, 5);
-                        pdf.setFontSize(9);
-                        pdf.setTextColor(100);
-                        pdf.text(10,290, 'Séance d\'entraînement créée par essoccercoach.com'); 
-                        pdf.setFontSize(9);
-                        pdf.setTextColor(100);
-                        pdf.text(150,290, `© Copyrigth ESsoccerCoach  ${currentYear}`); 
+            pdf.save('entrainement.pdf');
 
-                        pdf.setProperties({
-                            title: 'Entraînement de soccer',
-                            subject: '',		
-                            author: 'ESsoccercoach',
-                            creator: 'ESsoccercoach'
-                        });
-
-                        pdf.save('entrainement.pdf');
-
-                        this.$modal.show(
-                            DownloadSeanceSuccesModalVue,
-                            {},
-                            {name : 'download-seance-succes-modal', classes:['modal-top'], clickToClose:false}
-                        );
-                    }
-                });*/
-            //}, 2 * 1000);
+            //open modal download
+            this.$modal.show(
+                DownloadSeanceSuccesModalVue,
+                {},
+                {name : 'download-seance-succes-modal', classes:['modal-top'], clickToClose:false}
+            );
         },
         updateSeance(){
             this.noStep = 1;

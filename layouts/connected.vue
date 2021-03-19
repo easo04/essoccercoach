@@ -93,6 +93,7 @@ export default {
         logout(){
             this.$auth.logout();
             localStorage.removeItem('user');
+            localStorage.removeItem('users');
             localStorage.removeItem('exercices');
             localStorage.removeItem('emails');
         },

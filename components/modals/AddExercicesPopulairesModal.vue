@@ -45,12 +45,31 @@ export default {
         hide () {
             this.$modal.hide('add-exercice-populars-modal');
         },
-        selectExercice(exercice){
+        toDataURL(url) {
+            return new Promise((resolve, reject) =>{ 
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                    var reader = new FileReader();
+                    reader.onloadend = function() {
+                        resolve(reader.result);
+                    }
+                    reader.readAsDataURL(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.responseType = 'blob';
+                xhr.send();
+            })
+        },
+        async selectExercice(exercice){
+
+            //convertir image en base64
+            const imageExercice = await this.toDataURL(exercice.image_url);
+
             const exerciceAdd = {
                 popular:true,
                 theme:exercice.title,
                 description:exercice.description,
-                image:exercice.image_url,
+                image:imageExercice,
                 players:exercice.nbPlayers,
                 time:exercice.time
             };
