@@ -17,22 +17,18 @@
     </div>
 </template>
 <script>
-import {mapState, mapMutations} from 'vuex';
 export default {
     props:['idExercice', 'title', 'index'],
-    computed: {
-        ...mapState(["exercices"])
-    },
     methods: {
         async remove () {
             try{
-                await this.$axios.$delete(`/api/exercices/${this.idExercice}`);
-                this.removeExercice(index);
                 
-                 //save exercices in localstorage
-                const exercicesParsed = JSON.stringify(this.exercices);
-                localStorage.setItem('exercices', exercicesParsed);
+                await this.$axios.$delete(`/api/exercices/${this.idExercice}`);
+                
+                //delete storage variables
+                localStorage.removeItem('exercices');
                 this.hide();
+                this.$root.$emit('exercice-deleted');
             }catch(err){
                 console.log(err)
             }
@@ -40,10 +36,6 @@ export default {
         hide () {
             this.$modal.hide('delete-exercice-modal');
         },
-        ...mapMutations({removeExercice:'removeExercice'})
-    },
-    mount () {
-        console.log(this.idExercice + ' index ' + this.index)
     }
 }
 </script>

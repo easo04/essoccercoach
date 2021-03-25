@@ -98,6 +98,7 @@ export default {
                 this.setListExercices(exercicesLocal);
                 this.exerciceByFilter = this.exercices;
             }
+            this.category = 'Tous';
         },
         getCategoryFormatted(category){
             return this.$store.state.categories.find(c=>c.name === category + 's').label;
@@ -141,6 +142,8 @@ export default {
 
         //récupérer tous les exercices
         this.getAllExercices();
+
+        this.$root.$on('exercice-deleted', ()=> this.getAllExercices());
     }
 }
 </script>

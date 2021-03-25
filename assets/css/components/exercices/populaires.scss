@@ -44,7 +44,7 @@
             display: flex;
             flex-wrap: nowrap;
             .exercice-item{
-                width: 25%;
+                min-width: 25%;
                 height: 244px;
                 margin-right: 20px;
                 background: $color-white-background;

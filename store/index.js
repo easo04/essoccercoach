@@ -6,7 +6,7 @@ export const state = () => ({
   categorie:'populaires',
   categories:[{label:'Populaires', name:'populaires', url:'/exercices'}, 
   {label:'Offensifs', name:'offensifs', url:'/exercices/categorie/offensifs'},
-  {label:'Déffensifs', name:'deffensifs', url:'/exercices/categorie/deffensifs'},
+  {label:'Défensifs', name:'deffensifs', url:'/exercices/categorie/deffensifs'},
   {label:'Rondos', name:'rondos', url:'/exercices/categorie/rondos'},
   {label:'Physiques', name:'physiques', url:'/exercices/categorie/physiques'},
   {label:'Tactiques', name:'tactiques', url:'/exercices/categorie/tactiques'},
