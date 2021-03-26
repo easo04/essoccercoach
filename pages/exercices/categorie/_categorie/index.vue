@@ -37,6 +37,7 @@
 import { mapState, mapMutations } from 'vuex';
 
 export default {
+    middleware: 'categories',
     head(){
         return{
             title:'Exercices de soccer - ' + this.categorie.label + ' | ESsoccercoach',
@@ -91,8 +92,6 @@ export default {
         const catParam = this.categories.find(c => c.name === this.$route.params.categorie);
         if(catParam){
             this.categorie = catParam;
-        }else{
-            location.href = "/";
         }
     },
     mounted(){

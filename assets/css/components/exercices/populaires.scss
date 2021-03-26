@@ -23,6 +23,9 @@
         &:focus{
             outline:none;
         }
+        @media screen and (max-width: $screen-sm) {
+            display: none;
+        }
     }
     .previous{
         left: 0;
@@ -40,6 +43,10 @@
         padding: 20px 0;
         overflow: hidden;
         scroll-behavior: smooth;
+
+        @media screen and (max-width: $screen-sm) {
+            overflow: scroll;
+        }
         .exercices{
             display: flex;
             flex-wrap: nowrap;

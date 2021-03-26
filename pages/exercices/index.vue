@@ -96,7 +96,6 @@ export default {
     async fetch() {
         try{
             const response = await this.$axios.$get('/api/exercices/populars/get-all');
-            console.log(response)
             this.exercices = response.exercices;
         }catch(err){
             console.log(err);
