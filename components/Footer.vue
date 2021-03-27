@@ -28,7 +28,7 @@
                     <div class="liste">
                         <a href="/exercices">Populaires</a>
                         <a href="/exercices/categorie/offensifs">Offensifs</a>
-                        <a href="/exercices/categorie/deffensifs">Déffensifs</a>
+                        <a href="/exercices/categorie/deffensifs">Défensifs</a>
                         <a href="/exercices/categorie/rondos">Rondos</a>
                         <a href="/exercices/categorie/physiques">Physiques</a>
                         <a href="/exercices/categorie/tactiques">Tactiques</a>
