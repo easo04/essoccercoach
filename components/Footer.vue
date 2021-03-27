@@ -32,7 +32,6 @@
                         <a href="/exercices/categorie/rondos">Rondos</a>
                         <a href="/exercices/categorie/physiques">Physiques</a>
                         <a href="/exercices/categorie/tactiques">Tactiques</a>
-                        <a href="/exercices/categorie/gardiens">Gardiens</a>
                     </div>
                 </div>
                 <div class="contact">
