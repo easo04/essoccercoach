@@ -309,6 +309,8 @@ export default {
         },
         downloadExercice(){
 
+            this.$ga.event('save', 'download_alignement');
+
             setTimeout(() => {
                 let domElement = document.getElementById("terrainSoccer");    
                 this.$modal.show(

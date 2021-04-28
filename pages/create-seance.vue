@@ -348,6 +348,8 @@ export default {
                 const now = new Date();
                 const currentYear = now.getFullYear();
 
+                this.$ga.event('save', 'download_seance');
+
                 const infosSeance = document.getElementById("infos-seance");
                 const canvasInfoSeance = await this.getCanvasImageExercice(infosSeance);
 

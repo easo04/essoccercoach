@@ -9,7 +9,7 @@
                 <h3>Sélectionnez les terrains</h3>
                 <p>Vous pouvez choisir entre 9 terrains disponibles pour créer votre exercice.</p>
                 <img src="@/assets/images/help/select-terrain.png" />
-                <p class="center">Vous pouvez aussi choisir des terrains avec des lignes déjà configurés.</p>     
+                <p class="center">Vous pouvez aussi choisir des terrains avec des lignes déjà configurées.</p>     
                 <img src="@/assets/images/help/select-terrain2.png" />
             </div>
             <div class="item-content">

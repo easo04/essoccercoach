@@ -20,7 +20,7 @@
             </div>
             <div class="item-content">
                 <h3>Téléchargez la séance</h3>
-                <p>Pour télécharger l'exercice, vous devez cliquer sur le bouton en haut à droit de l'écran.</p>
+                <p>Pour télécharger la séance, vous devez cliquer sur le bouton en haut à droit de l'écran.</p>
                 <img src="@/assets/images/help/download-seance.png" />
             </div>
         </div>

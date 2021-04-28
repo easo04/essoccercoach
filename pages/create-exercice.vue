@@ -613,6 +613,8 @@ export default {
             this.deselectionner();
             this.closeAllSelectes();
 
+            this.$ga.event('save', 'download_exercice');
+
             setTimeout(() => {
                 let domElement = document.getElementById("terrainSoccer"); 
                 this.$modal.show(
