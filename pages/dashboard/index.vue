@@ -140,10 +140,9 @@ export default {
     },
     mounted(){
 
-        //récupérer tous les exercices
         this.getAllExercices();
 
-        this.$root.$on('exercice-deleted', ()=> this.getAllExercices());
+        this.$root.$on('exercice-deleted', () => this.getAllExercices());
     }
 }
 </script>

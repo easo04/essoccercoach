@@ -74,9 +74,94 @@
                 }
             }
         }
+        @media screen and (max-width: $screen-sm) {
+            display: none;
+        }
+    }
+    .header-mobile{
+        height: 50px;
+        border-bottom: 1px solid $color-border-designer;
+        display: none;
+        grid-template-columns: 70px 1fr;
+        grid-gap: 10px;
+        position: fixed;
+        top:0;
+        width: 100%;
+        z-index: 900;
+        background-color: $color-white-background;
+        @media screen and (max-width: $screen-sm) {
+            display: grid;
+        }
+        .logo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+            .image-logo{
+                height: 40px;
+            }
+        }
+        .options{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 25px;
+            color:$color-soccer-coach;
+            cursor: pointer;
+            position: relative;
+            .profil{
+                display: flex;
+                align-items: center;
+                .welcome{
+                    margin-right: 14px;
+                }
+            }
+            .welcome{
+                @include font-xm-sbold;
+                font-family: $font-family-text;
+                color:$color-blue-blackground;
+            }
+            .liste-profil{
+                position: absolute;
+                top: 40px;
+                background-color: $color-blue-blackground;
+                border-radius: 5px;
+                color:$color-white;
+                border:1px solid rgba(201, 201, 201, 0.5);
+                padding: 10px;
+                width: 100%;
+                right: -20px;
+                h4{
+                    color:$color-soccer-coach;
+                }
+                .options-profil{ 
+                    @include font-xm-sbold;
+                    font-family: $font-family-text;
+                    margin-top: 14px;
+                    color:$color-white;
+                    .label-icon{
+                        margin-left: 10px;
+                    }
+                    .logout{
+                        color:$color-red;
+                        margin-top: 14px;
+                        border-top:1px solid $color-border-designer;
+                        padding-top: 5px;
+                    }
+                    >div{
+                        margin-top: 20px;
+                    }
+                }
+                h4{
+                    margin: 0;
+                }
+            }
+        }
     }
     .menu-left{
-        position: fixed;
+        display: none;
         left:0;
         border-right: 1px solid $color-border-designer;
         width: 70px;
@@ -84,6 +169,7 @@
         background-color: $color-white-background;     
         z-index: 900;
         margin-top: 1px;
+        position: fixed;
         >div{
             cursor: pointer;
             height: auto;
@@ -110,11 +196,19 @@
                 }
             }
         }
+
+        @media screen and (min-width: $screen-md) {
+            display: block;
+        }
     }
     .content{
         min-height: 100vh;
-        margin-top: 60px;
-        margin-left: 70px;
+        margin-top: 50px;
+        margin-left: 0;
+        @media screen and (min-width: $screen-md) {
+            margin-left: 70px;
+            margin-top: 60px;
+        }
         .contenu{
             padding: 20px;
             background-color: $color-blue-blackground-clair;

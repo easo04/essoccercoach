@@ -1,0 +1,122 @@
+.teams-page{
+
+    .club{
+        margin-top: 0;
+        padding-top: 0;
+        color:$color-gris-2;
+    }
+    .addNewTeam{
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        height: auto;
+        
+        .select-teams{
+            position: absolute;
+            right: 0;
+            top:45px;
+            border-radius: 5px;     
+            background-color: #FBFBFB;
+            box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+            border:1px solid rgba(201, 201, 201, 0.25);
+            z-index: 40;
+            width: auto;
+            >div{
+                cursor: pointer;
+                @include font-xm-mbold;
+                padding: 8px 20px;
+                font-family: $font-family-text;
+                color:$color-black-fonts-second;
+                text-align: center;
+                &:hover{
+                    background-color: #D4EEF1;
+                }
+                &:not(:last-child){
+                    border-bottom:1px solid $color-border-designer;
+                }
+            }
+        }
+    }
+
+    .options-team, .options-team-mobile{
+        margin-top: 10px;
+        display: none;
+        .option-team{
+            padding: 10px 5px;
+            background-color:$color-background-onglets;
+            text-align: center;
+            @include font-xm-sbold;
+            color:$color-text-onglets;
+            font-family: $font-family-text;
+            cursor: pointer;
+            &.active{
+                border-bottom: 3px solid $color-border-bottom-onglet;
+                font-weight: 900;
+            }
+            
+            @media screen and (min-width: $screen-md) {
+                padding: 10px 30px;
+            }
+        }
+    }
+    .options-team-mobile{
+        @media screen and (max-width: $screen-sm) {     
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    .options-team{
+        @media screen and (min-width: $screen-md) {     
+            display: flex;
+        }
+    }
+    .content-option-team{
+        h4{
+            color:$color-black-fonts-second;
+        }
+        width: 100%;
+        height: auto;
+        .content-actions{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+            .btn-add-player{
+                @include font-s-bold;
+                background-color: $color-secondary-1;
+            }
+        }
+        .option-content{
+            .coach, .player, .activity{
+                @include font-m;
+                color:$color-black-fonts;
+                padding: 10px 0;
+                width: 100%;
+                border-bottom: 1px solid #E9E9E9;
+                cursor: pointer;
+                padding-left: 10px;
+                &:hover{
+                    background-color: #E9E9E9;
+                }
+            }
+            .coach, .player{
+                .role{
+                    @include font-xm;
+                    color:$color-black-fonts-second;
+                }
+            }
+            .activity{
+                .date{
+                    @include font-xm;
+                    color:$color-black-fonts-second;
+                }
+                &.game{
+                    .name{
+                        color:#18676F;
+                    }
+                }
+            }
+        }
+    }
+}
