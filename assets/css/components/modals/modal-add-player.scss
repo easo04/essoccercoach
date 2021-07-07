@@ -1,0 +1,14 @@
+.modal-add-player-coach{
+    .not-player{
+        cursor: pointer;
+        color: $color-icons-designer;
+        font-size: 25px;
+        margin-bottom: 20px;
+        .label{
+            @include font-m-sbold;
+            font-family: $font-family-text;
+            line-height: 0px;
+            margin-bottom: 10px;
+        }
+    }
+}

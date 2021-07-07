@@ -27,6 +27,14 @@ class TeamService{
     static getPlayerPositionByCode(code){
         return PLAYER_POSITION.find(position => position.code === code).label;
     }
+
+    static getListPositions(){
+        return PLAYER_POSITION;
+    }
+
+    static getListRoles(){
+        return COACH_ROLES;
+    }
 }
 
 module.exports = TeamService

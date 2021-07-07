@@ -125,6 +125,7 @@ export default {
             localStorage.removeItem('users');
             localStorage.removeItem('exercices');
             localStorage.removeItem('emails');
+            localStorage.removeItem('summary-teams');
         },
         goToEmails(){
             this.itemSelected = ROUTES.EMAILS;

@@ -25,7 +25,7 @@
         <div class="content-option-team">
             <div v-if="optionSelected === 'team'">
                 <div class="content-actions" v-if="canAddPlayer">
-                    <button class="btn btn-default btn-add-player">Nouveau +</button>
+                    <button class="btn btn-default btn-add-player" @click="addNewPlayer()">Nouveau +</button>
                 </div>
                 <div class="option-content list-players">
                     <h4>Joueurs</h4>
@@ -60,6 +60,7 @@
 </template>
 <script>
 import {mapState} from 'vuex';
+import AddPlayerCoachVue from '../../components/modals/teams/AddPlayerCoach.vue';
 import TeamService from '../../static/services/TeamService'
 const OPTIONS_ONGLET = {
     TEAM:'team',
@@ -84,15 +85,23 @@ export default {
     },
     methods:{
         async getAllTeams(){
-            let response = await this.$axios.$get('/api/teams/teams/get-summary-teams');
+            this.teams = JSON.parse(localStorage.getItem('summary-teams'));
+            if(!this.teams){
+                this.teams = [];
+                let response = await this.$axios.$get('/api/teams/teams/get-summary-teams');
 
-            response.teams.forEach(team => {
-                team.teams.forEach(t=>this.teams.push(t));
-            });
-            
+                response.teams.forEach(team => {
+                    team.teams.forEach(t=>this.teams.push(t));
+                });
+
+                //save teams in localstorage
+                const summaryTeamsParsed = JSON.stringify(this.teams);
+                localStorage.setItem('summary-teams', summaryTeamsParsed);
+            }
+
             this.teamSelected = this.teams[0] !== undefined ? this.teams[0] : {}
             this.canAddPlayer = this.teamSelected.canAddPlayers;
-            this.canAddActivity = this.teamSelected.canAddActivity
+            this.canAddActivity = this.teamSelected.canAddActivity;
         },
         changeTeam(team){
             this.teamSelected = team
@@ -109,10 +118,23 @@ export default {
         getPlayerPosition(position){
             return TeamService.getPlayerPositionByCode(position)
         },
+        addNewPlayer(){
+            this.$modal.show(
+                AddPlayerCoachVue,
+                {'team':this.teamSelected.id},
+                {name : 'modal-add-player-coach', classes:['modal-top']}
+            );
+        }
     },
     mounted(){
         this.canCreateTeam = this.auth.user.canCreateATeam;
         this.getAllTeams();
+
+        this.$root.$on('reload-team', ()=>{
+            localStorage.removeItem('summary-teams');
+            this.getAllTeams();
+            console.log('reload')
+        })
     }
 }
 </script>
