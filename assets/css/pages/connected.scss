@@ -92,6 +92,43 @@
         @media screen and (max-width: $screen-sm) {
             display: grid;
         }
+        .liste-profil{
+            position: absolute;
+            top: 50px;
+            background-color: $color-blue-blackground;
+            color:$color-white;
+            border:1px solid rgba(201, 201, 201, 0.5);
+            padding: 10px;
+            width: 94%;
+            h4{
+                color:$color-soccer-coach;
+            }
+            .options-profil{ 
+                @include font-xm-sbold;
+                font-family: $font-family-text;
+                margin-top: 14px;
+                color:$color-white;
+                transition: 0.3s ease all;
+                .label-icon{
+                    margin-left: 10px;
+                }
+                .logout{
+                    color:$color-red;
+                    margin-top: 14px;
+                    border-top:1px solid $color-border-designer !important;
+                    padding-top: 5px;
+                }
+                >div{
+                    padding: 10px;
+                    &:not(:first-child){
+                        border-top: 1px solid #18676F;
+                    }
+                }
+            }
+            h4{
+                margin: 0;
+            }
+        }
         .logo{
             display: flex;
             align-items: center;
@@ -122,41 +159,6 @@
                 @include font-xm-sbold;
                 font-family: $font-family-text;
                 color:$color-blue-blackground;
-            }
-            .liste-profil{
-                position: absolute;
-                top: 40px;
-                background-color: $color-blue-blackground;
-                border-radius: 5px;
-                color:$color-white;
-                border:1px solid rgba(201, 201, 201, 0.5);
-                padding: 10px;
-                width: 100%;
-                right: -20px;
-                h4{
-                    color:$color-soccer-coach;
-                }
-                .options-profil{ 
-                    @include font-xm-sbold;
-                    font-family: $font-family-text;
-                    margin-top: 14px;
-                    color:$color-white;
-                    .label-icon{
-                        margin-left: 10px;
-                    }
-                    .logout{
-                        color:$color-red;
-                        margin-top: 14px;
-                        border-top:1px solid $color-border-designer;
-                        padding-top: 5px;
-                    }
-                    >div{
-                        margin-top: 20px;
-                    }
-                }
-                h4{
-                    margin: 0;
-                }
             }
         }
     }

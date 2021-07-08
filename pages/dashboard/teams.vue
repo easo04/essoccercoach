@@ -29,7 +29,7 @@
                 </div>
                 <div class="option-content list-players">
                     <h4>Joueurs</h4>
-                    <div class="player" v-for="(p, i) in teamSelected.players" :key="i" @click="showPlayerDetails(p)">
+                    <div class="player" v-for="(p, i) in teamSelected.players" :key="i" @click="showPlayerDetails(p, true)">
                         <div class="infos-player">
                             {{p.first_name}} {{p.last_name}} <span class="role">({{getPlayerPosition(p.poste)}})</span>
                         </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="option-content list-coachs">
                     <h4>Entraîneurs</h4>
-                    <div class="coach" v-for="(c, i) in teamSelected.coachs" :key="i">
+                    <div class="coach" v-for="(c, i) in teamSelected.coachs" :key="i" @click="showPlayerDetails(c, false)">
                         {{c.first_name}} {{c.last_name}} <span class="role">({{getCoachRole(c.role)}})</span>
                     </div>
                 </div>
@@ -61,6 +61,7 @@
 <script>
 import {mapState} from 'vuex';
 import AddPlayerCoachVue from '../../components/modals/teams/AddPlayerCoach.vue';
+import PlayerDetailsMdalVue from '../../components/modals/teams/PlayerDetailsModal.vue';
 import TeamService from '../../static/services/TeamService'
 const OPTIONS_ONGLET = {
     TEAM:'team',
@@ -123,6 +124,13 @@ export default {
                 AddPlayerCoachVue,
                 {'team':this.teamSelected.id},
                 {name : 'modal-add-player-coach', classes:['modal-top']}
+            );
+        },
+        showPlayerDetails(player, isPlayer){
+            this.$modal.show(
+                PlayerDetailsMdalVue,
+                {'player':player, 'isPlayer': isPlayer},
+                {name : 'modal-player-details', classes:['modal-top']}
             );
         }
     },

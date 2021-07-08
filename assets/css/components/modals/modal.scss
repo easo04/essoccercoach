@@ -75,6 +75,9 @@
                 .question{
                     @include font-m-bold;
                 }
+                @media screen and (max-width: $screen-sm){
+                    padding: 30px 50px;
+                }
             }
             .modal-footer{
                 width: 100%;

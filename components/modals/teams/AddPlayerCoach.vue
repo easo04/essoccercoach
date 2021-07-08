@@ -111,8 +111,6 @@ export default {
                 response = await this.$axios.post('/api/players', data); 
             }
 
-            console.log(response)
-
             this.$root.$emit('reload-team');
             this.hide();
         },
@@ -127,8 +125,6 @@ export default {
         },
     },
     created () {
-        //this.lstPositions = TeamService.getListPositions();
-        console.log(this.team)
     }
 }
 </script>

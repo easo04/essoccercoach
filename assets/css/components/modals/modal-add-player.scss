@@ -11,4 +11,12 @@
             margin-bottom: 10px;
         }
     }
+
+    &.update-player-modal{
+        .modal-header{
+            background-color: $color-secondary-4;
+            color:$color-white-fonts;
+            position: relative;
+        }
+    }
 }

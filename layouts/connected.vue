@@ -25,17 +25,17 @@
                 <div class="profil" @click="setShowListProfil()">
                     <font-awesome-icon :icon="['fas', 'bars']"/>
                 </div>
-                <div class="liste-profil" v-if="showListProfil">
-                    <h4>{{auth.user.first_name}} {{auth.user.last_name}}</h4>
-                    <div class="options-profil">
-                        <div @click="goToMonProfil()"><font-awesome-icon :icon="['fas', 'user-circle']"/> <span class="label-icon">Mon profile</span></div>
-                        <div @click="goToExercices()" v-if="showIfAdmin()"><font-awesome-icon :icon="['fas', 'futbol']"/> <span class="label-icon">Exercices</span></div>
-                        <div @click="goToEmails()" v-if="showIfAdmin()"><font-awesome-icon :icon="['fas', 'envelope']"/> <span class="label-icon">Emails</span></div>
-                        <div @click="goToUsers()" v-if="showIfAdmin()"><font-awesome-icon :icon="['fas', 'user']"/> <span class="label-icon">Usagers</span></div>
-                        <div><font-awesome-icon :icon="['fas', 'clipboard']"/> <span class="label-icon">Séances</span></div>
-                        <div @click="goToTeams()" v-if="canShowTeams()"><font-awesome-icon :icon="['fas', 'users']"/> <span class="label-icon">Équipes</span></div>
-                        <div class="logout" @click="logout()"><font-awesome-icon :icon="['fas', 'sign-out-alt']"/> <span class="label-icon">Fermez la session</span></div>
-                    </div>
+            </div>
+            <div class="liste-profil" v-if="showListProfil">
+                <h4>{{auth.user.first_name}} {{auth.user.last_name}}</h4>
+                <div class="options-profil">
+                    <div @click="goToMonProfil()"><font-awesome-icon :icon="['fas', 'user-circle']"/> <span class="label-icon">Mon profile</span></div>
+                    <div @click="goToExercices()" v-if="showIfAdmin()"><font-awesome-icon :icon="['fas', 'futbol']"/> <span class="label-icon">Exercices</span></div>
+                    <div @click="goToEmails()" v-if="showIfAdmin()"><font-awesome-icon :icon="['fas', 'envelope']"/> <span class="label-icon">Emails</span></div>
+                    <div @click="goToUsers()" v-if="showIfAdmin()"><font-awesome-icon :icon="['fas', 'user']"/> <span class="label-icon">Usagers</span></div>
+                    <div><font-awesome-icon :icon="['fas', 'clipboard']"/> <span class="label-icon">Séances</span></div>
+                    <div @click="goToTeams()" v-if="canShowTeams()"><font-awesome-icon :icon="['fas', 'users']"/> <span class="label-icon">Équipes</span></div>
+                    <div class="logout" @click="logout()"><font-awesome-icon :icon="['fas', 'sign-out-alt']"/> <span class="label-icon">Fermez la session</span></div>
                 </div>
             </div>
         </div>
