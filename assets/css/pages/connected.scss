@@ -229,4 +229,15 @@
             }
         }
     }
+    .footer{
+        height: 60px;
+        background-color: $color-blue-blackground;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:#FBFBFB;
+        font-family: Open Sans;
+        font-size: 12px;
+    }
 }

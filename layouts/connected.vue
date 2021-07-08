@@ -88,6 +88,9 @@
                 </div>
             </div>
         </div>
+        <div class="footer">
+            © Outil créé par ESsoccercoach
+        </div>
     </div>
 </template>
 <script>
