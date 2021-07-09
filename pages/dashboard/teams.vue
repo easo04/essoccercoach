@@ -13,8 +13,8 @@
         <div class="options-team">
             <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')">Équipe</div>
             <div class="option-team" :class="{'active' : optionSelected === 'activities'}" @click="setOnglet('activities')">Activités</div>
-            <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')">Seances</div>
-            <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')">Alignements</div>
+            <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')">Séances</div>
+            <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')">Matchs</div>
         </div>
         <div class="options-team-mobile">
             <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')" title="Équipe"><font-awesome-icon :icon="['fas', 'users']"/></div>
@@ -44,13 +44,15 @@
             </div>
             <div v-if="optionSelected === 'activities'">
                 <div class="content-actions" v-if="canAddActivity">
-                    <button class="btn btn-default btn-add-player">Nouveau +</button>
+                    <button class="btn btn-default btn-add-player" @click="addActivity()">Nouveau +</button>
                 </div>
                 <div class="option-content list-activities">
                     <h4>Activités</h4>
                     <div class="activity" :class="{'game' : a.is_match}" v-for="(a, i) in teamSelected.activities" :key="i">
+                        <span class="list-point"></span>
                         <span class="date">{{a.date_activite}}</span> -
-                        <span class="name">{{a.name}}</span> - 
+                        <span class="name">{{a.name}}</span> 
+                        <span class="adversaire" v-if="a.is_match">- vs <span class="name_adversaire">{{a.adversaire}}</span></span> - 
                         <span class="date">{{a.heure}}</span>
                     </div>
                 </div>
@@ -60,6 +62,7 @@
 </template>
 <script>
 import {mapState} from 'vuex';
+import AddActivityModalVue from '../../components/modals/teams/AddActivityModal.vue';
 import AddPlayerCoachVue from '../../components/modals/teams/AddPlayerCoach.vue';
 import PlayerDetailsMdalVue from '../../components/modals/teams/PlayerDetailsModal.vue';
 import TeamService from '../../static/services/TeamService'
@@ -126,6 +129,13 @@ export default {
                 {name : 'modal-add-player-coach', classes:['modal-top']}
             );
         },
+        addActivity(){
+            this.$modal.show(
+                AddActivityModalVue,
+                {'team':this.teamSelected.id},
+                {name : 'modal-add-activity', classes:['modal-top']}
+            );
+        },
         showPlayerDetails(player, isPlayer){
             this.$modal.show(
                 PlayerDetailsMdalVue,
@@ -142,6 +152,13 @@ export default {
             localStorage.removeItem('summary-teams');
             this.getAllTeams();
             console.log('reload')
+        })
+
+        this.$root.$on('reload-team-activity', ()=>{
+            localStorage.removeItem('summary-teams');
+            this.optionSelected = OPTIONS_ONGLET.ACTIVITIES;
+            this.getAllTeams();
+            console.log('reload-activity')
         })
     }
 }

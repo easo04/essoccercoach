@@ -102,13 +102,11 @@ export default {
                 equipe:this.team,
                 admin:this.player.admin
             }
-            
-            let response;
 
             if(this.player.notPlayer){
-                response = await this.$axios.post('/api/coachs', data); 
+                await this.$axios.post('/api/coachs', data); 
             }else{
-                response = await this.$axios.post('/api/players', data); 
+                await this.$axios.post('/api/players', data); 
             }
 
             this.$root.$emit('reload-team');
