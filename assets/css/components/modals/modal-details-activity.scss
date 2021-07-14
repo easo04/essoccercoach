@@ -69,12 +69,12 @@
             color:$color-black-fonts;
             .options-activity{
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(4, 1fr);
                 .option-item{
                     padding: 10px 5px;
                     background-color:$color-background-onglets;
                     text-align: center;
-                    @include font-xm-sbold;
+                    @include font-l-sbold;
                     color:$color-text-onglets;
                     font-family: $font-family-text;
                     cursor: pointer;
@@ -131,17 +131,107 @@
                                 }
                             }
                             .go{
-                                color:chartreuse;
+                                color:$color-green;
                             }
                             .no-go{
-                                color:red;
+                                color:$color-red;
                             }
                         }
                         >div{
                             width: 50%;
                         }
+                    }
+                }
+                .alignements-activity, .notes-activity{
+                    h4{
+                        padding:0;
+                        margin: 0;
+                        margin-bottom: 20px;
+                        color:$color-black-fonts-second;
+                    }
+                    .content-item{
+                        @include font-m;
+                        color: #333333;
+                        padding: 10px 0;
+                        border-bottom: 1px solid #E9E9E9;
+                        cursor: pointer;
+                        padding-left: 10px;
+                        display: flex;
+                        .actions{
+                            display: flex;
+                            justify-content: flex-end;
+                            font-size: 16px;
+                            color:$color-black-fonts-second;
+                        }
+                        >div{
+                            width: 50%;
+                        }
+                    }
+                }
+                .alignements-activity{
+                    .alignement{
+                        margin-top: 20px;
+                        background-color: #47b55e;
+                        padding: 20px;
+                        border-radius: 20px;
+                        .borders{
+                            border:2px solid white;
+                            padding: 20px 0px;
+                            border-radius: 20px;
+                            >div{
+                                height: 30px;
+                                margin-top: 30px;
+                                display: grid;
+                                background-color: #3e9350;
+                                justify-content: center;
+                                align-items: center;
+                                padding: 0px 50px;
+                                >div{
+                                    text-align: center;
+                                    text-decoration: underline;
+                                }
+                            }
 
+                        }
+                        .gardien{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: 0px !important;
+                            
+                            >div{
+                                text-decoration-color: #947E37 !important;
+                            }
+                        }
+                        .defenseurs{
+                            &.systeme-1-4-4-2{
+                                grid-template-columns: repeat(4, 1fr);
+                            }
+                            margin-top: 30px;
+                            >div{
+                                text-decoration-color: #942F3B !important;
+                            }
 
+                        }
+                        .milieux{
+                            &.systeme-1-4-4-2{
+                                grid-template-columns: repeat(4, 1fr);
+                            }
+                            >div{
+                                text-decoration-color: #4D5894 !important;
+                            }
+                        }
+                        .attaquants{
+                            &.systeme-1-4-4-2{
+                                grid-template-columns: repeat(2, 1fr);
+                            }
+                            >div{
+                                text-decoration-color: #BE40C7 !important;
+                            }
+                        }
+                    }
+                    .remplacants{
+                        margin-top: 20px;
                     }
                 }
             }

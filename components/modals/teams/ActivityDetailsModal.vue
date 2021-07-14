@@ -11,12 +11,15 @@
         <div class="modal-content">
             <div class="details-activity" >
                 <h2>{{activity.name}} <span v-if="activity.is_match"> vs <span class="adversaire">{{activity.adversaire}}</span></span></h2>
-                <h3 class="date">{{activity.date_activite}} à <span class="heure">{{activity.heure}}</span></h3>
+                <h3 class="date">{{activity.date_activite}} <span class="heure">à {{activity.heure}}</span></h3>
             </div>
             <div class="other-infos-activity">
                 <div class="options-activity">
-                    <div class="option-item" :class="{'active' : optionActivitySelected === 'details'}" @click="setOptionsActivity('details')">Détails</div>
-                    <div class="option-item" :class="{'active' : optionActivitySelected === 'availability'}" @click="setOptionsActivity('availability')">Disponibilités</div>
+                    <div class="option-item" title="Détails" :class="{'active' : optionActivitySelected === 'details'}" @click="setOptionsActivity('details')"><font-awesome-icon :icon="['fas', 'info-circle']"/></div>
+                    <div class="option-item" title="Disponibilités" :class="{'active' : optionActivitySelected === 'availability'}" @click="setOptionsActivity('availability')"><font-awesome-icon :icon="['fas', 'user-check']"/></div>
+                    <div class="option-item" title="Alignement" :class="{'active' : optionActivitySelected === 'alignement'}" v-if="activity.is_match" @click="setOptionsActivity('alignement')"><font-awesome-icon :icon="['fas', 'users']"/></div>
+                    <div class="option-item" title="Séance" :class="{'active' : optionActivitySelected === 'seance'}" v-else @click="setOptionsActivity('seance')"><font-awesome-icon :icon="['fas', 'clipboard']"/></div>
+                    <div class="option-item" title="Notes" :class="{'active' : optionActivitySelected === 'notes'}" @click="setOptionsActivity('notes')"><font-awesome-icon :icon="['fas', 'comment']"/></div>
                 </div>
                 <div class="content-options">
                     <div class="details-option-activity" v-if="optionActivitySelected === 'details'">
@@ -33,6 +36,51 @@
                             <div class="presence">
                                 <div :class="{'go' : availability.id_availability && availability.availability}" title="Présent(e)" @click="setAvailability(true, availability)"><font-awesome-icon :icon="['fas', 'check']"/></div>
                                 <div :class="{'no-go' : availability.id_availability && !availability.availability}" title="Absent(e)" @click="setAvailability(false, availability)"><font-awesome-icon :icon="['fas', 'times']"/></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alignements-activity" v-if="optionActivitySelected === 'alignement' && activity.is_match">
+                        <h4>Système: 1-4-4-2</h4>
+                        <div class="alignement">
+                            <div class="borders">
+                            <div class="gardien">
+                                <div>Charlo</div>
+                            </div>
+                            <div class="defenseurs systeme-1-4-4-2">
+                                <div>Amis</div>
+                                <div>Amis</div>
+                                <div>Amis</div>
+                                <div>Amis</div>
+                            </div>
+                            <div class="milieux systeme-1-4-4-2">
+                                <div>Amis</div>
+                                <div>Amis</div>
+                                <div>Amis</div>
+                                <div>Amis</div>
+                            </div>
+                            <div class="attaquants systeme-1-4-4-2">
+                                <div>Amis</div>
+                                <div>Amis</div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="remplacants">Remplaçants: Lolo-Lipo-Santino</div>
+                    </div>
+                    <div class="alignements-activity" v-if="optionActivitySelected === 'seance' && !activity.is_match">
+                        <h4>Séance</h4>
+                    </div>
+                    <div class="notes-activity" v-if="optionActivitySelected === 'notes'">
+                        <h4>Notes</h4>
+                        <div class="content-item">
+                            <div>Notes du match est un eliam</div>
+                            <div class="actions">
+                                <div><font-awesome-icon :icon="['fas', 'trash']"/></div>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <div>Notes du match est un eliam</div>
+                            <div class="actions">
+                                <div><font-awesome-icon :icon="['fas', 'trash']"/></div>
                             </div>
                         </div>
                     </div>
@@ -108,7 +156,7 @@ export default {
                         availabilityId : availability.id_availability
                     };
 
-                    let response = await this.$axios.$post(`api/availabilities`, data);
+                    const response = await this.$axios.$post(`api/availabilities`, data);
                     
                     if(response.availabilityId){
                         availability.availability = present;
