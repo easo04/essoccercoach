@@ -48,7 +48,7 @@
                 </div>
                 <div class="option-content list-activities">
                     <h4>Activités</h4>
-                    <div class="activity" :class="{'game' : a.is_match}" v-for="(a, i) in teamSelected.activities" :key="i">
+                    <div class="activity" :class="{'game' : a.is_match}" v-for="(a, i) in teamSelected.activities" :key="i" @click="showDetailsActivity(a)">
                         <span class="list-point"></span>
                         <span class="date">{{a.date_activite}}</span> -
                         <span class="name">{{a.name}}</span> 
@@ -62,6 +62,7 @@
 </template>
 <script>
 import {mapState} from 'vuex';
+import ActivityDetailsModalVue from '../../components/modals/teams/ActivityDetailsModal.vue';
 import AddActivityModalVue from '../../components/modals/teams/AddActivityModal.vue';
 import AddPlayerCoachVue from '../../components/modals/teams/AddPlayerCoach.vue';
 import PlayerDetailsMdalVue from '../../components/modals/teams/PlayerDetailsModal.vue';
@@ -141,6 +142,14 @@ export default {
                 PlayerDetailsMdalVue,
                 {'player':player, 'isPlayer': isPlayer},
                 {name : 'modal-player-details', classes:['modal-top']}
+            );
+        },
+        showDetailsActivity(activity){
+            const players = this.teamSelected.players;
+            this.$modal.show(
+                ActivityDetailsModalVue,
+                {'activity':activity, 'players': players},
+                {name : 'modal-activity-details', classes:['modal-top']}
             );
         }
     },
