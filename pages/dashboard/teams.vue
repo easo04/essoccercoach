@@ -46,46 +46,19 @@
                 <div class="content-actions" v-if="canAddActivity">
                     <button class="btn btn-default btn-add-player" @click="addActivity()">Nouveau +</button>
                 </div>
-                <div class="option-content list-activities">
-                    <h4>Activités</h4>
-                    <div class="activity" :class="{'game' : a.is_match}" v-for="(a, i) in teamSelected.activities" :key="i" @click="showDetailsActivity(a)">
-                        <span class="list-point"></span>
-                        <span class="date">{{a.date_activite}}</span> -
-                        <span class="name">{{a.name}}</span> 
-                        <span class="adversaire" v-if="a.is_match">- vs <span class="name_adversaire">{{a.adversaire}}</span></span> - 
-                        <span class="date">{{a.heure}}</span>
-                    </div>
-                </div>
+                <Activities :activities="teamSelected.activities" titre="Activités"/>
             </div>
             <div v-if="optionSelected === 'seances'">
-                <div class="option-content list-activities">
-                    <h4>Séances</h4>
-                    <div class="activity" v-for="(a, i) in listSeances" :key="i" @click="showDetailsActivity(a)">
-                        <span class="list-point"></span>
-                        <span class="date">{{a.date_activite}}</span> -
-                        <span class="name">{{a.name}}</span> 
-                        <span class="date">{{a.heure}}</span>
-                    </div>
-                </div>
+                <Activities :activities="listSeances" titre="Séances"/>
             </div>
             <div v-if="optionSelected === 'alignements'">
-                <div class="option-content list-activities">
-                    <h4>Matchs</h4>
-                    <div class="activity game" v-for="(a, i) in listMatchs" :key="i" @click="showDetailsActivity(a)">
-                        <span class="list-point"></span>
-                        <span class="date">{{a.date_activite}}</span> -
-                        <span class="name">{{a.name}}</span> 
-                        <span class="adversaire">- vs <span class="name_adversaire">{{a.adversaire}}</span></span> - 
-                        <span class="date">{{a.heure}}</span>
-                    </div>
-                </div>
+                <Activities :activities="listMatchs" titre="Matchs"/>
             </div>
         </div>
     </div>
 </template>
 <script>
 import {mapState} from 'vuex';
-import ActivityDetailsModalVue from '../../components/modals/teams/ActivityDetailsModal.vue';
 import AddActivityModalVue from '../../components/modals/teams/AddActivityModal.vue';
 import AddPlayerCoachVue from '../../components/modals/teams/AddPlayerCoach.vue';
 import PlayerDetailsMdalVue from '../../components/modals/teams/PlayerDetailsModal.vue';
@@ -172,15 +145,7 @@ export default {
                 {'player':player, 'isPlayer': isPlayer},
                 {name : 'modal-player-details', classes:['modal-top']}
             );
-        },
-        showDetailsActivity(activity){
-            const players = this.teamSelected.players;
-            this.$modal.show(
-                ActivityDetailsModalVue,
-                {'activity':activity, 'players': players},
-                {name : 'modal-activity-details', classes:['modal-top']}
-            );
-        }
+        },      
     },
     mounted(){
         this.canCreateTeam = this.auth.user.canCreateATeam;

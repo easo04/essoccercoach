@@ -16,7 +16,8 @@ export const state = () => ({
   exercices:[],
   emails:[],
   users:[],
-  currentItemMenu:'accueil'
+  currentItemMenu:'accueil',
+  notes:[]
 })
 
 export const mutations = {
@@ -61,5 +62,14 @@ export const mutations = {
   },
   deleteEmail(state, index){
     state.emails.splice(index, 1);
+  },
+  setListNotes(state, newValue){
+    state.notes = newValue;
+  },
+  deleteNote(state, index){
+    state.notes.splice(index, 1);
+  },
+  addNote(state, note){
+    state.notes.push(note);
   }
 }

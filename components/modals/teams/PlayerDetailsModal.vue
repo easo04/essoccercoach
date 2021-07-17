@@ -2,7 +2,7 @@
     <div class="modal-player-details modal-custom">
         <div class="modal-header">
             <div class="titre-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
-            <div class="close-modal"><span @click="showActionsOptions()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span></div>
+            <div class="close-modal"><span  class="menu" @click="showActionsOptions()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span></div>
             <div class="options-action" v-if="showOptions">
                 <div @click="updatePlayer()">Modifier</div>
                 <div @click="deletePlayer()">Supprimer</div>

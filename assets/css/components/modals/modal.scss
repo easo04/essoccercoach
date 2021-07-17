@@ -41,25 +41,37 @@
         .modal-custom{
             position: relative;
             height: 100%;
+
             .modal-header{
                 padding: 10px 20px;
-                display: flex;
+                display: grid;
                 border-bottom: 1px solid $color-border-designer;
+                grid-template-columns: 9fr 1fr;
                 .titre-modal{
-                    width: 80%;
                     h3{
                         margin: 0;
                         width: 98%;
                     }
+                    span{
+                        cursor: pointer;
+                    }
                 }
                 
                 .close-modal{
-                    width: 20%;
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
                     span{
                         cursor: pointer;
+                        &:not(.menu){           
+                            height: 30px;
+                            width: 30px;
+                            background: $color-border-designer;
+                            border-radius: 50%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
                     }
                 }
 
@@ -67,6 +79,7 @@
                     padding: 10px 20px;
                 }
             }
+
             .modal-content{
                 padding: 30px 100px;
                 @include font-m;
@@ -78,7 +91,12 @@
                 @media screen and (max-width: $screen-sm){
                     padding: 30px 50px;
                 }
+
+                .form-control-textarea{
+                    height: 200px;
+                }
             }
+
             .modal-footer{
                 width: 100%;
                 display: flex;

@@ -232,6 +232,31 @@
                     }
                     .remplacants{
                         margin-top: 20px;
+                        @include font-xm-sbold;
+                    }
+                }
+
+                .notes-activity{
+                    position: relative;
+                    min-height: 100px;
+                    .btn-add-activity{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        height: 50px;
+                        width: 50px;
+                        border-radius: 50%;
+                        background-color: $color-secondary-1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color:$color-white-fonts;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: #167D6B;
+                            height: 51px;
+                            width: 51px;
+                        }
                     }
                 }
             }

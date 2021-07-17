@@ -2,7 +2,7 @@
     <div class="modal-activity-details modal-custom" :class="{'game' : activity.is_match}">
         <div class="modal-header">
             <div class="titre-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
-            <div class="close-modal"><span @click="showActionsOptions()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span></div>
+            <div class="close-modal"><span class="menu" @click="showActionsOptions()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span></div>
             <div class="options-action" v-if="showOptions">
                 <div @click="updatePlayer()">Modifier</div>
                 <div @click="deletePlayer()">Supprimer</div>
@@ -29,16 +29,7 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.8237421515705!2d-71.27008768439434!3d46.88651597914343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb8bcd7e1bde493%3A0xdef3d5834e733041!2s%C3%89cole%20Secondaire%20des%20Sentiers!5e0!3m2!1sfr!2sca!4v1625865022455!5m2!1sfr!2sca" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
-                    <div class="availability-activity" v-if="optionActivitySelected === 'availability'">
-                        <h4>Joueurs</h4>
-                        <div class="availability-item" v-for="(availability, i) in availabilities" :key="i">
-                            <div>{{availability.name_player}}</div>
-                            <div class="presence">
-                                <div :class="{'go' : availability.id_availability && availability.availability}" title="Présent(e)" @click="setAvailability(true, availability)"><font-awesome-icon :icon="['fas', 'check']"/></div>
-                                <div :class="{'no-go' : availability.id_availability && !availability.availability}" title="Absent(e)" @click="setAvailability(false, availability)"><font-awesome-icon :icon="['fas', 'times']"/></div>
-                            </div>
-                        </div>
-                    </div>
+                    <Availability :availabilities="availabilities" :activity="activity"  v-if="optionActivitySelected === 'availability'" />
                     <div class="alignements-activity" v-if="optionActivitySelected === 'alignement' && activity.is_match">
                         <h4>Système: 1-4-4-2</h4>
                         <div class="alignement">
@@ -69,21 +60,7 @@
                     <div class="alignements-activity" v-if="optionActivitySelected === 'seance' && !activity.is_match">
                         <h4>Séance</h4>
                     </div>
-                    <div class="notes-activity" v-if="optionActivitySelected === 'notes'">
-                        <h4>Notes</h4>
-                        <div class="content-item">
-                            <div>Notes du match est un eliam</div>
-                            <div class="actions">
-                                <div><font-awesome-icon :icon="['fas', 'trash']"/></div>
-                            </div>
-                        </div>
-                        <div class="content-item">
-                            <div>Notes du match est un eliam</div>
-                            <div class="actions">
-                                <div><font-awesome-icon :icon="['fas', 'trash']"/></div>
-                            </div>
-                        </div>
-                    </div>
+                    <Notes :notes="notes" :activity="activity" v-if="optionActivitySelected === 'notes'"/>
                 </div>
             </div>
         </div>
@@ -94,12 +71,13 @@
 <script>
 import UpdatePlayerCoachVue from './UpdatePlayerCoach.vue';
 export default {
-    props:['activity', 'players'],
+    props:['activity'],
     data(){
         return{
             showOptions:false,
             optionActivitySelected:'details',
-            availabilities:[]
+            availabilities:[],
+            notes:[]
         }
     },
     methods: {
@@ -133,43 +111,27 @@ export default {
         setOptionsActivity(option){
             this.optionActivitySelected = option;
         },
-        async getAvailabiliiesByActivity(activity){
+        async getActivitySummary(activity){
             try{
-                let response = await this.$axios.$get(`api/availabilities/get-availabilities-by-activity/${activity.id}`);
+                let response = await this.$axios.$get(`api/activities/get-activity-summary/${activity.id}`);
                 
-                if(response.availabilities){
-                    this.availabilities = response.availabilities;
+                if(response.summary.availabilities){
+                    this.availabilities = response.summary.availabilities;
+                    this.notes = response.summary.notes;
                 }
             }catch(error){
                 console.log(error)
             }
             
         },
-        async setAvailability(present, availability){
-            if((availability.id_availability && availability.availability !== present) ||
-                !availability.id_availability){
-                try{
-                    const data = {
-                        present,
-                        joueur : availability.id_player,
-                        activite : this.activity.id,
-                        availabilityId : availability.id_availability
-                    };
-
-                    const response = await this.$axios.$post(`api/availabilities`, data);
-                    
-                    if(response.availabilityId){
-                        availability.availability = present;
-                        availability.id_availability = response.availabilityId;
-                    }
-                }catch(error){
-                    console.log(error)
-                }
-            }
-        }
     },
     created () {
-        this.getAvailabiliiesByActivity(this.activity)
+        this.getActivitySummary(this.activity)
+    },
+    mounted(){
+        this.$root.$on('close-modal', ()=>{
+            this.hide();
+        });
     }
 }
 </script>
