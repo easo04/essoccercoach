@@ -30,6 +30,7 @@
 </template>
 <script>
 import ActivityDetailsModalVue from '../../components/modals/teams/ActivityDetailsModal.vue';
+import AddAlignementModalVue from '../modals/teams/AddAlignementModal.vue';
 import AddNoteModalVue from '../modals/teams/AddNoteModal.vue';
 export default {
     props:['activities', 'titre'],
@@ -46,6 +47,13 @@ export default {
                 AddNoteModalVue,
                 {'activity':activity},
                 {name : 'modal-add-note', classes:['modal-top']}
+            );
+        },
+        addAlignement(activity){
+            this.$modal.show(
+                AddAlignementModalVue,
+                {'activity':activity},
+                {name : 'modal-add-alignement', classes:['modal-top']}
             );
         }
     }

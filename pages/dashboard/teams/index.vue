@@ -59,10 +59,10 @@
 </template>
 <script>
 import {mapState} from 'vuex';
-import AddActivityModalVue from '../../components/modals/teams/AddActivityModal.vue';
-import AddPlayerCoachVue from '../../components/modals/teams/AddPlayerCoach.vue';
-import PlayerDetailsMdalVue from '../../components/modals/teams/PlayerDetailsModal.vue';
-import TeamService from '../../static/services/TeamService'
+import AddActivityModalVue from '../../../components/modals/teams/AddActivityModal.vue';
+import AddPlayerCoachVue from '../../../components/modals/teams/AddPlayerCoach.vue';
+import PlayerDetailsMdalVue from '../../../components/modals/teams/PlayerDetailsModal.vue';
+import TeamService from '../../../static/services/TeamService'
 const OPTIONS_ONGLET = {
     TEAM:'team',
     ACTIVITIES:'activities'
