@@ -33,7 +33,7 @@ import ActivityDetailsModalVue from '../../components/modals/teams/ActivityDetai
 import AddAlignementModalVue from '../modals/teams/AddAlignementModal.vue';
 import AddNoteModalVue from '../modals/teams/AddNoteModal.vue';
 export default {
-    props:['activities', 'titre'],
+    props:['activities', 'titre', 'players'],
     methods:{
         showDetailsActivity(activity){
             this.$modal.show(
@@ -52,7 +52,7 @@ export default {
         addAlignement(activity){
             this.$modal.show(
                 AddAlignementModalVue,
-                {'activity':activity},
+                {'activity':activity, 'players' : this.players},
                 {name : 'modal-add-alignement', classes:['modal-top']}
             );
         }

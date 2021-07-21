@@ -46,13 +46,13 @@
                 <div class="content-actions" v-if="canAddActivity">
                     <button class="btn btn-default btn-add-player" @click="addActivity()">Nouveau +</button>
                 </div>
-                <Activities :activities="teamSelected.activities" titre="Activités"/>
+                <Activities :activities="teamSelected.activities" :players="teamSelected.players" titre="Activités"/>
             </div>
             <div v-if="optionSelected === 'seances'">
-                <Activities :activities="listSeances" titre="Séances"/>
+                <Activities :activities="listSeances" titre="Séances" :players="teamSelected.players"/>
             </div>
             <div v-if="optionSelected === 'alignements'">
-                <Activities :activities="listMatchs" titre="Matchs"/>
+                <Activities :activities="listMatchs" titre="Matchs" :players="teamSelected.players"/>
             </div>
         </div>
     </div>

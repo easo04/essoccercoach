@@ -5,16 +5,16 @@ const COACH_ROLES = [
 ];
 
 const PLAYER_POSITION = [
-    {code:'G', label:'Gardien(e)'},
-    {code:'DFC', label:'Défenseur centre'},
-    {code:'DG', label:'Défenseur gauche'},
-    {code:'DD', label:'Défenseur droite'},
-    {code:'MC', label:'Milieu centre'},
-    {code:'ATT', label:'Attaquant'},
-    {code:'ED', label:'Attaquant droite'},
-    {code:'EG', label:'Attaquant gauche'},
-    {code:'MD', label:'Milieu droite'},
-    {code:'MG', label:'Milieu gauche'}
+    {code:'G', label:'Gardien(e)', class:'gardien'},
+    {code:'DFC', label:'Défenseur centre', class:'defenseur'},
+    {code:'DG', label:'Défenseur gauche', class:'defenseur'},
+    {code:'DD', label:'Défenseur droite', class:'defenseur'},
+    {code:'MC', label:'Milieu centre', class:'milieu'},
+    {code:'MD', label:'Milieu droite', class:'milieu'},
+    {code:'MG', label:'Milieu gauche', class:'milieu'},
+    {code:'ATT', label:'Attaquant', class:'attaquant'},
+    {code:'ED', label:'Attaquant droite', class:'attaquant'},
+    {code:'EG', label:'Attaquant gauche', class:'attaquant'},
 ];
 
 
