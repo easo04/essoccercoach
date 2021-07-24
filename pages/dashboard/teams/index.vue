@@ -1,58 +1,97 @@
 <template>
     <div class="dashboard teams-page">
-
         <div class="addNewTeam">
             <button class="btn btn-default" @click="setShowTeamsList()">Équipes <font-awesome-icon :icon="['fas', 'sort-down']"/></button>
             <div class="select-teams selects" v-if="showTeamsList">
                 <div class="equipe" v-for="(t, index) in teams" :key="index" @click="changeTeam(t)">{{t.name}}</div>
-                <div class="equipe" v-if="canCreateTeam">Nouveau +</div>
+                <div class="equipe" v-if="canCreateTeam" @click="addNewTeam()">Nouveau +</div>
             </div>
         </div>
-        <h2>{{teamSelected.name}}</h2>
-        <h4 class="club" v-if="teamSelected.club">{{teamSelected.club}}</h4>
-        <div class="options-team">
-            <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')">Équipe</div>
-            <div class="option-team" :class="{'active' : optionSelected === 'activities'}" @click="setOnglet('activities')">Activités</div>
-            <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')">Séances</div>
-            <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')">Matchs</div>
+        <div class="content-empty-team" v-if="!teamSelected">
+            <div class="empty-team">
+                Aucune équipe trouvée
+            </div>
         </div>
-        <div class="options-team-mobile">
-            <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')" title="Équipe"><font-awesome-icon :icon="['fas', 'users']"/></div>
-            <div class="option-team" :class="{'active' : optionSelected === 'activities'}" @click="setOnglet('activities')" title="Activités"><font-awesome-icon :icon="['fas', 'calendar-alt']"/></div>
-            <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')" title="Séances"><font-awesome-icon :icon="['fas', 'clipboard']"/></div>
-            <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')" title="Alignements"><font-awesome-icon :icon="['fas', 'user-friends']"/></div>
-        </div>
-        <div class="content-option-team">
-            <div v-if="optionSelected === 'team'">
-                <div class="content-actions" v-if="canAddPlayer">
-                    <button class="btn btn-default btn-add-player" @click="addNewPlayer()">Nouveau +</button>
+        <div v-else>
+            <div class="infos-team">
+                <h2>{{teamSelected.name}}</h2>
+                <h4 class="club" v-if="teamSelected.club">{{teamSelected.club}}</h4>
+                <div class="actions-team">
+                    <span @click="hide()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span>
                 </div>
-                <div class="option-content list-players">
-                    <h4>Joueurs</h4>
-                    <div class="player" v-for="(p, i) in teamSelected.players" :key="i" @click="showPlayerDetails(p, true)">
-                        <div class="infos-player">
-                            {{p.first_name}} {{p.last_name}} <span class="role">({{getPlayerPosition(p.poste)}})</span>
+            </div>
+            <div class="options-team">
+                <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')">Équipe</div>
+                <div class="option-team" :class="{'active' : optionSelected === 'activities'}" @click="setOnglet('activities')">Activités</div>
+                <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')">Séances</div>
+                <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')">Matchs</div>
+            </div>
+            <div class="options-team-mobile"> 
+                <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')" title="Équipe">
+                    <div>
+                        <font-awesome-icon :icon="['fas', 'users']"/>
+                        <div class="label-option">Équipe</div>
+                    </div>
+                </div>
+                <div class="option-team" :class="{'active' : optionSelected === 'activities'}" @click="setOnglet('activities')" title="Activités">
+                    <div>
+                        <font-awesome-icon :icon="['fas', 'calendar-alt']"/>
+                        <div class="label-option">Activités</div>
+                    </div>
+                </div>
+                <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')" title="Séances">
+                    <div>
+                        <font-awesome-icon :icon="['fas', 'clipboard']"/>
+                        <div class="label-option">Séances</div>
+                    </div>
+                </div>
+                <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')" title="Alignements">
+                    <div>
+                        <font-awesome-icon :icon="['fas', 'user-friends']"/>
+                        <div class="label-option">Alignements</div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-option-team">
+                <div v-if="optionSelected === 'team'">
+                    <div class="content-actions" v-if="canAddPlayer">
+                        <button class="btn btn-default btn-add-player" @click="addNewPlayer()"><font-awesome-icon :icon="['fas', 'plus']"/></button>
+                    </div>
+                    <div class="option-content list-players">
+                        <h4>Joueurs</h4>
+                        <div class="player" v-for="(p, i) in teamSelected.players" :key="i" @click="showPlayerDetails(p, true)">
+                            <div class="infos-player">
+                                {{p.first_name}} {{p.last_name}} <span class="role">({{getPlayerPosition(p.poste)}})</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="option-content list-coachs">
+                        <h4>Entraîneurs</h4>
+                        <div class="coach" v-for="(c, i) in teamSelected.coachs" :key="i" @click="showPlayerDetails(c, false)">
+                            {{c.first_name}} {{c.last_name}} <span class="role">({{getCoachRole(c.role)}})</span>
                         </div>
                     </div>
                 </div>
-                <div class="option-content list-coachs">
-                    <h4>Entraîneurs</h4>
-                    <div class="coach" v-for="(c, i) in teamSelected.coachs" :key="i" @click="showPlayerDetails(c, false)">
-                        {{c.first_name}} {{c.last_name}} <span class="role">({{getCoachRole(c.role)}})</span>
+                <div v-if="optionSelected === 'activities'">
+                    <div class="content-actions" v-if="canAddActivity">
+                        <button class="btn btn-default btn-add-player" @click="addActivity()"><font-awesome-icon :icon="['fas', 'plus']"/></button>
                     </div>
+                    <Activities :activities="teamSelected.activities" :players="teamSelected.players" titre="Activités" @showOptionsActivity="setShowMenuActivity"/>
+                </div>
+                <div v-if="optionSelected === 'seances'">
+                    <Activities :activities="listSeances" titre="Séances" :players="teamSelected.players" @showOptionsActivity="setShowMenuActivity"/>
+                </div>
+                <div v-if="optionSelected === 'alignements'">
+                    <Activities :activities="listMatchs" titre="Matchs" :players="teamSelected.players" @showOptionsActivity="setShowMenuActivity"/>
                 </div>
             </div>
-            <div v-if="optionSelected === 'activities'">
-                <div class="content-actions" v-if="canAddActivity">
-                    <button class="btn btn-default btn-add-player" @click="addActivity()">Nouveau +</button>
-                </div>
-                <Activities :activities="teamSelected.activities" :players="teamSelected.players" titre="Activités"/>
-            </div>
-            <div v-if="optionSelected === 'seances'">
-                <Activities :activities="listSeances" titre="Séances" :players="teamSelected.players"/>
-            </div>
-            <div v-if="optionSelected === 'alignements'">
-                <Activities :activities="listMatchs" titre="Matchs" :players="teamSelected.players"/>
+        </div>
+        <div class="actions-options" v-if="showOptions" @click="closeActionsOptions($event)">
+            <div class="content-options" id="contentOptions">
+                <div class="item-option"><font-awesome-icon :icon="['fas', 'comment']"/><span>Ajoutez une note</span></div>
+                <div class="item-option"><font-awesome-icon :icon="['fas', 'user-clock']"/> <span>Ajoutez une statistique</span></div>
+                <div class="item-option" v-if="!currentActivity.is_match"> <font-awesome-icon :icon="['fas', 'clipboard']"/> <span>Ajoutez une séance</span></div>
+                <div class="item-option" v-if="currentActivity.is_match"><font-awesome-icon :icon="['fas', 'users']"/> <span>Ajoutez un alignement</span></div>
             </div>
         </div>
     </div>
@@ -60,6 +99,7 @@
 <script>
 import {mapState} from 'vuex';
 import AddActivityModalVue from '../../../components/modals/teams/AddActivityModal.vue';
+import AddNewTeamModalVue from '../../../components/modals/teams/AddNewTeamModal.vue';
 import AddPlayerCoachVue from '../../../components/modals/teams/AddPlayerCoach.vue';
 import PlayerDetailsMdalVue from '../../../components/modals/teams/PlayerDetailsModal.vue';
 import TeamService from '../../../static/services/TeamService'
@@ -73,12 +113,14 @@ export default {
     data(){
         return{
             teams:[],
-            teamSelected:{},
+            teamSelected:undefined,
             showTeamsList:false,
             canCreateTeam:false,
             canAddPlayer:false,
             canAddActivity:false,
-            optionSelected:OPTIONS_ONGLET.TEAM
+            optionSelected:OPTIONS_ONGLET.TEAM,
+            showOptions:false,
+            currentActivity:undefined
         }
     },
     computed: {
@@ -93,9 +135,9 @@ export default {
     methods:{
         async getAllTeams(){
             this.teams = JSON.parse(localStorage.getItem('summary-teams'));
-            if(!this.teams){
+            if(!this.teams || this.teams.length === 0){
                 this.teams = [];
-                let response = await this.$axios.$get('/api/teams/teams/get-summary-teams');
+                const response = await this.$axios.$get('/api/teams/teams/get-summary-teams');
 
                 response.teams.forEach(team => {
                     team.teams.forEach(t=>this.teams.push(t));
@@ -106,15 +148,22 @@ export default {
                 localStorage.setItem('summary-teams', summaryTeamsParsed);
             }
 
-            this.teamSelected = this.teams[0] !== undefined ? this.teams[0] : {}
-            this.canAddPlayer = this.teamSelected.canAddPlayers;
-            this.canAddActivity = this.teamSelected.canAddActivity;
+            const indexCurretTeam = this.teamSelected 
+                ? this.teams.findIndex(t => t.id === this.teamSelected.id) : 0;
+
+            console.log('current index ' + indexCurretTeam)
+
+            this.teamSelected = this.teams[indexCurretTeam] ?? undefined;
+            this.canAddPlayer = this.teamSelected?.canAddPlayers  || false;
+            this.canAddActivity = this.teamSelected?.canAddActivity || false;
+            
         },
         changeTeam(team){
-            this.teamSelected = team
+            this.teamSelected = team;
+            this.setShowTeamsList();
         },
         setShowTeamsList(){
-            this.showTeamsList = !this.showTeamsList
+            this.showTeamsList = !this.showTeamsList;
         },
         setOnglet(onglet){
             this.optionSelected = onglet;
@@ -132,6 +181,14 @@ export default {
                 {name : 'modal-add-player-coach', classes:['modal-top']}
             );
         },
+        addNewTeam(){
+            this.setShowTeamsList();
+            this.$modal.show(
+                AddNewTeamModalVue,
+                {},
+                {name : 'modal-add-team', classes:['modal-top']}
+            );
+        },
         addActivity(){
             this.$modal.show(
                 AddActivityModalVue,
@@ -145,23 +202,39 @@ export default {
                 {'player':player, 'isPlayer': isPlayer},
                 {name : 'modal-player-details', classes:['modal-top']}
             );
-        },      
+        },     
+        setShowOptions(){
+            this.showOptions = !this.showOptions;
+        },
+        setShowMenuActivity(value){
+            this.currentActivity = value;
+            this.setShowOptions();
+        },
+        closeActionsOptions(event){
+            if(event.target.id !== 'contentOptions'){
+                this.setShowOptions();
+            }
+        }
     },
-    mounted(){
-        this.canCreateTeam = this.auth.user.canCreateATeam;
+    created(){
+    },
+    mounted(){ 
         this.getAllTeams();
+
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user){
+            this.canCreateTeam = user.canCreateATeam;
+        }
 
         this.$root.$on('reload-team', ()=>{
             localStorage.removeItem('summary-teams');
             this.getAllTeams();
-            console.log('reload')
         })
 
         this.$root.$on('reload-team-activity', ()=>{
             localStorage.removeItem('summary-teams');
             this.optionSelected = OPTIONS_ONGLET.ACTIVITIES;
             this.getAllTeams();
-            console.log('reload-activity')
         })
     }
 }

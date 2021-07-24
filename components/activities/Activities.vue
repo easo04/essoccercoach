@@ -6,8 +6,8 @@
                 <span class="list-point"></span>
                 <span class="link-details" @click="showDetailsActivity(a)">
                     <span class="date">{{a.date_activite}}</span> -
-                    <span class="name">{{a.name}}</span> 
-                    <span class="adversaire" v-if="a.is_match">- vs <span class="name_adversaire">{{a.adversaire}}</span></span> - 
+                    <span class="name" v-if="!a.is_match">{{a.name}} </span> 
+                    <span class="adversaire" v-if="a.is_match">vs <span class="name_adversaire">{{a.adversaire}}</span></span> -
                     <span class="date">{{a.heure}}</span>
                 </span>
             </div>
@@ -25,6 +25,9 @@
                     <span @click="addAlignement(a)"><font-awesome-icon :icon="['fas', 'users']"/></span>
                 </div>
             </div>
+            <div class="actions-activity-mobile">
+                <span class="actions" @click="setShowActionsActivity(a)"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span>
+            </div>
         </div>
     </div>
 </template>
@@ -34,6 +37,10 @@ import AddAlignementModalVue from '../modals/teams/AddAlignementModal.vue';
 import AddNoteModalVue from '../modals/teams/AddNoteModal.vue';
 export default {
     props:['activities', 'titre', 'players'],
+    data(){
+        return{
+        }
+    },
     methods:{
         showDetailsActivity(activity){
             this.$modal.show(
@@ -55,6 +62,10 @@ export default {
                 {'activity':activity, 'players' : this.players},
                 {name : 'modal-add-alignement', classes:['modal-top']}
             );
+        },
+        setShowActionsActivity(activity){
+            console.log('activity emit' + activity.id)
+            this.$emit('showOptionsActivity', activity);
         }
     }
 }

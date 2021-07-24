@@ -71,6 +71,10 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
+
+                            &:hover{
+                                background-color: #bbbbbb;
+                            }
                         }
                     }
                 }
@@ -336,6 +340,13 @@
                     }
                 }
             }
+
+            &.modal-add-activity{
+                .modal-content{
+                    height: 500px;
+                    overflow-y: scroll;
+                }
+            }
         }
 
         &.modal-s{
@@ -385,6 +396,7 @@
                 }
             }
         }
+        
     }
     &.scrollable{
         .vm--modal {

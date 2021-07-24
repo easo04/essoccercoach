@@ -133,26 +133,26 @@ export default {
         goToEmails(){
             this.itemSelected = ROUTES.EMAILS;
             this.$router.push('/dashboard/emails');
-            this.setShowListProfil();
+            this.showListProfil = false;
         },
         goToExercices(){
             this.itemSelected = ROUTES.EXERCICES;
             this.$router.push('/dashboard');
-            this.setShowListProfil();
+            this.showListProfil = false;
         },
         goToUsers(){
             this.itemSelected = ROUTES.USERS;
             this.$router.push('/dashboard/users');
-            this.setShowListProfil();
+            this.showListProfil = false;
         },
         goToMonProfil(){
             this.$router.push('/dashboard/profil');
-            this.setShowListProfil();
+            this.showListProfil = false;
         },
         goToTeams(){
             this.itemSelected = ROUTES.TEAMS;
             this.$router.push('/dashboard/teams');
-            this.setShowListProfil();
+            this.showListProfil = false;
         },
         showIfAdmin(){
             return this.auth.user.isAdmin;
@@ -174,6 +174,7 @@ export default {
     },
     mounted(){
         const user = JSON.parse(localStorage.getItem('user'));
+        
         if(user){
             this.$auth.setUser(user);
         }
