@@ -12,7 +12,7 @@
                 Aucune équipe trouvée
             </div>
         </div>
-        <div v-else>
+        <div class="content-team" v-else>
             <div class="infos-team">
                 <h2>{{teamSelected.name}}</h2>
                 <h4 class="club" v-if="teamSelected.club">{{teamSelected.club}}</h4>
@@ -219,6 +219,7 @@ export default {
     created(){
     },
     mounted(){ 
+        console.log('teams mounted')
         this.getAllTeams();
 
         const user = JSON.parse(localStorage.getItem('user'));

@@ -1,0 +1,296 @@
+.activity-details{
+    padding: 0 !important;
+    min-height: 500px;
+
+    &.game{
+        .activity-header, .details-activity{
+            background-color: #22C77B !important;
+        }
+    }
+
+    .loader{
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .activity-header{
+        background-color: $color-secondary-4;
+        color:$color-white-fonts;
+        position: relative;  
+        padding: 20px;
+        height: 20px;
+
+
+        .options-menu{
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .options-action{
+            position: absolute;
+            right: 20px;
+            top: 40px;
+            color:$color-black-fonts-second;
+            z-index: 99;
+            background-color: #FBFBFB;
+            box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+            border:1px solid rgba(201, 201, 201, 0.25);
+            border-radius: 5px;
+            >div{
+                cursor: pointer;
+                @include font-xm-mbold;
+                padding: 8px 20px;
+                font-family: $font-family-text;
+                color:$color-black-fonts-second;
+                text-align: center;
+                &:hover{
+                    background-color: #D4EEF1;
+                }
+                &:not(:last-child){
+                    border-bottom:1px solid $color-border-designer;
+                }
+            }
+        }
+
+        .back{
+            position: absolute;
+            left: 20px;
+            cursor: pointer;
+        }
+    }
+
+    .details-activity{
+        background-color: $color-secondary-4;
+        padding: 50px 20px 10px 20px;        
+        box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.1) inset;
+        h2,h3{
+            color:#E9E9E9;
+            text-transform: capitalize;
+        }
+        h2{
+            @include h2;
+        }
+        h3{
+            @include h3;
+        }
+        position: relative;
+        .date{
+            @include h4;
+            color:#D4EEF1;
+        }
+        .adversaire{
+            text-transform: uppercase;
+            color:#0E5031;
+        }
+        .heure{
+            color:#333333;
+            font-weight: 800;
+        }
+    }
+
+    .other-infos-activity{
+        background-color: $color-white-background;
+        @include font-m-sbold;
+        color:$color-black-fonts;
+        .options-activity{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            .option-item{
+                padding: 10px 5px;
+                background-color:$color-background-onglets;
+                text-align: center;
+                @include font-l-sbold;
+                color:$color-text-onglets;
+                font-family: $font-family-text;
+                cursor: pointer;
+                transition: all .1s linear;
+                &.active{
+                    border-bottom: 3px solid $color-soccer-coach;
+                    font-weight: 900;
+                }
+                
+                @media screen and (min-width: $screen-md) {
+                    padding: 10px 30px;
+                }
+
+                @media screen and (max-width: $screen-sm) {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .content-options{
+            padding: 30px 20px;
+            height: 370px;
+            .details-option-activity{
+                .endroit{
+                    text-transform: capitalize;
+                }
+                .link-adresse{
+                    margin-top: 20px;
+                }
+            }
+            .availability-activity{
+                h4{
+                    padding:0;
+                    margin: 0;
+                    margin-bottom: 20px;
+                    color:$color-black-fonts-second;
+                }
+                .availability-item{
+                    @include font-m;
+                    color: #333333;
+                    padding: 10px 0;
+                    border-bottom: 1px solid #E9E9E9;
+                    cursor: pointer;
+                    padding-left: 10px;
+                    display: flex;
+                    .presence{
+                        display: flex;
+                        justify-content: flex-end;
+                        font-size: 20px;
+                        >div{
+                            color:$color-border-designer;
+                            cursor: pointer;
+                            &:hover{
+                                color:$color-border-bottom-onglet;
+                            }
+                            &:last-child{
+                                margin-left: 20px;
+                            }
+                        }
+                        .go{
+                            color:$color-green;
+                        }
+                        .no-go{
+                            color:$color-red;
+                        }
+                    }
+                    >div{
+                        width: 50%;
+                    }
+                }
+            }
+            .alignements-activity, .notes-activity{
+                h4{
+                    padding:0;
+                    margin: 0;
+                    margin-bottom: 20px;
+                    color:$color-black-fonts-second;
+                }
+                .content-item{
+                    @include font-m;
+                    color: #333333;
+                    padding: 10px 0;
+                    border-bottom: 1px solid #E9E9E9;
+                    cursor: pointer;
+                    padding-left: 10px;
+                    display: flex;
+                    .actions{
+                        display: flex;
+                        justify-content: flex-end;
+                        font-size: 16px;
+                        color:$color-black-fonts-second;
+                    }
+                    >div{
+                        width: 50%;
+                    }
+                }
+            }
+            .alignements-activity{
+                .alignement{
+                    margin-top: 20px;
+                    background-color: #47b55e;
+                    padding: 20px;
+                    border-radius: 20px;
+                    .borders{
+                        border:2px solid white;
+                        padding: 20px 0px;
+                        border-radius: 20px;
+                        >div{
+                            height: 30px;
+                            margin-top: 30px;
+                            display: grid;
+                            background-color: #3e9350;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 0px 50px;
+                            >div{
+                                text-align: center;
+                                text-decoration: underline;
+                            }
+                        }
+
+                    }
+                    .gardien{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 0px !important;
+                        
+                        >div{
+                            text-decoration-color: #947E37 !important;
+                        }
+                    }
+                    .defenseurs{
+                        &.systeme-1-4-4-2{
+                            grid-template-columns: repeat(4, 1fr);
+                        }
+                        margin-top: 30px;
+                        >div{
+                            text-decoration-color: #942F3B !important;
+                        }
+
+                    }
+                    .milieux{
+                        &.systeme-1-4-4-2{
+                            grid-template-columns: repeat(4, 1fr);
+                        }
+                        >div{
+                            text-decoration-color: #4D5894 !important;
+                        }
+                    }
+                    .attaquants{
+                        &.systeme-1-4-4-2{
+                            grid-template-columns: repeat(2, 1fr);
+                        }
+                        >div{
+                            text-decoration-color: #BE40C7 !important;
+                        }
+                    }
+                }
+                .remplacants{
+                    margin-top: 20px;
+                    @include font-xm-sbold;
+                }
+            }
+
+            .notes-activity{
+                position: relative;
+                min-height: 100px;
+                .btn-add-activity{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    background-color: $color-secondary-1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color:$color-white-fonts;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: #167D6B;
+                        height: 51px;
+                        width: 51px;
+                    }
+                }
+            }
+        }
+    }
+}

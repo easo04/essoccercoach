@@ -21,7 +21,7 @@
                 <div class="action-item" title="Ajoutez une séance" v-if="!a.is_match">
                     <span @click="addSeance(a)"><font-awesome-icon :icon="['fas', 'clipboard']"/></span>
                 </div>
-                <div class="action-item" title="Ajoutez une aligneement" v-if="a.is_match">
+                <div class="action-item" title="Ajoutez une aligneement" v-if="a.is_match && players.length > 0">
                     <span @click="addAlignement(a)"><font-awesome-icon :icon="['fas', 'users']"/></span>
                 </div>
             </div>
@@ -32,7 +32,6 @@
     </div>
 </template>
 <script>
-import ActivityDetailsModalVue from '../../components/modals/teams/ActivityDetailsModal.vue';
 import AddAlignementModalVue from '../modals/teams/AddAlignementModal.vue';
 import AddNoteModalVue from '../modals/teams/AddNoteModal.vue';
 export default {
@@ -43,11 +42,7 @@ export default {
     },
     methods:{
         showDetailsActivity(activity){
-            this.$modal.show(
-                ActivityDetailsModalVue,
-                {'activity':activity},
-                {name : 'modal-activity-details', classes:['modal-top']}
-            );
+            this.$router.push(`/dashboard/teams/activities/${activity.id}`);
         },
         addNote(activity){
             this.$modal.show(

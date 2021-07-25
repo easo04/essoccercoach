@@ -1,25 +1,38 @@
 <template>
-    <div class="modal-activity-details modal-custom" :class="{'game' : activity.is_match}">
-        <div class="modal-header">
-            <div class="titre-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
-            <div class="close-modal"><span class="menu" @click="showActionsOptions()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span></div>
-            <div class="options-action" v-if="showOptions">
-                <div @click="updatePlayer()">Modifier</div>
-                <div @click="deletePlayer()">Supprimer</div>
-            </div>
+    <div class="activity-details" :class="{'game' : activity.is_match}">
+        <div class="loader" v-if="loader">
+            <Spinner :spinner="true"/>   
         </div>
-        <div class="modal-content">
+        <div v-else>
+            <div class="activity-header">
+                <div class="back" title="Retournez au sommaire"><span @click="back()"><font-awesome-icon :icon="['fas', 'arrow-left']"/></span></div>
+                <div class="options-menu"><span class="menu" @click="showActionsOptions()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span></div>
+                <div class="options-action" v-if="showOptions">
+                    <div @click="updatePlayer()">Modifier</div>
+                    <div @click="deleteActivity()">Supprimer</div>
+                </div>
+            </div>
             <div class="details-activity" >
                 <h2>{{activity.name}} <span v-if="activity.is_match"> vs <span class="adversaire">{{activity.adversaire}}</span></span></h2>
                 <h3 class="date">{{activity.date_activite}} <span class="heure">à {{activity.heure}}</span></h3>
             </div>
             <div class="other-infos-activity">
                 <div class="options-activity">
-                    <div class="option-item" title="Détails" :class="{'active' : optionActivitySelected === 'details'}" @click="setOptionsActivity('details')"><font-awesome-icon :icon="['fas', 'info-circle']"/></div>
-                    <div class="option-item" title="Disponibilités" :class="{'active' : optionActivitySelected === 'availability'}" @click="setOptionsActivity('availability')"><font-awesome-icon :icon="['fas', 'user-check']"/></div>
-                    <div class="option-item" title="Alignement" :class="{'active' : optionActivitySelected === 'alignement'}" v-if="activity.is_match" @click="setOptionsActivity('alignement')"><font-awesome-icon :icon="['fas', 'users']"/></div>
-                    <div class="option-item" title="Séance" :class="{'active' : optionActivitySelected === 'seance'}" v-else @click="setOptionsActivity('seance')"><font-awesome-icon :icon="['fas', 'clipboard']"/></div>
-                    <div class="option-item" title="Notes" :class="{'active' : optionActivitySelected === 'notes'}" @click="setOptionsActivity('notes')"><font-awesome-icon :icon="['fas', 'comment']"/></div>
+                    <div class="option-item" title="Détails" :class="{'active' : optionActivitySelected === 'details'}" @click="setOptionsActivity('details')">
+                        <font-awesome-icon :icon="['fas', 'info-circle']"/> 
+                    </div>
+                    <div class="option-item" title="Disponibilités" :class="{'active' : optionActivitySelected === 'availability'}" @click="setOptionsActivity('availability')">
+                        <font-awesome-icon :icon="['fas', 'user-check']"/>
+                    </div>
+                    <div class="option-item" title="Alignement" :class="{'active' : optionActivitySelected === 'alignement'}" v-if="activity.is_match" @click="setOptionsActivity('alignement')">
+                        <font-awesome-icon :icon="['fas', 'users']"/>
+                    </div>
+                    <div class="option-item" title="Séance" :class="{'active' : optionActivitySelected === 'seance'}" v-else @click="setOptionsActivity('seance')">
+                        <font-awesome-icon :icon="['fas', 'clipboard']"/>
+                    </div>
+                    <div class="option-item" title="Notes" :class="{'active' : optionActivitySelected === 'notes'}" @click="setOptionsActivity('notes')">
+                        <font-awesome-icon :icon="['fas', 'comment']"/>
+                    </div>
                 </div>
                 <div class="content-options">
                     <div class="details-option-activity" v-if="optionActivitySelected === 'details'">
@@ -64,44 +77,37 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
-        </div>
     </div>
 </template>
 <script>
-import UpdatePlayerCoachVue from './UpdatePlayerCoach.vue';
+import UpdatePlayerCoachVue from '../../../../components/modals/teams/UpdatePlayerCoach.vue';
 export default {
-    props:['activity'],
+    middleware: 'authentificated',
+    layout:'connected',
     data(){
         return{
             showOptions:false,
             optionActivitySelected:'details',
             availabilities:[],
-            notes:[]
+            notes:[],
+            activity:{},
+            loader:true
         }
     },
     methods: {
-        hide () {
-            this.$modal.hide('modal-activity-details');
+        back(){
+            history.back();
         },
         showActionsOptions(){
             this.showOptions = !this.showOptions;
         },
-        async deletePlayer(){
-
-            if(this.isPlayer){
-                await this.$axios.delete(`api/players/${this.player.id}`)
-            }else{
-                await this.$axios.delete(`api/coachs/${this.player.id}`)
-            }
-
-            this.$root.$emit('reload-team');
-            this.hide();
+        async deleteActivity(){
+            await this.$axios.delete(`api/activities/${this.activity.id}`)
+            this.$router.push('/dashboard/teams');
         },
         updatePlayer(){
             let playerModel = this.player;
             playerModel.isPlayer = this.isPlayer;
-            this.hide();
             this.$modal.show(
                 UpdatePlayerCoachVue,
                 {'player':playerModel},
@@ -111,14 +117,17 @@ export default {
         setOptionsActivity(option){
             this.optionActivitySelected = option;
         },
-        async getActivitySummary(activity){
+        async getActivitySummary(idActivity){
             try{
-                let response = await this.$axios.$get(`api/activities/get-activity-summary/${activity.id}`);
+                const response = await this.$axios.$get(`api/activities/get-activity-summary/${idActivity}`);
                 
-                if(response.summary.availabilities){
+                if(response.summary){
+                    this.activity = response.summary.activity_infos;
                     this.availabilities = response.summary.availabilities;
                     this.notes = response.summary.notes;
                 }
+
+                this.loader = false;
             }catch(error){
                 console.log(error)
             }
@@ -126,12 +135,7 @@ export default {
         },
     },
     created () {
-        this.getActivitySummary(this.activity)
-    },
-    mounted(){
-        this.$root.$on('close-modal', ()=>{
-            this.hide();
-        });
+        this.getActivitySummary(this.$route.params.id)
     }
 }
 </script>
