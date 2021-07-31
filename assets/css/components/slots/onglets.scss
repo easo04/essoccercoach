@@ -1,0 +1,49 @@
+.onglets{
+    
+    .options-onglets{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 1fr);
+        .option-item{
+            background-color:$color-background-onglets;
+            text-align: center;
+            @include font-l-sbold;
+            color:$color-text-onglets;
+            font-family: $font-family-text;
+            cursor: pointer;
+            transition: all .1s linear;
+            line-height: 16px;
+            padding: 15px 30px;
+
+            &.active{
+                border-bottom: 3px solid $color-soccer-coach;
+                font-weight: 900;
+                color:#505050
+            }
+
+            .label{
+                font-size: 14px;
+                font-family: Lato;
+            }
+
+            .icon{
+                display: none;
+            }
+
+            @media screen and (max-width: $screen-sm) {
+                padding:8px 5px;
+                .icon{
+                    display: initial;
+                }
+                .label{
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+
+    .content-options{
+        padding: 30px 20px;
+        height: 370px;
+    }
+
+}

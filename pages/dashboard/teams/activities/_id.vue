@@ -90,13 +90,23 @@
                     </div>
                     <Notes :notes="notes" :activity="activity" v-if="optionActivitySelected === 'notes'"/>
                 </div>
+                <onglets :options="options">
+                    <template v-slot:option="{ option }">
+                        {{option.label}}
+                    </template>
+                     <template v-slot:content>
+                        Hola
+                    </template>
+                </onglets>
             </div>
         </div>
     </div>
 </template>
 <script>
 import UpdatePlayerCoachVue from '../../../../components/modals/teams/UpdatePlayerCoach.vue';
+import onglets from '../../../../components/slots/onglets.vue';
 export default {
+  components: { onglets },
     middleware: 'authentificated',
     layout:'connected',
     data(){
@@ -106,7 +116,8 @@ export default {
             availabilities:[],
             notes:[],
             activity:{},
-            loader:true
+            loader:true,
+            options:[{name:'détails', label:'Détails', icon:'plus'}]
         }
     },
     methods: {
