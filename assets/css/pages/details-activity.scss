@@ -99,7 +99,6 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             .option-item{
-                padding: 10px 5px;
                 background-color:$color-background-onglets;
                 text-align: center;
                 @include font-l-sbold;
@@ -107,17 +106,32 @@
                 font-family: $font-family-text;
                 cursor: pointer;
                 transition: all .1s linear;
+                line-height: 16px;
+                padding: 15px 30px;
+
                 &.active{
                     border-bottom: 3px solid $color-soccer-coach;
                     font-weight: 900;
+                    color:#505050
                 }
-                
-                @media screen and (min-width: $screen-md) {
-                    padding: 10px 30px;
+
+                .label{
+                    font-size: 14px;
+                    font-family: Lato;
+                }
+
+                .icon{
+                    display: none;
                 }
 
                 @media screen and (max-width: $screen-sm) {
-                    font-size: 14px;
+                    padding:8px 5px;
+                    .icon{
+                        display: initial;
+                    }
+                    .label{
+                        font-size: 10px;
+                    }
                 }
             }
         }
@@ -197,6 +211,13 @@
                     }
                     >div{
                         width: 50%;
+                    }
+                }
+                .content-actions{
+                    display: flex;
+                    justify-content: flex-end;
+                    .btn{
+                       @include btn-circle;
                     }
                 }
             }

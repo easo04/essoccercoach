@@ -1,17 +1,17 @@
 <template>
     <div class="option-content list-activities">
         <h4>{{titre}}</h4>
-        <div class="activity" :class="{'game' : a.is_match}" v-for="(a, i) in activities" :key="i">
+        <div class="activity" :class="{'game' : a.is_match}" v-for="(a, i) in activities" :key="i" @click="showDetailsActivity(a)">
             <div class="details-activity">
                 <span class="list-point"></span>
-                <span class="link-details" @click="showDetailsActivity(a)">
+                <span class="link-details">
                     <span class="date">{{a.date_activite}}</span> -
                     <span class="name" v-if="!a.is_match">{{a.name}} </span> 
                     <span class="adversaire" v-if="a.is_match">vs <span class="name_adversaire">{{a.adversaire}}</span></span> -
                     <span class="date">{{a.heure}}</span>
                 </span>
             </div>
-            <div class="actions-activity">
+            <!--<div class="actions-activity">
                 <div class="action-item" title="Ajoutez une note">
                     <span @click="addNote(a)"><font-awesome-icon :icon="['fas', 'comment']"/></span>
                 </div>
@@ -27,7 +27,7 @@
             </div>
             <div class="actions-activity-mobile">
                 <span class="actions" @click="setShowActionsActivity(a)"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span>
-            </div>
+            </div>-->
         </div>
     </div>
 </template>

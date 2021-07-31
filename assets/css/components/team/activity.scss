@@ -2,20 +2,9 @@
     position: relative;
 
     .activity{
-        display: grid;
-        grid-template-columns: 3fr 1fr;
-        cursor: default !important;
         position: relative;
 
         .details-activity{
-            .link-details{
-                text-decoration: underline;
-                text-decoration-color: $color-black-fonts;
-                cursor: pointer;
-                &:hover{
-                    text-decoration:none;
-                }
-            }
             .date{
                 @include font-xm;
                 color:$color-black-fonts-second;

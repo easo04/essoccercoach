@@ -222,6 +222,22 @@
 
 }
 
+@mixin btn-circle {
+    @include font-s-bold;
+    background-color: $color-secondary-1;
+    padding: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        background-color: $color-secondary-1-hover;
+    }
+    
+}
+
 @mixin blue-link {
     color: $color-blue-obscur-1;
     @include font-m-sbold;

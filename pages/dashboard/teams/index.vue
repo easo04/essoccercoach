@@ -219,8 +219,9 @@ export default {
     created(){
     },
     mounted(){ 
-        console.log('teams mounted')
         this.getAllTeams();
+        
+        console.log('reload ' + this.$route.params.reload);
 
         const user = JSON.parse(localStorage.getItem('user'));
         if(user){

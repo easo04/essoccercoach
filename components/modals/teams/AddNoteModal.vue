@@ -12,12 +12,13 @@
         </div>
         <div class="modal-footer">
             <div class="actions">
-                <button class="btn btn-default" @click.prevent="addNote()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Enregistrez</button>
+                <button class="btn btn-default" @click.prevent="saveNote()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Enregistrez</button>
             </div>
         </div>
     </div>
 </template>
 <script>
+import {mapMutations} from 'vuex';
 export default {
     props:['activity'],
     data(){
@@ -32,8 +33,7 @@ export default {
         isBtnSaveDisabled(){
             return this.note === undefined || this.note === '';
         },
-        async addNote(){
-            console.log('add note')
+        async saveNote(){
             let data = {
                 note:this.note,
                 activite:this.activity.id
@@ -42,11 +42,16 @@ export default {
             try{
                 const response = await this.$axios.$post('/api/notes/', data);
                 data.id = response.noteId;
+                this.addNote(data);
                 this.hide();
             }catch(error){
                 console.log(error)
             }
         },
+        ...mapMutations({addNote:'teams/addNote'})
+    },
+    mounted(){
+        console.log(this.activity.id)
     }
 }
 </script>

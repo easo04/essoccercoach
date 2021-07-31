@@ -19,19 +19,34 @@
             <div class="other-infos-activity">
                 <div class="options-activity">
                     <div class="option-item" title="Détails" :class="{'active' : optionActivitySelected === 'details'}" @click="setOptionsActivity('details')">
-                        <font-awesome-icon :icon="['fas', 'info-circle']"/> 
+                        <div>
+                            <span class="icon"><font-awesome-icon :icon="['fas', 'info-circle']"/></span>
+                            <div class="label">Détails</div>
+                        </div>
                     </div>
                     <div class="option-item" title="Disponibilités" :class="{'active' : optionActivitySelected === 'availability'}" @click="setOptionsActivity('availability')">
-                        <font-awesome-icon :icon="['fas', 'user-check']"/>
+                        <div>
+                            <span class="icon"><font-awesome-icon :icon="['fas', 'user-check']"/></span>
+                            <div class="label">Disponibilités</div>
+                        </div>
                     </div>
                     <div class="option-item" title="Alignement" :class="{'active' : optionActivitySelected === 'alignement'}" v-if="activity.is_match" @click="setOptionsActivity('alignement')">
-                        <font-awesome-icon :icon="['fas', 'users']"/>
+                        <div>
+                            <span class="icon"><font-awesome-icon :icon="['fas', 'users']"/></span>
+                            <div class="label">Alinements</div>
+                        </div>
                     </div>
                     <div class="option-item" title="Séance" :class="{'active' : optionActivitySelected === 'seance'}" v-else @click="setOptionsActivity('seance')">
-                        <font-awesome-icon :icon="['fas', 'clipboard']"/>
+                        <div>
+                            <span class="icon"><font-awesome-icon :icon="['fas', 'clipboard']"/></span>
+                            <div class="label">Séances</div>
+                        </div>
                     </div>
                     <div class="option-item" title="Notes" :class="{'active' : optionActivitySelected === 'notes'}" @click="setOptionsActivity('notes')">
-                        <font-awesome-icon :icon="['fas', 'comment']"/>
+                        <div>
+                            <span class="icon"><font-awesome-icon :icon="['fas', 'comment']"/></span>
+                            <div class="label">Notes</div>
+                        </div>
                     </div>
                 </div>
                 <div class="content-options">
@@ -103,7 +118,7 @@ export default {
         },
         async deleteActivity(){
             await this.$axios.delete(`api/activities/${this.activity.id}`)
-            this.$router.push('/dashboard/teams');
+            this.$router.push('/dashboard/teams?reload=true');
         },
         updatePlayer(){
             let playerModel = this.player;
@@ -130,6 +145,7 @@ export default {
                 this.loader = false;
             }catch(error){
                 console.log(error)
+                this.back();
             }
             
         },
