@@ -51,8 +51,11 @@
                 </div>
                 <div class="content-options">
                     <div class="details-option-activity" v-if="optionActivitySelected === 'details'">
-                        <div class="heure_arrive" v-if="activity.heure_arrive"><font-awesome-icon :icon="['fas', 'clock']"/> {{activity.heure_arrive}}</div>
-                        <div class="endroit" v-if="activity.adresse"><font-awesome-icon :icon="['fas', 'map-marker-alt']"/> {{activity.adresse}}</div>
+                        <div class="infos-activity-details">
+                            Holis
+                            <div class="heure_arrive" v-if="activity.heure_arrive"><font-awesome-icon :icon="['fas', 'clock']"/> {{activity.heure_arrive}}</div>
+                            <div class="endroit" v-if="activity.adresse"><font-awesome-icon :icon="['fas', 'map-marker-alt']"/> {{activity.adresse}}</div>
+                        </div>
                         <div class="link-adresse">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.8237421515705!2d-71.27008768439434!3d46.88651597914343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb8bcd7e1bde493%3A0xdef3d5834e733041!2s%C3%89cole%20Secondaire%20des%20Sentiers!5e0!3m2!1sfr!2sca!4v1625865022455!5m2!1sfr!2sca" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
@@ -90,14 +93,14 @@
                     </div>
                     <Notes :notes="notes" :activity="activity" v-if="optionActivitySelected === 'notes'"/>
                 </div>
-                <onglets :options="options">
+                <!--<onglets :options="options">
                     <template v-slot:option="{ option }">
                         {{option.label}}
                     </template>
-                     <template v-slot:content>
+                    <template v-slot:content>
                         Hola
                     </template>
-                </onglets>
+                </onglets>-->
             </div>
         </div>
     </div>
@@ -106,7 +109,7 @@
 import UpdatePlayerCoachVue from '../../../../components/modals/teams/UpdatePlayerCoach.vue';
 import onglets from '../../../../components/slots/onglets.vue';
 export default {
-  components: { onglets },
+    components: { onglets },
     middleware: 'authentificated',
     layout:'connected',
     data(){
@@ -117,7 +120,7 @@ export default {
             notes:[],
             activity:{},
             loader:true,
-            options:[{name:'détails', label:'Détails', icon:'plus'}]
+            options:[{name:'détails', label:'Détails', icon:'plus'}, {name:'détails', label:'Détails', icon:'plus'}]
         }
     },
     methods: {

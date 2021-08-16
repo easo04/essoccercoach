@@ -16,7 +16,7 @@
     }
     
     .activity-header{
-        background-color: $color-secondary-4;
+        background-color: $color-soccer-coach;
         color:$color-white-fonts;
         position: relative;  
         padding: 20px;
@@ -63,7 +63,7 @@
     }
 
     .details-activity{
-        background-color: $color-secondary-4;
+        background-color: $color-soccer-coach;
         padding: 50px 20px 10px 20px;        
         box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.1) inset;
         h2,h3{
@@ -93,7 +93,7 @@
 
     .other-infos-activity{
         background-color: $color-white-background;
-        @include font-m-sbold;
+        //@include font-m-sbold;
         color:$color-black-fonts;
         .options-activity{
             display: grid;
@@ -138,7 +138,7 @@
 
         .content-options{
             padding: 30px 20px;
-            height: 370px;
+            min-height: 370px;
             .details-option-activity{
                 .endroit{
                     text-transform: capitalize;
@@ -146,6 +146,8 @@
                 .link-adresse{
                     margin-top: 20px;
                 }
+                display: grid;
+                grid-template-columns: 2fr 1fr;
             }
             .availability-activity{
                 h4{
@@ -155,11 +157,11 @@
                     color:$color-black-fonts-second;
                 }
                 .availability-item{
-                    @include font-m;
+                    @include font-xm;
+                    font-family: $font-family-text;
                     color: #333333;
                     padding: 10px 0;
                     border-bottom: 1px solid #E9E9E9;
-                    cursor: pointer;
                     padding-left: 10px;
                     display: flex;
                     .presence{
@@ -196,28 +198,50 @@
                     color:$color-black-fonts-second;
                 }
                 .content-item{
-                    @include font-m;
+                    @include font-xm;
                     color: #333333;
                     padding: 10px 0;
                     border-bottom: 1px solid #E9E9E9;
-                    cursor: pointer;
-                    padding-left: 10px;
-                    display: flex;
+                    //padding-left: 10px;
+                    display: grid;
+                    grid-template-columns: 3fr 1fr;
+                    padding: 20px;
+                    background-color: $color-background-comment-face;
+                    border-radius: 18px;
+                    margin-bottom: 10px;
+
                     .actions{
                         display: flex;
                         justify-content: flex-end;
                         font-size: 16px;
-                        color:$color-black-fonts-second;
+                        color:$color-black-fonts-second;        
+                        svg{
+                            cursor: pointer;
+                        }
+
                     }
-                    >div{
-                        width: 50%;
+
+                    .note{
+                        font-weight: normal;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+
+                    h5{
+                        @include font-xm-sbold;
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        .date-note{
+                            color: $color-black-fonts-second;
+                        }
                     }
                 }
                 .content-actions{
                     display: flex;
                     justify-content: flex-end;
+                    margin-bottom: 20px;
                     .btn{
-                       @include btn-circle;
+                        @include btn-circle;
                     }
                 }
             }
