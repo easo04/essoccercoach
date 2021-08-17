@@ -86,6 +86,9 @@
                 <div class="nuxt-content">
                     <nuxt/>
                 </div>
+                <div class="section-rigth">
+                    Section publicité/annoncess
+                </div>
             </div>
         </div>
         <div class="footer">

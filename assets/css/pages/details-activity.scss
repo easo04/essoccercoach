@@ -88,6 +88,7 @@
         .heure{
             color:#333333;
             font-weight: 800;
+            text-transform: none;
         }
     }
 
@@ -140,14 +141,42 @@
             padding: 30px 20px;
             min-height: 370px;
             .details-option-activity{
-                .endroit{
-                    text-transform: capitalize;
-                }
-                .link-adresse{
-                    margin-top: 20px;
-                }
                 display: grid;
-                grid-template-columns: 2fr 1fr;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 20px;
+                .infos-activity-details{  
+                    @include font-m;
+                    font-family: $font-family-text;
+                    .endroit{
+                        text-transform: capitalize;
+                    }
+                    .link-adresse{
+                        margin-top: 20px;
+                    }
+                    .availabilities{
+                        margin-top: 16px;
+                        @include font-xm;
+                        h5{
+                            margin-bottom: 0;
+                            margin-top: 5px;
+                            @include h5;
+                            padding-left: 2px;
+                        }
+                        .present, .absent{
+                            padding: 5px;
+                            >div{
+                                border-bottom: 1px solid $color-background-onglets;
+                                padding: 5px 5px;
+                            }
+                        }
+                        .present{
+                            background-color: rgba($color: $color-green, $alpha: 0.2);
+                        }
+                        .absent{
+                            background-color: rgba($color: $color-red, $alpha: 0.2) ;
+                        }
+                    }
+                }
             }
             .availability-activity{
                 h4{

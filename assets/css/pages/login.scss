@@ -1,23 +1,31 @@
 .login-page{
-    h3{
-        color:$color-black-fonts;
-        margin-top: 0;
-    }
-    padding: 50px 480px;
+    display: flex;
+    justify-content: center;
+    
+    padding: 50px 0;
     @media screen and (max-width: $screen-sm) {
         padding: 50px 20px;
     }
-
-    .form-content{
-        background-color: $color-blue-blackground-clair;
-        box-shadow: 2px 2px 5px 1px rgba(201, 201, 201, 0.7);
-        padding: 20px;
-        border-radius: 5px;
-        .actions{
-            margin-top: 16px;
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
+    
+    >div{
+    
+        h3{
+            color:$color-black-fonts;
+            margin-top: 0;
+            text-align: center;
+        }
+        .form-content{
+            background-color: $color-blue-blackground-clair;
+            box-shadow: 2px 2px 5px 1px rgba(201, 201, 201, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            width: 400px;
+            .actions{
+                margin-top: 16px;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
         }
     }
 }

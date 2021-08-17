@@ -52,9 +52,22 @@
                 <div class="content-options">
                     <div class="details-option-activity" v-if="optionActivitySelected === 'details'">
                         <div class="infos-activity-details">
-                            Holis
                             <div class="heure_arrive" v-if="activity.heure_arrive"><font-awesome-icon :icon="['fas', 'clock']"/> {{activity.heure_arrive}}</div>
                             <div class="endroit" v-if="activity.adresse"><font-awesome-icon :icon="['fas', 'map-marker-alt']"/> {{activity.adresse}}</div>
+                            <div class="availabilities">
+                                <div class="present">
+                                    <h5>Présents</h5>
+                                    <div v-for="(availavility, index) in lstPlayersAvailabilityPresent" :key="index">
+                                        {{availavility.name_player}}
+                                    </div>
+                                </div>
+                                <div class="absent">         
+                                    <h5>Absents</h5>
+                                    <div v-for="(availavility, index) in lstPlayersAvailabilityAbsent" :key="index">
+                                        {{availavility.name_player}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="link-adresse">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.8237421515705!2d-71.27008768439434!3d46.88651597914343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb8bcd7e1bde493%3A0xdef3d5834e733041!2s%C3%89cole%20Secondaire%20des%20Sentiers!5e0!3m2!1sfr!2sca!4v1625865022455!5m2!1sfr!2sca" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -121,6 +134,14 @@ export default {
             activity:{},
             loader:true,
             options:[{name:'détails', label:'Détails', icon:'plus'}, {name:'détails', label:'Détails', icon:'plus'}]
+        }
+    },
+    computed:{
+        lstPlayersAvailabilityPresent(){
+            return this.availabilities.filter(a => a.availability === true);
+        },
+        lstPlayersAvailabilityAbsent(){
+            return this.availabilities.filter(a => a.availability === false && a.id_availability != null);
         }
     },
     methods: {

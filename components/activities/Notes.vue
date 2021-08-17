@@ -10,7 +10,7 @@
                 <p class="note">{{note.note}}</p>
             </div>
             <div class="actions">
-                <div @click="deleteNote(note.id, i)"><font-awesome-icon :icon="['fas', 'trash']"/></div>
+                <div @click="suppNote(note.id, i)"><font-awesome-icon :icon="['fas', 'trash']"/></div>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@ export default {
         }
     },
     methods:{
-        async deleteNote(idNote, index){
+        async suppNote(idNote, index){
             await this.$axios.$delete(`/api/notes/${idNote}`);
             this.deleteNote(index);
         },

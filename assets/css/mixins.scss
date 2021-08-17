@@ -47,6 +47,18 @@
     }
 }
 
+@mixin h5 {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 19px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 12px;
+        line-height: normal;
+    }
+}
+
 @mixin font-s {
     font-style: normal;
     font-size: 12px;
