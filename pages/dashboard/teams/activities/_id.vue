@@ -6,11 +6,12 @@
         <div v-else>
             <div class="activity-header">
                 <div class="back" title="Retournez au sommaire"><span @click="back()"><font-awesome-icon :icon="['fas', 'arrow-left']"/></span></div>
-                <div class="options-menu"><span class="menu" @click="showActionsOptions()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span></div>
-                <div class="options-action" v-if="showOptions">
-                    <div @click="updatePlayer()">Modifier</div>
-                    <div @click="deleteActivity()">Supprimer</div>
-                </div>
+                <menu-actions>
+                    <template v-slot:content-options>   
+                        <div @click="updatePlayer()">Modifier</div>
+                        <div @click="deleteActivity()">Supprimer</div>
+                    </template>
+                </menu-actions>
             </div>
             <div class="details-activity" >
                 <h2>{{activity.name}} <span v-if="activity.is_match"> vs <span class="adversaire">{{activity.adversaire}}</span></span></h2>
@@ -127,7 +128,6 @@ export default {
     layout:'connected',
     data(){
         return{
-            showOptions:false,
             optionActivitySelected:'details',
             availabilities:[],
             notes:[],
@@ -147,9 +147,6 @@ export default {
     methods: {
         back(){
             history.back();
-        },
-        showActionsOptions(){
-            this.showOptions = !this.showOptions;
         },
         async deleteActivity(){
             await this.$axios.delete(`api/activities/${this.activity.id}`)

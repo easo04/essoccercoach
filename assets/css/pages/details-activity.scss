@@ -22,35 +22,11 @@
         padding: 20px;
         height: 20px;
 
-
-        .options-menu{
-            position: absolute;
+        .menu-actions{
             right: 20px;
-            cursor: pointer;
-        }
-
-        .options-action{
-            position: absolute;
-            right: 20px;
-            top: 40px;
-            color:$color-black-fonts-second;
-            z-index: 99;
-            background-color: #FBFBFB;
-            box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
-            border:1px solid rgba(201, 201, 201, 0.25);
-            border-radius: 5px;
-            >div{
-                cursor: pointer;
-                @include font-xm-mbold;
-                padding: 8px 20px;
-                font-family: $font-family-text;
-                color:$color-black-fonts-second;
-                text-align: center;
-                &:hover{
-                    background-color: #D4EEF1;
-                }
-                &:not(:last-child){
-                    border-bottom:1px solid $color-border-designer;
+            .btn-show-actions{
+                button{
+                    color:$color-white-fonts;
                 }
             }
         }
@@ -144,6 +120,11 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 grid-gap: 20px;
+
+                @media screen and (max-width: $screen-sm) {
+                    grid-template-columns: 1fr;
+                }
+                
                 .infos-activity-details{  
                     @include font-m;
                     font-family: $font-family-text;

@@ -1,12 +1,11 @@
 <template>
-    <div class="dashboard teams-page">
-        <div class="addNewTeam">
-            <button class="btn btn-default" @click="setShowTeamsList()">Équipes <font-awesome-icon :icon="['fas', 'sort-down']"/></button>
-            <div class="select-teams selects" v-if="showTeamsList">
+    <div class="dashboard teams-page" @click="selectPage($event)">
+        <btn-selection label="Équipes">
+            <template v-slot:content-items>
                 <div class="equipe" v-for="(t, index) in teams" :key="index" @click="changeTeam(t)">{{t.name}}</div>
                 <div class="equipe" v-if="canCreateTeam" @click="addNewTeam()">Nouveau +</div>
-            </div>
-        </div>
+            </template>
+        </btn-selection>
         <div class="content-empty-team" v-if="!teamSelected">
             <div class="empty-team">
                 Aucune équipe trouvée
@@ -16,9 +15,12 @@
             <div class="infos-team">
                 <h2>{{teamSelected.name}}</h2>
                 <h4 class="club" v-if="teamSelected.club">{{teamSelected.club}}</h4>
-                <div class="actions-team">
-                    <span @click="hide()"><font-awesome-icon :icon="['fas', 'ellipsis-v']"/></span>
-                </div>
+                <menu-actions>
+                    <template v-slot:content-options>
+                        <div>Modifier</div>
+                        <div>Supprimer</div>
+                    </template>
+                </menu-actions>
             </div>
             <div class="options-team">
                 <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')">Équipe</div>
@@ -48,7 +50,7 @@
                 <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')" title="Alignements">
                     <div>
                         <font-awesome-icon :icon="['fas', 'user-friends']"/>
-                        <div class="label-option">Alignements</div>
+                        <div class="label-option">Matchs</div>
                     </div>
                 </div>
             </div>
@@ -86,14 +88,6 @@
                 </div>
             </div>
         </div>
-        <div class="actions-options" v-if="showOptions" @click="closeActionsOptions($event)">
-            <div class="content-options" id="contentOptions">
-                <div class="item-option"><font-awesome-icon :icon="['fas', 'comment']"/><span>Ajoutez une note</span></div>
-                <div class="item-option"><font-awesome-icon :icon="['fas', 'user-clock']"/> <span>Ajoutez une statistique</span></div>
-                <div class="item-option" v-if="!currentActivity.is_match"> <font-awesome-icon :icon="['fas', 'clipboard']"/> <span>Ajoutez une séance</span></div>
-                <div class="item-option" v-if="currentActivity.is_match"><font-awesome-icon :icon="['fas', 'users']"/> <span>Ajoutez un alignement</span></div>
-            </div>
-        </div>
     </div>
 </template>
 <script>
@@ -114,13 +108,12 @@ export default {
         return{
             teams:[],
             teamSelected:undefined,
-            showTeamsList:false,
             canCreateTeam:false,
             canAddPlayer:false,
             canAddActivity:false,
             optionSelected:OPTIONS_ONGLET.TEAM,
-            showOptions:false,
-            currentActivity:undefined
+            currentActivity:undefined,
+            showActionsTeam:false
         }
     },
     computed: {
@@ -162,8 +155,8 @@ export default {
             this.teamSelected = team;
             this.setShowTeamsList();
         },
-        setShowTeamsList(){
-            this.showTeamsList = !this.showTeamsList;
+        setShowActionsTeam(){
+            this.showActionsTeam = !this.showActionsTeam;
         },
         setOnglet(onglet){
             this.optionSelected = onglet;
@@ -202,19 +195,16 @@ export default {
                 {'player':player, 'isPlayer': isPlayer},
                 {name : 'modal-player-details', classes:['modal-top']}
             );
-        },     
-        setShowOptions(){
-            this.showOptions = !this.showOptions;
-        },
-        setShowMenuActivity(value){
-            this.currentActivity = value;
-            this.setShowOptions();
-        },
+        },   
         closeActionsOptions(event){
             if(event.target.id !== 'contentOptions'){
-                this.setShowOptions();
             }
+        },
+        selectPage(event){
+            const action = event.target.nodeName === 'path' ? event.target.nodeName : event.target.id;
+            this.$root.$emit('close-all-selects', action);
         }
+        
     },
     created(){
     },

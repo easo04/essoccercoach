@@ -9,7 +9,7 @@
                 <label class="label-control" for="name">Nom: </label>
                 <input type="text" autocomplete="off" name="name" class="form-control" v-model="name"/>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label class="label-control" for="club">Club: </label>
                 <input type="text" autocomplete="off" name="club" class="form-control" v-model="club"/>
             </div>

@@ -7,44 +7,13 @@
         color:$color-gris-2;
     }
 
-    .addNewTeam{
+    .btn-selection{
         position: relative;
         width: 100%;
         display: flex;
         justify-content: flex-end;
         height: auto;
         background-color: #f7f7f7;
-
-        .btn{
-            margin: 20px;
-        }
-        
-        .select-teams{
-            position: absolute;
-            right: 20px;
-            top:60px;
-            border-radius: 5px;     
-            background-color: #FBFBFB;
-            box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
-            border:1px solid rgba(201, 201, 201, 0.25);
-            z-index: 40;
-            width: auto;
-            >div{
-                cursor: pointer;
-                @include font-xm-mbold;
-                padding: 8px 20px;
-                font-family: $font-family-text;
-                color:$color-black-fonts-second;
-                text-align: center;
-                text-transform: capitalize;
-                &:hover{
-                    background-color: #D4EEF1;
-                }
-                &:not(:last-child){
-                    border-bottom:1px solid $color-border-designer;
-                }
-            }
-        }
     }
 
     .infos-team{
@@ -56,12 +25,10 @@
         h4{
             margin: 0;
         }
-        .actions-team{
+        .menu-actions{
             position: absolute;
             top:20px;
             right: 20px;
-            color: $color-gris-2;
-            cursor: pointer;
         }
     }
 

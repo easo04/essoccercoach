@@ -3,29 +3,18 @@
         background-color: $color-secondary-4;
         color:$color-white-fonts;
         position: relative;
-        .options-action{
-            position: absolute;
-            right: 0;
-            top:30px;
-            color:$color-black-fonts-second;
-            z-index: 99;
-            background-color: #FBFBFB;
-            box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
-            border:1px solid rgba(201, 201, 201, 0.25);
-            border-radius: 5px;
-            >div{
-                cursor: pointer;
-                @include font-xm-mbold;
-                padding: 8px 20px;
-                font-family: $font-family-text;
-                color:$color-black-fonts-second;
-                text-align: center;
-                &:hover{
-                    background-color: #D4EEF1;
+        .menu-actions{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            .btn-show-actions{
+                button{
+                    color:$color-white-fonts;
                 }
-                &:not(:last-child){
-                    border-bottom:1px solid $color-border-designer;
-                }
+            }
+            .options-action{
+                top:20px;
             }
         }
     }
