@@ -5,7 +5,7 @@
                 <font-awesome-icon :icon="['fas', 'ellipsis-v']"/>
             </button>
         </div>
-        <div class="options-action" v-if="showOptions">
+        <div class="options-action" v-show="showOptions">
             <slot name="content-options"></slot>
         </div>
     </div>
@@ -58,6 +58,7 @@ export default {
             box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
             border:1px solid rgba(201, 201, 201, 0.25);
             border-radius: 5px;
+            transition: display 1s ease;
             >div{
                 cursor: pointer;
                 @include font-xm-mbold;

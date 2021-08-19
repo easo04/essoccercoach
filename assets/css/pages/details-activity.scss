@@ -75,14 +75,15 @@
         .options-activity{
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            border-bottom: 1px solid #E9E9E9;
             .option-item{
-                background-color:$color-background-onglets;
+                background-color:$color-white-background;
                 text-align: center;
-                @include font-l-sbold;
+                @include font-xm-sbold;
                 color:$color-text-onglets;
                 font-family: $font-family-text;
                 cursor: pointer;
-                transition: all .1s linear;
+                transition: border-bottom 0.1s ease-in-out;
                 line-height: 16px;
                 padding: 15px 30px;
 
@@ -126,7 +127,7 @@
                 }
                 
                 .infos-activity-details{  
-                    @include font-m;
+                    @include font-xm;
                     font-family: $font-family-text;
                     .endroit{
                         text-transform: capitalize;
@@ -155,6 +156,15 @@
                         }
                         .absent{
                             background-color: rgba($color: $color-red, $alpha: 0.2) ;
+                        }
+                    }
+                    >div{
+                        .icon{
+                            display: inline-block;
+                            text-align: center;
+                        }
+                        .label{
+                            font-weight: 600;
                         }
                     }
                 }

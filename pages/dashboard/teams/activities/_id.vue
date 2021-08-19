@@ -53,16 +53,21 @@
                 <div class="content-options">
                     <div class="details-option-activity" v-if="optionActivitySelected === 'details'">
                         <div class="infos-activity-details">
-                            <div class="heure_arrive" v-if="activity.heure_arrive"><font-awesome-icon :icon="['fas', 'clock']"/> {{activity.heure_arrive}}</div>
-                            <div class="endroit" v-if="activity.adresse"><font-awesome-icon :icon="['fas', 'map-marker-alt']"/> {{activity.adresse}}</div>
+                            <div class="heure_arrive" v-if="activity.heure_arrive">
+                                <span class="icon"><font-awesome-icon :icon="['fas', 'clock']"/></span>
+                                <span class="label">Heure d'arrivée: </span> {{activity.heure_arrive}}
+                            </div>
+                            <div class="endroit" v-if="activity.adresse">
+                                <span class="icon"><font-awesome-icon :icon="['fas', 'map-marker-alt']"/></span> {{activity.adresse}}
+                            </div>
                             <div class="availabilities">
-                                <div class="present">
+                                <div class="present" v-if="lstPlayersAvailabilityPresent.length > 1">
                                     <h5>Présents</h5>
                                     <div v-for="(availavility, index) in lstPlayersAvailabilityPresent" :key="index">
                                         {{availavility.name_player}}
                                     </div>
                                 </div>
-                                <div class="absent">         
+                                <div class="absent" v-if="lstPlayersAvailabilityAbsent.length > 1">         
                                     <h5>Absents</h5>
                                     <div v-for="(availavility, index) in lstPlayersAvailabilityAbsent" :key="index">
                                         {{availavility.name_player}}
@@ -107,14 +112,6 @@
                     </div>
                     <Notes :notes="notes" :activity="activity" v-if="optionActivitySelected === 'notes'"/>
                 </div>
-                <!--<onglets :options="options">
-                    <template v-slot:option="{ option }">
-                        {{option.label}}
-                    </template>
-                    <template v-slot:content>
-                        Hola
-                    </template>
-                </onglets>-->
             </div>
         </div>
     </div>
@@ -132,8 +129,7 @@ export default {
             availabilities:[],
             notes:[],
             activity:{},
-            loader:true,
-            options:[{name:'détails', label:'Détails', icon:'plus'}, {name:'détails', label:'Détails', icon:'plus'}]
+            loader:true
         }
     },
     computed:{
