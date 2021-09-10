@@ -6,6 +6,15 @@
         .activity-header, .details-activity{
             background-color: #22C77B !important;
         }
+        .other-infos-activity{
+            .options-activity{
+                .option-item{
+                    &.active{
+                        border-bottom: 3px solid #22C77B !important;
+                    }
+                }
+            }
+        }
     }
 
     .loader{
@@ -44,7 +53,6 @@
         box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.1) inset;
         h2,h3{
             color:#E9E9E9;
-            text-transform: capitalize;
         }
         h2{
             @include h2;
@@ -54,15 +62,16 @@
         }
         position: relative;
         .date{
-            @include h4;
-            color:#D4EEF1;
+            @include h3;
+            color:$color-black-fonts;
+            text-transform: capitalize;
         }
         .adversaire{
             text-transform: uppercase;
             color:#0E5031;
         }
         .heure{
-            color:#333333;
+            color:$color-black-fonts-second;
             font-weight: 800;
             text-transform: none;
         }
@@ -265,7 +274,12 @@
                     }
                 }
             }
-            .alignements-activity{
+            .alignements-activity{       
+                >div{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 20px;
+                }
                 .alignement{
                     margin-top: 20px;
                     background-color: #47b55e;

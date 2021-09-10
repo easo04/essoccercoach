@@ -149,10 +149,18 @@ export default {
             this.teamSelected = this.teams[indexCurretTeam] ?? undefined;
             this.canAddPlayer = this.teamSelected?.canAddPlayers  || false;
             this.canAddActivity = this.teamSelected?.canAddActivity || false;
-            
+
+
+            //save teamSelected in localstorage
+            const teamSelectedParsed = JSON.stringify(this.teamSelected);
+            localStorage.setItem('current-team', teamSelectedParsed);
         },
         changeTeam(team){
             this.teamSelected = team;
+            
+            //save teamSelected in localstorage
+            const teamSelectedParsed = JSON.stringify(this.teamSelected);
+            localStorage.setItem('current-team', teamSelectedParsed);
             this.setShowTeamsList();
         },
         setShowActionsTeam(){

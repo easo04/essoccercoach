@@ -1,6 +1,8 @@
 <template>
     <div class="btn-selection">
-        <button id="btn-selections" class="btn btn-default" @click="setShowListItems()">{{label}} <font-awesome-icon :icon="['fas', 'sort-down']"/></button>
+        <button id="btn-selections" class="btn btn-default" @click="setShowListItems()">{{label}} 
+            <span><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+        </button>
         <div class="select-items selects" v-if="showListItems">
             <slot name="content-items"></slot>
         </div>

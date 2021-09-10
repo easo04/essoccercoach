@@ -12,7 +12,10 @@
                     <div class="options-profil">
                         <div>
                             <span class="icon"><font-awesome-icon :icon="['fas', 'user']"/></span> 
-                            <span class="label-icon">{{auth.user.first_name}} {{auth.user.last_name}}<span class="label-icon-block link" @click="goToMonProfil()">Voir votre profil</span></span>
+                            <span class="label-icon">{{auth.user.first_name}} {{auth.user.last_name}}
+                                <span class="label-icon-block">{{auth.user.email}}</span>
+                                <span class="label-icon-block link" @click="goToMonProfil()">Voir votre profil</span>
+                            </span>
                         </div>
                         <div class="logout" @click="logout()"><span class="icon"><font-awesome-icon :icon="['fas', 'sign-out-alt']"/></span><span class="label-icon">Fermez la session</span></div>
                     </div>
@@ -134,11 +137,7 @@ export default {
         },
         logout(){
             this.$auth.logout();
-            localStorage.removeItem('user');
-            localStorage.removeItem('users');
-            localStorage.removeItem('exercices');
-            localStorage.removeItem('emails');
-            localStorage.removeItem('summary-teams');
+            localStorage.clear();
         },
         goToEmails(){
             this.itemSelected = ROUTES.EMAILS;

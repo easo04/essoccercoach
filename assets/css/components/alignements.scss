@@ -1,0 +1,122 @@
+.alignements{      
+    .content-actions{
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+        .btn{
+            @include btn-circle;
+        }
+    } 
+    >div{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+
+        @media screen and (max-width: $screen-sm) {   
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .icon-player{
+        @include font-m-bold;
+    }
+    .name-player{
+        @include font-s-bold;
+        font-family: $font-family-text;
+    }
+    .alignement{
+        margin-top: 20px;
+        background-color: #47b55e;
+        padding: 20px;
+        border-radius: 20px;
+        .borders{
+            border:2px solid white;
+            padding: 20px 0px;
+            border-radius: 20px;
+            >div{
+                height: 40px;
+                margin-top: 40px;
+                display: grid;
+                grid-gap: 10px;
+                background-color: #3e9350;
+                justify-content: center;
+                align-items: center;
+                padding: 0px 50px;
+                >div{
+                    text-align: center;
+                    //text-decoration: underline;
+                }
+            }
+
+        }
+        .gardien{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px !important;
+            
+            >div{    
+                .icon-player{   
+                    color: $color-soccer-coach !important;
+                }
+            }
+        }
+        .defenseurs{
+            &.systeme-1-4-4-2{
+                grid-template-columns: repeat(4, 1fr);
+            }
+            margin-top: 30px;
+            >div{
+                
+                //text-decoration-color: #942F3B !important;
+            }
+
+        }
+        .milieux{
+            &.systeme-1-4-4-2{
+                grid-template-columns: repeat(4, 1fr);
+            }
+            >div{
+                //text-decoration-color: #4D5894 !important;
+            }
+        }
+        .attaquants{
+            &.systeme-1-4-4-2{
+                grid-template-columns: repeat(2, 1fr);
+            }
+            >div{
+                //text-decoration-color: #BE40C7 !important;
+            }
+        }
+    }
+    .information-alignement{
+        margin-top: 20px;
+        .actions{
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .lst-remplacants{
+            h5{
+                color:$color-black-fonts-second;
+                margin-bottom: 10px;
+            }
+            >div{
+                display: flex;
+                flex-wrap: wrap;
+                border:1px solid $color-border-designer;
+                background-color: #f7f7f7;
+                border-radius: 10px;
+                padding: 10px;
+                >div{
+                    text-align: center;
+                    @include font-s-sbold;
+                    font-family: $font-family-text;
+                    color: $color-black-fonts;    
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

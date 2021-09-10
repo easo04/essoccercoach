@@ -15,7 +15,7 @@
             </div>
             <div class="details-activity" >
                 <h2>{{activity.name}} <span v-if="activity.is_match"> vs <span class="adversaire">{{activity.adversaire}}</span></span></h2>
-                <h3 class="date">{{activity.date_activite}} <span class="heure">à {{activity.heure}}</span></h3>
+                <h3 class="date">{{getDateFormated(activity.date_activite)}} <span class="heure">à {{activity.heure}}</span></h3>
             </div>
             <div class="other-infos-activity">
                 <div class="options-activity">
@@ -75,38 +75,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="link-adresse">
+                        <div class="link-adresse" v-if="activity.link_adresse">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.8237421515705!2d-71.27008768439434!3d46.88651597914343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb8bcd7e1bde493%3A0xdef3d5834e733041!2s%C3%89cole%20Secondaire%20des%20Sentiers!5e0!3m2!1sfr!2sca!4v1625865022455!5m2!1sfr!2sca" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
                     <Availability :availabilities="availabilities" :activity="activity"  v-if="optionActivitySelected === 'availability'" />
-                    <div class="alignements-activity" v-if="optionActivitySelected === 'alignement' && activity.is_match">
-                        <h4>Système: 1-4-4-2</h4>
-                        <div class="alignement">
-                            <div class="borders">
-                            <div class="gardien">
-                                <div>Charlo</div>
-                            </div>
-                            <div class="defenseurs systeme-1-4-4-2">
-                                <div>Amis</div>
-                                <div>Amis</div>
-                                <div>Amis</div>
-                                <div>Amis</div>
-                            </div>
-                            <div class="milieux systeme-1-4-4-2">
-                                <div>Amis</div>
-                                <div>Amis</div>
-                                <div>Amis</div>
-                                <div>Amis</div>
-                            </div>
-                            <div class="attaquants systeme-1-4-4-2">
-                                <div>Amis</div>
-                                <div>Amis</div>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="remplacants">Remplaçants: Lolo-Lipo-Santino</div>
-                    </div>
+                    <Alignements  :alignement="activity.alignement" :activity="activity" :players="players" v-if="optionActivitySelected === 'alignement' && activity.is_match"/>
                     <div class="alignements-activity" v-if="optionActivitySelected === 'seance' && !activity.is_match">
                         <h4>Séance</h4>
                     </div>
@@ -117,10 +91,12 @@
     </div>
 </template>
 <script>
-import UpdatePlayerCoachVue from '../../../../components/modals/teams/UpdatePlayerCoach.vue';
-import onglets from '../../../../components/slots/onglets.vue';
+import Alignements from '../../../../../components/activities/Alignements.vue';
+import UpdatePlayerCoachVue from '../../../../../components/modals/teams/UpdatePlayerCoach.vue';
+import onglets from '../../../../../components/slots/onglets.vue';
+import DateService from '../../../../../static/services/DateService';
 export default {
-    components: { onglets },
+    components: { onglets, Alignements },
     middleware: 'authentificated',
     layout:'connected',
     data(){
@@ -128,7 +104,9 @@ export default {
             optionActivitySelected:'details',
             availabilities:[],
             notes:[],
+            alignement:{},
             activity:{},
+            players:[],
             loader:true
         }
     },
@@ -143,6 +121,10 @@ export default {
     methods: {
         back(){
             history.back();
+        },
+        getDateFormated(date){
+            date = new Date(date);
+            return DateService.getDateFormatFR(date);
         },
         async deleteActivity(){
             await this.$axios.delete(`api/activities/${this.activity.id}`)
@@ -168,6 +150,8 @@ export default {
                     this.activity = response.summary.activity_infos;
                     this.availabilities = response.summary.availabilities;
                     this.notes = response.summary.notes;
+                    this.alignement = response.summary.alignement;
+                    this.players = response.summary.players;
                 }
 
                 this.loader = false;

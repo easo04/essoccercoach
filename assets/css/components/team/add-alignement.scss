@@ -1,0 +1,167 @@
+.add-alignement{
+    padding: 30px 50px !important;
+    h4{
+        margin-top: 0;
+    }
+    .back{
+        span{
+            cursor: pointer;
+            @include font-xm-sbold;
+            font-family: $font-family-text;
+            color: $color-black-fonts;
+        }
+        margin-bottom: 20px;
+    }
+    .select-system{
+        select{
+            @media screen and (max-width: $screen-sm) {   
+                width: 100%;
+            }
+        }
+    }
+
+    .liste-players{
+        padding: 30px;
+        background: #47b55e;
+        padding: 20px;
+        border-radius: 20px;
+        .players{
+            display: grid;
+            grid-template-rows: 4;
+            grid-row-gap: 40px;
+            margin-bottom: 20px;
+            border:2px solid white;
+            padding: 20px 0px;
+            border-radius: 20px;
+            .items-player{
+                background-color: #3e9350;
+                height: 40px;
+                display: grid;;
+                grid-column-gap: 5px;
+                justify-content: center;
+                align-items: center;
+                .item-player{
+                    width: auto;
+                    &:not(:last-child){
+                        margin-right: 2px;
+                    }
+                    display: flex;
+                    justify-content: center;
+                    
+                    select{
+                        height: 30px;
+                        background: #FDFDFD;
+                        border: 1px solid #979797;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                    }
+                }
+            }
+            .gardien{
+                grid-template-columns: repeat(1, 1fr);
+                select{
+                    width: 100px;
+                    border-color:  #947E37 !important;
+                }
+            }
+            .defenseurs{
+                .item-player{
+                    select{
+                        border-color:  #942F3B !important;;
+                    }
+                }
+            }
+            .milieux{
+                select{
+                    border-color:  #4D5894 !important;;
+                }
+            }
+            .attaquants{
+                select{
+                    border-color:  #BE40C7 !important;;
+                }
+            }
+            &.systeme-4-4-2{
+                .defenseurs{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                .milieux{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                .attaquants{
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            &.systeme-4-3-3{
+                .defenseurs{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                .milieux{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                .attaquants{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+            &.systeme-3-5-2{
+                .defenseurs{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                .milieux{
+                    grid-template-columns: repeat(5, 1fr);
+                }
+                .attaquants{
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            &.systeme-3-4-3{
+                .defenseurs{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                .milieux{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                .attaquants{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            } 
+            &.systeme-4-5-1{
+                .defenseurs{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                .milieux{
+                    grid-template-columns: repeat(5, 1fr);
+                }
+                .attaquants{
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+            &.systeme-5-3-2{
+                .defenseurs{
+                    grid-template-columns: repeat(5, 1fr);
+                }
+                .milieux{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                .attaquants{
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            &.systeme-4-2-4{
+                .defenseurs{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                .milieux{
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .attaquants{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
+        }
+        h6{
+            margin: 0;
+            margin-bottom: 10px;
+        }
+    }
+}
