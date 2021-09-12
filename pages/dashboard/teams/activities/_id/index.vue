@@ -14,8 +14,8 @@
                 </menu-actions>
             </div>
             <div class="details-activity" >
-                <h2>{{activity.name}} <span v-if="activity.is_match"> vs <span class="adversaire">{{activity.adversaire}}</span></span></h2>
-                <h3 class="date">{{getDateFormated(activity.date_activite)}} <span class="heure">à {{activity.heure}}</span></h3>
+                <h2><span v-if="!activity.is_match">{{activity.name}}</span> <span v-if="activity.is_match"> vs <span class="adversaire">{{activity.adversaire}}</span></span></h2>
+                <h3 class="date">{{getDateFormated(activity.date_activite)}} - <span class="heure">{{activity.heure}}</span></h3>
             </div>
             <div class="other-infos-activity">
                 <div class="options-activity">
@@ -61,18 +61,20 @@
                                 <span class="icon"><font-awesome-icon :icon="['fas', 'map-marker-alt']"/></span> {{activity.adresse}}
                             </div>
                             <div class="availabilities">
-                                <div class="present" v-if="lstPlayersAvailabilityPresent.length > 1">
+                                <div class="present" v-if="lstPlayersAvailabilityPresent.length > 0">
                                     <h5>Présents</h5>
                                     <div v-for="(availavility, index) in lstPlayersAvailabilityPresent" :key="index">
                                         {{availavility.name_player}}
                                     </div>
                                 </div>
-                                <div class="absent" v-if="lstPlayersAvailabilityAbsent.length > 1">         
+                                <div class="present-back"></div>
+                                <div class="absent" v-if="lstPlayersAvailabilityAbsent.length > 0">         
                                     <h5>Absents</h5>
                                     <div v-for="(availavility, index) in lstPlayersAvailabilityAbsent" :key="index">
                                         {{availavility.name_player}}
                                     </div>
                                 </div>
+                                <div class="absent-back"></div>
                             </div>
                         </div>
                         <div class="link-adresse" v-if="activity.link_adresse">
@@ -115,7 +117,7 @@ export default {
             return this.availabilities.filter(a => a.availability === true);
         },
         lstPlayersAvailabilityAbsent(){
-            return this.availabilities.filter(a => a.availability === false && a.id_availability != null);
+            return this.availabilities.filter(a => a.availability === false && a.id_availability != undefined);
         }
     },
     methods: {
