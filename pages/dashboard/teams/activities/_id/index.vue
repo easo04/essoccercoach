@@ -67,14 +67,14 @@
                                         {{availavility.name_player}}
                                     </div>
                                 </div>
-                                <div class="present-back"></div>
+                                <div class="present-back" v-if="lstPlayersAvailabilityPresent.length > 0"></div>
                                 <div class="absent" v-if="lstPlayersAvailabilityAbsent.length > 0">         
                                     <h5>Absents</h5>
                                     <div v-for="(availavility, index) in lstPlayersAvailabilityAbsent" :key="index">
                                         {{availavility.name_player}}
                                     </div>
                                 </div>
-                                <div class="absent-back"></div>
+                                <div class="absent-back" v-if="lstPlayersAvailabilityAbsent.length > 0"></div>
                             </div>
                         </div>
                         <div class="link-adresse" v-if="activity.link_adresse">

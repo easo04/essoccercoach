@@ -12,7 +12,7 @@
         top:0;
         width: 100%;
         z-index: 900;
-        background-color: $color-white-background;
+        background-color: $color-blue-blackground;
         .logo{
             display: flex;
             align-items: center;
@@ -20,6 +20,7 @@
             height: 60px;
             width: 70px;
             border-right: 1px solid $color-border-designer;
+            background-color: $color-white-background;
             .image-logo{
                 height: 50px;
             }
@@ -30,7 +31,7 @@
             align-items: center;
             margin-right: 20px;
             font-size: 25px;
-            color:$color-soccer-coach;
+            color:$color-white-fonts;
             cursor: pointer;
             position: relative;
             .profil{
@@ -43,7 +44,7 @@
             .welcome{
                 @include font-xm-sbold;
                 font-family: $font-family-text;
-                color:$color-blue-blackground;
+                color:$color-white-fonts;
             }
             .liste-profil{
                 position: absolute;

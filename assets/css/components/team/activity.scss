@@ -1,6 +1,24 @@
 .list-activities{
     position: relative;
 
+    .filter-activities{
+        display: flex;
+        flex-wrap: wrap;
+        .filter {
+            padding: 5px 10px 5px 10px;
+            border-radius: 20px;
+            border:1px solid $color-black-fonts-second;
+            color: $color-black-fonts-second;
+            margin-right: 10px;
+            cursor: pointer;
+            @include font-xm;
+            &.actif{
+                background-color: $color-soccer-coach;
+                color: $color-white-fonts;
+            }
+        };
+    }
+
     .activity{
         position: relative;
         display: grid;
@@ -8,7 +26,7 @@
         grid-column-gap: 10px;
 
         .date-activity{
-            border:1px solid $color-gris-2;
+            border:1px solid #10444A;
             background-color: #f7f7f7;
             text-align: center;
             border-radius: 5px;
@@ -17,6 +35,7 @@
             align-items: center;
             .day{
                 @include font-l-bold;
+                color:#10444A;
             }
 
             .day-label{
@@ -31,7 +50,7 @@
                 font-weight: 600;
             }
             .name_adversaire{
-                text-transform: uppercase;
+                text-transform: capitalize;
                 font-size: 16px;
             }
             .name, .name_adversaire, .adresse{
