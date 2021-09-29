@@ -1,4 +1,4 @@
-.modal-add-activity{
+.add-activity{
     .is-game{
         cursor: pointer;
         color: $color-icons-designer;
@@ -10,5 +10,18 @@
             line-height: 0px;
             margin-bottom: 10px;
         }
+    }
+
+    .footer-form{
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .error{
+        display: flex;
+        justify-content: flex-end;
+        color:$color-red;
+        @include font-xm;
     }
 }

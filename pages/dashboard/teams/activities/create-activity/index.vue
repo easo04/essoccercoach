@@ -1,10 +1,8 @@
 <template>
-    <div class="modal-add-activity modal-custom">
-        <div class="modal-header">
-            <div class="titre-modal"><h3>Ajoutez une activité à votre équipe</h3></div>
-            <div class="close-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
-        </div>
-        <div class="modal-content">
+    <div class="add-activity connected-page">
+        <bouton-back title="Retournez au sommaire de l'équipe"/>
+        <h3>Créez une activité</h3>
+        <div class="form-add-activity">
             <div class="form-group">
                 <label class="label-control" for="name">Nom (Obligatoire): </label>
                 <input type="text" name="name" class="form-control" v-model="activity.name" autocomplete="off"/>
@@ -48,16 +46,23 @@
                 <input type="text" name="name" class="form-control" v-model="activity.adversaire" autocomplete="off"/>
             </div>
         </div>
-        <div class="modal-footer">
+        
+        <div class="footer-form">
             <div class="actions">
-                <button class="btn btn-default" @click.prevent="addActivity()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Enregistrez</button>
+                <button class="btn btn-default" @click.prevent="addActivity()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Enregistrez</button>            
             </div>
+        </div>
+        <div class="error" v-show="error">
+            <span>* {{error}}</span>
         </div>
     </div>
 </template>
 <script>
+import BoutonBack from '../../../../../components/BoutonBack.vue';
 export default {
-    props:['team'],
+    components: { BoutonBack },
+    middleware: 'authentificated',
+    layout:'connected',
     data(){
         return{
             activity:{
@@ -68,14 +73,13 @@ export default {
                 isGame:false,
                 adversaire:undefined,
                 adresse:undefined,
-                linkAdresse:undefined
-            }
+                linkAdresse:undefined,
+            },
+            error:undefined,
+            team:undefined
         }
     },
     methods: {
-        hide () {
-            this.$modal.hide('modal-add-activity');
-        },
         validDTO(){
             if(this.activity.isGame){
                 return this.activity.name && this.activity.date && this.activity.heure && this.activity.adversaire;
@@ -90,7 +94,7 @@ export default {
                 date_activite:this.activity.date,
                 heure:this.activity.heure,
                 heure_arrive:this.activity.heureArrive,
-                equipe:this.team,
+                equipe:this.team.id,
                 is_match:this.activity.isGame,
                 adresse:this.activity.adresse,
                 link_adresse:this.activity.linkAdresse,
@@ -99,12 +103,13 @@ export default {
 
             try{
                 await this.$axios.post('/api/activities', data); 
+
+                this.$root.$emit('reload-team-activity');     
+                this.$router.push(`/dashboard/teams`);
             }catch(err){
                 console.log(err)
+                this.error = 'Erreur lors de la création de l\'activité';
             }
-
-            this.$root.$emit('reload-team-activity');
-            this.hide();
         },
         setIsGame(){
             this.activity.isGame = !this.activity.isGame;
@@ -113,7 +118,8 @@ export default {
             return !this.validDTO();
         },
     },
-    created () {
+    mounted () {
+        this.team = JSON.parse(localStorage.getItem('current-team'));
     }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
-    <div class="modal-player-details modal-custom">
-        <div class="modal-header">
-            <div class="titre-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
+    <div class="player-details">
+        <div class="player-details-header">
+            <div class="back" title="Retournez au sommaire"><span @click="back()"><font-awesome-icon :icon="['fas', 'arrow-left']"/></span></div>
             <menu-actions custom-class="menu">
                 <template v-slot:content-options>       
                     <div @click="updatePlayer()">Modifier</div>
@@ -9,7 +9,7 @@
                 </template>
             </menu-actions>
         </div>
-        <div class="modal-content">
+        <div class="details-content" v-if="player">
             <div class="details-player">
                 <h2>{{player.first_name}} {{player.last_name}}</h2>
                 <h3>{{player.poste}}</h3>
@@ -18,23 +18,23 @@
                 <p>{{textPlayer}}</p>
             </div>
         </div>
-        <div class="modal-footer">
-        </div>
     </div>
 </template>
 <script>
-import TeamService from '../../../static/services/TeamService';
-import UpdatePlayerCoachVue from './UpdatePlayerCoach.vue';
+import TeamService from '../../../../../static/services/TeamService';
 export default {
-    props:['player', 'isPlayer'],
+    middleware: 'authentificated',
+    layout:'connected',
     data(){
         return{
             textPlayer:undefined,
+            player:undefined,
+            isPlayer:false
         }
     },
     methods: {
-        hide () {
-            this.$modal.hide('modal-player-details');
+        back(){
+            history.back();
         },
         async deletePlayer(){
 
@@ -45,26 +45,34 @@ export default {
             }
 
             this.$root.$emit('reload-team');
-            this.hide();
         },
         updatePlayer(){
             let playerModel = this.player;
             playerModel.isPlayer = this.isPlayer;
-            this.hide();
-            this.$modal.show(
+            /*this.$modal.show(
                 UpdatePlayerCoachVue,
                 {'player':playerModel},
                 {name : 'modal-update-player-coach', classes:['modal-top']}
-            );
+            );*/
         }
     },
     created () {
+    },
+    mounted(){
+        const team = JSON.parse(localStorage.getItem('current-team'));
+        const player = TeamService.getPlayerById(this.$route.params.id, team);
+
+        console.log(player)
+
+        this.player = player.player;
+        this.isPlayer = player.isPlayer;
+
+        
         if(this.isPlayer){
             this.textPlayer = this.isPlayer ? 'Joueur' : 'Entraîneur'
         }else{
             this.textPlayer = TeamService.getCoachRoleLabelByCode(this.player.role);
         }
-        
     }
 }
 </script>

@@ -3,15 +3,6 @@
     h4{
         margin-top: 0;
     }
-    .back{
-        span{
-            cursor: pointer;
-            @include font-xm-sbold;
-            font-family: $font-family-text;
-            color: $color-black-fonts;
-        }
-        margin-bottom: 20px;
-    }
     .select-system{
         select{
             @media screen and (max-width: $screen-sm) {   

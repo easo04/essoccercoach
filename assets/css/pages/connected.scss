@@ -281,6 +281,13 @@
                 @media screen and (max-width: $screen-sm) {
                     grid-row: 2;
                 }
+
+                .connected-page{
+                    padding: 30px 50px !important;
+                    h3{
+                        color:$color-black-fonts;
+                    }
+                }
             }
             .section-rigth{
                 height: auto;

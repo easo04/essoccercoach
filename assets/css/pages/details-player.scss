@@ -1,24 +1,27 @@
-.modal-player-details{
-    .modal-header{
+.player-details{
+    .player-details-header{
         background-color: $color-secondary-4;
         color:$color-white-fonts;
-        position: relative;
+        position: relative;  
+        padding: 20px;
+        height: 20px;
+
         .menu-actions{
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+            right: 20px;
             .btn-show-actions{
                 button{
                     color:$color-white-fonts;
                 }
             }
-            .options-action{
-                top:20px;
-            }
+        }
+
+        .back{
+            position: absolute;
+            left: 20px;
+            cursor: pointer;
         }
     }
-    .modal-content{
+    .details-content{
         padding: 0 !important;
         .details-player{
             background-color: $color-secondary-4;

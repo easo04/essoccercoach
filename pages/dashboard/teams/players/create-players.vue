@@ -1,10 +1,8 @@
 <template>
-    <div class="modal-add-player-coach modal-custom">
-        <div class="modal-header">
-            <div class="titre-modal"><h3>Ajoutez un joueur à votre équipe</h3></div>
-            <div class="close-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
-        </div>
-        <div class="modal-content">
+    <div class="create-players connected-page">
+        <bouton-back title="Retournez au sommaire de l'équipe"/>
+        <h3>Créez un joueur ou entraîneur</h3>
+        <div class="form-content">
             <div class="form-group">
                 <label class="label-control" for="last_name">Nom (Obligatoire): </label>
                 <input type="text" name="last_name" class="form-control" v-model="player.lastName" autocomplete="off"/>
@@ -56,17 +54,21 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
+        <div class="footer-form">
             <div class="actions">
                 <button class="btn btn-default" @click.prevent="addPlayer()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Enregistrez</button>
             </div>
         </div>
+        <div class="error" v-show="error">
+            <span>* {{error}}</span>
+        </div>
     </div>
 </template>
 <script>
-import TeamService from '../../../static/services/TeamService';
+import TeamService from '../../../../static/services/TeamService';
 export default {
-    props:['team'],
+    middleware: 'authentificated',
+    layout:'connected',
     data(){
         return{
             player:{
@@ -78,13 +80,11 @@ export default {
                 admin:false
             },
             lstPositions:TeamService.getListPositions(),
-            lstRoles:TeamService.getListRoles()
+            lstRoles:TeamService.getListRoles(),
+            team:undefined
         }
     },
     methods: {
-        hide () {
-            this.$modal.hide('modal-add-player-coach');
-        },
         validDTO(){
             if(this.player.notPlayer){
                 return this.player.firstName && this.player.lastName && this.player.role;
@@ -99,7 +99,7 @@ export default {
                 last_name:this.player.lastName,
                 poste:this.player.position,
                 role:this.player.role,
-                equipe:this.team,
+                equipe:this.team.id,
                 admin:this.player.admin
             }
 
@@ -110,7 +110,7 @@ export default {
             }
 
             this.$root.$emit('reload-team');
-            this.hide();
+            this.$router.push(`/dashboard/teams`);
         },
         setNotPlayer(){
             this.player.notPlayer = !this.player.notPlayer;
@@ -122,7 +122,8 @@ export default {
             return !this.validDTO();
         },
     },
-    created () {
+    mounted () {
+        this.team = JSON.parse(localStorage.getItem('current-team'));
     }
 }
 </script>

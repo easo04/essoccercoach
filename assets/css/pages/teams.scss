@@ -1,6 +1,14 @@
 .teams-page{
     padding: 0!important;
     position: relative;
+
+    .loader{
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .club{
         margin-top: 0;
         padding-top: 0;
@@ -91,7 +99,7 @@
         }
         .option-content{
             .coach, .player, .activity{
-                @include font-xm;
+                @include font-xm-bold;
                 color:$color-black-fonts;
                 padding: 10px 0;
                 border-bottom: 1px solid #E9E9E9;

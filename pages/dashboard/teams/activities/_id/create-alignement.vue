@@ -1,8 +1,6 @@
 <template>
     <div class="add-alignement">
-        <div class="back" title="Retournez au sommaire">
-            <span @click="back()"><font-awesome-icon :icon="['fas', 'arrow-left']"/> Retournez à l'activité</span>
-        </div>
+        <bouton-back title="Retournez à l'activité"/>
         <div class="select-system">
             <div class="form-group">
                 <label class="label-control" for="systeme">Système: </label>
@@ -68,8 +66,10 @@
     </div>
 </template>
 <script>
+import BoutonBack from '../../../../../components/BoutonBack.vue';
 import TeamService from '../../../../../static/services/TeamService';
 export default {
+    components: { BoutonBack },
     middleware: 'authentificated',
     layout:'connected',
     data(){
@@ -91,9 +91,6 @@ export default {
         },
     },
     methods:{
-        back(){
-            history.back();
-        },
         save(){
             this.defenseurs.forEach(element => {
                 console.log('def id: ' + element.player.id)

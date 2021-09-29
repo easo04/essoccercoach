@@ -19,7 +19,11 @@
             box-shadow: 2px 2px 5px 1px rgba(201, 201, 201, 0.7);
             padding: 20px;
             border-radius: 5px;
-            width: 400px;
+            //width: 400px;
+
+            @media screen and (min-width: $screen-sm) {
+                width: $screen-md;
+            }
             .actions{
                 margin-top: 16px;
                 display: flex;

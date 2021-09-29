@@ -96,7 +96,6 @@ export default {
         },
         getDayOfWeek(date){
             date = new Date(date);
-            console.log(date)
             return DateService.getDayOfWeek(date, 'fr').abbreviationLarge;
         },
         showDetailsActivity(activity){
@@ -111,10 +110,6 @@ export default {
         },
         addAlignement(activity){
             this.$router.push(`/dashboard/teams/activities/${activity.id}/create-alignement`);
-        },
-        setShowActionsActivity(activity){
-            console.log('activity emit' + activity.id)
-            this.$emit('showOptionsActivity', activity);
         }
     }
 }

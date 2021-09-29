@@ -35,6 +35,35 @@ class TeamService{
     static getListRoles(){
         return COACH_ROLES;
     }
+
+    static getPlayerById(idPlayer, team){
+        let response = {};
+
+        if(!team){
+            return response;
+        }
+
+        console.log(idPlayer)
+
+        const player = team.players.find(p => p.id == idPlayer);
+        if(player){
+            console.log(player)
+            response.isPlayer = true;
+            response.player = player;
+
+            return response;
+        }
+
+        const coach = team.coachs.find(c => c.id == idPlayer);
+        if(coach){
+            response.isPlayer = false;
+            response.player = coach;
+
+            return response;
+        }
+
+        return response;
+    }
 }
 
 module.exports = TeamService
