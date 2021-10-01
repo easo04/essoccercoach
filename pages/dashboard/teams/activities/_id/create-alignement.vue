@@ -1,6 +1,6 @@
 <template>
     <div class="add-alignement">
-        <bouton-back title="Retournez à l'activité"/>
+        <bouton-back title="Retournez au détail de l'activité"/>
         <div class="select-system">
             <div class="form-group">
                 <label class="label-control" for="systeme">Système: </label>

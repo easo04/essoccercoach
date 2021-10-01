@@ -3,6 +3,7 @@
         <bouton-back title="Retournez au sommaire de l'équipe"/>
         <h3>Créez une activité</h3>
         <div class="form-add-activity">
+            
             <div class="form-group">
                 <label class="label-control" for="name">Nom (Obligatoire): </label>
                 <input type="text" name="name" class="form-control" v-model="activity.name" autocomplete="off"/>

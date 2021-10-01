@@ -1,0 +1,137 @@
+.add-seance{
+    .content-add-seance{
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-gap: 10px;
+        >div{
+            padding: 10px;
+            max-height: 100vh;
+        }
+        h6{
+            margin: 0;
+            margin-bottom: 12px;
+            color:$color-black-fonts;
+        }
+        h5{
+            margin: 0;
+            margin-bottom: 14px;
+            
+            color:$color-black-fonts;
+        }
+        .exercices{
+            background-color: #f9f9f9;
+            border:1px solid #ebebeb;
+            border-radius: 5px;
+            .type-exercices{
+                margin-top: 12px;
+                ul{
+                    margin: 0;
+                    list-style: none;
+                    li{
+                        a{
+                            @include blue-link;
+                            @include font-s;
+                            font-family: $font-family-text;
+                            color:$color-black-fonts-second;
+
+                            &:hover{
+                                text-decoration: none;
+                            }
+                        }
+
+                        &::before{
+                            content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+                            color:$color-black-fonts-second; /* Change the color */
+                            font-weight: bold; /* If you want it to be bold */
+                            display: inline-block; /* Needed to add space between the bullet and the text */
+                            width: 1em; /* Also needed for space (tweak if needed) */
+                            margin-left: -1em; /* Also needed for space (tweak if needed) */
+                        }
+                    }
+                }
+            }
+            overflow-y: scroll;
+        }
+        .lst-exercices{
+            border:1px solid #ebebeb;
+            border-radius: 5px;
+            overflow-y: scroll;
+
+            .exercices-items{
+                .exercice{
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    grid-column-gap: 10px;
+                    margin-bottom: 20px;
+                    border-bottom: 1px solid #ebebeb;
+                    padding-bottom: 10px;
+                    .details-exercice{
+                        p{
+                            margin: 5px;
+                            @include font-xm;
+                            color:$color-black-fonts-second;
+                            font-family: $font-family-text;
+                        }
+                    }
+                    .image-exercice{
+                        .image{
+                            background-color: red;
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    
+    }
+        /* Track */
+    ::-webkit-scrollbar-track {
+        background:#E9E9E9;
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: $color-gris-4;
+        border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ADADAD; 
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        height: 7px;
+        border-radius: 5px;  
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%; 
+        background: $color-soccer-coach;
+        cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: $color-soccer-coach;
+        cursor: pointer;
+    }
+}

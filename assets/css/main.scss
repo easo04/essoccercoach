@@ -36,6 +36,10 @@ h5{
     @include h5;
 }
 
+h6{
+    @include h6;
+}
+
 .form-group{
     @include form-group;
 }
@@ -82,6 +86,7 @@ h5{
 @import '@/assets/css/components/team/add-alignement.scss';
 @import '@/assets/css/components/slots/onglets.scss';
 @import '@/assets/css/components/alignements.scss';
+@import '@/assets/css/components/team/seances.scss';
 
 
 //pages
@@ -102,6 +107,7 @@ h5{
 @import '@/assets/css/pages/add-activity.scss';
 @import '@/assets/css/pages/add-player.scss';
 @import '@/assets/css/pages/details-player.scss';
+@import '@/assets/css/pages/add-seance.scss';
 
 
 .red{

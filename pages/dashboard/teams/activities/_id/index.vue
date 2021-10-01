@@ -83,9 +83,7 @@
                     </div>
                     <Availability :availabilities="availabilities" :activity="activity"  v-if="optionActivitySelected === 'availability'" />
                     <Alignements  :alignement="activity.alignement" :activity="activity" :players="players" v-if="optionActivitySelected === 'alignement' && activity.is_match"/>
-                    <div class="alignements-activity" v-if="optionActivitySelected === 'seance' && !activity.is_match">
-                        <h4>Séance</h4>
-                    </div>
+                    <Seances :activity="activity" v-if="optionActivitySelected === 'seance' && !activity.is_match"/>
                     <Notes :notes="notes" :activity="activity" v-if="optionActivitySelected === 'notes'"/>
                 </div>
             </div>
@@ -94,11 +92,12 @@
 </template>
 <script>
 import Alignements from '../../../../../components/activities/Alignements.vue';
+import Seances from '../../../../../components/activities/Seances.vue';
 import UpdatePlayerCoachVue from '../../../../../components/modals/teams/UpdatePlayerCoach.vue';
 import onglets from '../../../../../components/slots/onglets.vue';
 import DateService from '../../../../../static/services/DateService';
 export default {
-    components: { onglets, Alignements },
+    components: { onglets, Alignements, Seances },
     middleware: 'authentificated',
     layout:'connected',
     data(){

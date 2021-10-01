@@ -6,6 +6,7 @@
     @media screen and (max-width: $screen-sm) {
         padding: 50px 20px;
     }
+
     
     >div{
     
@@ -22,7 +23,7 @@
             //width: 400px;
 
             @media screen and (min-width: $screen-sm) {
-                width: $screen-md;
+                width: 400px;
             }
             .actions{
                 margin-top: 16px;

@@ -1,0 +1,13 @@
+.seances-activity{
+    position: relative;
+    min-height: 100px;
+
+    .content-actions{
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+        .btn{
+            @include btn-circle;
+        }
+    }
+}
