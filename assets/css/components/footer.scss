@@ -143,6 +143,11 @@ footer{
         }
 
         .email-send{
+            &.form-group-flex{
+                grid-template-columns: 3fr 1fr;
+                grid-column-gap:0px;
+            }
+
             .form-control{
                 border-top-right-radius: 0 !important;
                 border-bottom-right-radius: 0 !important;

@@ -1,4 +1,12 @@
 .add-seance{
+
+    .loader{
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
     .content-add-seance{
         display: grid;
         grid-template-columns: 30% 70%;
@@ -59,25 +67,47 @@
 
             .exercices-items{
                 .exercice{
-                    display: grid;
-                    grid-template-columns: 2fr 1fr;
-                    grid-column-gap: 10px;
                     margin-bottom: 20px;
                     border-bottom: 1px solid #ebebeb;
                     padding-bottom: 10px;
-                    .details-exercice{
-                        p{
-                            margin: 5px;
-                            @include font-xm;
-                            color:$color-black-fonts-second;
-                            font-family: $font-family-text;
+                    .exercice-info-block{
+                        display: grid;
+                        grid-template-columns: 2fr 1fr;
+                        grid-column-gap: 10px;
+                        .details-exercice{
+                            p{
+                                margin: 5px;
+                                @include font-xm;
+                                color:$color-black-fonts-second;
+                                font-family: $font-family-text;
+                            }
+                        }
+                        .image-exercice{
+                            .image{
+                                background-color: red;
+                                height: 100%;
+                                width: 100%;
+                            }
                         }
                     }
-                    .image-exercice{
-                        .image{
-                            background-color: red;
-                            height: 100%;
-                            width: 100%;
+                    .exercice-actions-block{
+                        margin-top: 10px;
+
+                        display: flex;
+                        justify-content: flex-end;
+
+                        >div{
+                            display: flex;
+                            >div{
+                                margin-left: 8px;
+                                @include blue-link;
+                                @include font-s;
+                                font-family: $font-family-text;
+                                color:$color-black-fonts-second;
+                                &:hover{
+                                    text-decoration: none;
+                                }
+                            }
                         }
                     }
                 }

@@ -369,11 +369,12 @@
         }
 
         &.modal-s{
-            left: 35%!important;
+            //left: 35%!important;
             width: 400px !important;
             height: 270px!important;
+            top:0px !important;
             @media screen and (max-width: $screen-sm) {
-                left: 25%!important;
+                //left: 25%!important;
             }
             @media screen and (max-width: $screen-xs) {
                 left: 0!important;
