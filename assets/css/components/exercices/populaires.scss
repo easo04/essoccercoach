@@ -52,7 +52,7 @@
             flex-wrap: nowrap;
             .exercice-item{
                 min-width: 25%;
-                height: 244px;
+                height: auto;
                 margin-right: 20px;
                 background: $color-white-background;
                 box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
@@ -60,7 +60,7 @@
                 cursor: pointer;
                 .image-exercice-item{
                     background-color: green;
-                    height: 70%;
+                    height: auto;
                     border-top-left-radius: 5px;
                     border-top-right-radius: 5px;
                     width: 100%;
@@ -74,6 +74,7 @@
                 }
                 .description-exercice-item{
                     padding: 10px;
+                    height: 80px;
                     h4{
                         color: $color-black-fonts;
                         margin: 0;
