@@ -51,133 +51,163 @@
                 font-family: $font-family-text;
             }
         }
-        .liste-exercices{
-            margin-top: 30px;
+
+        .content-exercices-page{
+            
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: 16px;
-            margin-bottom: 30px;
-            @media screen and (max-width: $screen-sm) {
-                grid-template-columns: 1fr 1fr;
-                grid-gap: 50px;
+            grid-template-columns: 4fr 1fr;
+            grid-column-gap: 20px;
+
+            
+            @media screen and (max-width: $screen-sm) { 
+                grid-template-columns:1fr;
             }
-            @media screen and (max-width: $screen-xs) {
-                grid-template-columns: 1fr;
-                grid-gap: 50px;
-            }
-            .item-exercice{
-                //width: 273px;
-                width: 100%;
-                height: auto;
-                background: $color-white-background;
-                box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
-                border-radius: 5px;
-                cursor: pointer;
-                &:hover{
-                    box-shadow: 2px 2px 5px 1px rgba(201, 201, 201, 0.9);
-                }
-                @media screen and (max-width: $screen-sm) {
-                    width: 100%;
-                    height: 380px;;
-                }
-                
-                /*@media screen and (max-width: $screen-sm) {
-                    width: 100%;
-                    height: 500px;;
-                    .img{
-                        height: 400px;
+
+            .content-left-exercices{
+                .liste-exercices{
+                    margin-top: 30px;
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-gap: 16px;
+                    margin-bottom: 30px;
+                    @media screen and (max-width: $screen-sm) {
+                        grid-template-columns: 1fr 1fr;
+                        grid-gap: 50px;
                     }
-                }*/
-                .img{
-                    width: 100%;
-                    height: auto;
-                    position: relative;
-                    img{
-                        border-top-left-radius: 5px;
-                        border-top-right-radius: 5px;
+                    @media screen and (max-width: $screen-xs) {
+                        grid-template-columns: 1fr;
+                        grid-gap: 50px;
+                    }
+                    .item-exercice{
+                        //width: 273px;
                         width: 100%;
                         height: auto;
-                        object-fit: cover;
-                    }
-                    @media screen and (max-width: $screen-sm) {
-                        height: 200px;
-                        img{
-                            height: 100%;
+                        background: $color-white-background;
+                        box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
+                        border-radius: 5px;
+                        cursor: pointer;
+                        &:hover{
+                            box-shadow: 2px 2px 5px 1px rgba(201, 201, 201, 0.9);
                         }
-                    }
-                    .populaire{
-                        color:$color-yellow;
-                        position: absolute;
-                        bottom:0;
-                        right: 0;
-                        @include font-s-sbold;
-                        font-family: $font-family-text;
-                        background-color: rgba($color: $color-yellow, $alpha: 0.3);
-                        padding: 5px;
-                        border-top-left-radius: 5px;
+                        @media screen and (max-width: $screen-sm) {
+                            width: 100%;
+                            height: 380px;;
+                        }
+                        
+                        /*@media screen and (max-width: $screen-sm) {
+                            width: 100%;
+                            height: 500px;;
+                            .img{
+                                height: 400px;
+                            }
+                        }*/
+                        .img{
+                            width: 100%;
+                            height: auto;
+                            position: relative;
+                            img{
+                                border-top-left-radius: 5px;
+                                border-top-right-radius: 5px;
+                                width: 100%;
+                                height: auto;
+                                object-fit: cover;
+                            }
+                            @media screen and (max-width: $screen-sm) {
+                                height: 200px;
+                                img{
+                                    height: 100%;
+                                }
+                            }
+                            .populaire{
+                                color:$color-yellow;
+                                position: absolute;
+                                bottom:0;
+                                right: 0;
+                                @include font-s-sbold;
+                                font-family: $font-family-text;
+                                background-color: rgba($color: $color-yellow, $alpha: 0.3);
+                                padding: 5px;
+                                border-top-left-radius: 5px;
+                            }
+                        }
+                        .description{
+                            padding: 20px;
+                            height: 125px;
+                            h4{
+                                color:$color-black-fonts;
+                                margin: 0;
+                                height: 38px
+                            }
+                            @media screen and (max-width: $screen-sm) {
+                                height: 140px;
+                            }
+                            p{
+                                @include font-s;
+                                color:$color-black-fonts-second;
+                                margin: 0;
+                                font-family: $font-family-text;
+                                margin-top: 14px;
+                                height: 50px;
+                            }
+                            .footer-description{
+                                margin-top: 10px;
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                >div{
+                                    display: flex;
+                                    align-items: center
+                                }
+                                .icon-text{
+                                    @include font-s-bold;
+                                    font-family: $font-family-text;
+                                    color:#858585;
+                                    svg{
+                                        color:#22C77B;
+                                        margin-right: 5px;
+                                    }
+                                }
+                                .type{
+                                    justify-content: flex-end;
+                                    @include font-s-bold;
+                                    font-family: $font-family-text;
+                                    color:#0E2650;
+                                    >div{
+                                        padding: 2px 10px;
+                                        background-color: #A7BFE9;
+                                        border-radius: 10px;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                .description{
-                    padding: 20px;
-                    height: 125px;
-                    h4{
-                        color:$color-black-fonts;
-                        margin: 0;
-                        height: 38px
-                    }
-                    @media screen and (max-width: $screen-sm) {
-                        height: 140px;
-                    }
-                    p{
-                        @include font-s;
-                        color:$color-black-fonts-second;
-                        margin: 0;
-                        font-family: $font-family-text;
-                        margin-top: 14px;
-                        height: 50px;
-                    }
-                    .footer-description{
-                        margin-top: 10px;
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        >div{
-                            display: flex;
-                            align-items: center
+                .more-results{
+                    margin-top: 30px;
+                    display: flex;
+                    justify-content: center;
+                    .btn{
+                        svg{
+                            margin-right: 16px;
                         }
-                        .icon-text{
-                            @include font-s-bold;
-                            font-family: $font-family-text;
-                            color:#858585;
-                            svg{
-                                color:#22C77B;
-                                margin-right: 5px;
-                            }
-                        }
-                        .type{
-                            justify-content: flex-end;
-                            @include font-s-bold;
-                            font-family: $font-family-text;
-                            color:#0E2650;
-                            >div{
-                                padding: 2px 10px;
-                                background-color: #A7BFE9;
-                                border-radius: 10px;
-                            }
+                        @media screen and (max-width: $screen-sm) {
+                            width: 100%;
                         }
                     }
                 }
             }
-        }
-        .more-results{
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            .btn{
-                svg{
-                    margin-right: 16px;
+            .content-right-an{
+                width: 100%;
+                height: 100%;
+
+                @media screen and (max-width: $screen-sm) { 
+                    grid-row: 1;
                 }
-                @media screen and (max-width: $screen-sm) {
+    
+                .content-1{
+                    margin-bottom: 20px;
+                    min-height: 400px;
                     width: 100%;
+                    background-color: $color-blue-blackground-clair;
                 }
             }
         }

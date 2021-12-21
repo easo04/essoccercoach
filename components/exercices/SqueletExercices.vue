@@ -3,15 +3,19 @@
         <div class="liens">
             <div class="lien"></div>
         </div>
-        <div class="liste-exercices">
-            <div class="item-exercice" v-for="(item, i) in items" :key="i">
-                <div class="image"></div>
-                <div class="description">
-                    <div class="titre"></div>
-                    <div class="infos"></div>
+            <div class="content-exercices-page">
+                <div class="content-left-exercices">
+                    <div class="liste-exercices">
+                        <div class="item-exercice" v-for="(item, i) in items" :key="i">
+                            <div class="image"></div>
+                            <div class="description">
+                                <div class="titre"></div>
+                                <div class="infos"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 <script>

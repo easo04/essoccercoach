@@ -9,24 +9,36 @@
                 <div class="liens">
                     <span class="lien-categorie"> Exercices / {{categorie.label}}</span>
                 </div>
-                <div class="liste-exercices">
-                    <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index" @click="goToDetails(exercice)">
-                        <div class="img">
-                            <img :src="getImageHttpsFormat(exercice.image_url)"/>
-                            <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
-                        </div>
-                        <div class="description">
-                            <h4>{{exercice.title}}</h4>
-                            <p>{{getDescriptionFormatted(exercice.description)}}</p>
-                            <div class="footer-description">
-                                <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.nbPlayers}}</span></span></div>
-                                <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
+                <div class="content-exercices-page">
+                    <div class="content-left-exercices"> 
+                        <div class="liste-exercices">
+                            <div class="item-exercice" v-for="(exercice, index) in listeExercices" :key="index" @click="goToDetails(exercice)">
+                                <div class="img">
+                                    <img :src="getImageHttpsFormat(exercice.image_url)"/>
+                                    <div class="populaire" v-if="exercice.popular === 1">Populaire <font-awesome-icon :icon="['fas', 'star']"/></div>
+                                </div>
+                                <div class="description">
+                                    <h4>{{exercice.title}}</h4>
+                                    <p>{{getDescriptionFormatted(exercice.description)}}</p>
+                                    <div class="footer-description">
+                                        <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.nbPlayers}}</span></span></div>
+                                        <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="more-results" v-if="showMoreResults">
+                            <button class="btn btn-default-ghost" @click="showMore()"><font-awesome-icon :icon="['fas', 'sort-down']"/> Plus de résultats</button>
+                        </div>
                     </div>
-                </div>
-                <div class="more-results" v-if="showMoreResults">
-                    <button class="btn btn-default-ghost" @click="showMore()"><font-awesome-icon :icon="['fas', 'sort-down']"/> Plus de résultats</button>
+                    <div class="content-right-an">
+                        <div class="content-1">
+                            Hola
+                        </div>
+                        <div class="content-1">
+                            Hola
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
