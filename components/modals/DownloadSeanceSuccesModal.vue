@@ -6,7 +6,8 @@
         </div>
         <div class="modal-content">
             <p class="thnks">Merci d'avoir utilisé ESsoccercoach pour créer votre séance!</p> 
-            <SendEmailInput/>
+            <SendEmailInput/>   
+            <DonateBouton/>
             <div class="reseaux-sociaux">
                 <p>Suivez-nous sur les réseaux sociaux</p>
                 <ListReseaux/>
