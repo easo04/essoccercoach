@@ -205,9 +205,13 @@
     
                 .content-1{
                     margin-bottom: 20px;
-                    min-height: 400px;
+                    height: auto;
                     width: 100%;
                     background-color: $color-blue-blackground-clair;
+                    img{
+                        height: 100%;
+                        width: 100%;
+                    }
                 }
             }
         }

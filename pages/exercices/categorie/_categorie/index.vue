@@ -33,10 +33,10 @@
                     </div>
                     <div class="content-right-an">
                         <div class="content-1">
-                            Hola
+                            <a @click="goToDesigner()"><img src="@/assets/images/others/an1.png" /></a>
                         </div>
                         <div class="content-1">
-                            Hola
+                            <a @click="goToDesigner()"><img src="@/assets/images/others/an1.png" /></a>
                         </div>
                     </div>
                 </div>
@@ -97,6 +97,9 @@ export default {
         },
         showMore(){
             this.maxResults+=12;
+        },
+        goToDesigner(){
+            this.$router.push({path:`/create-exercice`});
         },
         ...mapMutations({setCategorie:'setCategorie'})
     },
