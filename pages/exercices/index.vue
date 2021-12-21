@@ -34,9 +34,6 @@
                         <div class="content-1">
                             <a @click="goToDesigner()"><img src="@/assets/images/others/an1.png" /></a>
                         </div>
-                        <div class="content-1">
-                            <a @click="goToDesigner()"><img src="@/assets/images/others/an1.png" /></a>
-                        </div>
                     </div>
                 </div>
             </div>

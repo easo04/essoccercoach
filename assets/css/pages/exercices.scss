@@ -200,7 +200,7 @@
                 height: 100%;
 
                 @media screen and (max-width: $screen-sm) { 
-                    grid-row: 1;
+                    display: none;
                 }
     
                 .content-1{
