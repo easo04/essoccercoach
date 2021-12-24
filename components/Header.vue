@@ -63,7 +63,6 @@
             </div>
         </div>
         <div class="new-actions-list" v-if="showNewActions">
-            <h4>Commencez à créer avec l'un de nos outils</h4>
             <div class="items-actions">
                 <div class="item-action-list" @click="goToCreateSeances()">
                     <div>
