@@ -77,6 +77,7 @@
                         <span class="icon-action inactive" id="plus" @click="plus()" title="Zoom plus"><font-awesome-icon :icon="['fas', 'search-plus']"/></span>
                         <span class="icon-action inactive" id="border" @click="border()" title="Ajouter une bordure"><font-awesome-icon :icon="['fas', 'border-style']"/></span>
                         <span class="icon-action inactive" id="fillNone" @click="fillNone()" title="Enlever la couleur de fond"><font-awesome-icon :icon="['fas', 'tint-slash']"/></span>
+                        <span class="icon-action" id="play" @click="play()" title="play"><font-awesome-icon :icon="['fas', 'photo-video']"/></span>
                     </div>
                 </div>
                 <div class="actions">
@@ -108,7 +109,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="content-item">
+                    <div class="content-item" :class="{'show-menu-left': !showMenuLeft}">
                         <div class="content-item-terrains" v-if="contentItem === 'terrain'">
                             <h3>Terrains</h3>
                             <div class="onglets">
@@ -290,6 +291,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="menu-rigth-terrain" v-show="showMenuPlay">
+                        <menu-mouvements :show="showMenuPlay"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -303,6 +307,7 @@ import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
 import ModalOpenDesigner from '@/components/modals/ModalOpenDesigner.vue'
 import ConfirmDeleteAllVue from '../components/modals/ConfirmDeleteAll.vue'
 import NavigatorService from '@/static/services/NavigatorService.js'
+import MenuMouvements from '../components/MenuMouvements.vue'
 
 //enum pour le type d'actions
 const ACTIONS = {
@@ -318,6 +323,7 @@ const ID_TERRAIN = 'terrainSoccer';
 const lstFormes = ['square', 'rectangle', 'triangle', 'circle'];
 
 export default {
+    components: { MenuMouvements },
     props: ['from'],
     layout: 'designer',
     head(){
@@ -422,6 +428,8 @@ export default {
             objectDOMCopied:undefined,
             showOptionsHelp:false,
             fromSeance:false,
+            showMenuLeft:true,
+            showMenuPlay:false
         }
     },
     methods:{
@@ -912,8 +920,12 @@ export default {
             this.lstObjectsDraggable.push(object);
         },
         clickTerrain(event){
-            if(event.target.id === ID_TERRAIN){
-                this.deselectionner();  
+            if(event.target.id === ID_TERRAIN){ 
+
+                if(!this.showMenuPlay){
+                    this.deselectionner(); 
+                }
+                
                 this.closeAllSelectes();
             }
         },
@@ -928,29 +940,33 @@ export default {
             );
         },
         plus(){
-            let height = this.objectSelected[0].style.height.replace('px', '');
-            height = height !== '' ? parseInt(height) : 120;
+            if(this.objectSelected[0]){
+                let height = this.objectSelected[0].style.height.replace('px', '');
+                height = height !== '' ? parseInt(height) : 120;
 
-            if(height < 180){
-                this.objectSelected[0].style.height =  (height + 10) + 'px';
-                if(document.getElementById('minus').classList.contains('inactive')){    
-                    document.getElementById('minus').classList.remove('inactive');
+                if(height < 180){
+                    this.objectSelected[0].style.height =  (height + 10) + 'px';
+                    if(document.getElementById('minus').classList.contains('inactive')){    
+                        document.getElementById('minus').classList.remove('inactive');
+                    }
+                }else{
+                    document.getElementById('plus').classList.add('inactive');
                 }
-            }else{
-                document.getElementById('plus').classList.add('inactive');
             }
         },
         minus(){
-            let height = this.objectSelected[0].style.height.replace('px', '');
-            height = height !== '' ? parseInt(height) : 120;
+            if(this.objectSelected[0]){
+                let height = this.objectSelected[0].style.height.replace('px', '');
+                height = height !== '' ? parseInt(height) : 120;
 
-            if(height > 100){
-                this.objectSelected[0].style.height =  (height - 10) + 'px';
-                if(document.getElementById('plus').classList.contains('inactive')){    
-                    document.getElementById('plus').classList.remove('inactive');
+                if(height > 100){
+                    this.objectSelected[0].style.height =  (height - 10) + 'px';
+                    if(document.getElementById('plus').classList.contains('inactive')){    
+                        document.getElementById('plus').classList.remove('inactive');
+                    }
+                }else{
+                    document.getElementById('minus').classList.add('inactive');
                 }
-            }else{
-                document.getElementById('minus').classList.add('inactive');
             }
         },
         border(){
@@ -975,6 +991,18 @@ export default {
                 }
             }
         },
+        setShowMenuLeft(){
+            this.showMenuLeft = !this.showMenuLeft;
+        },
+        play(){
+            this.showMenuPlay = !this.showMenuPlay;
+            this.deselectionner();
+            if(this.showMenuPlay){
+                document.getElementById('terrainSoccer').classList.add('mode-play');
+            }else{
+                document.getElementById('terrainSoccer').classList.remove('mode-play');
+            }
+        },
         ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setImageExercice:'seance/setImageExercice'})
     },
     created(){
@@ -996,6 +1024,8 @@ export default {
             this.deselectionner();
             this.closeAllSelectes();  
         });
+
+        //capturer le click du terrain 
 
         $('.fa-fill').addClass('black-color');
         

@@ -1,0 +1,85 @@
+.menu-mouvements{
+    background-color: $color-white-background;
+    border-radius: 5px;
+    background-color: $color-white-background;
+    border:1px solid $color-border-designer;
+    box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
+    height: 400px;
+    width: 180px;
+
+    .menu-actions{
+        padding: 10px;
+        background-color: #f5f5f5;
+        display: flex;
+        color: $color-icons;
+        font-size: 20px;
+        .actions-secondary, .actions-primary{
+            width: 50%;
+            display: flex;
+        }
+        .actions-secondary{
+            justify-content: flex-end;
+            >div{
+                display: flex;
+            }
+        }
+        span{
+            cursor: pointer;
+            text-align: center;
+            &:not(:last-child){
+                margin-right: 10px;
+            }
+            &.label{
+                font-size: 8px;
+            }
+        }
+    }
+
+    .list-mouvements{
+        padding: 10px;
+        .item-mouvement{
+            @include font-s;
+            color:$color-black-fonts-second;
+            display: flex;
+            position: relative;
+
+            &::before{
+                content: '';
+                height: 10px;
+                width: 10px;
+                border-radius: 50%;
+                background-color: $color-yellow;
+                margin-top: 3px;
+                margin-right: 3px;
+            }
+
+            &.played{
+                &::before{
+                    background-color: $color-green;
+                }
+            }
+            
+            &:not(:last-child){
+                margin-bottom: 10px;
+            }
+
+            >div{
+                width: 50%;
+            }
+            .item-actions{
+                display: flex;
+                justify-content: flex-end;
+                color:$color-blue-blackground;
+                >div{
+                    display: flex;
+                    span{
+                        &:not(:last-child){
+                            margin-right: 8px;
+                        }
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6,7 +6,7 @@
         height: 20px;
         padding: 10px 20px;
         display: grid;
-        grid-template-columns: 280px 2fr 1fr;
+        grid-template-columns: 300px 2fr 1fr;
 
         .icon-action{
             cursor: pointer;
@@ -17,7 +17,6 @@
         .principal-items{
             display: flex;
             align-items: center;
-            border-right: 1px solid $color-border-designer;
 
             .actions-s{
                 width: 100%;
@@ -31,7 +30,8 @@
         .secondary-items{
             display: flex;
             align-items: center;
-            padding-left: 20px;
+            padding-left: 20px; 
+            border-left: 1px solid $color-border-designer;
             
             svg, .objects{
                 margin-right: 10px;
@@ -202,9 +202,10 @@
             cursor:auto !important;
         }
     }
+
     .content{
         display: grid;
-        grid-template-columns: 300px 1fr;
+        grid-template-columns: auto 1fr;
         min-height: 80vh;
 
         .menu-left{
@@ -213,6 +214,8 @@
                 width: 60px;
                 border-right: 1px solid $color-border-designer;
                 padding-top: 30px;
+                position: relative;
+                z-index: 9;
                 >div{
                     cursor: pointer;
                     height: 32px;
@@ -233,6 +236,8 @@
                 border-right: 1px solid $color-border-designer;
                 padding-top: 30px; 
                 transition: all .3s;
+                position: relative;
+                z-index: 8;
                 >div{
                     h3{
                         @include h3;
@@ -463,8 +468,20 @@
                         }
                     }
                 }
+                .btn-show-menu{
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    color:$color-icons;
+                    cursor: pointer;
+                }
+
+                &.show-menu-left{
+                    display: none;
+                }
             }
         }
+
         .content-terrain{
             padding: 20px;
             position: relative;
@@ -477,6 +494,10 @@
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 border-radius: 3px;
+
+                &.mode-play{
+                    cursor: crosshair;
+                }
 
                 .tableau-canvas{
                     height: 100%;
@@ -812,6 +833,11 @@
                         }
                     }
                 }
+            }
+            .menu-rigth-terrain{
+                position: absolute;
+                top:20px;
+                right: 20px;
             }
         }
     }
