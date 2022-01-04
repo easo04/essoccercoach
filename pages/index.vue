@@ -9,7 +9,7 @@
           <div class="description-content">
             <h1>Bienvenue à <span class="accent">ESsoccercoach</span>, le créateur d'exercices gratuit pour les entraîneurs de soccer.</h1>
             <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos outils.</p>
-            <div class="action-btn"><a class="btn btn-default-ghost" href="#nosOutils">Choisir un de nos outils</a></div>
+            <div class="action-btn"><a class="btn btn-default" href="#nosOutils">Choisir un de nos outils</a></div>
           </div>
         </div>
         <div class="carrousel">
@@ -19,19 +19,24 @@
         </div>
       </div>
       <div class="copyrigth1" id="copyrigth1">
-        <h2>Profitez de nos outils <strong>100% gratuits!</strong></h2>
-        <p>
-          Souvent, les entraîneurs ne disposons pas des outils nécessaires pour bien préparer nos 
-          séances d'entraînement. Le papier et le crayon deviennent rapidement nos meilleurs amis 
-          lorsque nous voulons planifier
-          nos entraînements ou nos exercices.
-          <br><br><strong>ESsoccercoach</strong> vous offre plusieurs outils pour vous permettre de 
-          créer de façon très simple vos <strong>exercices</strong>, vos <strong>séances d'entraînement</strong>
-          et vos <strong>alignements</strong>.
-        </p>
-        <p class="profitez">
-          Profitez-en bien!
-        </p>
+        <div class="copyrigth1-image">
+          <img src="@/assets/images/outils-100-gratuit.png" alt="outil-100-gratuit-soccer"/>
+        </div>
+        <div class="copyrigth1-text">
+          <h2>Profitez de nos outils <strong>100% gratuits!</strong></h2>
+          <p>
+            Souvent, les entraîneurs ne disposons pas des outils nécessaires pour bien préparer nos 
+            séances d'entraînement. Le papier et le crayon deviennent rapidement nos meilleurs amis 
+            lorsque nous voulons planifier
+            nos entraînements ou nos exercices.
+            <br><br><strong>ESsoccercoach</strong> vous offre plusieurs outils pour vous permettre de 
+            créer de façon très simple vos <strong>exercices</strong>, vos <strong>séances d'entraînement</strong>
+            et vos <strong>alignements</strong>.
+          </p>
+          <p class="profitez">
+            Profitez-en bien!
+          </p>
+        </div>
       </div>
       <div class="exercices-populaires" v-if="exercicesPopulaires.length > 0">
         <h3>Exercices populaires <font-awesome-icon :icon="['fas', 'star']"/></h3>
@@ -42,7 +47,6 @@
         </div>
       </div>
       <div class="nos-outils" id="nosOutils">
-        <h2>Nos outils</h2>
         <div class="outils">
           <div class="outil">
             <h3>Créateur de séances</h3>
@@ -53,7 +57,7 @@
               <span>Créez vos exercices de soccer et télécharchez les avec notre outil de création d'exercices <strong>ESDesigner</strong>.</span>
             </div>
             <div class="outil-actions">
-              <button class="btn btn-default-ghost" @click="goToCreateSeances()">Créez votre séance</button>
+              <button class="btn btn-default" @click="goToCreateSeances()">Créez votre séance</button>
             </div>
           </div>
           <div class="outil">
@@ -65,7 +69,7 @@
               <span>Créez vos séances d'entraînement d'une façon simple et rapide avec notre <strong>créateur de séances</strong>.</span>
             </div>
             <div class="outil-actions">
-              <button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre exercice</button>
+              <button class="btn btn-default" @click="goToCreateExercices()">Créez votre exercice</button>
             </div>
           </div>
           <div class="outil">
@@ -77,7 +81,7 @@
               <span>Créez l'alignement de votre prochain match avec notre <strong>créateur d'alignements</strong>.</span>
             </div>
             <div class="outil-actions">
-              <button class="btn btn-default-ghost" @click="goToCreateAlignements()">Créez votre alignement</button>
+              <button class="btn btn-default" @click="goToCreateAlignements()">Créez votre alignement</button>
             </div>
           </div>
         </div>
@@ -88,7 +92,7 @@
               <div class="description-item-content">
                 <h2>Créateur d'exercices de soccer</h2>
                 <p>La préparation des exercices est très importante dans la <strong>planification</strong> d'une séance d'entraînement. <br><br>Avec notre <strong>créateur d'exercices</strong>, vous pouvez créer vos exercices de façon très simple et les télécharger en image.</p>
-                <div class="actions-item"><button class="btn btn-default" @click="goToCreateExercices()">Créez votre exercice</button></div>
+                <div class="actions-item"><button class="btn btn-default-ghost" @click="goToCreateExercices()">Créez votre exercice</button></div>
               </div>
           </div>
           <div class="carrousel-item">
@@ -102,7 +106,7 @@
               <div class="description-item-content">
                 <h2>Créateur de séances d'entraînement de soccer</h2>
                 <p>Avez-vous un entraînement aujourd'hui?<br><br> Planifiez votre <strong>séance d'entraînement</strong> avec notre créateur de séances.</p>
-                <div class="actions-item"><button class="btn btn-default" @click="goToCreateSeances()">Créez votre séance</button></div>
+                <div class="actions-item"><button class="btn btn-default-ghost" @click="goToCreateSeances()">Créez votre séance</button></div>
               </div>
           </div>
           <div class="carrousel-item">
@@ -116,7 +120,7 @@
               <div class="description-item-content">
                 <h2>Créateur d'alignements de soccer</h2>
                 <p>Faites l'alignement de votre équipe de façon <strong>simple</strong> et <strong>rapide</strong>. <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
-                <div class="actions-item"><button class="btn btn-default" @click="goToCreateAlignements()">Créez votre alignement</button></div>
+                <div class="actions-item"><button class="btn btn-default-ghost" @click="goToCreateAlignements()">Créez votre alignement</button></div>
               </div>
           </div>
           <div class="carrousel-item">
@@ -135,10 +139,7 @@
           </div>  
         </div> 
         <div class="message-btn">    
-          <a class="btn btn-default-ghost" href="/exercices">Consultez les exercices</a>
-        </div>      
-        <div class="image">
-          <img src="@/assets/images/icons/timeline.svg" alt="créer séance de soccer"/>
+          <a class="btn btn-secondary" href="/exercices">Consultez les exercices</a>
         </div> 
       </div>
       <div class="copyrigth-essoccercoach" id="propos">
@@ -191,7 +192,7 @@
               </div> 
             </div> 
             <div class="message-btn">    
-              <a class="btn btn-default-ghost" href="/exercices">Créez votre premier exercice</a>
+              <a class="btn  btn-secondary2" href="/exercices">Créez votre premier exercice</a>
             </div> 
           </div>
           <div class="icon-img1">

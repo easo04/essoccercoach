@@ -19,7 +19,7 @@
                         <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
                         <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><font-awesome-icon :icon="['fas', 'circle']"/><span class="number">1</span></div>
                         <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><font-awesome-icon :icon="['fas', 'circle']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
-                        <span class="objects icon-action  couleur-select" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+                        <span class="objects icon-action couleur-select" id="changeColor" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
                         <span class="objects icon-action inactive" id="changeTransparence" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
                         <div class="select-couleurs selects" v-if="showSelectColors">
                             <div class="arrow-up"></div>
@@ -77,7 +77,7 @@
                         <span class="icon-action inactive" id="plus" @click="plus()" title="Zoom plus"><font-awesome-icon :icon="['fas', 'search-plus']"/></span>
                         <span class="icon-action inactive" id="border" @click="border()" title="Ajouter une bordure"><font-awesome-icon :icon="['fas', 'border-style']"/></span>
                         <span class="icon-action inactive" id="fillNone" @click="fillNone()" title="Enlever la couleur de fond"><font-awesome-icon :icon="['fas', 'tint-slash']"/></span>
-                        <span class="icon-action" id="play" @click="play()" title="play"><font-awesome-icon :icon="['fas', 'photo-video']"/></span>
+                        <span class="icon-action" id="play" @click="play()" title="play" v-show="showModePlayMode"><font-awesome-icon :icon="['fas', 'photo-video']"/></span>
                     </div>
                 </div>
                 <div class="actions">
@@ -429,7 +429,8 @@ export default {
             showOptionsHelp:false,
             fromSeance:false,
             showMenuLeft:true,
-            showMenuPlay:false
+            showMenuPlay:false,
+            showModePlayMode:false
         }
     },
     methods:{
@@ -506,7 +507,7 @@ export default {
             this.textPlayer = '';
         },
         addOutil(outilName, outilImage) {
-            let canRotate = outilName.includes('but');
+            let canRotate = outilName.includes('but') || outilName.includes('échelle') ;
             this.addObjectToList('drag-outil', outilName, 'outils/' + outilImage.replace('svg', 'png'), canRotate);
         },
         addPlayerWithTextByColor(color){
@@ -705,11 +706,11 @@ export default {
                 let height = this.objectSelected[0].style.height.replace('px', '');
                 height = height !== '' ? parseInt(height) : 120;
 
-                if(height < 180){
+                if(height < 220){
                     document.getElementById('plus').classList.remove('inactive');
                 }
                 
-                if(height > 100){
+                if(height > 80){
                     document.getElementById('minus').classList.remove('inactive');
                 }
             }
@@ -786,6 +787,20 @@ export default {
             document.getElementById('deleteAll').classList.add('inactive');
             document.getElementById('copy').classList.add('inactive');
             document.getElementById('changeTransparence').classList.add('inactive');
+        },
+        initActionsButtonsIfPlayMode(){
+            document.getElementById('undo').classList.add('inactive');
+            document.getElementById('redo').classList.add('inactive');
+            document.getElementById('delete').classList.add('inactive');
+            document.getElementById('deleteAll').classList.add('inactive');
+            document.getElementById('copy').classList.add('inactive');
+            document.getElementById('changeTransparence').classList.add('inactive');
+            document.getElementById('minus').classList.add('inactive');
+            document.getElementById('plus').classList.add('inactive');
+            document.getElementById('border').classList.add('inactive');
+            document.getElementById('fillNone').classList.add('inactive');
+            document.getElementById('changeColor').classList.add('inactive');
+            
         },
         openModalDeleteAll(){
             this.$modal.show(
@@ -886,18 +901,20 @@ export default {
         },
         makeCopy(){
             const objectCopy = this.objectDragSelected;
-            const imageObect = objectCopy.image;
+            if(objectCopy){
+                const imageObect = objectCopy.image;
 
-            //sauvegarder l'element du DOM qui a été copié
-            this.objectDOMCopied = {
-                objectCopied : this.objectSelected[0]
-            };
+                //sauvegarder l'element du DOM qui a été copié
+                this.objectDOMCopied = {
+                    objectCopied : this.objectSelected[0]
+                };
 
-            //ajouter l'objet dans la liste
-            const objectCopiedId = this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
-                objectCopy.canRotate, objectCopy.textObject, objectCopy.forme, objectCopy.numberObject);
+                //ajouter l'objet dans la liste
+                const objectCopiedId = this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
+                    objectCopy.canRotate, objectCopy.textObject, objectCopy.forme, objectCopy.numberObject);
 
-            this.objectDOMCopied.idCopied = objectCopiedId;
+                this.objectDOMCopied.idCopied = objectCopiedId;
+            } 
         },
         makeArrow(){
             const noObject = this.lstObjectsDraggable.length + 1;
@@ -940,11 +957,11 @@ export default {
             );
         },
         plus(){
-            if(this.objectSelected[0]){
+            if(this.objectSelected){
                 let height = this.objectSelected[0].style.height.replace('px', '');
                 height = height !== '' ? parseInt(height) : 120;
 
-                if(height < 180){
+                if(height < 220){
                     this.objectSelected[0].style.height =  (height + 10) + 'px';
                     if(document.getElementById('minus').classList.contains('inactive')){    
                         document.getElementById('minus').classList.remove('inactive');
@@ -955,11 +972,11 @@ export default {
             }
         },
         minus(){
-            if(this.objectSelected[0]){
+            if(this.objectSelected){
                 let height = this.objectSelected[0].style.height.replace('px', '');
                 height = height !== '' ? parseInt(height) : 120;
 
-                if(height > 100){
+                if(height > 80){
                     this.objectSelected[0].style.height =  (height - 10) + 'px';
                     if(document.getElementById('plus').classList.contains('inactive')){    
                         document.getElementById('plus').classList.remove('inactive');
@@ -970,24 +987,28 @@ export default {
             }
         },
         border(){
-            const objectForme = this.objectSelected[0];
-            if(objectForme.children[0].classList.contains("square")){
-                const classBorder = "border-lines";
-                if(objectForme.children[0].classList.contains(classBorder)){
-                    objectForme.children[0].classList.remove(classBorder);
-                }else{
-                    objectForme.children[0].classList.add(classBorder);
+            if(this.objectSelected){
+                const objectForme = this.objectSelected[0];
+                if(objectForme.children[0].classList.contains("square")){
+                    const classBorder = "border-lines";
+                    if(objectForme.children[0].classList.contains(classBorder)){
+                        objectForme.children[0].classList.remove(classBorder);
+                    }else{
+                        objectForme.children[0].classList.add(classBorder);
+                    }
                 }
             }
         },
         fillNone(){
-            const objectForme = this.objectSelected[0];
-            if(objectForme.children[0].classList.contains("square")){
-                const classBorder = "fill-none";
-                if(objectForme.children[0].classList.contains(classBorder)){
-                    objectForme.children[0].classList.remove(classBorder);
-                }else{
-                    objectForme.children[0].classList.add(classBorder);
+            if(this.objectSelected){
+                const objectForme = this.objectSelected[0];
+                if(objectForme.children[0].classList.contains("square")){
+                    const classBorder = "fill-none";
+                    if(objectForme.children[0].classList.contains(classBorder)){
+                        objectForme.children[0].classList.remove(classBorder);
+                    }else{
+                        objectForme.children[0].classList.add(classBorder);
+                    }
                 }
             }
         },
@@ -997,6 +1018,7 @@ export default {
         play(){
             this.showMenuPlay = !this.showMenuPlay;
             this.deselectionner();
+            this.initActionsButtonsIfPlayMode();
             if(this.showMenuPlay){
                 document.getElementById('terrainSoccer').classList.add('mode-play');
             }else{
@@ -1018,6 +1040,11 @@ export default {
 
     },
     mounted(){
+
+        const modePlayParam = this.$route.query.modePlay;
+        if(modePlayParam){
+            this.showModePlayMode = true;
+        }
         
         //detecter tous les clicks qui se font dans terrainSoccer
         $('.logo').click(event =>{
@@ -1102,6 +1129,16 @@ export default {
             //ajuster le fill-color-none de la forme
             if(object.classList.contains('fill-none')){
                 objectCopied.children[0].classList.add('fill-none');
+            }
+
+            //ajuster le rorate de l'objet
+            const rotate = object.getAttribute('data-rotate');
+            if(rotate){
+                const translate = 'translate(50px, 50px)';
+                objectCopied.children[0].style.webkitTransform = 
+                objectCopied.children[0].style.transform = translate + ' rotate(' + rotate + 'deg)';
+
+                objectCopied.children[0].setAttribute('data-rotate', rotate); 
             }
 
             this.objectDOMCopied = undefined;

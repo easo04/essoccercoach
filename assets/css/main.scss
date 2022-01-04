@@ -22,6 +22,15 @@ body{
     @include btn-default-ghost;
 }
 
+.btn-secondary{
+    @include btn-secondary;
+}
+
+.btn-secondary2{
+    @include btn-secondary2;
+}
+
+
 h1{
     @include h1;
 }

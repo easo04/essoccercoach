@@ -100,11 +100,13 @@ footer{
             .liste-reseaux{
                 display: flex;
                 justify-content: center;
-                a{
-                    cursor: pointer;
-                    color:$color-white-fonts;
-                    &:not(:first-child){
-                        margin-left: 10px;
+                >div{
+                    a{
+                        cursor: pointer;
+                        color:$color-white-fonts;
+                        &:not(:first-child){
+                            margin-left: 10px;
+                        }
                     }
                 }
             }
