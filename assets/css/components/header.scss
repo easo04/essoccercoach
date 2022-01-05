@@ -147,7 +147,7 @@
         }
     } 
     .menu-mobile{
-        height: 60px;
+        height: auto;
         background-color: $color-white-background;
         border-bottom: 1px solid $color-gris-4;
         border-top: 1px solid $color-gris-4;
@@ -169,10 +169,14 @@
             text-align: center;
             border-bottom: 5px solid transparent;
             color:$color-black-fonts-second;
+            padding: 10px 0;
 
             a{
                 color:$color-black-fonts-second;
                 text-decoration: none;
+                img{
+                    width: 25px;
+                }
             }
 
             &.active{
