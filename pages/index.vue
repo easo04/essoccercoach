@@ -146,14 +146,7 @@
         <div class="image-reseau">
           <img src="@/assets/images/icons/social-media.svg"/>
         </div>
-        <div class="list-resaux">
-          <h3>Suivez-nous sur les réseaux sociaux</h3>
-          <div>
-            <a href="https://www.instagram.com/essoccercoach/" target="_blanc"><img src="@/assets/images/icons/instagram.svg"/></a>
-            <a href="https://www.facebook.com/essoccercoach" target="_blanc"><img src="@/assets/images/icons/facebook.svg"/></a>
-            <a href="https://www.youtube.com/channel/UC7tPGITAH1B0UYVS5vbhOmQ" target="_blanc"><img src="@/assets/images/icons/youtube.svg"/></a>
-          </div>
-        </div>
+        <SocialMedia/>
       </div>
       <div class="copyrigth1" id="copyrigth1">
         <div class="copyrigth1-image">
@@ -215,8 +208,9 @@ import {mapState} from 'vuex';
 import {lstSlidersHomeHero as slidesHero} from '@/static/sliders-list.js';
 import Slider from '@/components/Slider.vue';
 import SqueletLandingPage from '../components/exercices/SqueletLandingPage.vue';
+import SocialMedia from '../components/SocialMedia.vue';
 export default {
-  components: { Slider, SqueletLandingPage },
+  components: { Slider, SqueletLandingPage, SocialMedia },
   data(){
     return{
       lstSlidesHero : [],

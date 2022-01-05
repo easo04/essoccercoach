@@ -687,18 +687,5 @@
         h3{
             color:$color-white-fonts;
         }
-        .list-resaux{
-            >div{
-                display: flex;
-                grid-column-gap: 10px;
-                img{
-                    width: 50px;
-                    height: auto;
-                    @media screen and (max-width: $screen-sm) {
-                        width: 30px;
-                    }
-                }
-            }
-        }
     }
 }
