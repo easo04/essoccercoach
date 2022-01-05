@@ -11,7 +11,11 @@
                     <p>{{exercice.description}}</p>
                     <div class="footer-description">
                         <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.nbPlayers}} joueurs</span></span></div>
-                        <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
+                        <div class="type">
+                            <div>
+                                <img :src="require(`~/assets/images/icons/categories/${exercice.category}s.svg`)"/><span>{{getCategoryFormatted(exercice.category)}}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

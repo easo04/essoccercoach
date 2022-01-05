@@ -35,6 +35,14 @@
                         <div class="content-1">
                             <a @click="goToDesigner()"><img src="@/assets/images/others/an1.png" /></a>
                         </div>
+                        <div class="liste-categories">
+                            <h4>Catégories d'exercice</h4>
+                            <a v-for="(category, index) in categories" :key="index">
+                                <div>
+                                    <img :src="require(`~/assets/images/icons/categories/${category.name}.svg`)"/> <span>{{category.label}}</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,6 +58,13 @@ export default {
     head(){
         return{
             title:'Exercices de soccer - ' + this.categorie.label + ' | ESsoccercoach',
+            meta: [
+                {
+                    hid:'description',
+                    name:'description',
+                    content:'Vous cherchez l\'inspiration pour votre prochaine séance d\'entraînement? Consultez notre banque d\'exercices de soccer avec plusieurs exercices disponibles  ✅ Exercices de soccer 100% gratuit ✅' + this.categorie.label
+                },
+            ],
         }
     },
     data(){

@@ -22,19 +22,31 @@
                     &:hover{
                         color:#6a6a6a;
                     }
+
+                    div{
+                        display: flex;
+                        padding-bottom: 5px;
+                        img{
+                            width: 20px;
+                            margin-right: 5px;
+                        }
+                    }
                 }
 
                 &.active{
-                    border-bottom: 4px solid #5C5C5C;
+                    border-bottom: 3px solid #5C5C5C;
                 }
+            }
+            @media screen and (max-width: $screen-sm) {
+                overflow-x: visible;
+                overflow-y: hidden;
+                padding-bottom: 15px;
             }
         }
 
         @media screen and (max-width: $screen-sm) {
             margin-top: 149px;
-            padding: 20px;
-            overflow-x: visible;
-            overflow-y: hidden;
+            padding: 20px 20px 5px 20px;
         }
     }
 
@@ -211,6 +223,34 @@
                     img{
                         height: 100%;
                         width: 100%;
+                    }
+                }
+                .liste-categories{
+                    background: $color-blue-blackground-clair;
+                    border-radius: 5px;
+                    h4{
+                        color:$color-black-fonts;
+                        padding: 5px 5px 0px 5px;
+                        margin: 0;
+                    }
+                    a{
+                        @include font-xm;
+                        color:$color-black-fonts-second;
+                        font-family: $font-family-text;
+                        div{
+                            display: flex;
+                            padding: 5px;
+                            img{
+                                margin-right: 10px;
+                                width: 30px;
+                            }
+                            span{
+                                line-height: 50px;
+                            }
+                        }
+                        &:hover{
+                            font-weight: bold;
+                        }
                     }
                 }
             }

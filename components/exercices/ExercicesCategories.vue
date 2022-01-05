@@ -3,7 +3,11 @@
         <h4>Catégories d'exercices</h4>
         <div class="types">
             <div :class="{'active':current===categorie.name}" v-for="(categorie, i) in categories" :key="i">
-                <a :href="categorie.url">{{categorie.label}}</a>
+                <a :href="categorie.url">
+                    <div>
+                        <img :src="require(`~/assets/images/icons/categories/${categorie.name}.svg`)" /><span>{{categorie.label}}</span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
