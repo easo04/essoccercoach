@@ -25,6 +25,9 @@
                                         <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
                                     </div>
                                 </div>
+                                <div class="new-exercice" v-if="isNewExercice(exercice)">
+                                    Nouveau
+                                </div>
                             </div>
                         </div>
                         <div class="more-results" v-if="showMoreResults">
@@ -91,6 +94,14 @@ export default {
         ...mapState(['modePresentation', 'categories'])
     },
     methods:{
+        isNewExercice(exercice){
+            const now = new Date();
+            let dateCreated = new Date(exercice.created_at);
+
+            const timeNow = new Date(dateCreated.setDate(dateCreated.getDate() + 10));
+
+            return now < timeNow;
+        },
         getImageHttpsFormat(url){
             return url.replace('http', 'https');
         },

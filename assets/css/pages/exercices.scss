@@ -98,6 +98,7 @@
                         box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
                         border-radius: 5px;
                         cursor: pointer;
+                        position: relative;
                         &:hover{
                             box-shadow: 2px 2px 5px 1px rgba(201, 201, 201, 0.9);
                         }
@@ -131,15 +132,14 @@
                                 }
                             }
                             .populaire{
-                                color:$color-yellow;
+                                color:$color-white-fonts;
                                 position: absolute;
-                                bottom:0;
+                                bottom:3px;
                                 right: 0;
                                 @include font-s-sbold;
                                 font-family: $font-family-text;
-                                background-color: rgba($color: $color-yellow, $alpha: 0.3);
-                                padding: 5px;
-                                border-top-left-radius: 5px;
+                                background-color: rgba($color: $color-yellow, $alpha: 0.7);
+                                padding: 10px;
                             }
                         }
                         .description{
@@ -190,6 +190,16 @@
                                     }
                                 }
                             }
+                        }
+
+                        .new-exercice{
+                            background-color: rgba($color: $color-secondary-4, $alpha: 0.7);
+                            position: absolute;
+                            top:0;
+                            padding: 10px;
+                            @include font-s-sbold;
+                            font-family: $font-family-text;
+                            color:$color-white-fonts;
                         }
                     }
                 }

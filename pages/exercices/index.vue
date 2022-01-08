@@ -24,6 +24,9 @@
                                         <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
                                     </div>
                                 </div>
+                                <div class="new-exercice" v-if="isNewExercice(exercice)">
+                                    Nouveau
+                                </div>
                             </div>
                         </div>
                         <div class="more-results" v-if="showMoreResults">
@@ -76,6 +79,7 @@ export default {
             return this.maxResults < this.exercices.length && this.exercices.length > MAX_RESULTS_SHOW;
         },
         listeExercices(){
+
             let retval = [];
             if(this.maxResults < this.exercices.length && this.exercices.length > MAX_RESULTS_SHOW){     
                 for(let i = 0; i < this.maxResults; i++){
@@ -112,6 +116,14 @@ export default {
         goToDesigner(){
             this.$router.push({path:`/create-exercice`});
         },
+        isNewExercice(exercice){
+            const now = new Date();
+            let dateCreated = new Date(exercice.created_at);
+
+            const timeNow = new Date(dateCreated.setDate(dateCreated.getDate() + 10));
+
+            return now < timeNow;
+        },
         ...mapMutations({setCurrentItemMenu:'setCurrentItemMenu'})
     },
     created(){
@@ -120,6 +132,8 @@ export default {
         if(this.exercices.length > 0){
             localStorage.setItem('exercices-populaires', JSON.stringify(this.exercices));
         }
+
+        console.log(this.exercices);
     },
     async fetch() {
         try{
