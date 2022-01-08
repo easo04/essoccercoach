@@ -31,6 +31,14 @@
                 <label class="label-control" for="obj">Objectifs: </label>
                 <textarea  rows="4" cols="50"  autocomplete="off" name="obj" class="form-control-textarea" v-model="exercice.objectifs"></textarea>
             </div>
+            <div class="form-group">
+                <label class="label-control" for="obj">Image id: </label>
+                <input type="text" name="image" class="form-control" v-model="exercice.image_id"/>
+            </div>
+            <div class="form-group">
+                <label class="label-control" for="obj">Image url: </label>
+                <input type="text" name="image" class="form-control" v-model="exercice.image_url"/>
+            </div>
             <div class="actions">
                 <button class="btn btn-default" @click="save()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Modifiez l'exercice</button>
             </div>
@@ -48,7 +56,8 @@ export default {
                 title:undefined,
                 nbPlayers:undefined,
                 description:undefined,
-                image:undefined,
+                image_id:undefined,
+                image_url:undefined,
                 disposition:undefined,
                 objectifs:undefined,
                 category:undefined
@@ -78,7 +87,9 @@ export default {
                 objectifs : this.exercice.objectifs,
                 nbPlayers : this.exercice.nbPlayers,
                 category : categoryNameDb,
-                id: this.exercice.id
+                id: this.exercice.id,
+                image_url:this.exercice.image_id,
+                image_id:this.exercice.image_url
             };
 
             try{
@@ -102,6 +113,7 @@ export default {
     mounted(){
         let exerciceUpdate = JSON.parse(localStorage.getItem('exercice-update'));
         if(exerciceUpdate){
+            console.log(exerciceUpdate);
             this.exercice = exerciceUpdate;
             this.exercice.category = this.getCategoryFormatted(this.exercice.category);
         }

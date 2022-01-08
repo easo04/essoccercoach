@@ -31,10 +31,24 @@
                 <label class="label-control" for="obj">Objectifs: </label>
                 <textarea  rows="4" cols="50"  autocomplete="off" name="obj" class="form-control-textarea" v-model="exercice.objectifs"></textarea>
             </div>
-            <div class="form-group">
+            <div class="actions-import-image">
+                <button @click="()=>modeAuto=true"  class="btn btn-default-ghost" :class="{'actif': modeAuto}">Cloudinary</button>
+                <button @click="()=>modeAuto=false" class="btn btn-default-ghost" :class="{'actif': !modeAuto}">Manuel</button>
+            </div>
+            <div class="form-group" v-if="modeAuto">
                 <div class="image-upload" :class="{'with-image' : fileName !== undefined}">
                     <font-awesome-icon :icon="['fas', 'file-image']"/> Importer une image
                     <input type="file" name="image" id="input-file" :class="'file-upload file-upload'" @change="readFile" accept=".png, .jpg"/>
+                </div>
+            </div>
+            <div v-else>
+                <div class="form-group">
+                    <label class="label-control" for="obj">Image id: </label>
+                    <input type="text" name="image" class="form-control" v-model="exercice.image_id"/>
+                </div>
+                <div class="form-group">
+                    <label class="label-control" for="obj">Image url: </label>
+                    <input type="text" name="image" class="form-control" v-model="exercice.image_url"/>
                 </div>
             </div>
             <div class="actions">
@@ -57,9 +71,12 @@ export default {
                 image:undefined,
                 disposition:undefined,
                 objectifs:undefined,
-                category:undefined
+                category:undefined,
+                image_id:undefined,
+                image_url:undefined
             },
             fileName:undefined,
+            modeAuto:true
         }
     },
     computed:{
@@ -71,7 +88,7 @@ export default {
     methods:{
         isBtnSaveDisabled(){
             return this.exercice.theme === undefined || this.exercice.description === undefined 
-            || this.exercice.category === undefined || this.exercice.image === undefined;
+            || this.exercice.category === undefined || (this.modeAuto && this.exercice.image === undefined) || (!this.modeAuto && !this.exercice.image_id && !this.exercice.image_url);
         },
         readFile: function(event) {
             let files = event.target.files;
@@ -87,21 +104,25 @@ export default {
         async save(){
 
             let image;
-            if(this.exercice.image){
+            let imageId = undefined; 
+            let imageUrl = undefined;
+            if(this.modeAuto && this.exercice.image){
 
                 //save the image to cloudinary
                 image = await this.$cloudinary.upload(this.exercice.image, {upload_preset: process.env.CLOUDINARY_PRESET});
+
+                imageId = image.public_id ?? ''; 
+                imageUrl = image.url ?? '';
+            }else{
+                imageId = this.exercice.image_id;
+                imageUrl = this.exercice.image_url;
             }
-
-            let categoryNameDb = this.categoriesExercice.find(c=>c.label === this.exercice.category).name;
-            categoryNameDb = categoryNameDb.substring(0, categoryNameDb.length - 1);
-
-            const imageId = image.public_id ?? ''; 
-            const imageUrl = image.url ?? '';
 
             //const imageId = 'https://res.cloudinary.com/dgtvlmmxg/image/upload/v1612800601/exercices/1601074656125_rx6grl.png'
             //const imageUrl = '1601074656125_rx6grl'
 
+            let categoryNameDb = this.categoriesExercice.find(c=>c.label === this.exercice.category).name;
+            categoryNameDb = categoryNameDb.substring(0, categoryNameDb.length - 1);
             //save the exercice
             const data = {
                 title : this.exercice.theme,

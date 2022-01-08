@@ -279,7 +279,7 @@
                     .content-onglet{
                         padding: 10px;
                         height: 350px;
-                        overflow: scroll;
+                        overflow-y: auto;
                         overflow-x: hidden;
                         @media screen and (min-width: $screen-lg-x) {
                             height: 600px;
@@ -409,7 +409,7 @@
                     height: 100%;
                     .content-outils{
                         height: 400px;
-                        overflow: scroll;
+                        overflow-y: auto;
                         overflow-x: hidden;
                         @media screen and (min-width: $screen-lg-x) {
                             height: 600px;
@@ -443,7 +443,7 @@
                     height: 100%;
                     .content-lines{
                         height: 410px;
-                        overflow: scroll;
+                        overflow-y: auto;
                         overflow-x: hidden;
                         @media screen and (min-width: $screen-lg-x) {
                             height: 600px;

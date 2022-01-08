@@ -338,4 +338,14 @@
             }
         }
     }
+
+    .actions-import-image{
+        margin: 20px 0;
+        .btn{
+
+            &.actif{
+                background-color: $color-soccer-coach;
+            }
+        }
+    }
 }

@@ -27,11 +27,11 @@
             </div>
         </div>
         <div class="description-infos-2">
-            <div class="disposition">
+            <div class="disposition" v-if="exercice.disposition">
                 <h3>Disposition</h3>
                 <p>{{exercice.disposition}}</p>
             </div>
-            <div class="objectifs">
+            <div class="objectifs" v-if="exercice.objectifs">
                 <h3>Objectifs</h3>
                 <p>{{exercice.objectifs}}</p>
             </div>

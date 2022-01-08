@@ -92,7 +92,7 @@
                     }
                     .remplacants{
                         margin-top: 10px;
-                        overflow: scroll;
+                        overflow-y: auto;
                         overflow-x: hidden;
                         height: 255px;
                         .item-remplacant{
