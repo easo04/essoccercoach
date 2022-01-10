@@ -3,7 +3,8 @@
         <div class="menu-actions">
             <div class="actions-primary">
                 <span @click="play()" title="Play"><font-awesome-icon :icon="['fas', 'play-circle']"/></span>
-                <span @click="startVideo()"><font-awesome-icon :icon="['fas', 'video']"/></span>
+                <!--<span @click="startVideo()"><font-awesome-icon :icon="['fas', 'video']"/></span>-->
+                <span @click="addFolder(undefined)" title="Ajouter ensemble de mouvements"><font-awesome-icon :icon="['fas', 'folder-plus']"/></span>
             </div>
             <div class="actions-secondary">
                 <div>
@@ -12,19 +13,24 @@
             </div>
             
             <div class="list-actions-secondary" v-show="showMenuSecondary">
-                <div><span @click="setVitesse()"><font-awesome-icon :icon="['fas', 'tachometer-alt']"/></span><span class="label">Vitesse x{{vitesse}}</span> </div>
+                <div><span @click="setVitesse()"><font-awesome-icon :icon="['fas', 'tachometer-alt']"/></span><span class="label">Vitesse x{{labelVitesse}}</span> </div>
                 <div v-if="inBoucle"><span @click="boucle()"><font-awesome-icon :icon="['fas', 'toggle-on']"/></span><span class="label">Boucle</span> </div>
                 <div v-else><span @click="boucle()"><font-awesome-icon :icon="['fas', 'toggle-off']"/></span><span class="label">Boucle</span> </div>
                 <div><span @click="deleteAll()"><font-awesome-icon :icon="['fas', 'trash-alt']"/></span><span class="label">Tout supprimer</span> </div>
             </div>
         </div>
         <div class="list-mouvements">
-            <div class="item-mouvement" v-for="(item, i) in listeItems" :key="i" :class="{'played' : item.played}">
-                <div>Mouv. {{(i+1)}}</div>
-                <div class="item-actions">
-                    <div>
-                        <span @click="playItem(item)"><font-awesome-icon :icon="['fas', 'play']"/></span>
-                        <span @click="removeItem(i)"><font-awesome-icon :icon="['fas', 'trash']"/></span>
+            <div v-for="(mouvement, index) in listeMouvements" :key="index" :class="{'is-groupe':mouvement.isGroupMouvements}">
+                <div class="groupe-mouvement" v-if="mouvement.isGroupMouvements">
+                    <font-awesome-icon :icon="['fas', 'folder']"/> Groupe 
+                </div>
+                <div class="item-mouvement" v-for="(item, i) in mouvement.items" :key="i" :class="{'played' : item.played}">
+                    <div>Mouv. {{(i+1)}}</div>
+                    <div class="item-actions">
+                        <div>
+                            <span @click="playItem(item)"><font-awesome-icon :icon="['fas', 'play']"/></span>
+                            <span @click="removeItem(i, mouvement.id)"><font-awesome-icon :icon="['fas', 'trash']"/></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,9 +56,12 @@ export default {
             objectSelected:undefined,
             listeItems:[],
             lastCoordonates:{},
-            vitesse:1,
+            vitesse:3,
+            labelVitesse:1,
             inBoucle:false,
-            showMenuSecondary:false
+            showMenuSecondary:false,
+            listeMouvements:[],
+            currentGroupe:undefined
         }
     },
     methods:{
@@ -78,19 +87,23 @@ export default {
         },
         initAllObjectsToPointDepart(){
             let listObjectsForme = [];
-            for(let i=0;i<this.listeItems.length;i++){
-                if(!listObjectsForme.includes(this.listeItems[i].id)){
+            for(let i=0;i<this.listeMouvements.length;i++){
+                for(let j=0;j<this.listeMouvements[i].items.length;j++){
+                    let currentItem = this.listeMouvements[i].items[j];
+
+                    if(!listObjectsForme.includes(currentItem.id)){
+                        let objectForme = document.getElementById(currentItem.id);
+                        setPositionObject(objectForme, currentItem.pointX, currentItem.pointY);
+                        listObjectsForme.push(currentItem.id);
+                    }
                     
-                    let objectForme = document.getElementById(this.listeItems[i].id);
-                    setPositionObject(objectForme, this.listeItems[i].pointX, this.listeItems[i].pointY);
-                    listObjectsForme.push(this.listeItems[i].id);
+                    currentItem.played = false;
                 }
-                
-                this.listeItems[i].played = false;
             }
         },
         async play(){
-            if(this.listeItems.length > 0){
+            this.showMenuSecondary = false;
+            if(this.listeMouvements.length > 0){
                 if(this.inBoucle){
                     this.playInBoucle();
                 }else{
@@ -107,16 +120,33 @@ export default {
             this.initAllObjectsToPointDepart();
 
             //bouger tous les éléments
-            for(let i=0;i<this.listeItems.length;i++){
-                await this.playItem(this.listeItems[i]);
-                this.listeItems[i].played = true;
+            for(let i=0;i<this.listeMouvements.length;i++){
+                let mouvement = this.listeMouvements[i];
+                await this.playAllItems(mouvement.items, mouvement.isGroupMouvements);
             }
 
             setTimeout(()=>{
-                for(let i=0;i<this.listeItems.length;i++){
-                    this.listeItems[i].played = false;
+                for(let i=0;i<this.listeMouvements.length;i++){
+                    for(let j=0;j<this.listeMouvements[i].items.length;j++){
+                        let currentItem = this.listeMouvements[i].items[j];
+                        currentItem.played = false;
+                    }
                 }
             }, 1000);
+        },
+        playAllItems(items, isGroupMouvements){
+            return new Promise((resolve, reject) => {
+                for(let j=0;j<items.length;j++){
+                    let currentItem = items[j];
+
+                    this.playItem(currentItem).then(() =>{
+                        currentItem.played = true;
+                        if(j === items.length -1){       
+                            resolve();
+                        }
+                    });
+                }
+            });
         },
         playItem(item){
             let objectForme =  document.getElementById(item.id);
@@ -148,9 +178,17 @@ export default {
             }
         },
         addItem(x, y){
+            
             //const objectSelected = document.getElementsByClassName('object-selected-outil');
             let objectForme = this.objectSelected || undefined;
             if(objectForme){
+
+                const itemGroupe = this.currentGroupe ? this.currentGroupe.items.find(i=>i.id === objectForme.id) : undefined;
+                if(itemGroupe){
+                    console.log('item non ajouté car il existe déjà');
+                    return;
+                }
+
                 const originX = (parseFloat(objectForme.getAttribute('data-x')) || 0);
                 const originY = (parseFloat(objectForme.getAttribute('data-y')) || 0);
 
@@ -168,13 +206,21 @@ export default {
                     played:false
                 };
 
+                if(this.currentGroupe){
+                    let groupeMouvement = this.listeMouvements.find(m=>m.id === this.currentGroupe.id);
+                    groupeMouvement.items.push(item);
+                }else{
+                    this.addFolder(item);
+                }
+
                 this.listeItems.push(item);
 
                 setPositionObject(objectForme, toGoX, toGoY);
             }
         },
-        removeItem(index){
-            this.listeItems.splice(index, 1);
+        removeItem(index, mouvementId){
+            let mouvements = this.listeMouvements.find(m=>m.id === mouvementId);
+            mouvements.items.splice(index, 1);
         },
         boucle(){
             this.inBoucle = !this.inBoucle;
@@ -212,17 +258,38 @@ export default {
             console.info(JSON.stringify(videoTrack.getConstraints(), null, 2));*/
         },
         setVitesse(){
-            if(this.vitesse === 3){
-                this.vitesse = 1;
+            if(this.vitesse === 1){
+                this.vitesse = 3;
+                this.labelVitesse == 1;
             }else{
-                this.vitesse++;
+                this.vitesse--;
+                this.labelVitesse++;
             }
         },
         deleteAll(){
             this.initAllObjectsToPointDepart();
-            this.listeItems = [];
-        }
+            this.listeMouvements = [];
+            this.showMenuSecondary = false;
+            this.currentGroupe = undefined;
+        },
+        addFolder(item){
+            let items = [];
+            let isGroupMouvements = true;
+            if(item !== undefined){
+                items.push(item);
+                isGroupMouvements = false;
+            }
 
+            const mouvements = {
+                id: 'mouv-' + (this.listeMouvements.length + 1),
+                items,
+                isGroupMouvements
+            };
+
+            this.currentGroupe = item === undefined ? mouvements : undefined;
+
+            this.listeMouvements.push(mouvements);
+        }
     },
     mounted(){
         document.getElementById('terrainSoccer').addEventListener('click', event =>{

@@ -43,7 +43,8 @@
             background-color: $color-white-background;
             border:1px solid $color-border-designer;
             box-shadow: 1px 1px 4px 1px rgba(201, 201, 201, 0.25);
-            border-radius: 5px;
+            border-radius: 5px;  
+            z-index: 9;
             >div{
                 padding: 10px 20px;
                 &:hover{
@@ -57,51 +58,119 @@
     .list-mouvements{
         padding: 10px;
         height: 330px;
-        overflow-y: scroll;
-        .item-mouvement{
-            @include font-s;
-            color:$color-black-fonts-second;
-            display: flex;
-            position: relative;
+        overflow-y: auto;
 
-            &::before{
-                content: '';
-                height: 10px;
-                width: 10px;
-                border-radius: 50%;
-                background-color: $color-yellow;
-                margin-top: 3px;
-                margin-right: 3px;
-            }
+        >div{
 
-            &.played{
-                &::before{
-                    background-color: $color-green;
+            &.is-groupe{
+                .item-mouvement{
+                    margin-left: 5px
                 }
             }
-            
-            &:not(:last-child){
-                margin-bottom: 10px;
-            }
 
-            >div{
-                width: 50%;
-                font-size: 0.9em;
+            .groupe-mouvement{
+                @include font-xm-bold;
+                color:$color-icons;
+                margin-bottom: 5px;
             }
-            .item-actions{
+    
+            .item-mouvement{
+                @include font-s;
+                color:$color-black-fonts-second;
                 display: flex;
-                justify-content: flex-end;
-                color:$color-blue-blackground;
+                position: relative;
+                margin-bottom: 5px;
+    
+                &::before{
+                    content: '';
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 50%;
+                    background-color: $color-yellow;
+                    margin-top: 3px;
+                    margin-right: 3px;
+                }
+    
+                &.played{
+                    &::before{
+                        background-color: $color-green;
+                    }
+                }
+                
+                &:not(:last-child){
+                    margin-bottom: 10px;
+                }
+    
                 >div{
+                    width: 50%;
+                    font-size: 0.9em;
+                }
+                .item-actions{
                     display: flex;
-                    span{
-                        &:not(:last-child){
-                            margin-right: 8px;
+                    justify-content: flex-end;
+                    color:$color-blue-blackground;
+                    >div{
+                        display: flex;
+                        span{
+                            &:not(:last-child){
+                                margin-right: 8px;
+                            }
+                            cursor: pointer;
                         }
-                        cursor: pointer;
+                    }
+                }
+            }
+            .groupe-mouvement{
+
+            }
+    
+            .item-mouvement{
+                @include font-s;
+                color:$color-black-fonts-second;
+                display: flex;
+                position: relative;
+                margin-bottom: 5px;
+    
+                &::before{
+                    content: '';
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 50%;
+                    background-color: $color-yellow;
+                    margin-top: 3px;
+                    margin-right: 3px;
+                }
+    
+                &.played{
+                    &::before{
+                        background-color: $color-green;
+                    }
+                }
+                
+                &:not(:last-child){
+                    margin-bottom: 10px;
+                }
+    
+                >div{
+                    width: 50%;
+                    font-size: 0.9em;
+                }
+                .item-actions{
+                    display: flex;
+                    justify-content: flex-end;
+                    color:$color-blue-blackground;
+                    >div{
+                        display: flex;
+                        span{
+                            &:not(:last-child){
+                                margin-right: 8px;
+                            }
+                            cursor: pointer;
+                        }
                     }
                 }
             }
         }
+    
     }
 }
