@@ -428,6 +428,11 @@
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             grid-column-gap: 10px;
             grid-row-gap: 10px;
+            @media screen and (max-width: $screen-sm) {
+                display: flex;
+                overflow-x: auto;
+                padding: 10px 0;
+            }
             >a{
                 text-decoration: none;      
                 color:$color-black-fonts;
@@ -440,7 +445,8 @@
                     border-radius: 5px;
                     cursor: pointer;
                     @media screen and (max-width: $screen-sm) {
-                        padding: 20px 0;
+                        padding: 20px 0;  
+                        width: 100px;
                     }
                     &:hover{
                         border-color: $color-gris-3;
@@ -503,7 +509,6 @@
                     margin-top: 0;
                 }
                 p{
-                    text-align: justify;
                     color:$color-white-fonts;
                 }
             }

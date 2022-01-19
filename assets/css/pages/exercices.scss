@@ -132,14 +132,11 @@
                                 }
                             }
                             .populaire{
-                                color:$color-white-fonts;
+                                color:$color-yellow;
                                 position: absolute;
-                                bottom:3px;
-                                right: 0;
-                                @include font-s-sbold;
-                                font-family: $font-family-text;
-                                background-color: rgba($color: $color-yellow, $alpha: 0.7);
-                                padding: 10px;
+                                bottom:-5px;
+                                right: 3px;
+                                font-size: 18px;
                             }
                         }
                         .description{
@@ -193,13 +190,15 @@
                         }
 
                         .new-exercice{
-                            background-color: rgba($color: $color-secondary-4, $alpha: 0.7);
+                            background-color: rgba($color: $color-secondary-4, $alpha: 1);
                             position: absolute;
-                            top:0;
-                            padding: 10px;
+                            top: -10px;
+                            left: -5px;
+                            padding: 5px 10px;
                             @include font-s-sbold;
                             font-family: $font-family-text;
                             color:$color-white-fonts;
+                            border-radius: 50px;
                         }
                     }
                 }
