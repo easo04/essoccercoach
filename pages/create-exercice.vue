@@ -17,6 +17,7 @@
                     </div>
                     <div class="second-items">
                         <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
+                        <span class="icon-action" @click="addGrid()" title="Ajouter tableau"><font-awesome-icon :icon="['fas', 'border-all']"/></span>
                         <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><font-awesome-icon :icon="['fas', 'circle']"/><span class="number">1</span></div>
                         <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><font-awesome-icon :icon="['fas', 'circle']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
                         <span class="objects icon-action couleur-select" id="changeColor" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
@@ -259,7 +260,7 @@
                 <div class="content-terrain">
                     <div class="terrain-space" id="terrainSoccer" @click="clickTerrain($event)">
                         <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" :class="object.class" @click="selectObject(object.id, indexObj)">
-                            <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && object.type !== 'drag-forme'"/>
+                            <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="canShowImg(object.type)"/>
                             <div class="number-object" v-if="object.type === 'drag-number'">
                                 <div class="circle"></div>
                                 <div class="number">{{object.number}}</div>
@@ -277,6 +278,10 @@
                             </div> 
                             <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
                                 <font-awesome-icon :icon="['fas', 'redo']"/>
+                            </div>
+                            <div class="grid-row" :class="'grid-columns-'+object.grid.columns.length + ' grid-row-' + object.grid.rows.length"  v-for="row in object.grid.rows" :key="row.id">
+                                <div class="column" v-for="(column, i) in object.grid.columns" :key="i">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -308,6 +313,7 @@ import ModalOpenDesigner from '@/components/modals/ModalOpenDesigner.vue'
 import ConfirmDeleteAllVue from '../components/modals/ConfirmDeleteAll.vue'
 import NavigatorService from '@/static/services/NavigatorService.js'
 import MenuMouvements from '../components/MenuMouvements.vue'
+import AddTableGridModalVue from '../components/modals/AddTableGridModal.vue'
 
 //enum pour le type d'actions
 const ACTIONS = {
@@ -321,6 +327,8 @@ const ID_TERRAIN = 'terrainSoccer';
 
 //liste de formes permisses
 const lstFormes = ['square', 'rectangle', 'triangle', 'circle'];
+
+const listObjectToShowImg = ['drag-text', 'drag-number', 'drag-forme',  'drag-grid-object'];
 
 export default {
     components: { MenuMouvements },
@@ -434,6 +442,9 @@ export default {
         }
     },
     methods:{
+        canShowImg(type){
+            return !listObjectToShowImg.includes(type);
+        },
         setShowOptionsHelp(){
             this.showOptionsHelp = this.showOptionsHelp ? false : true;
         },
@@ -544,7 +555,7 @@ export default {
             };
             this.lstObjectsActions.push(objectAction);
         },
-        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject, numberObject){
+        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject, numberObject, grid){
             let noObject = this.lstObjectsDraggable.length + 1;
             let object = {
                 id:type + '-' + noObject,
@@ -566,7 +577,8 @@ export default {
                     id:idImage + '-' + noObject,
                     src:srcImage,
                     size:undefined,
-                }
+                },
+                grid:grid || {rows:[]}
             };
 
             //vérifier si objet draggable
@@ -584,7 +596,10 @@ export default {
                 }
             }else if(object.type === 'drag-arrow'){
                 draggableClass = 'resize-drag-arrow';
+            }else if(object.type === 'drag-grid-object'){
+                draggableClass = 'resize-drag';
             }
+
             object.class += ' ' + draggableClass;
 
             //vérifier si objet de type but
@@ -829,6 +844,13 @@ export default {
         addText(){
             this.addObjectToList('drag-text', undefined, undefined, true);
         },
+        addGrid(){
+            this.$modal.show(
+                AddTableGridModalVue,
+                {},
+                {name : 'modal-add-table-grid'}
+            );
+        },
         verifyText(index){
             let value = this.lstObjectsDraggable[index].text;
             if(!value || value === ''){
@@ -1025,6 +1047,9 @@ export default {
                 document.getElementById('terrainSoccer').classList.remove('mode-play');
             }
         },
+        addGridObject(grid){
+            this.addObjectToList('drag-grid-object', undefined, undefined, false, undefined, undefined, undefined, grid);
+        },
         ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setImageExercice:'seance/setImageExercice'})
     },
     created(){
@@ -1036,6 +1061,10 @@ export default {
 
         this.$root.$on('deleteAll', () => {
             this.deleteAll();
+        });
+
+        this.$root.$on('addGrid', (grid) => {
+            this.addGridObject(grid);
         });
 
     },

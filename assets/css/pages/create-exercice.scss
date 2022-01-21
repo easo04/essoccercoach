@@ -774,6 +774,54 @@
                         }
                     }
                 }
+
+                .drag-grid-object{
+                    width: 350px;
+                    height: 150px;
+                    padding: 10px;
+                    .grid-row{
+                        display: grid;
+                        //grid-template-columns: repeat(auto-fit, 60px);
+                        grid-template-rows: 100%;
+                        height: 100%;
+                        width: 100%;
+
+                        &.grid-columns-2{
+                            grid-template-columns: repeat(2, 1fr);
+                        }
+                        &.grid-columns-3{
+                            grid-template-columns: repeat(3, 1fr);
+                        }
+                        &.grid-columns-4{
+                            grid-template-columns: repeat(4, 1fr);
+                        }
+
+                        &.grid-row-2{
+                            height: 50%;
+                        }
+                        &.grid-row-3{
+                            height: 33%;
+                        }
+                        &.grid-row-4{
+                            height: 25%;
+                        }
+
+                        border-bottom: 2px solid white;
+                        border-top: 2px solid white;
+
+                        .column{
+                            border-left: 2px solid white;
+                            border-right: 2px solid white;
+                            &:not(:first-child){
+                                border-left: none;
+                            }
+                        }
+
+                        &:not(:first-child){
+                            border-top: none;
+                        }
+                    }
+                }
                 
             }
             .help{
