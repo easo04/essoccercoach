@@ -17,7 +17,7 @@
                     </div>
                     <div class="second-items">
                         <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
-                        <span class="icon-action" @click="addGrid()" title="Ajouter tableau"><font-awesome-icon :icon="['fas', 'border-all']"/></span>
+                        <div class="add-grid" @click="addGrid()" title="Ajouter tableau"><font-awesome-icon :icon="['fas', 'border-all']"/></div>
                         <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><font-awesome-icon :icon="['fas', 'circle']"/><span class="number">1</span></div>
                         <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><font-awesome-icon :icon="['fas', 'circle']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
                         <span class="objects icon-action couleur-select" id="changeColor" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
@@ -70,6 +70,11 @@
                                     10% <input type="range" id="range-opacity" min="10" max="100" class="slider" name="range" value="100" v-model="rangeOpacity" @change="editOpacityForme()"> 100%
                                 </div>
                             </div>
+                        </div>
+                        <div class="new" v-show="showNew">
+                            <span class="close" @click="closeNew()">x</span>
+                            <span>Nouveau</span>
+                            <div class="arrow-down"></div>
                         </div>
                     </div>
                     <div class="third-items">
@@ -438,10 +443,14 @@ export default {
             fromSeance:false,
             showMenuLeft:true,
             showMenuPlay:false,
-            showModePlayMode:false
+            showModePlayMode:false,
+            showNew:true
         }
     },
     methods:{
+        closeNew(){
+            this.showNew = false;
+        },
         canShowImg(type){
             return !listObjectToShowImg.includes(type);
         },
@@ -1103,7 +1112,9 @@ export default {
 
             this.setShowLoader(false);
             this.setClassLoader('');
-        },  3* 1000);
+        },  3000);
+
+        setTimeout(() => this.closeNew(), 20000);
     },
     updated(){
 

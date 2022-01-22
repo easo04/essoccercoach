@@ -184,7 +184,7 @@
               </div> 
             </div> 
             <div class="message-btn">    
-              <a class="btn  btn-secondary2" href="/exercices">Créez votre premier exercice</a>
+              <a class="btn  btn-secondary2" href="/create-exercice">Créez votre premier exercice</a>
             </div> 
           </div>
           <div class="icon-img1">
