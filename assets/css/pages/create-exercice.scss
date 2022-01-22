@@ -800,25 +800,22 @@
                             height: 50%;
                         }
                         &.grid-row-3{
-                            height: 33%;
+                            height: 32%;
                         }
                         &.grid-row-4{
-                            height: 25%;
+                            height: 24.3%;
                         }
 
                         border-bottom: 2px solid white;
-                        border-top: 2px solid white;
-
-                        .column{
-                            border-left: 2px solid white;
-                            border-right: 2px solid white;
-                            &:not(:first-child){
-                                border-left: none;
-                            }
+                        &:first-child{
+                            border-top: 2px solid white;
                         }
 
-                        &:not(:first-child){
-                            border-top: none;
+                        .column{
+                            border-right: 2px solid white;
+                            &:first-child{
+                                border-left: 2px solid white;
+                            }
                         }
                     }
                 }

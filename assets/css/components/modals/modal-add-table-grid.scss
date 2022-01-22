@@ -1,15 +1,71 @@
 .modal-add-table-grid{
-    .grid-creator{
-        
+    
+    .actions{
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-end;
+        .icon-action{
+
+            cursor: pointer;
+            color: $color-black-fonts;
+            font-size: 12px;
+            font-weight: 600;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    .grid-creator{   
         .grid-row{
             display: grid;
-            grid-template-columns: repeat(auto-fit, 60px);
+            grid-template-columns: repeat(4, 1fr);
             height: 30px;
+            border-bottom: 2px solid $color-black;
+            &:first-child{
+                border-top: 2px solid $color-black;
+            }
             .column{
-                border: 1px solid black;
-                &:last-child{
-                    border-left: none;
+                border-right: 2px solid $color-black;
+                &:first-child{
+                    border-left: 2px solid $color-black;
                 }
+                cursor: pointer;
+                /*&:hover{
+                    background-color: $color-blue-blackground-clair;
+                }*/
+
+                &.selected{
+                    background-color: $color-blue-blackground-clair;
+                }
+            }
+
+            
+            &.first-row{
+                .column{
+                    &:first-child{
+                        border-top-left-radius: 5px;
+                    }
+                    &:last-child{
+                        border-top-right-radius: 5px;
+                    }
+                }
+                
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            &.last-row{
+                .column{
+                    &:first-child{
+                        border-bottom-left-radius: 5px;
+                    }
+                    &:last-child{
+                        border-bottom-right-radius: 5px;
+                    }
+                }
+                
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
             }
         }
     }

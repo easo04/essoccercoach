@@ -591,6 +591,8 @@ export default {
                     draggableClass = 'resize-drag-line-v';
                 }else if(object.forme === 'line-h'){
                     draggableClass = 'resize-drag-line-h';
+                }else if(object.forme ==='triangle' || object.forme === 'circle'){
+                    draggableClass = 'resize-drag-image';
                 }else{
                     draggableClass = 'resize-drag';
                 }
@@ -933,7 +935,7 @@ export default {
 
                 //ajouter l'objet dans la liste
                 const objectCopiedId = this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
-                    objectCopy.canRotate, objectCopy.textObject, objectCopy.forme, objectCopy.numberObject);
+                    objectCopy.canRotate, objectCopy.textObject, objectCopy.forme, objectCopy.numberObject, objectCopy.grid);
 
                 this.objectDOMCopied.idCopied = objectCopiedId;
             } 
