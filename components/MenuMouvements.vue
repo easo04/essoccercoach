@@ -71,6 +71,14 @@ export default {
             }
             
             let lastObjectSelected = $('.object-selected-outil');
+            
+            const canDeplace = lastObjectSelected[0]
+                && (lastObjectSelected[0].id.includes('drag-joueur') || lastObjectSelected[0].classList.value.includes('ballon'));
+
+            if(!canDeplace){
+                return;
+            }
+
             //if(event.target.id === ID_TERRAIN && this.show){
             if(this.objectSelected && this.objectSelected.id !== event.target.id){
                 this.lastCoordonates.pointY = event.layerY;

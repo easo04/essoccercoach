@@ -612,6 +612,8 @@ export default {
             }
 
             object.class += ' ' + draggableClass;
+            
+            object.class +=  idImage === 'ballon' ? ' ballon' : ''; 
 
             //vérifier si objet de type but
             if(object.image.id.includes('but')){
@@ -688,7 +690,15 @@ export default {
             });
         },
         selectObject(dragId, indexObj){
-            this.objectSelected = $('#' + dragId);
+
+            const objectDOMSelected = $('#' + dragId);
+            const isBallon = objectDOMSelected[0].children[0].id.includes('ballon');
+
+            if(this.showMenuPlay && (!dragId.includes('drag-joueur') && !isBallon)){
+                return;
+            }
+
+            this.objectSelected = objectDOMSelected;
             this.lastIndexObjectSelected = indexObj;
 
             this.objectDragSelected = this.lstObjectsDraggable[indexObj];
