@@ -11,7 +11,11 @@
                     <p>{{exercice.description}}</p>
                     <div class="footer-description">
                         <div><span class="icon-text"><font-awesome-icon :icon="['fas', 'tshirt']"/><span>{{exercice.nbPlayers}} joueurs</span></span></div>
-                        <div class="type"><div>{{getCategoryFormatted(exercice.category)}}</div></div>
+                        <div class="type">
+                            <div>
+                                <img :src="require(`~/assets/images/icons/categories/${exercice.category}s.svg`)"/><span>{{getCategoryFormatted(exercice.category)}}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -23,11 +27,11 @@
             </div>
         </div>
         <div class="description-infos-2">
-            <div class="disposition">
+            <div class="disposition" v-if="exercice.disposition">
                 <h3>Disposition</h3>
                 <p>{{exercice.disposition}}</p>
             </div>
-            <div class="objectifs">
+            <div class="objectifs" v-if="exercice.objectifs">
                 <h3>Objectifs</h3>
                 <p>{{exercice.objectifs}}</p>
             </div>

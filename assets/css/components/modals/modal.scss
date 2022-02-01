@@ -90,9 +90,9 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
-
                             &:hover{
-                                background-color: #bbbbbb;
+                                background: #bfbfbf;
+                                
                             }
                         }
                     }
@@ -155,51 +155,34 @@
                     @include font-m-sbold;
                     padding: 10px 40px;
                     .thnks{
-                        text-align: center;
-                    }
-                    .infolettre{
-                        @include font-xm;
-                        p{
-                            margin-bottom: 0;
-                        }
-
-                        .email-send{
-                            .form-control{
-                                border-top-right-radius: 0 !important;
-                                border-bottom-right-radius: 0 !important;
-                                border-right-color: transparent;
-                                @include font-xm;
-                            }
-
-                            .btn-default{
-                                border-top-left-radius: 0 !important;
-                                border-bottom-left-radius: 0 !important;
-                                height: 50px;
-                                margin-top: 16px;
-                            }
-                        }
-                    }
-                    .infolettre-succes {
-                        @include font-xm;
-                        text-align: center;
+                        text-align: left;
                     }
                     .reseaux-sociaux{
+                        margin-top: 50px;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        grid-column-gap: 80px;
                         @include font-xm;
                         text-align: center;
                         p{
                             margin-bottom: 0;
                         }
-                        .liste-reseaux{
-                            @include font-l;
-                            margin-top: 14px;
-                            .lien{
-                                cursor: pointer;
-                                &:not(:last-child){
-                                    margin-right: 10px;
+                        
+                        .image-reseau{
+                            img{
+                                width: 150px;
+                                
+                                @media screen and (max-width: $screen-sm) {
+                                    width: 100px;
                                 }
-                                svg{
-                                    color:$color-black-fonts-second;
-                                }
+                            }
+                            justify-self: flex-end;
+                        }
+                        .list-resaux{
+                            h3{
+                                color:$color-black-fonts;
+                                @include font-m-sbold;
+                                text-align: left;
                             }
                         }
                     }
@@ -228,14 +211,11 @@
                     .actions{
                         margin: 10px 30px;
                         height: 100%;
-                        display: block;
+                        display: flex;
+                        justify-content: flex-end;
                             
                         .link{
                             font-size: 14px!important;
-                            float: left;
-                        }
-                        .btn{
-                            float: right;
                         }
                     }
                 }

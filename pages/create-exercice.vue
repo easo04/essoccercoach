@@ -17,9 +17,10 @@
                     </div>
                     <div class="second-items">
                         <span class="icon-action" @click="addText()" title="Ajouter texte"><font-awesome-icon :icon="['fas', 'font']"/></span>
+                        <div class="add-grid" @click="addGrid()" title="Ajouter tableau"><font-awesome-icon :icon="['fas', 'border-all']"/></div>
                         <div class="add-number" id="addNumber" title="Ajouter un compteur" @click="addNumber()"><font-awesome-icon :icon="['fas', 'circle']"/><span class="number">1</span></div>
                         <span class="objects icon-action" title="Ajouter forme" @click="setShowSelectFormes()"><font-awesome-icon :icon="['fas', 'circle']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
-                        <span class="objects icon-action  couleur-select" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
+                        <span class="objects icon-action couleur-select" id="changeColor" title="Changer la couleur" @click="setShowSelectColors()"><font-awesome-icon :icon="['fas', 'fill']"/><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
                         <span class="objects icon-action inactive" id="changeTransparence" title="Changer la transparence" @click="setShowSelectTransparence()"><span class="transparence-select">{{rangeOpacity}}%</span><font-awesome-icon :icon="['fas', 'sort-down']"/></span>
                         <div class="select-couleurs selects" v-if="showSelectColors">
                             <div class="arrow-up"></div>
@@ -70,6 +71,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="new" v-show="showNew">
+                            <span class="close" @click="closeNew()">x</span>
+                            <span>Nouveau</span>
+                            <div class="arrow-down"></div>
+                        </div>
                     </div>
                     <div class="third-items">
                         <span class="icon-action inactive" id="copy" @click="makeCopy()" title="Faire une copie"><font-awesome-icon :icon="['fas', 'copy']"/></span>
@@ -77,6 +83,7 @@
                         <span class="icon-action inactive" id="plus" @click="plus()" title="Zoom plus"><font-awesome-icon :icon="['fas', 'search-plus']"/></span>
                         <span class="icon-action inactive" id="border" @click="border()" title="Ajouter une bordure"><font-awesome-icon :icon="['fas', 'border-style']"/></span>
                         <span class="icon-action inactive" id="fillNone" @click="fillNone()" title="Enlever la couleur de fond"><font-awesome-icon :icon="['fas', 'tint-slash']"/></span>
+                        <span class="icon-action" id="play" @click="play()" title="play" v-show="showModePlayMode"><font-awesome-icon :icon="['fas', 'photo-video']"/></span>
                     </div>
                 </div>
                 <div class="actions">
@@ -108,7 +115,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="content-item">
+                    <div class="content-item" :class="{'show-menu-left': !showMenuLeft}">
                         <div class="content-item-terrains" v-if="contentItem === 'terrain'">
                             <h3>Terrains</h3>
                             <div class="onglets">
@@ -258,7 +265,7 @@
                 <div class="content-terrain">
                     <div class="terrain-space" id="terrainSoccer" @click="clickTerrain($event)">
                         <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" :class="object.class" @click="selectObject(object.id, indexObj)">
-                            <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && object.type !== 'drag-forme'"/>
+                            <img :id="object.image.id" :src="require('~/assets/images/' + object.image.src)" v-if="canShowImg(object.type)"/>
                             <div class="number-object" v-if="object.type === 'drag-number'">
                                 <div class="circle"></div>
                                 <div class="number">{{object.number}}</div>
@@ -277,6 +284,10 @@
                             <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
                                 <font-awesome-icon :icon="['fas', 'redo']"/>
                             </div>
+                            <div class="grid-row" :class="'grid-columns-'+object.grid.columns.length + ' grid-row-' + object.grid.rows.length"  v-for="row in object.grid.rows" :key="row.id">
+                                <div class="column" v-for="(column, i) in object.grid.columns" :key="i">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="help">
@@ -289,6 +300,9 @@
                                 <div><div @click="setShowOptionsHelp()"><a href="/help" target="_blank">Documentation</a></div></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="menu-rigth-terrain" v-show="showMenuPlay">
+                        <menu-mouvements :show="showMenuPlay"/>
                     </div>
                 </div>
             </div>
@@ -303,6 +317,8 @@ import DownloadSuccesModal from '@/components/modals/DownloadSuccesModal.vue'
 import ModalOpenDesigner from '@/components/modals/ModalOpenDesigner.vue'
 import ConfirmDeleteAllVue from '../components/modals/ConfirmDeleteAll.vue'
 import NavigatorService from '@/static/services/NavigatorService.js'
+import MenuMouvements from '../components/MenuMouvements.vue'
+import AddTableGridModalVue from '../components/modals/AddTableGridModal.vue'
 
 //enum pour le type d'actions
 const ACTIONS = {
@@ -317,7 +333,10 @@ const ID_TERRAIN = 'terrainSoccer';
 //liste de formes permisses
 const lstFormes = ['square', 'rectangle', 'triangle', 'circle'];
 
+const listObjectToShowImg = ['drag-text', 'drag-number', 'drag-forme',  'drag-grid-object'];
+
 export default {
+    components: { MenuMouvements },
     props: ['from'],
     layout: 'designer',
     head(){
@@ -422,9 +441,19 @@ export default {
             objectDOMCopied:undefined,
             showOptionsHelp:false,
             fromSeance:false,
+            showMenuLeft:true,
+            showMenuPlay:false,
+            showModePlayMode:false,
+            showNew:true
         }
     },
     methods:{
+        closeNew(){
+            this.showNew = false;
+        },
+        canShowImg(type){
+            return !listObjectToShowImg.includes(type);
+        },
         setShowOptionsHelp(){
             this.showOptionsHelp = this.showOptionsHelp ? false : true;
         },
@@ -498,7 +527,7 @@ export default {
             this.textPlayer = '';
         },
         addOutil(outilName, outilImage) {
-            let canRotate = outilName.includes('but');
+            let canRotate = outilName.includes('but') || outilName.includes('échelle') ;
             this.addObjectToList('drag-outil', outilName, 'outils/' + outilImage.replace('svg', 'png'), canRotate);
         },
         addPlayerWithTextByColor(color){
@@ -535,7 +564,7 @@ export default {
             };
             this.lstObjectsActions.push(objectAction);
         },
-        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject, numberObject){
+        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject, numberObject, grid){
             let noObject = this.lstObjectsDraggable.length + 1;
             let object = {
                 id:type + '-' + noObject,
@@ -557,7 +586,8 @@ export default {
                     id:idImage + '-' + noObject,
                     src:srcImage,
                     size:undefined,
-                }
+                },
+                grid:grid || {rows:[]}
             };
 
             //vérifier si objet draggable
@@ -570,13 +600,20 @@ export default {
                     draggableClass = 'resize-drag-line-v';
                 }else if(object.forme === 'line-h'){
                     draggableClass = 'resize-drag-line-h';
+                }else if(object.forme ==='triangle' || object.forme === 'circle'){
+                    draggableClass = 'resize-drag-image';
                 }else{
                     draggableClass = 'resize-drag';
                 }
             }else if(object.type === 'drag-arrow'){
                 draggableClass = 'resize-drag-arrow';
+            }else if(object.type === 'drag-grid-object'){
+                draggableClass = 'resize-drag';
             }
+
             object.class += ' ' + draggableClass;
+            
+            object.class +=  idImage === 'ballon' ? ' ballon' : ''; 
 
             //vérifier si objet de type but
             if(object.image.id.includes('but')){
@@ -653,7 +690,15 @@ export default {
             });
         },
         selectObject(dragId, indexObj){
-            this.objectSelected = $('#' + dragId);
+
+            const objectDOMSelected = $('#' + dragId);
+            const isBallon = objectDOMSelected[0].children[0].id.includes('ballon');
+
+            if(this.showMenuPlay && (!dragId.includes('drag-joueur') && !isBallon)){
+                return;
+            }
+
+            this.objectSelected = objectDOMSelected;
             this.lastIndexObjectSelected = indexObj;
 
             this.objectDragSelected = this.lstObjectsDraggable[indexObj];
@@ -697,11 +742,11 @@ export default {
                 let height = this.objectSelected[0].style.height.replace('px', '');
                 height = height !== '' ? parseInt(height) : 120;
 
-                if(height < 180){
+                if(height < 220){
                     document.getElementById('plus').classList.remove('inactive');
                 }
                 
-                if(height > 100){
+                if(height > 80){
                     document.getElementById('minus').classList.remove('inactive');
                 }
             }
@@ -779,6 +824,20 @@ export default {
             document.getElementById('copy').classList.add('inactive');
             document.getElementById('changeTransparence').classList.add('inactive');
         },
+        initActionsButtonsIfPlayMode(){
+            document.getElementById('undo').classList.add('inactive');
+            document.getElementById('redo').classList.add('inactive');
+            document.getElementById('delete').classList.add('inactive');
+            document.getElementById('deleteAll').classList.add('inactive');
+            document.getElementById('copy').classList.add('inactive');
+            document.getElementById('changeTransparence').classList.add('inactive');
+            document.getElementById('minus').classList.add('inactive');
+            document.getElementById('plus').classList.add('inactive');
+            document.getElementById('border').classList.add('inactive');
+            document.getElementById('fillNone').classList.add('inactive');
+            document.getElementById('changeColor').classList.add('inactive');
+            
+        },
         openModalDeleteAll(){
             this.$modal.show(
                 ConfirmDeleteAllVue,
@@ -805,6 +864,13 @@ export default {
         },
         addText(){
             this.addObjectToList('drag-text', undefined, undefined, true);
+        },
+        addGrid(){
+            this.$modal.show(
+                AddTableGridModalVue,
+                {},
+                {name : 'modal-add-table-grid'}
+            );
         },
         verifyText(index){
             let value = this.lstObjectsDraggable[index].text;
@@ -878,18 +944,20 @@ export default {
         },
         makeCopy(){
             const objectCopy = this.objectDragSelected;
-            const imageObect = objectCopy.image;
+            if(objectCopy){
+                const imageObect = objectCopy.image;
 
-            //sauvegarder l'element du DOM qui a été copié
-            this.objectDOMCopied = {
-                objectCopied : this.objectSelected[0]
-            };
+                //sauvegarder l'element du DOM qui a été copié
+                this.objectDOMCopied = {
+                    objectCopied : this.objectSelected[0]
+                };
 
-            //ajouter l'objet dans la liste
-            const objectCopiedId = this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
-                objectCopy.canRotate, objectCopy.textObject, objectCopy.forme, objectCopy.numberObject);
+                //ajouter l'objet dans la liste
+                const objectCopiedId = this.addObjectToList(objectCopy.type, objectCopy.idImage, imageObect.src, 
+                    objectCopy.canRotate, objectCopy.textObject, objectCopy.forme, objectCopy.numberObject, objectCopy.grid);
 
-            this.objectDOMCopied.idCopied = objectCopiedId;
+                this.objectDOMCopied.idCopied = objectCopiedId;
+            } 
         },
         makeArrow(){
             const noObject = this.lstObjectsDraggable.length + 1;
@@ -912,8 +980,12 @@ export default {
             this.lstObjectsDraggable.push(object);
         },
         clickTerrain(event){
-            if(event.target.id === ID_TERRAIN){
-                this.deselectionner();  
+            if(event.target.id === ID_TERRAIN){ 
+
+                if(!this.showMenuPlay){
+                    this.deselectionner(); 
+                }
+                
                 this.closeAllSelectes();
             }
         },
@@ -928,52 +1000,76 @@ export default {
             );
         },
         plus(){
-            let height = this.objectSelected[0].style.height.replace('px', '');
-            height = height !== '' ? parseInt(height) : 120;
+            if(this.objectSelected){
+                let height = this.objectSelected[0].style.height.replace('px', '');
+                height = height !== '' ? parseInt(height) : 120;
 
-            if(height < 180){
-                this.objectSelected[0].style.height =  (height + 10) + 'px';
-                if(document.getElementById('minus').classList.contains('inactive')){    
-                    document.getElementById('minus').classList.remove('inactive');
+                if(height < 220){
+                    this.objectSelected[0].style.height =  (height + 10) + 'px';
+                    if(document.getElementById('minus').classList.contains('inactive')){    
+                        document.getElementById('minus').classList.remove('inactive');
+                    }
+                }else{
+                    document.getElementById('plus').classList.add('inactive');
                 }
-            }else{
-                document.getElementById('plus').classList.add('inactive');
             }
         },
         minus(){
-            let height = this.objectSelected[0].style.height.replace('px', '');
-            height = height !== '' ? parseInt(height) : 120;
+            if(this.objectSelected){
+                let height = this.objectSelected[0].style.height.replace('px', '');
+                height = height !== '' ? parseInt(height) : 120;
 
-            if(height > 100){
-                this.objectSelected[0].style.height =  (height - 10) + 'px';
-                if(document.getElementById('plus').classList.contains('inactive')){    
-                    document.getElementById('plus').classList.remove('inactive');
+                if(height > 80){
+                    this.objectSelected[0].style.height =  (height - 10) + 'px';
+                    if(document.getElementById('plus').classList.contains('inactive')){    
+                        document.getElementById('plus').classList.remove('inactive');
+                    }
+                }else{
+                    document.getElementById('minus').classList.add('inactive');
                 }
-            }else{
-                document.getElementById('minus').classList.add('inactive');
             }
         },
         border(){
-            const objectForme = this.objectSelected[0];
-            if(objectForme.children[0].classList.contains("square")){
-                const classBorder = "border-lines";
-                if(objectForme.children[0].classList.contains(classBorder)){
-                    objectForme.children[0].classList.remove(classBorder);
-                }else{
-                    objectForme.children[0].classList.add(classBorder);
+            if(this.objectSelected){
+                const objectForme = this.objectSelected[0];
+                if(objectForme.children[0].classList.contains("square")){
+                    const classBorder = "border-lines";
+                    if(objectForme.children[0].classList.contains(classBorder)){
+                        objectForme.children[0].classList.remove(classBorder);
+                    }else{
+                        objectForme.children[0].classList.add(classBorder);
+                    }
                 }
             }
         },
         fillNone(){
-            const objectForme = this.objectSelected[0];
-            if(objectForme.children[0].classList.contains("square")){
-                const classBorder = "fill-none";
-                if(objectForme.children[0].classList.contains(classBorder)){
-                    objectForme.children[0].classList.remove(classBorder);
-                }else{
-                    objectForme.children[0].classList.add(classBorder);
+            if(this.objectSelected){
+                const objectForme = this.objectSelected[0];
+                if(objectForme.children[0].classList.contains("square")){
+                    const classBorder = "fill-none";
+                    if(objectForme.children[0].classList.contains(classBorder)){
+                        objectForme.children[0].classList.remove(classBorder);
+                    }else{
+                        objectForme.children[0].classList.add(classBorder);
+                    }
                 }
             }
+        },
+        setShowMenuLeft(){
+            this.showMenuLeft = !this.showMenuLeft;
+        },
+        play(){
+            this.showMenuPlay = !this.showMenuPlay;
+            this.deselectionner();
+            this.initActionsButtonsIfPlayMode();
+            if(this.showMenuPlay){
+                document.getElementById('terrainSoccer').classList.add('mode-play');
+            }else{
+                document.getElementById('terrainSoccer').classList.remove('mode-play');
+            }
+        },
+        addGridObject(grid){
+            this.addObjectToList('drag-grid-object', undefined, undefined, false, undefined, undefined, undefined, grid);
         },
         ...mapMutations({setShowLoader:'setShowLoader', setTextLoader:'setTextLoader', setClassLoader:'setClassLoader', setImageExercice:'seance/setImageExercice'})
     },
@@ -988,14 +1084,25 @@ export default {
             this.deleteAll();
         });
 
+        this.$root.$on('addGrid', (grid) => {
+            this.addGridObject(grid);
+        });
+
     },
     mounted(){
+
+        const modePlayParam = this.$route.query.modePlay;
+        if(modePlayParam){
+            this.showModePlayMode = true;
+        }
         
         //detecter tous les clicks qui se font dans terrainSoccer
         $('.logo').click(event =>{
             this.deselectionner();
             this.closeAllSelectes();  
         });
+
+        //capturer le click du terrain 
 
         $('.fa-fill').addClass('black-color');
         
@@ -1015,7 +1122,9 @@ export default {
 
             this.setShowLoader(false);
             this.setClassLoader('');
-        },  3* 1000);
+        },  3000);
+
+        setTimeout(() => this.closeNew(), 20000);
     },
     updated(){
 
@@ -1072,6 +1181,16 @@ export default {
             //ajuster le fill-color-none de la forme
             if(object.classList.contains('fill-none')){
                 objectCopied.children[0].classList.add('fill-none');
+            }
+
+            //ajuster le rorate de l'objet
+            const rotate = object.getAttribute('data-rotate');
+            if(rotate){
+                const translate = 'translate(50px, 50px)';
+                objectCopied.children[0].style.webkitTransform = 
+                objectCopied.children[0].style.transform = translate + ' rotate(' + rotate + 'deg)';
+
+                objectCopied.children[0].setAttribute('data-rotate', rotate); 
             }
 
             this.objectDOMCopied = undefined;

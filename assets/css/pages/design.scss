@@ -80,14 +80,15 @@
 
     .footer-designer{
         border-top: 1px solid $color-border-designer;
-        color:#858585;
+        color:#FBFBFB;
         @include font-s;
         font-family: $font-family-text;
         display: flex;
         justify-content: flex-end;;
         align-items: center;
         padding: 0px 20px;
-        height: 20px;
+        height: 25px;
+        background: #28ABB9;
         @media screen and (min-width: $screen-lg-x) {
             height: 90px;
         }

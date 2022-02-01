@@ -67,6 +67,14 @@
                             padding: 10px 20px;
                             background-color: #A7BFE9;
                             border-radius: 20px;
+                            display: flex;
+                            img{
+                                width: 40px;
+                                margin-right: 5px;
+                            }
+                            span{
+                                line-height: 50px;
+                            }
                         }
                     }
                 }
@@ -82,7 +90,7 @@
                 display: block;
             }
             img{
-                height: 271px;
+                height: 100%;
                 width: 100%;
                 border-radius: 5px;
                 @media screen and (max-width: $screen-sm) {
@@ -114,7 +122,11 @@
         grid-template-columns: 1fr 1fr;
         grid-gap: 40px;
         >div{
-            border-top: 5px solid $color-soccer-coach;
+            
+            border:1px solid #cfd9e0;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #f3f3f3;
             p{
                 color:$color-black-fonts-second;
                 font-family: $font-family-text;

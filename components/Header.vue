@@ -32,7 +32,7 @@
             <div class="item-menu" :class="{'active' : currentItemMenu === 'accueil'}" @click="setCurrentItemMenu('accueil')">
                 <div>
                     <a href="/">
-                        <font-awesome-icon :icon="['fas', 'home']"/>
+                        <img src="@/assets/images/icons/header/home.svg"/>
                         <div class="item-label">Accueil</div>
                     </a>
                 </div>
@@ -40,7 +40,7 @@
             <div class="item-menu" :class="{'active' : currentItemMenu === 'outils'}" @click="setCurrentItemMenu('outils')">
                 <div>
                     <a href="/#nosOutils">
-                        <font-awesome-icon :icon="['fas', 'trophy']"/>
+                                <img src="@/assets/images/icons/header/trophy.svg"/>
                         <div class="item-label">Nos outils</div>
                     </a>
                 </div>
@@ -48,7 +48,7 @@
             <div class="item-menu" :class="{'active' : currentItemMenu === 'nous'}" @click="setCurrentItemMenu('nous')">
                 <div>
                     <a href="/#propos">
-                        <font-awesome-icon :icon="['fas', 'bullhorn']"/>
+                        <img src="@/assets/images/icons/header/info.svg"/>
                         <div class="item-label">À propos</div>
                     </a>
                 </div>
@@ -56,14 +56,13 @@
             <div class="item-menu" :class="{'active' : currentItemMenu === 'exercices'}" @click="setCurrentItemMenu('exercices')">
                 <div>
                     <a href="/exercices">
-                        <font-awesome-icon :icon="['fas', 'futbol']"/>
+                        <img src="@/assets/images/icons/header/exercices.svg"/>
                         <div class="item-label">Exercices</div>
                     </a>
                 </div>
             </div>
         </div>
         <div class="new-actions-list" v-if="showNewActions">
-            <h4>Commencez à créer avec l'un de nos outils</h4>
             <div class="items-actions">
                 <div class="item-action-list" @click="goToCreateSeances()">
                     <div>

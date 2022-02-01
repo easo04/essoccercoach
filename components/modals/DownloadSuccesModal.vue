@@ -5,17 +5,18 @@
             <div class="close-modal"><span @click="hide()"><font-awesome-icon :icon="['fas', 'times']"/></span></div>
         </div>
         <div class="modal-content">
-            <p class="thnks">Merci d'avoir utilisé ESsoccercoach Designer pour créer votre exercice!</p> 
-            <SendEmailInput/>
+            <p class="thnks">Merci d'avoir utilisé ESsoccercoach Designer pour créer votre exercice!</p>      
+            <DonateBouton/>
             <div class="reseaux-sociaux">
-                <p>Suivez-nous sur les réseaux sociaux</p>
-                <ListReseaux/>
+                <div class="image-reseau">
+                    <img src="@/assets/images/icons/social-media.svg"/>
+                </div>
+                <social-media/>
             </div>
         </div>
         <div class="modal-footer">
             <div class="actions">
                 <a @click="goHome()" class="link">Retournez à l'accueil</a>
-                <button class="btn btn-default" @click="hide()">Créez un nouvel exercice</button>
             </div>
         </div>
     </div>

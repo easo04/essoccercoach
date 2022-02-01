@@ -185,7 +185,7 @@
 }
 
 @mixin btn-default{
-    padding: 10px 24px;
+    padding: 15px 24px;
     background: $color-soccer-coach;
     border-radius: 5px;
     font-family: Open Sans;
@@ -220,23 +220,21 @@
 }
 
 @mixin btn-default-ghost{
-    padding: 10px 24px;
+    padding: 15px 24px;
     background: transparent;
     border-radius: 5px;
-    border:2px solid $color-soccer-coach;
+    border:2px solid #c7bcbc;
     font-family: Open Sans;
-    color: $color-soccer-coach;
+    color: $color-black-fonts-second;
     @include font-m-bold;
     cursor: pointer;
     letter-spacing: 1px;
     text-decoration: none;
     &:hover{
-        background-color: $color-soccer-coach;
-        color:$color-white-fonts;
+        border:2px solid #8d8787;
     }
     &:focus{
         outline:none;
-        box-shadow: 1px 1px 4px rgba(32, 137, 148, 0.5);
     }
     &.inactive{
         background-color: $color-gris-1;
@@ -244,6 +242,7 @@
     }
 
 }
+
 
 @mixin btn-circle {
     @include font-s-bold;
@@ -258,7 +257,36 @@
     &:hover{
         background-color: $color-secondary-1-hover;
     }
+}
     
+@mixin btn-secondary{
+    padding: 15px 24px;
+    background: #ED381C;
+    border-radius: 5px;
+    font-family: Open Sans;
+    color: $color-white-fonts;
+    @include font-m-bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-decoration: none;
+    &:hover{
+        background-color: #BE2D16;
+    }
+}
+
+@mixin btn-secondary2{
+    padding: 15px 24px;
+    background: #22C77B;
+    border-radius: 5px;
+    font-family: Open Sans;
+    color: $color-white-fonts;
+    @include font-m-bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-decoration: none;
+    &:hover{
+        background-color: #1B9F62;
+    }
 }
 
 @mixin blue-link {

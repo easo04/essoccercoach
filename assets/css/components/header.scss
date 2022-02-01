@@ -147,7 +147,7 @@
         }
     } 
     .menu-mobile{
-        height: 60px;
+        height: auto;
         background-color: $color-white-background;
         border-bottom: 1px solid $color-gris-4;
         border-top: 1px solid $color-gris-4;
@@ -169,10 +169,14 @@
             text-align: center;
             border-bottom: 5px solid transparent;
             color:$color-black-fonts-second;
+            padding: 10px 0;
 
             a{
                 color:$color-black-fonts-second;
                 text-decoration: none;
+                img{
+                    width: 25px;
+                }
             }
 
             &.active{
@@ -194,87 +198,68 @@
         position: fixed;
         top: 100px;
         right: 100px;
-        width: 400px;
+        width: auto;
         background-color: #FBFBFB;
         border-radius: 5px;
         color:$color-black-fonts;
         border:1px solid rgba(201, 201, 201, 0.5);
-        padding: 20px;
         z-index: 901;
         box-shadow: 1px 1px 5px 1px rgba(201, 201, 201, 0.4);
 
         @media screen and (max-width: $screen-sm) {
             top: 84px;
             right: 0;
-            width: calc(100vw - 42px);
-            height: 250px;
+            width: calc(100vw);
         }
 
-        @media screen and (max-width: $screen-xs) {
-            height: 150px;
-        }
-
-        h4{
-            margin: 0;
-            margin-bottom: 20px;
-        }
         .items-actions{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 20px;
-            border-top: 1px solid $color-gris-1;
-            padding-top: 20px;
-            height: 120px;
-            @media screen and (max-width: $screen-sm) {
-                height: 190px;
-                grid-gap: 20px;
-            }
-
-            @media screen and (max-width: $screen-xs) {
-                height: 90px;
-                grid-gap: 5px;
-            }
-    
+            height: auto;
 
             .item-action-list{
-                border:1px solid $color-soccer-coach;
-                background-color: $color-soccer-coach;
-                border-radius: 50%;
+                border-bottom: 1px solid $color-gris-1;
                 color:$color-white-fonts;
                 @include font-s-mbold;
                 font-family: Open Sans;
                 text-align: center;
                 cursor: pointer;
-                padding: 10px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                padding: 10px 20px;
                 height: auto;
-                .img-item-action{
+
+                &:last-child{
+                    border-bottom: none;
+                }
+
+                >div{
                     display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    .img{
-                        height: 60px;
-                        width: 70px;
-                        display: flex;
-                        align-items: center;
-                        @media screen and (max-width: $screen-sm) {
-                            height: auto;
-                            width: 100px;
-                        }
-                        @media screen and (max-width: $screen-xs) {
+                    
+                    .img-item-action{
+                        .img{
                             height: 60px;
                             width: 70px;
-                        }
-                        img{
-                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            @media screen and (max-width: $screen-sm) {
+                                height: auto;
+                                width: 100px;
+                            }
+                            @media screen and (max-width: $screen-xs) {
+                                height: 60px;
+                                width: 70px;
+                            }
+                            img{
+                                width: 100%;
+                            }
                         }
                     }
+
+                    span{
+                        line-height: 55px;
+                        color: $color-soccer-coach;
+                    }
                 }
+
                 &:hover{
-                    background-color: #208994;
-                    border:1px solid #18676F;
+                    background-color: $color-blue-blackground-clair;
                 }
 
                 @media screen and (max-width: $screen-sm) {
