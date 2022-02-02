@@ -74,34 +74,24 @@
     font-style: normal;
     font-size: 12px;
     line-height: 16px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 10px;
+    }
 }
 
 @mixin font-s-sbold {
-    font-style: normal;
+    @include font-s;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 16px;
 }
 
 @mixin font-s-bold {
-    font-style: normal;
-    font-size: 12px;
-    line-height: 16px;
+    @include font-s;
     font-weight: bold;
 }
 
-@mixin font-s-sbold {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 16px;
-}
-
 @mixin font-s-mbold {
-    font-style: normal;
     font-weight: 700;
-    font-size: 12px;
-    line-height: 16px;
+    @include font-s;
 }
 
 @mixin font-xm {
@@ -109,33 +99,33 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 12px;
+    }
 }
 
 @mixin font-xm-bold {
-    font-style: normal;
+    @include font-xm;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 22px;
 }
 
 @mixin font-xm-sbold {
-    font-style: normal;
     font-weight: 600;
-    font-size: 14px;
-    line-height: 22px;
+    @include font-xm;
 }
 
 @mixin font-xm-mbold {
-    font-style: normal;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 22px;
+    @include font-xm;
 }
 
 @mixin font-m {
     font-style: normal;
     font-size: 16px;
     line-height: 22px;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 14px;
+    }
 }
 
 @mixin font-l {
@@ -143,45 +133,36 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
+    @media screen and (max-width: $screen-sm) {
+        font-size: 16px;
+    }
 }
 @mixin font-l-sbold {
-    font-style: normal;
-    font-size: 18px;
-    line-height: 22px;
+    @include font-l;
     font-weight: 600;
 }
 @mixin font-l-bold {
-    font-style: normal;
-    font-size: 18px;
-    line-height: 22px;
+    @include font-l;
     font-weight: bold;
 }
 @mixin font-l-mbold {
-    font-style: normal;
-    font-size: 18px;
-    line-height: 22px;
+    @include font-l;
     font-weight: 700;
 }
 
 @mixin font-m-bold {
-    font-style: normal;
+    @include font-m;
     font-weight: bold;
-    font-size: 16px;
-    line-height: 22px;
 }
 
 @mixin font-m-sbold {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
+    font-weight: 600;  
+    @include font-m;
 }
 
 @mixin font-m-mbold {
-    font-style: normal;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
+    @include font-m;
 }
 
 @mixin btn-default{

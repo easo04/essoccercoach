@@ -47,6 +47,11 @@ export default {
                 cursor: pointer;
                 color: $color-gris-2;
                 font-size: 16px;
+                padding: 5px 10px;
+                &:hover{
+                    background-color: #e5e5e5;
+                    border-radius: 50%;
+                }
             }
         }
         .options-action{

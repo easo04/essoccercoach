@@ -1,9 +1,15 @@
 <template>
     <div class="notes-activity">
-        <h4>Notes</h4>
-        <div class="content-actions">
-            <button class="btn btn-default" title="Ajoutez une note" @click="addNewNote()"><font-awesome-icon :icon="['fas', 'plus']"/></button>
+        <div class="create-notes">
+            <div class="form-group">
+                <label class="label-control" for="note">Ajoutez une note: </label>
+                <textarea rows="20" cols="50"  autocomplete="off" name="notes" class="form-control-textarea" v-model="note"></textarea>
+            </div>
+            <div class="actions">
+                <button class="btn btn-default" @click.prevent="saveNote()" :class="{'disabled':isBtnSaveDisabled()}" :disabled="isBtnSaveDisabled()">Enregistrez</button>
+            </div>
         </div>
+        <h4>Notes</h4>
         <div class="content-item" v-for="(note, i) in lstNotes" :key="i">
             <div>
                 <h5>{{note.user_creation}} <span class="date-note">{{note.date_web_created}}</span></h5>
@@ -22,6 +28,7 @@ export default {
     props:['notes', 'activity'],
     data(){
         return{
+            note:undefined
         }
     },
     computed:{
@@ -34,15 +41,25 @@ export default {
             await this.$axios.$delete(`/api/notes/${idNote}`);
             this.deleteNote(index);
         },
-        addNewNote(){
-            console.log(this.activity.id)
-            this.$modal.show(
-                AddNoteModalVue,
-                {'activity':this.activity},
-                {name : 'modal-add-note', classes:['modal-top']}
-            );
+        isBtnSaveDisabled(){
+            return this.note === undefined || this.note === '';
         },
-        ...mapMutations({initNotes:'teams/initNotes', deleteNote: 'teams/deleteNote'})
+        async saveNote(){
+            let data = {
+                note:this.note,
+                activite:this.activity.id
+            };
+
+            try{
+                const response = await this.$axios.$post('/api/notes/', data);
+                data.id = response.noteId;
+                this.addNote(data);
+                this.note = undefined;
+            }catch(error){
+                console.log(error)
+            }
+        },
+        ...mapMutations({initNotes:'teams/initNotes', deleteNote: 'teams/deleteNote', addNote:'teams/addNote'})
 
     },
     mounted(){

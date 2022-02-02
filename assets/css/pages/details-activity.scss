@@ -36,6 +36,9 @@
             .btn-show-actions{
                 button{
                     color:$color-white-fonts;
+                    &:hover{
+                        background-color: transparent;
+                    }
                 }
             }
         }
@@ -49,7 +52,7 @@
 
     .details-activity{
         background-color: $color-soccer-coach;
-        padding: 50px 20px 10px 20px;        
+        padding: 20px;        
         box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.1) inset;
         h2,h3{
             color:#E9E9E9;
@@ -252,6 +255,14 @@
                     margin: 0;
                     margin-bottom: 20px;
                     color:$color-black-fonts-second;
+                }
+                .create-notes{
+                    margin-bottom: 20px;
+                    .actions{
+                        margin-top: 10px;
+                        display: flex;
+                        justify-content: flex-end;
+                    }
                 }
                 .content-item{
                     @include font-xm;

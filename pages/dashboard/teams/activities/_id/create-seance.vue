@@ -5,12 +5,22 @@
         </div>
         <div v-else>
             <bouton-back title="Retournez au détail de l'activité"/>
+            <div class="actions-add-seance">
+                <div class="list-actions">
+                    <span><font-awesome-icon :icon="['fas', 'save']"/></span>
+                    <span><font-awesome-icon :icon="['fas', 'save']"/></span>
+                </div>
+            </div>
             <div class="content-add-seance">
                 <div class="exercices">
                     <h5>Banque d'exercices</h5>
                     <div class="type-exercices" v-for="(category, index) in categories" :key="index">
-                        <h6>{{category.name}}</h6>
-                        <ul>
+                        <div class="category-name" @click="openCategory(category)">
+                            <h6>{{category.name}}</h6>
+                            <div class="icon" v-if="!category.opened"><font-awesome-icon :icon="['fas', 'plus']"/></div>
+                            <div class="icon" v-else><font-awesome-icon :icon="['fas', 'minus']"/></div>
+                        </div>
+                        <ul v-show="category.opened">
                             <li v-for="(exercice, i) in category.exercices" :key="i"><a @click="addExercice(exercice.id)" title="Selectionner">{{exercice.title}}</a></li>
                         </ul>
                     </div>
@@ -73,6 +83,9 @@ export default {
         }
     },
     methods:{
+        openCategory(category){
+            category.opened = !category.opened;
+        },
         async getAllExercices(){
             try{
                 const response = await this.$axios.$get('/api/exercices');
@@ -86,7 +99,8 @@ export default {
 
                         const currentCategory = {
                             name:category.label,
-                            exercices:lstExercices
+                            exercices:lstExercices,
+                            opened:false
                         };
 
                         this.categories.push(currentCategory);
