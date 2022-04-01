@@ -11,6 +11,7 @@ export const state = () => ({
     {label:'Rondos', name:'rondos', url:'/exercices/categorie/rondos'},
     {label:'Physiques', name:'physiques', url:'/exercices/categorie/physiques'},
     {label:'Tactiques', name:'tactiques', url:'/exercices/categorie/tactiques'},
+    {label:'Gardiens', name:'gardiens', url:'/exercices/categorie/gardiens'},
   ],
   exercices:[],
   emails:[],

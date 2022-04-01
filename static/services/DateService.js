@@ -1,12 +1,13 @@
+
 const DAYS_OF_WEEK = {
     fr:[
+        {day:7, label:'Dimanche', abbreviationLarge:'Dim.', abbreviationSmall:'Dim'},
         {day:1, label:'Lundi', abbreviationLarge:'Lun.', abbreviationSmall:'Lun'},
         {day:2, label:'Mardi', abbreviationLarge:'Mar.', abbreviationSmall:'Mar'},
         {day:3, label:'Mercredi', abbreviationLarge:'Mercr.', abbreviationSmall:'Mer'},
         {day:4, label:'Jeudi', abbreviationLarge:'Jeu.', abbreviationSmall:'Jeu'},
         {day:5, label:'Vendredi', abbreviationLarge:'Vendr.', abbreviationSmall:'Ven'},
         {day:6, label:'Samedi', abbreviationLarge:'Sam.', abbreviationSmall:'Sam'},
-        {day:7, label:'Dimanche', abbreviationLarge:'Dim.', abbreviationSmall:'Dim'}
     ],
     en:[
         {day:1, label:'Monday', abbreviationLarge:'Mon.', abbreviationSmall:'Mo'},
@@ -133,6 +134,22 @@ class DateService{
      */
     static getDateFormatSimple(date, langue){
         return Intl.DateTimeFormat(langue).format(date)
+    }
+
+    static getMonthsOfYear(lang){
+        return lang === 'fr' ? MONTHS_OF_YEAR.fr : MONTHS_OF_YEAR.en;
+    }
+
+    static getDaysOfWeek(lang){
+        return lang === 'fr' ? DAYS_OF_WEEK.fr : DAYS_OF_WEEK.en;
+    }
+
+    static getDaysInCurrentMonth(){
+        const now = new Date();
+        const month = now.getMonth();
+        const year = now.getFullYear();
+        
+        return new Date(year, month+1, 0).getDate();
     }
 }
 

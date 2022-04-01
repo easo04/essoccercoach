@@ -12,7 +12,7 @@
         top:0;
         width: 100%;
         z-index: 900;
-        background-color: $color-blue-blackground;
+        background-color: $color-white-background;
         .logo{
             display: flex;
             align-items: center;
@@ -31,7 +31,7 @@
             align-items: center;
             margin-right: 20px;
             font-size: 25px;
-            color:$color-white-fonts;
+            color:$color-blue-blackground;
             cursor: pointer;
             position: relative;
             .profil{
@@ -44,7 +44,7 @@
             .welcome{
                 @include font-xm-sbold;
                 font-family: $font-family-text;
-                color:$color-white-fonts;
+                color:$color-blue-blackground;
             }
             .liste-profil{
                 position: absolute;
@@ -233,12 +233,13 @@
                 width: 100%;
                 @include font-s-sbold;
                 text-align: center;
+                font-size: 0.6rem;
                 font-family: $font-family-text;
                 img{
                     width: 100%;
                 }
                 .icon-svg{
-                    font-size: 28px; 
+                    font-size: 1.3rem; 
                 }
             }
         }
@@ -256,11 +257,12 @@
             margin-top: 60px;
         }
         .contenu{
-            padding: 20px;
+            padding: 20px 120px;
             background-color: $color-blue-blackground-clair;
             min-height: 100vh;
             display: grid;
-            grid-template-columns: 4fr 1fr;
+            //grid-template-columns: 4fr 1fr;
+            grid-template-columns: 1fr;
             grid-gap: 10px;
 
             @media screen and (max-width: $screen-sm) {
@@ -290,6 +292,7 @@
                 }
             }
             .section-rigth{
+                display: none;
                 height: auto;
                 background-color: #f7f7f7;
                 padding: 20px;

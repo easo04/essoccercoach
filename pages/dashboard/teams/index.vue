@@ -27,22 +27,22 @@
                     </menu-actions>
                 </div>
                 <div class="options-team">
-                    <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')">Équipe</div>
                     <div class="option-team" :class="{'active' : optionSelected === 'activities'}" @click="setOnglet('activities')">Activités</div>
+                    <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')">Équipe</div>
                     <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')">Séances</div>
                     <div class="option-team" :class="{'active' : optionSelected === 'alignements'}" @click="setOnglet('alignements')">Matchs</div>
                 </div>
                 <div class="options-team-mobile"> 
-                    <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')" title="Équipe">
-                        <div>
-                            <font-awesome-icon :icon="['fas', 'users']"/>
-                            <div class="label-option">Équipe</div>
-                        </div>
-                    </div>
                     <div class="option-team" :class="{'active' : optionSelected === 'activities'}" @click="setOnglet('activities')" title="Activités">
                         <div>
                             <font-awesome-icon :icon="['fas', 'calendar-alt']"/>
                             <div class="label-option">Activités</div>
+                        </div>
+                    </div>
+                    <div class="option-team" :class="{'active' : optionSelected === 'team'}" @click="setOnglet('team')" title="Équipe">
+                        <div>
+                            <font-awesome-icon :icon="['fas', 'users']"/>
+                            <div class="label-option">Équipe</div>
                         </div>
                     </div>
                     <div class="option-team" :class="{'active' : optionSelected === 'seances'}" @click="setOnglet('seances')" title="Séances">
@@ -82,7 +82,7 @@
                         <div class="content-actions" v-if="canAddActivity">
                             <button class="btn btn-default btn-add-player" @click="addActivity()"><font-awesome-icon :icon="['fas', 'plus']"/></button>
                         </div>
-                        <Activities :activities="teamSelected.activities" :players="teamSelected.players" titre="Activités"/>
+                        <calendar :seances="listSeances" :matchs="listMatchs"/>
                     </div>
                     <div v-if="optionSelected === 'seances'">
                         <Activities :activities="listSeances" titre="Séances" :players="teamSelected.players"/>
@@ -97,6 +97,7 @@
 </template>
 <script>
 import {mapState} from 'vuex';
+import Calendar from '../../../components/Calendar.vue';
 import AddNewTeamModalVue from '../../../components/modals/teams/AddNewTeamModal.vue';
 import TeamService from '../../../static/services/TeamService'
 const OPTIONS_ONGLET = {
@@ -104,6 +105,7 @@ const OPTIONS_ONGLET = {
     ACTIVITIES:'activities'
 }
 export default {
+    components: { Calendar },
     middleware: 'authentificated',
     layout:'connected',
     data(){
@@ -113,7 +115,7 @@ export default {
             canCreateTeam:false,
             canAddPlayer:false,
             canAddActivity:false,
-            optionSelected:OPTIONS_ONGLET.TEAM,
+            optionSelected:OPTIONS_ONGLET.ACTIVITIES,
             currentActivity:undefined,
             showActionsTeam:false,
             loader:true
@@ -200,7 +202,7 @@ export default {
         selectPage(event){
             const action = event.target.nodeName === 'path' ? event.target.nodeName : event.target.id;
             this.$root.$emit('close-all-selects', action);
-        }
+        },
         
     },
     created(){
