@@ -54,6 +54,9 @@
         background-color: $color-soccer-coach;
         padding: 20px 60px;        
         box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.1) inset;
+        @media screen and (max-width: $screen-sm) {
+            padding: 20px;
+        }
         h2,h3{
             color:#E9E9E9;
         }
@@ -137,6 +140,9 @@
         .content-options{
             padding: 30px 60px;
             min-height: 370px;
+            @media screen and (max-width: $screen-sm) {
+                padding: 20px;
+            }
             .details-option-activity{
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -188,6 +194,9 @@
                             right: -3px;
                             z-index: 8;
                             border-top-right-radius: 5px;
+                            @media screen and (max-width: $screen-sm) {
+                                width: 50px;
+                            }
                         }
                         .absent-back{
                             background-color: rgba($color: $color-red, $alpha: 0.8);
@@ -198,6 +207,9 @@
                             left: -3px;
                             z-index: 8;
                             border-bottom-left-radius: 5px;
+                            @media screen and (max-width: $screen-sm) {
+                                width: 50px;
+                            }
                         }
                         .absent{
                             margin-top: 10px;
@@ -243,6 +255,31 @@
                                 margin-left: 20px;
                             }
                         }
+
+                        &.not-update{
+                            >div{
+                                cursor: auto;
+                                &:hover{
+                                    color:$color-border-designer;
+                                }
+                            }
+
+                            .go{
+                                &:hover{
+                                    color: rgba($color: $color-green, $alpha: 0.8);
+                                }
+                                //color:$color-green;
+                                
+                            }
+                            .no-go{
+                                &:hover{
+                                    color: rgba($color: $color-red, $alpha: 0.8);
+                                }
+                                //color:$color-red;
+                                
+                            }
+                        }
+
                         .go{
                             //color:$color-green;
                             color: rgba($color: $color-green, $alpha: 0.8);

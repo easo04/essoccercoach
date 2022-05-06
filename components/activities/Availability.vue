@@ -3,9 +3,13 @@
         <h4>Joueurs</h4>
         <div class="availability-item" v-for="(availability, i) in availabilities" :key="i">
             <div>{{availability.name_player}}</div>
-            <div class="presence">
+            <div class="presence"  v-if="canUpdateAvaibility()">
                 <div :class="{'go' : availability.id_availability && availability.availability}" title="Présent(e)" @click="setAvailability(true, availability)"><font-awesome-icon :icon="['fas', 'check']"/></div>
                 <div :class="{'no-go' : availability.id_availability && !availability.availability}" title="Absent(e)" @click="setAvailability(false, availability)"><font-awesome-icon :icon="['fas', 'times']"/></div>
+            </div>
+            <div class="presence not-update" v-else>
+                <div :class="{'go' : availability.id_availability && availability.availability}"><font-awesome-icon :icon="['fas', 'check']"/></div>
+                <div :class="{'no-go' : availability.id_availability && !availability.availability}"><font-awesome-icon :icon="['fas', 'times']"/></div>
             </div>
         </div>
     </div>
@@ -14,6 +18,12 @@
 export default {
     props:['availabilities', 'activity'],
     methods:{
+        canUpdateAvaibility(){
+            const dateActivity = new Date(this.activity.date_activite);
+            let now = new Date();
+            now.setHours(0, 0, 0, 0);
+            return dateActivity >=now;
+        },
         async setAvailability(present, availability){
             if((availability.id_availability && availability.availability !== present) ||
                 !availability.id_availability){

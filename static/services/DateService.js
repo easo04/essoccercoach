@@ -148,8 +148,23 @@ class DateService{
         const now = new Date();
         const month = now.getMonth();
         const year = now.getFullYear();
-        
+
         return new Date(year, month+1, 0).getDate();
+    }
+
+    static getFirstDayOfCurrentMonth(){
+        const now = new Date();
+
+        return new Date(now.getFullYear(), now.getMonth());
+    }
+
+    static getCurrentDateWithoutTime(){
+        const date = new Date();
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
     }
 }
 

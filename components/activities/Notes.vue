@@ -1,6 +1,6 @@
 <template>
     <div class="notes-activity">
-        <div class="create-notes">
+        <div class="create-notes" v-if="canAddNote()">
             <div class="form-group">
                 <label class="label-control" for="note">Ajoutez une note: </label>
                 <textarea rows="20" cols="50"  autocomplete="off" name="notes" class="form-control-textarea" v-model="note"></textarea>
@@ -43,6 +43,12 @@ export default {
         },
         isBtnSaveDisabled(){
             return this.note === undefined || this.note === '';
+        },
+        canAddNote(){
+            const dateActivity = new Date(this.activity.date_activite);
+            let now = new Date();
+            now.setHours(0, 0, 0, 0);
+            return dateActivity >=now;
         },
         async saveNote(){
             let data = {

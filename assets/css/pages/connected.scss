@@ -267,6 +267,7 @@
 
             @media screen and (max-width: $screen-sm) {
                 grid-template-columns: 1fr;
+                padding: 20px;
             }
 
             .nuxt-content{

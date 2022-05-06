@@ -7,12 +7,15 @@
             <bouton-back title="Retournez au détail de l'activité"/>
             <div class="actions-add-seance">
                 <div class="list-actions">
-                    <span><font-awesome-icon :icon="['fas', 'save']"/></span>
-                    <span><font-awesome-icon :icon="['fas', 'save']"/></span>
+                    <span @click="save()"><font-awesome-icon :icon="['fas', 'save']"/></span>
                 </div>
             </div>
             <div class="content-add-seance">
                 <div class="exercices">
+                    <div class="others-exerices">
+                        <div><a>Ajoutez un nouvel exercice</a></div>
+                        <div><a @click="addMatch()">Ajoutez un match</a></div>
+                    </div>
                     <h5>Banque d'exercices</h5>
                     <div class="type-exercices" v-for="(category, index) in categories" :key="index">
                         <div class="category-name" @click="openCategory(category)">
@@ -32,7 +35,7 @@
                                 <div class="details-exercice" v-if="!exercice.update">
                                     <h5>{{exercice.title}}</h5>
                                     <p>{{exercice.description}}</p>
-                                    <h6>Objecifs</h6>
+                                    <h6 class="objectifs">Objecifs</h6>
                                     <p>{{exercice.pointCoach}}</p>
                                 </div>
                                 <div class="details-exercice" v-else>
@@ -42,13 +45,19 @@
                                     <div class="form-group">
                                         <textarea rows="20" cols="50"  autocomplete="off" name="notes" class="form-control-textarea" v-model="exercice.description"></textarea>
                                     </div>
-                                    <h6>Objecifs</h6>
+                                    <h6 class="objectifs">Objecifs</h6>
                                     <div class="form-group">
                                         <textarea rows="20" cols="50"  autocomplete="off" name="notes" class="form-control-textarea" v-model="exercice.pointCoach"></textarea>
                                     </div>
                                 </div>
-                                <div class="image-exercice">
-                                    <div class="image"></div>
+                                <div class="image-exercice" v-if="!exercice.isGame">
+                                    <div class="image">
+                                        <img src="@/assets/images/exercice_essoccercoach.png"/>
+                                    </div>
+                                </div>
+                                <div class="actions-move">
+                                    <div v-if="index !== 0" title="move to up" @click="up(exercice, index)"><font-awesome-icon :icon="['fas', 'angle-up']"/></div>
+                                    <div v-if="index !== lstExercices.length - 1" title="move to down" @click="down(exercice, index)"><font-awesome-icon :icon="['fas', 'angle-down']"/></div>
                                 </div>
                             </div>
                             <div class="exercice-actions-block">
@@ -129,12 +138,47 @@ export default {
             };
             this.lstExercices.push(exercice);
         },
+        addMatch(){
+            const match = {
+                title:'Match',
+                description:'',
+                image:'',
+                time:'25',
+                duration:'text duration',
+                pointCoach:'point coaching',
+                update:false,
+                isGame:true
+            };
+            this.lstExercices.push(match);
+        },
         suppExercice(id, index){
             this.lstExercices.splice(index, 1);
         },
         updteExercice(id, index){
             let exercice = this.lstExercices[index];
             exercice.update = !exercice.update;
+        },
+        up(exercice, index){
+            let element = this.lstExercices[index];
+            this.lstExercices.splice(index, 1);
+            this.lstExercices.splice(index-1, 0, element);
+        },
+        down(exercice, index){
+            let element = this.lstExercices[index];
+            this.lstExercices.splice(index, 1);
+            this.lstExercices.splice(index+1, 0, element);
+        },
+        async save(){
+            const exercices = [];
+            const seance = {
+                activite : activity.id,
+                theme : 'Theme',
+                duration : '2h',
+                user_created : 1,
+                exercices
+            };
+
+            const response = await this.$axios.post('/api/seances', seance);
         }
     },
     mounted(){

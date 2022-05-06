@@ -45,12 +45,29 @@
             
             color:$color-black-fonts;
         }
+        
         .exercices{
             background-color: #f9f9f9;
             border:1px solid #ebebeb;
             border-radius: 5px;
             overflow-y: auto;
             height: 100vh;
+            .others-exerices{
+                margin-bottom: 20px;
+                >div{
+                    margin-bottom: 10px;
+                    a{
+                        @include blue-link;
+                        @include font-s;
+                        font-family: $font-family-text;
+                        color:$color-black-fonts-second;
+
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
             .type-exercices{
                 margin-top: 2px;
                 .category-name{
@@ -111,22 +128,53 @@
                         display: grid;
                         grid-template-columns: 2fr 1fr;
                         grid-column-gap: 10px;
+                        position: relative;
+                        .actions-move{
+                            position: absolute;
+                            top: 0px;
+                            right: 0px;
+                            color:$color-black-fonts;
+                            >div{
+                                cursor: pointer;
+                            }
+                        }
                         .details-exercice{
+                            margin-top: 40px;
                             p{
                                 margin: 5px;
                                 @include font-s;
                                 color:$color-black-fonts-second;
                                 font-family: $font-family-text;
                             }
+
+                            .objectifs{
+                                margin-top: 20px;
+                            }
+
+                            .form-group{
+                                .form-control-textarea, .form-control{
+
+                                    font-size: 12px;
+                                }
+
+                                .form-control{
+                                    height:    50px;
+                                }
+
+                                .form-control-textarea{
+                                    height: 60px;
+                                    margin-top: 0px;
+                                }
+                            }
                         }
                         .image-exercice{
+                            margin-top: 40px;
                             .image{
-                                background-color: red;
-                                height: 101px;
                                 width: 100%;
-                                image{
+                                img{
                                     height: 100%;
                                     width: 100%;
+                                    object-fit: cover;
                                 }
                             }
                         }

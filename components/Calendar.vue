@@ -13,7 +13,7 @@
             </div>
             <div class="days-of-month">
                 <div class="day-of-month" :class="day.class" v-for="(day, index) in daysOfMonth" :key="index">
-                    <div class="number">{{day.number}}</div>
+                    <div class="number" :class="day.numberClass">{{day.number}}</div>
                     <div class="seances" v-if="day.seances">
                         <div class="seance" v-for="(seance, index) in day.seances" :key="index+10" @click="showDetailsActivity(seance)">
                             {{seance.name}} ({{seance.heure}})
@@ -41,8 +41,8 @@ export default {
             daysOfMonth:[],
             currentMonth:{},
             currentYear:0,
-            currentDayOfWeek:0,
-            classFirstDayOfWeek:''
+            firstDayOfMonth:0,
+            classFirstDayOfWeek:'',
         }
     },
     methods:{
@@ -57,8 +57,8 @@ export default {
         this.daysOfWeek = DateService.getDaysOfWeek(DEFAULT_LANG);
         this.currentMonth = DateService.getMonth(now, DEFAULT_LANG);
         this.currentYear = now.getFullYear();
-        this.currentDayOfWeek = now.getDay();
-        this.classFirstDayOfWeek = `first-day-${this.currentDayOfWeek}`;
+        this.firstDayOfMonth = DateService.getFirstDayOfCurrentMonth().getDay();
+        this.classFirstDayOfWeek = `first-day-${this.firstDayOfMonth}`;
 
         const seancesMonth = this.seances.filter(seance => new Date(seance.date_activite).getMonth() === this.currentMonth.month);
         const gamesMonth = this.matchs.filter(match => new Date(match.date_activite).getMonth() === this.currentMonth.month);
@@ -67,7 +67,13 @@ export default {
         for(let i=0;i<daysInCurrentMonth;i++){
             const seances = seancesMonth.filter(seance => new Date(seance.date_activite).getDate() === i+1);
             const matchs = gamesMonth.filter(match => new Date(match.date_activite).getDate() === i+1);
-            this.daysOfMonth.push({number:i+1, class: i === 0 ? this.classFirstDayOfWeek : '',  seances, matchs});
+            this.daysOfMonth.push({
+                number:i+1, 
+                class: i === 0 ? this.classFirstDayOfWeek : '', 
+                numberClass: i+1 === now.getDate() ? 'currentDay' : '',
+                seances,
+                matchs
+            });
         }
     }
 }
@@ -114,7 +120,7 @@ export default {
                 border:1px solid #E9E9E9;
                 position: relative;
                 @include font-s;
-                padding-top: 15px;
+                padding-top: 20px;
 
                 &:hover{
                     background-color: $color-blue-blackground-clair;
@@ -124,6 +130,14 @@ export default {
                     position: absolute;
                     top:5px;
                     right: 5px;
+
+                    &.currentDay{
+                        color:$color-white-fonts;
+                        font-weight: bold;
+                        background: $color-red;
+                        padding: 0px 5px;
+                        border-radius: 5px;
+                    }
                 }
 
                 .seance{
