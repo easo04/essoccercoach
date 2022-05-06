@@ -53,6 +53,7 @@
                 <div class="content-options">
                     <div class="details-option-activity" v-if="optionActivitySelected === 'details'">
                         <div class="infos-activity-details">
+                            <h4>Détails</h4>
                             <div class="heure_arrive" v-if="activity.heure_arrive">
                                 <span class="icon"><font-awesome-icon :icon="['fas', 'clock']"/></span>
                                 <span class="label">Heure d'arrivée: </span> {{activity.heure_arrive}}
@@ -60,21 +61,20 @@
                             <div class="endroit" v-if="activity.adresse">
                                 <span class="icon"><font-awesome-icon :icon="['fas', 'map-marker-alt']"/></span> {{activity.adresse}}
                             </div>
+                            <h4>Disponibilités</h4>
                             <div class="availabilities">
-                                <div class="present" v-if="lstPlayersAvailabilityPresent.length > 0">
-                                    <h5>Présents</h5>
-                                    <div v-for="(availavility, index) in lstPlayersAvailabilityPresent" :key="index">
-                                        {{availavility.name_player}}
-                                    </div>
+                                <div class="present"> 
+                                    <h5>
+                                        {{lstPlayersAvailabilityPresent.length}}
+                                    </h5>
+                                    <div>Présents</div>
                                 </div>
-                                <div class="present-back" v-if="lstPlayersAvailabilityPresent.length > 0"></div>
-                                <div class="absent" v-if="lstPlayersAvailabilityAbsent.length > 0">         
-                                    <h5>Absents</h5>
-                                    <div v-for="(availavility, index) in lstPlayersAvailabilityAbsent" :key="index">
-                                        {{availavility.name_player}}
-                                    </div>
+                                <div class="absent">  
+                                    <h5>
+                                        {{lstPlayersAvailabilityAbsent.length}}
+                                    </h5>       
+                                    <div>Absents</div>
                                 </div>
-                                <div class="absent-back" v-if="lstPlayersAvailabilityAbsent.length > 0"></div>
                             </div>
                         </div>
                         <div class="link-adresse" v-if="activity.link_adresse">
